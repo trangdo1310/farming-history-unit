@@ -6,25 +6,24 @@
   <title>History A1–A2: Farming Changes the World</title>
   <style>
     :root {
-      --bg: #fdf8ee;
-      --bg-warm: #f6ede0;
+      --bg: #fffaf0;
       --surface: #ffffff;
-      --text: #1e293b;
-      --muted: #57657a;
-      --forest: #1f6f50;
-      --forest-soft: #e6f4ee;
-      --terracotta: #c85a32;
-      --terracotta-soft: #fdf0ea;
-      --gold: #d98218;
-      --gold-soft: #fef6e6;
-      --plum: #5b4b8a;
-      --plum-soft: #f2effb;
-      --sky: #1d6fa5;
-      --sky-soft: #eaf4fb;
-      --border: #e6dccb;
+      --text: #182230;
+      --muted: #526075;
+      --emerald: #0f9d68;
+      --emerald-soft: #e3f9f0;
+      --amber: #f59e0b;
+      --amber-soft: #fef5d6;
+      --coral: #f95738;
+      --coral-soft: #ffece8;
+      --indigo: #4f46e5;
+      --indigo-soft: #eef2ff;
+      --teal: #0891b2;
+      --teal-soft: #e0f7fa;
+      --border: #eadfc9;
       --success: #15803d;
       --success-bg: #dcfce7;
-      --error: #b91c1c;
+      --error: #dc2626;
       --error-bg: #fee2e2;
     }
 
@@ -41,29 +40,30 @@
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background:
-        radial-gradient(circle at 10% 8%, rgba(217, 130, 24, 0.12), transparent 28%),
-        radial-gradient(circle at 90% 15%, rgba(31, 111, 80, 0.11), transparent 30%),
-        radial-gradient(circle at 85% 80%, rgba(200, 90, 50, 0.1), transparent 32%),
+        radial-gradient(circle at 8% 6%, rgba(245, 158, 11, 0.18), transparent 28%),
+        radial-gradient(circle at 92% 12%, rgba(15, 157, 104, 0.16), transparent 30%),
+        radial-gradient(circle at 88% 55%, rgba(249, 87, 56, 0.14), transparent 32%),
+        radial-gradient(circle at 15% 88%, rgba(79, 70, 229, 0.13), transparent 32%),
         var(--bg);
       color: var(--text);
       line-height: 1.65;
-      padding-bottom: 4.5rem;
+      padding-bottom: 5rem;
     }
 
-    /* Top Navigation Bar (Kept Clean & Familiar) */
+    /* Top Navigation Bar */
     header {
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.96);
       backdrop-filter: blur(8px);
-      border-bottom: 2px solid var(--border);
+      border-bottom: 3px solid #f5d08a;
       position: sticky;
       top: 0;
       z-index: 100;
       padding: 0.75rem 1.25rem;
-      box-shadow: 0 2px 10px rgba(30, 41, 59, 0.04);
+      box-shadow: 0 4px 14px rgba(24, 34, 48, 0.05);
     }
 
     .nav-container {
-      max-width: 940px;
+      max-width: 980px;
       margin: 0 auto;
       display: flex;
       flex-wrap: wrap;
@@ -75,90 +75,87 @@
     .brand {
       font-weight: 800;
       font-size: 1.05rem;
-      color: var(--forest);
+      color: var(--emerald);
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
 
     .badge {
-      background: linear-gradient(135deg, var(--gold-soft), var(--terracotta-soft));
-      color: var(--terracotta);
-      border: 1px solid #f3c69f;
+      background: linear-gradient(135deg, #fde68a, #fed7aa);
+      color: #9a3412;
+      border: 1px solid #fdba74;
       font-size: 0.75rem;
-      padding: 0.18rem 0.6rem;
+      padding: 0.18rem 0.65rem;
       border-radius: 999px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
     nav {
       display: flex;
-      gap: 0.4rem;
+      gap: 0.35rem;
       flex-wrap: wrap;
     }
 
     nav a {
       text-decoration: none;
       color: var(--muted);
-      font-size: 0.875rem;
-      font-weight: 600;
-      padding: 0.38rem 0.75rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 0.35rem 0.7rem;
       border-radius: 8px;
       transition: all 0.15s ease;
     }
 
     nav a:hover {
-      background: var(--forest-soft);
-      color: var(--forest);
+      background: var(--amber-soft);
+      color: #92400e;
     }
 
-    /* Main Container */
     main {
-      max-width: 940px;
+      max-width: 980px;
       margin: 1.75rem auto;
       padding: 0 1.25rem;
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      gap: 2.1rem;
     }
 
-    /* Hero Banner */
+    /* Vibrant Hero */
     .hero-card {
-      background: linear-gradient(135deg, #fffdf9 0%, #fff4e0 55%, #eaf5ef 100%);
-      border: 2px solid #e5d4b7;
-      border-radius: 18px;
+      background: linear-gradient(135deg, #fffbeb 0%, #dcfce7 52%, #e0f2fe 100%);
+      border: 2.5px solid #f6c977;
+      border-radius: 20px;
       padding: 2rem;
-      box-shadow: 0 8px 24px rgba(120, 82, 26, 0.07);
-      position: relative;
-      overflow: hidden;
+      box-shadow: 0 10px 28px rgba(245, 158, 11, 0.14);
     }
 
     .hero-tag {
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      background: var(--forest);
+      background: linear-gradient(135deg, var(--coral), var(--amber));
       color: #fff;
       font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.03em;
+      font-weight: 800;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      padding: 0.28rem 0.75rem;
+      padding: 0.3rem 0.8rem;
       border-radius: 999px;
       margin-bottom: 0.75rem;
     }
 
     h1 {
-      font-size: 1.95rem;
-      color: #162232;
-      line-height: 1.25;
+      font-size: 2rem;
+      color: #0f172a;
+      line-height: 1.22;
       margin-bottom: 0.35rem;
     }
 
     .subtitle {
-      color: var(--terracotta);
-      font-weight: 600;
-      font-size: 1.05rem;
+      color: #c2410c;
+      font-weight: 700;
+      font-size: 1.06rem;
       margin-bottom: 1.35rem;
     }
 
@@ -169,18 +166,15 @@
     }
 
     .obj-box {
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.94);
       padding: 1.1rem 1.25rem;
-      border-radius: 12px;
-      border: 1px solid #e6dccb;
+      border-radius: 14px;
+      border: 2px solid #fde68a;
       font-size: 0.92rem;
     }
 
     .obj-box strong {
-      color: var(--forest);
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
+      color: var(--emerald);
       font-size: 0.98rem;
     }
 
@@ -189,97 +183,127 @@
       margin-top: 0.45rem;
     }
 
-    .obj-box li {
-      margin-bottom: 0.25rem;
-    }
-
-    /* Section Cards */
+    /* Cards */
     .card {
       background: var(--surface);
       border: 2px solid var(--border);
-      border-radius: 16px;
-      padding: 1.8rem;
-      box-shadow: 0 4px 16px rgba(30, 41, 59, 0.04);
+      border-radius: 18px;
+      padding: 1.85rem;
+      box-shadow: 0 6px 20px rgba(24, 34, 48, 0.05);
     }
 
-    .card-warmup { border-top: 6px solid var(--gold); }
-    .card-vocab { border-top: 6px solid var(--forest); }
-    .card-reading { border-top: 6px solid var(--terracotta); }
-    .card-check { border-top: 6px solid var(--plum); }
+    .card-warmup { border-top: 7px solid var(--amber); }
+    .card-vocab { border-top: 7px solid var(--emerald); }
+    .card-reading { border-top: 7px solid var(--coral); }
+    .card-check { border-top: 7px solid var(--indigo); }
+    .card-lang { border-top: 7px solid var(--teal); }
+    .card-practice { border-top: 7px solid #ea580c; }
+    .card-project { border-top: 7px solid #16a34a; background: linear-gradient(180deg, #ffffff 0%, #f4fdf7 100%); }
 
     h2 {
-      font-size: 1.38rem;
-      margin-bottom: 0.85rem;
+      font-size: 1.4rem;
+      margin-bottom: 0.9rem;
       padding-bottom: 0.6rem;
-      border-bottom: 2px dashed var(--border);
+      border-bottom: 2px dashed #e7dcc7;
       display: flex;
       align-items: center;
-      gap: 0.6rem;
-      color: #162232;
+      gap: 0.65rem;
+      color: #0f172a;
     }
 
     .sec-icon {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
-      font-size: 1.05rem;
+      width: 36px;
+      height: 36px;
+      border-radius: 11px;
+      font-size: 1.1rem;
+      flex-shrink: 0;
     }
 
-    .icon-gold { background: var(--gold-soft); }
-    .icon-forest { background: var(--forest-soft); }
-    .icon-terra { background: var(--terracotta-soft); }
-    .icon-plum { background: var(--plum-soft); }
+    .icon-amber { background: var(--amber-soft); }
+    .icon-emerald { background: var(--emerald-soft); }
+    .icon-coral { background: var(--coral-soft); }
+    .icon-indigo { background: var(--indigo-soft); }
+    .icon-teal { background: var(--teal-soft); }
 
     h3 {
-      font-size: 1.1rem;
-      margin: 1.4rem 0 0.6rem;
-      color: #162232;
+      font-size: 1.12rem;
+      margin: 1.45rem 0 0.65rem;
+      color: #0f172a;
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      flex-wrap: wrap;
     }
 
-    /* Image Display */
-    .coursebook-figure {
-      margin: 1rem 0 1.35rem;
-      border: 2px solid #e6dccb;
+    .part-pill {
+      display: inline-block;
+      background: linear-gradient(135deg, #fef08a, #fed7aa);
+      color: #9a3412;
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 0.16rem 0.6rem;
+      border-radius: 7px;
+      text-transform: uppercase;
+    }
+
+    /* Pictures & Side-by-Side Layouts */
+    .split-row {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 1.25rem;
+      align-items: start;
+      margin: 1rem 0;
+    }
+
+    @media (max-width: 760px) {
+      .split-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .pic-box {
+      border: 2px solid #f2d29b;
       border-radius: 14px;
       overflow: hidden;
-      background: #faf6ee;
+      background: #fffdf8;
       text-align: center;
+      margin: 0.9rem 0;
     }
 
-    .coursebook-figure img {
+    .pic-box img {
       max-width: 100%;
-      max-height: 460px;
+      max-height: 430px;
       width: auto;
       height: auto;
       display: block;
       margin: 0 auto;
     }
 
-    .img-fallback {
+    .pic-fallback {
       display: none;
-      padding: 1.5rem;
-      background: #fff8eb;
-      color: #5c3c10;
-      font-size: 0.9rem;
+      padding: 1.15rem;
+      background: #fff5e0;
+      color: #7c2d12;
+      font-size: 0.86rem;
     }
 
-    .coursebook-caption {
-      font-size: 0.88rem;
-      color: var(--muted);
-      padding: 0.65rem 1rem;
-      border-top: 1px solid #e6dccb;
-      background: #fffdf9;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.5rem;
+    .pic-caption {
+      font-size: 0.85rem;
+      color: #475569;
+      padding: 0.55rem 0.85rem;
+      background: #fef9ec;
+      border-top: 1px solid #f2d29b;
+      font-weight: 600;
+    }
+
+    .tools-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
     }
 
     /* Buttons */
@@ -291,52 +315,53 @@
       padding: 0.58rem 1.15rem;
       border-radius: 10px;
       border: 1.5px solid transparent;
-      transition: transform 0.1s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+      transition: transform 0.1s ease, filter 0.15s ease;
     }
 
     button:active {
       transform: scale(0.98);
     }
 
-    .btn-primary {
-      background: linear-gradient(135deg, var(--forest), #17573e);
-      color: #fff;
-      box-shadow: 0 3px 8px rgba(31, 111, 80, 0.22);
+    button:hover {
+      filter: brightness(0.97);
     }
 
-    .btn-primary:hover {
-      background: linear-gradient(135deg, #185b41, #124531);
+    .btn-primary {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(16, 185, 129, 0.25);
     }
 
     .btn-warm {
-      background: linear-gradient(135deg, var(--terracotta), #ab4722);
+      background: linear-gradient(135deg, #f97316, #ea580c);
       color: #fff;
-      box-shadow: 0 3px 8px rgba(200, 90, 50, 0.22);
+      box-shadow: 0 4px 10px rgba(249, 115, 22, 0.25);
+    }
+
+    .btn-indigo {
+      background: linear-gradient(135deg, #6366f1, #4f46e5);
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(99, 102, 241, 0.25);
     }
 
     .btn-outline {
-      background: var(--surface);
-      border-color: #d6c9b2;
-      color: var(--text);
-    }
-
-    .btn-outline:hover {
-      background: var(--gold-soft);
-      border-color: var(--gold);
+      background: #fff;
+      border-color: #cbd5e1;
+      color: #1e293b;
     }
 
     .btn-group {
       display: flex;
       gap: 0.65rem;
-      margin-top: 1.25rem;
+      margin-top: 1.15rem;
       flex-wrap: wrap;
       align-items: center;
     }
 
-    /* Warm-up Checklist (No Strikethrough) */
+    /* Warmup Checklist (No Strikethrough) */
     .checklist-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
       gap: 0.65rem;
       margin: 1rem 0;
     }
@@ -347,7 +372,7 @@
       gap: 0.55rem;
       padding: 0.6rem 0.8rem;
       border: 2px solid #e6dccb;
-      border-radius: 10px;
+      border-radius: 11px;
       cursor: pointer;
       user-select: none;
       font-size: 0.95rem;
@@ -356,16 +381,14 @@
     }
 
     .check-item:hover {
-      border-color: var(--gold);
-      background: var(--gold-soft);
-      transform: translateY(-1px);
+      border-color: var(--amber);
+      background: var(--amber-soft);
     }
 
     .check-item input[type="checkbox"] {
-      accent-color: var(--forest);
+      accent-color: var(--emerald);
       width: 16px;
       height: 16px;
-      cursor: pointer;
     }
 
     .check-item.is-correct {
@@ -384,21 +407,19 @@
 
     .progress-pill {
       display: inline-block;
-      background: var(--gold-soft);
-      border: 1px solid #f2cc8f;
-      color: #7c4706;
-      font-weight: 700;
-      font-size: 0.85rem;
-      padding: 0.25rem 0.75rem;
+      background: linear-gradient(135deg, #fef08a, #fde68a);
+      border: 1.5px solid #f59e0b;
+      color: #78350f;
+      font-weight: 800;
+      font-size: 0.86rem;
+      padding: 0.25rem 0.8rem;
       border-radius: 999px;
-      margin-top: 0.25rem;
     }
 
-    /* Corrective Feedback Banner */
     .live-feedback-box {
       margin-top: 0.85rem;
       padding: 0.9rem 1.15rem;
-      border-radius: 10px;
+      border-radius: 11px;
       font-size: 0.95rem;
       font-weight: 600;
       display: none;
@@ -420,13 +441,13 @@
       color: #7f1d1d;
     }
 
-    /* Pair Discussion & Live Class Board */
+    /* Pair Discussion & Board */
     .pair-box {
-      background: linear-gradient(135deg, #fff9eb, #fff3dc);
-      border: 1.5px solid #f3cf8d;
-      border-left: 5px solid var(--gold);
+      background: linear-gradient(135deg, #fff7ed, #fef3c7);
+      border: 2px solid #fbbf24;
+      border-left: 6px solid #f97316;
       padding: 1.2rem 1.35rem;
-      border-radius: 12px;
+      border-radius: 14px;
       margin-top: 1.4rem;
     }
 
@@ -434,71 +455,71 @@
       display: flex;
       flex-direction: column;
       gap: 0.7rem;
-      margin-top: 0.8rem;
+      margin-top: 0.75rem;
     }
 
     .discussion-form input,
     .discussion-form textarea {
       width: 100%;
       padding: 0.65rem 0.8rem;
-      border: 1.5px solid #e8be76;
-      border-radius: 8px;
+      border: 1.5px solid #f59e0b;
+      border-radius: 9px;
       font-family: inherit;
       font-size: 0.92rem;
-      background: #ffffff;
+      background: #fff;
     }
 
     .board-container {
-      margin-top: 1.2rem;
+      margin-top: 1.15rem;
       padding-top: 1rem;
-      border-top: 2px dashed #e8be76;
+      border-top: 2px dashed #f59e0b;
     }
 
     .board-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 0.7rem;
+      margin-bottom: 0.65rem;
     }
 
     .post-list {
       display: flex;
       flex-direction: column;
-      gap: 0.65rem;
-      max-height: 320px;
+      gap: 0.6rem;
+      max-height: 300px;
       overflow-y: auto;
     }
 
     .student-post {
-      background: #ffffff;
-      border: 1.5px solid #f3d79f;
+      background: #fff;
+      border: 1.5px solid #fde68a;
       border-radius: 10px;
-      padding: 0.75rem 0.95rem;
-      font-size: 0.92rem;
+      padding: 0.7rem 0.9rem;
+      font-size: 0.9rem;
     }
 
     .student-post-meta {
       font-weight: 700;
-      color: var(--terracotta);
-      font-size: 0.84rem;
-      margin-bottom: 0.25rem;
+      color: #c2410c;
+      font-size: 0.83rem;
+      margin-bottom: 0.2rem;
       display: flex;
       justify-content: space-between;
     }
 
-    /* Vocab Matching */
+    /* Vocab & Inputs */
     .vocab-row {
       display: grid;
       grid-template-columns: 170px 1fr;
       gap: 1rem;
       align-items: center;
-      padding: 0.7rem 0.5rem;
-      border-bottom: 1px solid #efe7d8;
-      border-radius: 8px;
+      padding: 0.7rem 0.6rem;
+      border-bottom: 1px solid #f1e6d2;
+      border-radius: 9px;
     }
 
     .vocab-row:nth-child(odd) {
-      background: #fcfaf5;
+      background: #f3fdf8;
     }
 
     @media (max-width: 600px) {
@@ -510,14 +531,14 @@
 
     .vocab-word {
       font-weight: 800;
-      color: var(--forest);
+      color: #047857;
       font-size: 0.98rem;
     }
 
-    select, input[type="text"] {
+    select, input[type="text"], textarea.form-box {
       width: 100%;
       padding: 0.55rem 0.7rem;
-      border: 1.5px solid #d6c9b2;
+      border: 1.5px solid #cbd5e1;
       border-radius: 8px;
       font-family: inherit;
       font-size: 0.92rem;
@@ -525,10 +546,10 @@
       color: var(--text);
     }
 
-    select:focus, input[type="text"]:focus, textarea:focus {
+    select:focus, input[type="text"]:focus, textarea.form-box:focus {
       outline: none;
-      border-color: var(--forest);
-      box-shadow: 0 0 0 3px rgba(31, 111, 80, 0.14);
+      border-color: var(--emerald);
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.16);
     }
 
     .correct-field {
@@ -541,59 +562,80 @@
       background-color: var(--error-bg) !important;
     }
 
-    /* Reading Section */
+    /* Reading & Highlights */
     .reading-toolbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       gap: 0.5rem;
-      background: var(--terracotta-soft);
-      border: 1px solid #f4c9b8;
+      background: linear-gradient(135deg, #ffedd5, #fef08a);
+      border: 1.5px solid #fb923c;
       padding: 0.7rem 1rem;
-      border-radius: 10px;
+      border-radius: 11px;
       margin-bottom: 1.1rem;
       font-size: 0.9rem;
     }
 
     .reading-text p {
-      margin-bottom: 0.95rem;
-    }
-
-    .part-pill {
-      display: inline-block;
-      background: var(--forest-soft);
-      color: var(--forest);
-      font-size: 0.78rem;
-      font-weight: 800;
-      padding: 0.15rem 0.55rem;
-      border-radius: 6px;
-      text-transform: uppercase;
+      margin-bottom: 0.9rem;
     }
 
     .vocab-highlight {
-      transition: all 0.2s ease;
       border-radius: 4px;
       padding: 0 2px;
+      transition: 0.2s;
     }
 
     .highlight-active .vocab-highlight {
       background-color: #fde047;
-      color: #1e293b;
       font-weight: 700;
-      border-bottom: 2px solid #ca8a04;
+      border-bottom: 2.5px solid #ea580c;
       padding: 1px 4px;
     }
 
     .info-callout {
-      background: var(--sky-soft);
-      border: 1.5px solid #bae0f7;
-      border-left: 5px solid var(--sky);
+      background: linear-gradient(135deg, #e0f2fe, #eef2ff);
+      border: 1.5px solid #93c5fd;
+      border-left: 5px solid #2563eb;
       padding: 0.9rem 1.15rem;
-      border-radius: 10px;
+      border-radius: 11px;
       margin: 1.1rem 0;
       font-size: 0.92rem;
-      color: #133b5c;
+      color: #1e3a8a;
+    }
+
+    /* Multiple Choice Box (Vietnam Near/Far & Language Focus 3) */
+    .mcq-card {
+      background: #f0f9ff;
+      border: 2px solid #7dd3fc;
+      border-radius: 14px;
+      padding: 1.1rem 1.25rem;
+      margin: 1rem 0;
+    }
+
+    .mcq-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.6rem;
+      margin-top: 0.7rem;
+    }
+
+    .mcq-option {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #fff;
+      border: 1.5px solid #bae6fd;
+      border-radius: 9px;
+      padding: 0.55rem 0.75rem;
+      cursor: pointer;
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+
+    .mcq-option input {
+      accent-color: #0284c7;
     }
 
     /* Tables & Mind Map */
@@ -601,78 +643,176 @@
       width: 100%;
       border-collapse: collapse;
       margin: 0.75rem 0;
-      font-size: 0.93rem;
+      font-size: 0.92rem;
       border-radius: 10px;
       overflow: hidden;
     }
 
     th, td {
       border: 1px solid #e2d6c1;
-      padding: 0.7rem 0.8rem;
+      padding: 0.68rem 0.78rem;
       text-align: left;
       vertical-align: top;
     }
 
     th {
-      background: #f5ede0;
-      color: #162232;
-      font-weight: 700;
-    }
-
-    .timeline-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 0.9rem;
-      margin-top: 0.75rem;
-    }
-
-    .timeline-card {
-      border: 2px solid #e2d6c1;
-      border-radius: 12px;
-      padding: 0.95rem;
-      background: #fffdf9;
-    }
-
-    .timeline-date {
+      background: #fef3c7;
+      color: #78350f;
       font-weight: 800;
-      color: var(--terracotta);
-      background: var(--terracotta-soft);
-      font-size: 0.88rem;
-      margin-bottom: 0.55rem;
-      padding: 0.3rem 0.6rem;
-      border-radius: 6px;
-      display: inline-block;
     }
 
+    /* TRUE TIMELINE LINE */
+    .timeline-track-wrapper {
+      position: relative;
+      padding: 1.5rem 0 0.5rem;
+      margin-top: 0.75rem;
+      overflow-x: auto;
+    }
+
+    .timeline-track {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(190px, 1fr));
+      gap: 1rem;
+      min-width: 760px;
+    }
+
+    .timeline-track::before {
+      content: "";
+      position: absolute;
+      top: 34px;
+      left: 6%;
+      right: 6%;
+      height: 5px;
+      background: linear-gradient(90deg, #f59e0b, #10b981, #0284c7, #f97316);
+      border-radius: 999px;
+      z-index: 1;
+    }
+
+    .timeline-node-col {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .timeline-date-pill {
+      background: #fff;
+      border: 2.5px solid #f59e0b;
+      color: #9a3412;
+      font-weight: 800;
+      font-size: 0.84rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      margin-bottom: 0.45rem;
+    }
+
+    .timeline-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #f97316;
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 3px #f97316;
+      margin-bottom: 0.75rem;
+    }
+
+    .timeline-panel {
+      width: 100%;
+      background: #fffdf7;
+      border: 2px solid #f2d69b;
+      border-radius: 12px;
+      padding: 0.8rem;
+      text-align: left;
+    }
+
+    /* Mind Map */
     .mindmap-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
       gap: 1rem;
       margin-top: 0.75rem;
     }
 
     .mm-box {
       border: 2px solid var(--border);
-      border-radius: 12px;
+      border-radius: 14px;
       padding: 1.05rem;
     }
 
-    .mm-land { background: #eefaf3; border-color: #9ae0b8; }
-    .mm-food { background: #fff5ec; border-color: #f9c79b; }
-    .mm-tools { background: #eef6fc; border-color: #a9d4f5; }
-    .mm-jobs { background: #f5f2fc; border-color: #cbbef5; }
+    .mm-land { background: #e6faef; border-color: #6ee7b7; }
+    .mm-food { background: #fff3e6; border-color: #fdba74; }
+    .mm-tools { background: #e0f2fe; border-color: #7dd3fc; }
+    .mm-jobs { background: #f3e8ff; border-color: #d8b4fe; }
 
     .mm-box h4 {
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.55rem;
       font-size: 1rem;
-      color: #162232;
     }
 
     .mm-box ul {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: 0.45rem;
+    }
+
+    /* Language Box ("Remember") */
+    .remember-box {
+      background: linear-gradient(135deg, #ecfeff, #f0fdf4);
+      border: 2px solid #22d3ee;
+      border-left: 6px solid #0891b2;
+      border-radius: 14px;
+      padding: 1.15rem 1.35rem;
+      margin: 1.25rem 0;
+    }
+
+    .remember-box h4 {
+      color: #0e7490;
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .remember-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+      font-size: 0.92rem;
+    }
+
+    .remember-chip {
+      background: #fff;
+      border: 1px solid #a5f3fc;
+      border-radius: 9px;
+      padding: 0.65rem 0.8rem;
+    }
+
+    /* Evidence & Result Boxes */
+    .result-banner {
+      margin-top: 0.85rem;
+      padding: 0.9rem 1.1rem;
+      border-radius: 11px;
+      font-size: 0.92rem;
+      display: none;
+    }
+
+    .result-banner.show {
+      display: block;
+    }
+
+    .result-success {
+      background: var(--success-bg);
+      border: 1.5px solid #86efac;
+      color: #14532d;
+    }
+
+    .result-error {
+      background: var(--error-bg);
+      border: 1.5px solid #fca5a5;
+      color: #7f1d1d;
     }
 
     .hint-text {
@@ -682,25 +822,13 @@
       display: block;
     }
 
-    .feedback-msg {
-      font-size: 0.92rem;
-      font-weight: 700;
-      margin-left: 0.5rem;
-    }
-
-    .answer-reveal {
-      margin-top: 0.9rem;
-      padding: 0.9rem 1.1rem;
-      background: var(--forest-soft);
-      border: 1.5px solid #96d6b6;
-      border-radius: 10px;
-      font-size: 0.92rem;
-      color: #123f2d;
-      display: none;
-    }
-
-    .answer-reveal.show {
-      display: block;
+    .project-list {
+      margin-left: 1.3rem;
+      margin-top: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      font-size: 0.94rem;
     }
   </style>
 </head>
@@ -714,19 +842,22 @@
     </div>
     <nav>
       <a href="#warmup">Warm-up</a>
-      <a href="#vocab">1. Farming Words</a>
+      <a href="#vocab">1. Words</a>
       <a href="#reading">2. Reading</a>
-      <a href="#check">3. Check Understanding</a>
+      <a href="#check">3. Check</a>
+      <a href="#language">4. Past Simple</a>
+      <a href="#practice">5. Practice</a>
+      <a href="#project">6. Project</a>
     </nav>
   </div>
 </header>
 
 <main>
-  <!-- HERO INTRO -->
+  <!-- HERO -->
   <section class="hero-card">
-    <div class="hero-tag">🏛️ World History • New Stone Age</div>
+    <div class="hero-tag">✨ World History • New Stone Age</div>
     <h1>Farming Changes the World</h1>
-    <p class="subtitle">Discover how the first farmers of the Neolithic period changed food, land, tools, and jobs</p>
+    <p class="subtitle">The first farmers of the Neolithic period and how they shaped human history</p>
     <div class="objectives">
       <div class="obj-box">
         <strong>🎯 In this unit you will learn:</strong>
@@ -737,7 +868,7 @@
         </ul>
       </div>
       <div class="obj-box">
-        <strong>✍️ In this unit you will practise:</strong>
+        <strong>⚡ In this unit you will practise:</strong>
         <ul>
           <li>Using the past simple to talk about the past</li>
           <li>Regular and irregular past verbs</li>
@@ -747,92 +878,84 @@
     </div>
   </section>
 
-  <!-- WARM UP -->
+  <!-- WARM UP (PICTURE 1) -->
   <section id="warmup" class="card card-warmup">
     <h2>
-      <span class="sec-icon icon-gold">👀</span>
+      <span class="sec-icon icon-amber">👀</span>
       Warm-up: Look at Picture 1
     </h2>
-    <p>Look carefully at the Neolithic farming village below. Click the items you can find in the picture (watch out—two items do <strong>NOT</strong> belong in the Stone Age!):</p>
+    <p>Look carefully at the Neolithic farming village in <strong>Picture 1</strong>. Click the items you can find (watch out—two items do <strong>NOT</strong> belong in the Stone Age!):</p>
 
-    <!-- PICTURE 1 -->
-    <figure class="coursebook-figure">
+    <figure class="pic-box">
       <img
-        id="village-img"
+        id="pic1"
         src="neolithic_farming_village.png"
         alt="Picture 1: Life in a Neolithic farming village"
-        onload="document.getElementById('img-fallback').style.display='none';"
-        onerror="handleImageError(this);"
+        onload="this.nextElementSibling.style.display='none';"
+        onerror="showFallback(this);"
       />
-      <div id="img-fallback" class="img-fallback">
-        <p style="font-weight:700; margin-bottom:0.4rem;">⚠️ Could not load <code>neolithic_farming_village.png</code> from GitHub yet.</p>
-        <p style="margin-bottom:0.75rem;">Check that the file in your repository is named <code>neolithic_farming_village.png</code> and opens properly on GitHub, or load it directly from your computer for class right now:</p>
-        <input type="file" accept="image/*" onchange="loadLocalImage(event)" style="max-width:320px;" />
+      <div class="pic-fallback">
+        <strong>Picture 1 (<code>neolithic_farming_village.png</code>)</strong> isn't showing from GitHub yet. Pick it from your device to show in class:
+        <br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'pic1')" style="margin-top:0.5rem;">
       </div>
-      <figcaption class="coursebook-caption">
-        <span><strong>Picture 1:</strong> Life in a Neolithic farming village</span>
-        <span style="color: var(--forest); font-weight: 600;">~11,000 years ago</span>
-      </figcaption>
+      <figcaption class="pic-caption">Picture 1: Life in a Neolithic farming village (~11,000 years ago)</figcaption>
     </figure>
 
     <div class="checklist-grid" id="warmup-list">
-      <label class="check-item" data-valid="true" data-feedback="Yes! There is a round house with a thatched roof in the center of the village, plus another house on the right.">
+      <label class="check-item" data-valid="true" data-feedback="Yes! There is a round mud-and-thatch house in the center of the village, plus another house on the right.">
         <input type="checkbox" onchange="handleWarmupClick(this)"> <span>a house</span>
       </label>
       <label class="check-item" data-valid="true" data-feedback="Yes! Two white sheep are walking on the left side near the dog and goat.">
         <input type="checkbox" onchange="handleWarmupClick(this)"> <span>sheep</span>
       </label>
-      <label class="check-item" data-valid="true" data-feedback="Yes! A brown goat is walking on the left side right next to the sheep.">
+      <label class="check-item" data-valid="true" data-feedback="Yes! A brown goat is walking on the left right next to the sheep.">
         <input type="checkbox" onchange="handleWarmupClick(this)"> <span>a goat</span>
       </label>
-      <label class="check-item" data-valid="true" data-feedback="Yes! Inside the round fenced pen behind the main house, there is a large cow/ox.">
+      <label class="check-item" data-valid="true" data-feedback="Yes! Inside the round fenced pen behind the main house, there is a cow/ox.">
         <input type="checkbox" onchange="handleWarmupClick(this)"> <span>a cow</span>
       </label>
       <label class="check-item" data-valid="true" data-feedback="Yes! In the top-left field, villagers are harvesting tall golden wheat.">
         <input type="checkbox" onchange="handleWarmupClick(this)"> <span>wheat</span>
       </label>
-      <label class="check-item" data-valid="true" data-feedback="Yes! In front of the central house on the left, a cooking pot hangs over a campfire.">
+      <label class="check-item" data-valid="true" data-feedback="Yes! In front of the central house on the left, a pot hangs over a cooking fire.">
         <input type="checkbox" onchange="handleWarmupClick(this)"> <span>a fire</span>
       </label>
-      <label class="check-item" data-valid="false" data-feedback="Not quite! Tractors are modern machines—Neolithic people did not have engines or tractors.">
+      <label class="check-item" data-valid="false" data-feedback="Not quite! Tractors are modern machines—Neolithic people did not have tractors.">
         <input type="checkbox" onchange="handleWarmupClick(this)"> <span>a tractor</span>
       </label>
-      <label class="check-item" data-valid="true" data-feedback="Yes! A person in the bottom-left is weaving baskets, and another carries a basket on her shoulder.">
+      <label class="check-item" data-valid="true" data-feedback="Yes! A person in the bottom-left is weaving baskets, and another carries one on her shoulder.">
         <input type="checkbox" onchange="handleWarmupClick(this)"> <span>baskets</span>
       </label>
-      <label class="check-item" data-valid="true" data-feedback="Yes! Clay pots are hanging over the fire, resting inside the house, and sitting on the ground below.">
+      <label class="check-item" data-valid="true" data-feedback="Yes! Clay pots hang over the fire, sit inside the house, and rest on the ground below.">
         <input type="checkbox" onchange="handleWarmupClick(this)"> <span>pots</span>
       </label>
       <label class="check-item" data-valid="true" data-feedback="Yes! A dark dog is running on the lower-left path near the sheep.">
         <input type="checkbox" onchange="handleWarmupClick(this)"> <span>a dog</span>
       </label>
-      <label class="check-item" data-valid="true" data-feedback="Yes! On the right side, a woman carries a bundle of wood and a man chops wood near the trees.">
+      <label class="check-item" data-valid="true" data-feedback="Yes! On the right side, a woman carries wood and a man chops wood near the trees.">
         <input type="checkbox" onchange="handleWarmupClick(this)"> <span>wood</span>
       </label>
-      <label class="check-item" data-valid="true" data-feedback="Yes! At the bottom-center, someone pours yellow grain from a basket into a storage pit in the ground.">
+      <label class="check-item" data-valid="true" data-feedback="Yes! At the bottom-center, someone pours yellow grain from a basket into a pit in the ground.">
         <input type="checkbox" onchange="handleWarmupClick(this)"> <span>grain</span>
       </label>
-      <label class="check-item" data-valid="true" data-feedback="Yes! Two children are playing on the right side near the woman carrying wood.">
+      <label class="check-item" data-valid="true" data-feedback="Yes! Two children are playing on the right near the woman carrying wood.">
         <input type="checkbox" onchange="handleWarmupClick(this)"> <span>children</span>
       </label>
-      <label class="check-item" data-valid="false" data-feedback="Incorrect! Plastic did not exist in the Stone Age—villagers used clay pots, baskets, and animal skins.">
+      <label class="check-item" data-valid="false" data-feedback="Incorrect! Plastic did not exist 11,000 years ago—villagers used clay pots and baskets.">
         <input type="checkbox" onchange="handleWarmupClick(this)"> <span>plastic bottles</span>
       </label>
     </div>
 
     <span id="warmup-status" class="progress-pill">Found: 0 / 12 Neolithic items</span>
-
-    <!-- CORRECTIVE FEEDBACK AT BOTTOM OF CHECKLIST -->
     <div id="warmup-feedback-banner" class="live-feedback-box"></div>
 
     <!-- PAIR DISCUSSION WITH LIVE CLASS BOARD -->
     <div class="pair-box">
-      <strong style="color: #7c4706; font-size: 1rem;">💬 Pair Discussion & Class Board</strong>
+      <strong style="color: #9a3412; font-size: 1rem;">💬 Pair Discussion & Class Board</strong>
       <p style="font-size: 0.92rem; margin-top: 0.3rem;">
         1. What jobs are the people doing? (e.g., <em>"I think this woman is cutting wheat."</em>)<br>
         2. Is this village very old or modern? How do you know?
       </p>
-
       <div class="discussion-form">
         <input type="text" id="student-name" placeholder="Your Name / Pair Names (e.g., Minh & Lan)">
         <textarea id="student-answer" rows="2" placeholder="Write your answers to questions 1 & 2 here..."></textarea>
@@ -841,11 +964,10 @@
           <span id="post-status" style="font-size: 0.88rem; font-weight: 700;"></span>
         </div>
       </div>
-
       <div class="board-container">
         <div class="board-header">
-          <strong style="font-size: 0.94rem; color: var(--terracotta);">🌟 Classmates' Answers</strong>
-          <button class="btn-outline" style="padding: 0.28rem 0.7rem; font-size: 0.8rem;" onclick="loadDiscussionPosts()">↻ Refresh</button>
+          <strong style="font-size: 0.94rem; color: #c2410c;">🌟 Classmates' Answers</strong>
+          <button class="btn-outline" style="padding: 0.25rem 0.65rem; font-size: 0.8rem;" onclick="loadDiscussionPosts()">↻ Refresh</button>
         </div>
         <div class="post-list" id="class-board-list">
           <p class="hint-text">No posts yet—be the first pair to share your answer!</p>
@@ -854,15 +976,15 @@
     </div>
   </section>
 
-  <!-- SECTION 1: FARMING WORDS -->
+  <!-- 1. FARMING WORDS -->
   <section id="vocab" class="card card-vocab">
     <h2>
-      <span class="sec-icon icon-forest">🌱</span>
+      <span class="sec-icon icon-emerald">🌱</span>
       1. Farming Words
     </h2>
-    <p>Match each farming word (1–6) to its correct meaning (a–f).</p>
+    <p>Match the words (1–6) to their meanings (a–f). Then find them in the reading text.</p>
 
-    <div id="vocab-container" style="margin-top: 0.85rem;">
+    <div id="vocab-container" style="margin-top: 0.8rem;">
       <div class="vocab-row">
         <div class="vocab-word">1. farm (v)</div>
         <select data-answer="b">
@@ -875,7 +997,6 @@
           <option value="f">f. the small, hard seeds of wheat, rice or barley</option>
         </select>
       </div>
-
       <div class="vocab-row">
         <div class="vocab-word">2. crop (n)</div>
         <select data-answer="a">
@@ -888,7 +1009,6 @@
           <option value="f">f. the small, hard seeds of wheat, rice or barley</option>
         </select>
       </div>
-
       <div class="vocab-row">
         <div class="vocab-word">3. grain (n)</div>
         <select data-answer="f">
@@ -901,7 +1021,6 @@
           <option value="f">f. the small, hard seeds of wheat, rice or barley</option>
         </select>
       </div>
-
       <div class="vocab-row">
         <div class="vocab-word">4. domesticate (v)</div>
         <select data-answer="c">
@@ -914,7 +1033,6 @@
           <option value="f">f. the small, hard seeds of wheat, rice or barley</option>
         </select>
       </div>
-
       <div class="vocab-row">
         <div class="vocab-word">5. fertile (adj)</div>
         <select data-answer="d">
@@ -927,7 +1045,6 @@
           <option value="f">f. the small, hard seeds of wheat, rice or barley</option>
         </select>
       </div>
-
       <div class="vocab-row">
         <div class="vocab-word">6. plough (n)</div>
         <select data-answer="e">
@@ -944,56 +1061,142 @@
 
     <div class="btn-group">
       <button class="btn-primary" onclick="checkVocab()">Check Answers</button>
-      <button class="btn-outline" onclick="resetVocab()">Reset</button>
-      <span id="vocab-feedback" class="feedback-msg"></span>
+      <button id="vocab-retry" class="btn-warm" style="display:none;" onclick="retryVocab()">Try Again</button>
     </div>
+    <div id="vocab-result" class="result-banner"></div>
   </section>
 
-  <!-- SECTION 2: READING -->
+  <!-- 2. READING (WITH PICTURES 2, 3, 4, 5, 6, 7 IN THEIR PDF PLACES) -->
   <section id="reading" class="card card-reading">
     <h2>
-      <span class="sec-icon icon-terra">📖</span>
+      <span class="sec-icon icon-coral">📖</span>
       2. Reading: Farming Changes the World
     </h2>
 
     <div class="reading-toolbar">
-      <span><strong>🕵️ Spot the words:</strong> Find the 6 farming words as you read.</span>
-      <button class="btn-outline" style="padding: 0.38rem 0.8rem; font-size: 0.84rem;" onclick="toggleHighlights()">✨ Highlight Farming Words</button>
+      <span><strong>🔎 Word Hunt:</strong> Find the 6 farming words inside the text.</span>
+      <button class="btn-outline" style="padding: 0.35rem 0.78rem; font-size: 0.83rem;" onclick="toggleHighlights()">✨ Highlight Farming Words</button>
     </div>
 
     <div class="reading-text" id="reading-body">
-      <p>For a very long time, people did not have <span class="vocab-highlight">farms</span>. They hunted wild animals and gathered fruit, nuts and seeds from wild plants. They moved from place to place to find food. Then, about 11,000 years ago, something very important happened: people began to grow their own food. This was the start of the Neolithic period. How did farming change the way people lived? What did they eat, and what work did they do?</p>
+      <p><strong>Intro (Paragraph 1):</strong> For a very long time, people did not have <span class="vocab-highlight">farms</span>. They hunted wild animals and gathered fruit, nuts and seeds from wild plants. They moved from place to place to find food. Then, about 11,000 years ago, something very important happened: people began to grow their own food. This was the start of the Neolithic period. How did farming change the way people lived? What did they eat, and what work did they do?</p>
 
+      <!-- PART A + PICTURE 2 SIDE BY SIDE -->
       <h3><span class="part-pill">Part A</span> Where and when were the first farmers?</h3>
-      <p>The first farmers lived in <strong>Mesopotamia</strong>, a land between two big rivers, the Tigris and the Euphrates. Today, this area is part of Iraq and Syria. The land near the rivers was flat and <span class="vocab-highlight">fertile</span>, and there was a lot of water, so it was a good place to grow <span class="vocab-highlight">crops</span>.</p>
-      <p>The first farmers planted <span class="vocab-highlight">grain</span> <span class="vocab-highlight">crops</span> such as wheat and barley. They also grew peas, lentils and flax. They ate the peas and lentils, and they used flax to make cloth for their clothes.</p>
-      <p>At the same time, people began to <span class="vocab-highlight">domesticate</span> animals. Before, they hunted wild sheep, goats, cows and pigs. Now they kept these animals on their <span class="vocab-highlight">farms</span>, so they had meat and milk all year. However, farmers did not stop hunting completely. They still hunted wild animals, caught fish and collected fruit and nuts.</p>
-      <p>Farming spread very slowly from Mesopotamia to other places. It reached the south of Europe about 2,000 years later.</p>
-
-      <div class="info-callout">
-        <strong>💡 History Note:</strong> <strong>BCE</strong> = Before the Common Era. We count BCE years backwards, so 9000 BCE is older than 3000 BCE.
+      <div class="split-row">
+        <div>
+          <p><strong>A1:</strong> The first farmers lived in <strong>Mesopotamia</strong>, a land between two big rivers, the Tigris and the Euphrates (Picture 2). Today, this area is part of Iraq and Syria. The land near the rivers was flat and <span class="vocab-highlight">fertile</span>, and there was a lot of water, so it was a good place to grow <span class="vocab-highlight">crops</span>.</p>
+          <p><strong>A2:</strong> The first farmers planted <span class="vocab-highlight">grain</span> <span class="vocab-highlight">crops</span> such as wheat and barley. They also grew peas, lentils and flax. They ate the peas and lentils, and they used flax to make cloth for their clothes.</p>
+          <p><strong>A3:</strong> At the same time, people began to <span class="vocab-highlight">domesticate</span> animals. Before, they hunted wild sheep, goats, cows and pigs. Now they kept these animals on their <span class="vocab-highlight">farms</span>, so they had meat and milk all year. However, farmers did not stop hunting completely. They still hunted wild animals, caught fish and collected fruit and nuts.</p>
+          <p><strong>A4:</strong> Farming spread very slowly from Mesopotamia to other places. It reached the south of Europe about 2,000 years later.</p>
+        </div>
+        <figure class="pic-box" style="margin-top:0;">
+          <img id="pic2" src="picture2.png" alt="Picture 2: Mesopotamia, the land between the Tigris and Euphrates rivers" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback">
+            <strong>Picture 2 (<code>picture2.png</code>)</strong> not loaded yet.
+            <br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'pic2')" style="margin-top:0.4rem;">
+          </div>
+          <figcaption class="pic-caption">Picture 2: Mesopotamia, between the Tigris and Euphrates rivers</figcaption>
+        </figure>
       </div>
 
+      <!-- PICTURE 3 + MULTIPLE CHOICE QUESTION FOR VIETNAM NEAR/FAR -->
+      <div class="split-row">
+        <figure class="pic-box" style="margin-top:0;">
+          <img id="pic3" src="picture3.png" alt="Picture 3: From Mesopotamia to Europe and Vietnam" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback">
+            <strong>Picture 3 (<code>picture3.png</code>)</strong> not loaded yet.
+            <br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'pic3')" style="margin-top:0.4rem;">
+          </div>
+          <figcaption class="pic-caption">Picture 3: From Mesopotamia to Europe and Vietnam</figcaption>
+        </figure>
+        <div>
+          <div class="mcq-card" id="vietnam-mcq">
+            <p style="font-weight:700; color:#0c4a6e;">🗺️ Map Task: Find Mesopotamia (Iraq and Syria), Europe, and Vietnam on Picture 3. Is Vietnam near or far from the first farms?</p>
+            <div class="mcq-options">
+              <label class="mcq-option"><input type="radio" name="vn_mcq" value="far"> A. Very far away across Asia</label>
+              <label class="mcq-option"><input type="radio" name="vn_mcq" value="right_next"> B. Right next to Iraq and Syria</label>
+              <label class="mcq-option"><input type="radio" name="vn_mcq" value="inside_eu"> C. Inside southern Europe</label>
+              <label class="mcq-option"><input type="radio" name="vn_mcq" value="between_rivers"> D. Between the Tigris and Euphrates</label>
+            </div>
+            <div class="btn-group">
+              <button class="btn-indigo" style="padding:0.45rem 0.95rem; font-size:0.85rem;" onclick="checkVietnamMcq()">Check Answer</button>
+              <button id="vn-retry" class="btn-warm" style="display:none; padding:0.45rem 0.95rem; font-size:0.85rem;" onclick="retryVietnamMcq()">Try Again</button>
+            </div>
+            <div id="vn-result" class="result-banner"></div>
+          </div>
+
+          <div class="info-callout">
+            <strong>BCE</strong> = Before the Common Era. We count BCE years backwards, so 9000 BCE is older than 3000 BCE.
+          </div>
+        </div>
+      </div>
+
+      <!-- PART B + PICTURE 4 SIDE BY SIDE -->
       <h3><span class="part-pill">Part B</span> Changing the land</h3>
-      <p>Farmers changed the land around them. They cut down trees and cleared the land to make fields for their <span class="vocab-highlight">crops</span>. Their animals ate the wild plants and grass. To bring water to the fields, farmers dug long water channels from the river. Some farmers built a dam across a river to keep and store water.</p>
-      <p>In places with hills, farmers made terraces. Terraces are flat steps of land on the side of a hill, so the rain does not wash the soil away. Farmers in Vietnam still grow rice on terraces today.</p>
+      <div class="split-row">
+        <div>
+          <p><strong>B1:</strong> Farmers changed the land around them. They cut down trees and cleared the land to make fields for their <span class="vocab-highlight">crops</span>. Their animals ate the wild plants and grass. To bring water to the fields, farmers dug long water channels from the river. Some farmers built a dam across a river to keep and store water.</p>
+          <p><strong>B2:</strong> In places with hills, farmers made terraces. Terraces are flat steps of land on the side of a hill, so the rain does not wash the soil away. Farmers in Vietnam still grow rice on terraces today (Picture 4).</p>
+        </div>
+        <figure class="pic-box" style="margin-top:0;">
+          <img id="pic4" src="picture4.png" alt="Picture 4: Rice terraces in Sapa, Vietnam" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback">
+            <strong>Picture 4 (<code>picture4.png</code>)</strong> not loaded yet.
+            <br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'pic4')" style="margin-top:0.4rem;">
+          </div>
+          <figcaption class="pic-caption">Picture 4: Rice terraces in Sapa, Vietnam</figcaption>
+        </figure>
+      </div>
 
+      <!-- PART C -->
       <h3><span class="part-pill">Part C</span> Changing food</h3>
-      <p>Because people grew their own <span class="vocab-highlight">grain</span>, they had more food. Farmers ground wheat and barley between two stones to make flour, and then they made bread and porridge. Their animals gave them meat and milk. Food was now easier to find, so families did not need to move any more. They built houses and lived together in villages.</p>
+      <p><strong>C1:</strong> Because people grew their own <span class="vocab-highlight">grain</span>, they had more food. Farmers ground wheat and barley between two stones to make flour, and then they made bread and porridge. Their animals gave them meat and milk. Food was now easier to find, so families did not need to move any more. They built houses and lived together in villages (like the village in Picture 1).</p>
 
+      <!-- PART D + PICTURES 5, 6, 7 -->
       <h3><span class="part-pill">Part D</span> New tools and technology</h3>
-      <p>Farming led to new inventions. Later, farmers invented the <span class="vocab-highlight">plough</span>, a tool that breaks up the soil so seeds can grow. Strong animals, such as cows, pulled the <span class="vocab-highlight">plough</span>, so farmers could prepare a big field quickly. Some farmers in Vietnam still use buffaloes to <span class="vocab-highlight">plough</span> their rice fields.</p>
-      <p>Stone tools also got better. People polished their stone axes and blades, so they were smooth and sharp and cut better. People also learned to make pottery. They shaped wet clay into pots and bowls, and then they baked them in a fire to make them hard. They used the pots to store <span class="vocab-highlight">grain</span>, water and milk. Farmers also made textiles. They made linen from flax, and they used wool from sheep and goats to make warm clothes.</p>
+      <p><strong>D1:</strong> Farming led to new inventions. Later, farmers invented the <span class="vocab-highlight">plough</span>, a tool that breaks up the soil so seeds can grow. Strong animals, such as cows, pulled the <span class="vocab-highlight">plough</span>, so farmers could prepare a big field quickly. Some farmers in Vietnam still use buffaloes to <span class="vocab-highlight">plough</span> their rice fields (Picture 5).</p>
+      <p><strong>D2:</strong> Stone tools also got better. People polished their stone axes and blades, so they were smooth and sharp and cut better (Picture 6).</p>
+      <p><strong>D3:</strong> People also learned to make pottery. They shaped wet clay into pots and bowls, and then they baked them in a fire to make them hard. They used the pots to store <span class="vocab-highlight">grain</span>, water and milk (Picture 7).</p>
+      <p><strong>D4:</strong> Farmers also made textiles. They made linen from flax, and they used wool from sheep and goats to make warm clothes.</p>
 
+      <div class="tools-gallery">
+        <figure class="pic-box" style="margin:0;">
+          <img id="pic5" src="picture5.png" alt="Picture 5: A buffalo pulls a plough in a rice field in Vietnam" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback">
+            <strong>Picture 5 (<code>picture5.png</code>)</strong> not loaded yet.
+            <br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'pic5')" style="margin-top:0.4rem;">
+          </div>
+          <figcaption class="pic-caption">Picture 5: Buffalo pulling a plough in Vietnam</figcaption>
+        </figure>
+        <figure class="pic-box" style="margin:0;">
+          <img id="pic6" src="picture6.png" alt="Picture 6: Polished stone tools from the Neolithic period" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback">
+            <strong>Picture 6 (<code>picture6.png</code>)</strong> not loaded yet.
+            <br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'pic6')" style="margin-top:0.4rem;">
+          </div>
+          <figcaption class="pic-caption">Picture 6: Polished Neolithic stone tools</figcaption>
+        </figure>
+        <figure class="pic-box" style="margin:0;">
+          <img id="pic7" src="picture7.png" alt="Picture 7: A Neolithic clay pot, made in about 3200 BCE" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback">
+            <strong>Picture 7 (<code>picture7.png</code>)</strong> not loaded yet.
+            <br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'pic7')" style="margin-top:0.4rem;">
+          </div>
+          <figcaption class="pic-caption">Picture 7: Neolithic clay pot (~3200 BCE)</figcaption>
+        </figure>
+      </div>
+
+      <!-- PART E -->
       <h3><span class="part-pill">Part E</span> New jobs</h3>
-      <p>In a farming village, there were many different jobs. Some people looked after the animals, and others worked in the fields. Some people became very good at making pots, so pottery became their special job. Sometimes a village grew more food than it needed. People traded the extra food with other villages for things they did not have, such as tools, special stones or animals. In this way, trading became another new job.</p>
+      <p><strong>E1:</strong> In a farming village, there were many different jobs. Some people looked after the animals, and others worked in the fields. Some people became very good at making pots, so pottery became their special job. Sometimes a village grew more food than it needed. People traded the extra food with other villages for things they did not have, such as tools, special stones or animals. In this way, trading became another new job.</p>
     </div>
   </section>
 
-  <!-- SECTION 3: CHECK YOUR UNDERSTANDING -->
+  <!-- 3. CHECK YOUR UNDERSTANDING -->
   <section id="check" class="card card-check">
     <h2>
-      <span class="sec-icon icon-plum">✅</span>
+      <span class="sec-icon icon-indigo">✅</span>
       3. Check Your Understanding
     </h2>
 
@@ -1002,212 +1205,405 @@
     <table>
       <thead>
         <tr>
-          <th style="width: 32%;">Fact file: the first farmers</th>
+          <th style="width:32%;">Fact file: the first farmers</th>
           <th>Your answers</th>
         </tr>
       </thead>
       <tbody id="task3a-body">
         <tr>
-          <td><strong>📍 Where?</strong></td>
-          <td>Mesopotamia (today: <input type="text" style="width: 220px; display: inline-block;" data-keywords="iraq,syria" placeholder="max. 3 words">)</td>
+          <td><strong>Where?</strong></td>
+          <td>Mesopotamia (today: <input id="t3a-where" type="text" style="width:220px; display:inline-block;" data-keywords="iraq,syria" placeholder="max. 3 words">)</td>
         </tr>
         <tr>
-          <td><strong>⏳ When?</strong></td>
-          <td><input type="text" style="width: 180px; display: inline-block;" data-keywords="11000,11,000" placeholder="max. 3 words"> years ago</td>
+          <td><strong>When?</strong></td>
+          <td><input id="t3a-when" type="text" style="width:170px; display:inline-block;" data-keywords="11000,11,000" placeholder="max. 3 words"> years ago</td>
         </tr>
         <tr>
-          <td><strong>🌿 Why was it a good place?</strong></td>
-          <td><input type="text" data-keywords="flat,fertile,water" placeholder="max. 12 words"></td>
+          <td><strong>Why was it a good place?</strong></td>
+          <td><input id="t3a-why" type="text" data-keywords="flat,fertile,water" placeholder="max. 12 words"></td>
         </tr>
         <tr>
-          <td><strong>🌾 Crops</strong></td>
-          <td>wheat, <input type="text" style="width: 75%; display: inline-block;" data-keywords="barley,peas,lentils,flax" placeholder="max. 6 words"></td>
+          <td><strong>Crops</strong></td>
+          <td>wheat, <input id="t3a-crops" type="text" style="width:76%; display:inline-block;" data-keywords="barley,peas,lentils,flax" placeholder="max. 6 words"></td>
         </tr>
         <tr>
-          <td><strong>🐑 Animals</strong></td>
-          <td><input type="text" data-keywords="sheep,goats,cows,pigs" placeholder="max. 5 words"></td>
+          <td><strong>Animals</strong></td>
+          <td><input id="t3a-animals" type="text" data-keywords="sheep,goats,cows,pigs" placeholder="max. 5 words"></td>
         </tr>
         <tr>
-          <td><strong>🧺 Food they still collected</strong></td>
-          <td><input type="text" data-keywords="wild animals,fish,fruit,nuts" placeholder="max. 6 words"></td>
+          <td><strong>Food they still collected</strong></td>
+          <td><input id="t3a-food" type="text" data-keywords="wild animals,fish,fruit,nuts" placeholder="max. 6 words"></td>
         </tr>
       </tbody>
     </table>
     <div class="btn-group">
       <button class="btn-primary" onclick="checkTask3A()">Check Task A</button>
-      <button class="btn-outline" onclick="toggleReveal('ans-3a')">Show Sample Answers</button>
-      <span id="fb-3a" class="feedback-msg"></span>
+      <button id="t3a-retry" class="btn-warm" style="display:none;" onclick="retrySection('task3a-body', 't3a-result', 't3a-retry')">Try Again</button>
     </div>
-    <div id="ans-3a" class="answer-reveal">
-      <strong>Answer Key (3A):</strong><br>
-      • <strong>Where:</strong> Iraq and Syria<br>
-      • <strong>When:</strong> about 11,000<br>
-      • <strong>Why good:</strong> The land near the rivers was flat and fertile, with lots of water.<br>
-      • <strong>Crops:</strong> barley, peas, lentils, flax<br>
-      • <strong>Animals:</strong> sheep, goats, cows, pigs<br>
-      • <strong>Food still collected:</strong> wild animals, fish, fruit and nuts
-    </div>
+    <div id="t3a-result" class="result-banner"></div>
 
-    <!-- TASK 3B -->
-    <h3 style="margin-top: 2.1rem;"><span class="part-pill">Task B</span> Complete the timeline</h3>
-    <div class="timeline-grid" id="task3b-body">
-      <div class="timeline-card">
-        <div class="timeline-date">about 11,000 years ago</div>
-        <p style="font-size: 0.9rem; margin-bottom: 0.4rem;">Farming started in:</p>
-        <input type="text" data-keywords="mesopotamia" placeholder="max. 8 words">
-      </div>
-      <div class="timeline-card">
-        <div class="timeline-date">about 2,000 years later</div>
-        <p style="font-size: 0.9rem; margin-bottom: 0.4rem;">What happened?</p>
-        <input type="text" data-keywords="europe" placeholder="max. 8 words">
-      </div>
-      <div class="timeline-card">
-        <div class="timeline-date">about 3200 BCE</div>
-        <p style="font-size: 0.9rem; margin-bottom: 0.4rem;">What did people make?</p>
-        <input type="text" data-keywords="pot,pottery,clay" placeholder="max. 8 words">
-      </div>
-      <div class="timeline-card">
-        <div class="timeline-date">★ today</div>
-        <p style="font-size: 0.9rem; margin-bottom: 0.4rem;">Some farmers in Vietnam still use:</p>
-        <input type="text" data-keywords="terraces" placeholder="word 1" style="margin-bottom: 0.35rem;">
-        <input type="text" data-keywords="buffaloes,buffalo" placeholder="word 2">
+    <!-- TASK 3B: TRUE CONNECTED TIMELINE -->
+    <h3 style="margin-top:2rem;"><span class="part-pill">Task B</span> Complete the timeline</h3>
+    <div class="timeline-track-wrapper">
+      <div class="timeline-track" id="task3b-body">
+        <div class="timeline-node-col">
+          <div class="timeline-date-pill">about 11,000 years ago</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-panel">
+            <p style="font-size:0.88rem; margin-bottom:0.4rem;">Farming started in:</p>
+            <input type="text" data-keywords="mesopotamia" placeholder="max. 8 words">
+          </div>
+        </div>
+        <div class="timeline-node-col">
+          <div class="timeline-date-pill">about 2,000 years later</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-panel">
+            <p style="font-size:0.88rem; margin-bottom:0.4rem;">What happened?</p>
+            <input type="text" data-keywords="europe" placeholder="max. 8 words">
+          </div>
+        </div>
+        <div class="timeline-node-col">
+          <div class="timeline-date-pill">about 3200 BCE</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-panel">
+            <p style="font-size:0.88rem; margin-bottom:0.4rem;">What did people make?</p>
+            <input type="text" data-keywords="pot,pottery,clay" placeholder="max. 8 words">
+          </div>
+        </div>
+        <div class="timeline-node-col">
+          <div class="timeline-date-pill">★ today</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-panel">
+            <p style="font-size:0.88rem; margin-bottom:0.4rem;">Some farmers in Vietnam still use:</p>
+            <input type="text" data-keywords="terraces" placeholder="word 1" style="margin-bottom:0.35rem;">
+            <input type="text" data-keywords="buffaloes,buffalo" placeholder="word 2">
+          </div>
+        </div>
       </div>
     </div>
     <div class="btn-group">
       <button class="btn-primary" onclick="checkTask3B()">Check Task B</button>
-      <button class="btn-outline" onclick="toggleReveal('ans-3b')">Show Sample Answers</button>
-      <span id="fb-3b" class="feedback-msg"></span>
+      <button id="t3b-retry" class="btn-warm" style="display:none;" onclick="retrySection('task3b-body', 't3b-result', 't3b-retry')">Try Again</button>
     </div>
-    <div id="ans-3b" class="answer-reveal">
-      <strong>Answer Key (3B):</strong><br>
-      • <strong>11,000 years ago:</strong> Mesopotamia<br>
-      • <strong>2,000 years later:</strong> Farming reached the south of Europe.<br>
-      • <strong>3200 BCE:</strong> People made clay pots / pottery.<br>
-      • <strong>Today:</strong> terraces and buffaloes (to plough).
-    </div>
+    <div id="t3b-result" class="result-banner"></div>
 
     <!-- TASK 3C -->
-    <h3 style="margin-top: 2.1rem;"><span class="part-pill">Task C</span> Complete the mind map (How did farming change people's lives?)</h3>
+    <h3 style="margin-top:2rem;"><span class="part-pill">Task C</span> Complete the mind map (How did farming change people's lives?)</h3>
     <p class="hint-text">Use information from Parts B–E. Write 2 more ideas in each box (max. 5 words each).</p>
-    <div class="mindmap-grid">
+    <div class="mindmap-grid" id="task3c-body">
       <div class="mm-box mm-land">
         <h4>🌲 The land</h4>
         <ul>
           <li>• <em>They cut down trees.</em></li>
-          <li><input type="text" placeholder="Idea 2 (max. 5 words)"></li>
-          <li><input type="text" placeholder="Idea 3 (max. 5 words)"></li>
+          <li><input type="text" data-keywords="fields,channels,dam,terraces,clear,water" placeholder="Idea 2 (max. 5 words)"></li>
+          <li><input type="text" data-keywords="fields,channels,dam,terraces,clear,water" placeholder="Idea 3 (max. 5 words)"></li>
         </ul>
       </div>
       <div class="mm-box mm-food">
         <h4>🍞 Food</h4>
         <ul>
           <li>• <em>They made bread.</em></li>
-          <li><input type="text" placeholder="Idea 2 (max. 5 words)"></li>
-          <li><input type="text" placeholder="Idea 3 (max. 5 words)"></li>
+          <li><input type="text" data-keywords="grain,flour,porridge,meat,milk,wheat,barley" placeholder="Idea 2 (max. 5 words)"></li>
+          <li><input type="text" data-keywords="grain,flour,porridge,meat,milk,wheat,barley" placeholder="Idea 3 (max. 5 words)"></li>
         </ul>
       </div>
       <div class="mm-box mm-tools">
         <h4>🛠️ Tools and technology</h4>
         <ul>
           <li>• <em>They invented the plough.</em></li>
-          <li><input type="text" placeholder="Idea 2 (max. 5 words)"></li>
-          <li><input type="text" placeholder="Idea 3 (max. 5 words)"></li>
+          <li><input type="text" data-keywords="stone,axes,blades,pottery,pots,linen,wool,textiles" placeholder="Idea 2 (max. 5 words)"></li>
+          <li><input type="text" data-keywords="stone,axes,blades,pottery,pots,linen,wool,textiles" placeholder="Idea 3 (max. 5 words)"></li>
         </ul>
       </div>
       <div class="mm-box mm-jobs">
         <h4>🧑‍🌾 Jobs</h4>
         <ul>
           <li>• <em>Some people made pots.</em></li>
-          <li><input type="text" placeholder="Idea 2 (max. 5 words)"></li>
-          <li><input type="text" placeholder="Idea 3 (max. 5 words)"></li>
+          <li><input type="text" data-keywords="animals,fields,pottery,pots,trade,trading,food" placeholder="Idea 2 (max. 5 words)"></li>
+          <li><input type="text" data-keywords="animals,fields,pottery,pots,trade,trading,food" placeholder="Idea 3 (max. 5 words)"></li>
         </ul>
       </div>
     </div>
     <div class="btn-group">
-      <button class="btn-outline" onclick="toggleReveal('ans-3c')">Compare with Model Answers</button>
+      <button class="btn-primary" onclick="checkTask3C()">Check Task C</button>
+      <button id="t3c-retry" class="btn-warm" style="display:none;" onclick="retrySection('task3c-body', 't3c-result', 't3c-retry')">Try Again</button>
     </div>
-    <div id="ans-3c" class="answer-reveal">
-      <strong>Model Answers (3C):</strong><br>
-      • <strong>The land:</strong> cleared land for fields; dug water channels; built dams; made terraces.<br>
-      • <strong>Food:</strong> grew grain; made flour and porridge; got meat and milk.<br>
-      • <strong>Tools & technology:</strong> polished stone tools; made pottery; made textiles (linen, wool).<br>
-      • <strong>Jobs:</strong> looked after animals; worked in the fields; traded extra food.
-    </div>
+    <div id="t3c-result" class="result-banner"></div>
 
     <!-- TASK 3D -->
-    <h3 style="margin-top: 2.1rem;"><span class="part-pill">Task D</span> Be a good historian</h3>
-    <p style="font-size: 0.93rem;">Good historians look for <strong>turning points</strong>: times when life changed completely. Complete the table and conclusion.</p>
+    <h3 style="margin-top:2rem;"><span class="part-pill">Task D</span> Be a good historian</h3>
     <table>
       <thead>
         <tr>
-          <th style="width: 50%; background: #fdeaea; color: #7f1d1d;">⏪ Before farming, people...</th>
-          <th style="width: 50%; background: #e6f6ec; color: #14532d;">⏩ After farming, people...</th>
+          <th style="width:50%;">⏪ Before farming, people...</th>
+          <th style="width:50%;">⏩ After farming, people...</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="task3d-body">
         <tr>
           <td>moved from place to place.</td>
           <td>lived together in villages.</td>
         </tr>
         <tr>
           <td>hunted wild animals.</td>
-          <td><input type="text" placeholder="max. 5 words"></td>
+          <td><input type="text" data-keywords="kept,animals,sheep,goats,cows,pigs,domesticated" placeholder="max. 5 words"></td>
         </tr>
         <tr>
           <td>gathered wild seeds.</td>
-          <td><input type="text" placeholder="max. 5 words"></td>
+          <td><input type="text" data-keywords="grew,crops,grain,wheat,barley,planted" placeholder="max. 5 words"></td>
         </tr>
         <tr>
-          <td><input type="text" placeholder="max. 5 words"></td>
+          <td><input type="text" data-keywords="stone,hunted,gathered,moved,skins" placeholder="max. 5 words"></td>
           <td>made pots and cloth.</td>
         </tr>
       </tbody>
     </table>
-
-    <div style="margin-top: 0.85rem;">
-      <label style="font-weight: 700; font-size: 0.94rem; display: block; margin-bottom: 0.35rem;">
-        Farming was a turning point because people... <span class="hint-text" style="display: inline;">(max. 15 words)</span>
+    <div style="margin-top:0.8rem;">
+      <label style="font-weight:700; font-size:0.93rem; display:block; margin-bottom:0.35rem;">
+        Farming was a turning point because people... <span class="hint-text" style="display:inline;">(max. 15 words)</span>
       </label>
-      <input type="text" placeholder="Write your conclusion sentence here...">
+      <input id="t3d-conclusion" type="text" data-keywords="village,villages,food,move,moving,settled,grow" placeholder="Write your conclusion sentence...">
+    </div>
+    <div class="btn-group">
+      <button class="btn-primary" onclick="checkTask3D()">Check Task D</button>
+      <button id="t3d-retry" class="btn-warm" style="display:none;" onclick="retryTask3D()">Try Again</button>
+    </div>
+    <div id="t3d-result" class="result-banner"></div>
+  </section>
+
+  <!-- 4. LANGUAGE FOCUS: THE PAST SIMPLE -->
+  <section id="language" class="card card-lang">
+    <h2>
+      <span class="sec-icon icon-teal">⏱️</span>
+      4. Language Focus: The Past Simple
+    </h2>
+
+    <!-- TASK 4.1: FIND THE VERBS -->
+    <h3><span class="part-pill">1</span> Find the verbs</h3>
+    <p>Read Part 2 again and type all the past simple verbs from the reading text into the box below (separated by commas or spaces). Example: <code>lived</code>.</p>
+    <textarea id="verbs-input" class="form-box" rows="3" placeholder="Type the past simple verbs from the reading text (e.g., lived, hunted, gathered, moved, began...)"></textarea>
+    <div class="btn-group">
+      <button class="btn-primary" onclick="checkVerbsTask()">Check Verbs</button>
+      <button id="verbs-retry" class="btn-warm" style="display:none;" onclick="retryVerbsTask()">Try Again</button>
+    </div>
+    <div id="verbs-result" class="result-banner"></div>
+
+    <!-- TASK 4.2: REGULAR OR IRREGULAR (ANY ORDER) -->
+    <h3 style="margin-top:1.8rem;"><span class="part-pill">2</span> Regular or irregular?</h3>
+    <p>Type the past simple verbs from the text in either column below (any order is fine—if you include the right past simple verbs in the matching column, it counts as correct!).</p>
+    <div class="split-row">
+      <div>
+        <label style="font-weight:800; color:#047857; display:block; margin-bottom:0.35rem;">✔ Regular verbs (-ed / -d)</label>
+        <textarea id="reg-verbs-input" class="form-box" rows="4" placeholder="e.g., lived, planted, used, cleared, invented, pulled, polished..."></textarea>
+      </div>
+      <div>
+        <label style="font-weight:800; color:#6d28d9; display:block; margin-bottom:0.35rem;">⚡ Irregular verbs</label>
+        <textarea id="irreg-verbs-input" class="form-box" rows="4" placeholder="e.g., began, grew, ate, kept, caught, spread, cut, dug, built, made..."></textarea>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn-primary" onclick="checkRegIrreg()">Check Regular & Irregular</button>
+      <button id="regirreg-retry" class="btn-warm" style="display:none;" onclick="retryRegIrreg()">Try Again</button>
+    </div>
+    <div id="regirreg-result" class="result-banner"></div>
+
+    <!-- REMEMBER / LANGUAGE BOX -->
+    <div class="remember-box">
+      <h4>📘 Remember: The Past Simple</h4>
+      <div class="remember-grid">
+        <div class="remember-chip">
+          <strong>Regular verbs:</strong> add <em>-ed</em> or <em>-d</em><br>
+          plant → <strong>planted</strong>, live → <strong>lived</strong>, carry → <strong>carried</strong>, stop → <strong>stopped</strong>
+        </div>
+        <div class="remember-chip">
+          <strong>Irregular verbs:</strong> learn them!<br>
+          grow → <strong>grew</strong>, make → <strong>made</strong>, keep → <strong>kept</strong>
+        </div>
+        <div class="remember-chip">
+          <strong>Negative & Question:</strong><br>
+          Negative: <strong>did not + base verb</strong> (<em>They did not stop hunting.</em>)<br>
+          Question: <strong>What did they eat?</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- TASK 4.3: MULTIPLE CHOICE -->
+    <h3 style="margin-top:1.8rem;"><span class="part-pill">3</span> Choose the correct answer</h3>
+    <div id="lang-mcq-list" style="display:flex; flex-direction:column; gap:1rem;">
+      <div class="mcq-card" data-correct="A">
+        <p style="font-weight:700;">1. The text is mainly in the past simple because...</p>
+        <div class="mcq-options">
+          <label class="mcq-option"><input type="radio" name="q3_1" value="A"> A. the actions happened and finished in the past.</label>
+          <label class="mcq-option"><input type="radio" name="q3_1" value="B"> B. the actions started in the past and are still happening now.</label>
+          <label class="mcq-option"><input type="radio" name="q3_1" value="C"> C. the actions happen again and again, like habits.</label>
+          <label class="mcq-option"><input type="radio" name="q3_1" value="D"> D. the actions will happen in the future.</label>
+        </div>
+      </div>
+
+      <div class="mcq-card" data-correct="B">
+        <p style="font-weight:700;">2. "Today, this area is part of Iraq and Syria." The writer uses <em>is</em>, not <em>was</em>, because...</p>
+        <div class="mcq-options">
+          <label class="mcq-option"><input type="radio" name="q3_2" value="A"> A. it happened a long time ago.</label>
+          <label class="mcq-option"><input type="radio" name="q3_2" value="B"> B. it is true now.</label>
+          <label class="mcq-option"><input type="radio" name="q3_2" value="C"> C. it finished in the past.</label>
+          <label class="mcq-option"><input type="radio" name="q3_2" value="D"> D. we do not know when it happened.</label>
+        </div>
+      </div>
+
+      <div class="mcq-card" data-correct="C">
+        <p style="font-weight:700;">3. Which words tell us when in the past?</p>
+        <div class="mcq-options">
+          <label class="mcq-option"><input type="radio" name="q3_3" value="A"> A. every day</label>
+          <label class="mcq-option"><input type="radio" name="q3_3" value="B"> B. now</label>
+          <label class="mcq-option"><input type="radio" name="q3_3" value="C"> C. about 11,000 years ago</label>
+          <label class="mcq-option"><input type="radio" name="q3_3" value="D"> D. next year</label>
+        </div>
+      </div>
+
+      <div class="mcq-card" data-correct="D">
+        <p style="font-weight:700;">4. "Farmers did not ______ hunting."</p>
+        <div class="mcq-options">
+          <label class="mcq-option"><input type="radio" name="q3_4" value="A"> A. stopped</label>
+          <label class="mcq-option"><input type="radio" name="q3_4" value="B"> B. stops</label>
+          <label class="mcq-option"><input type="radio" name="q3_4" value="C"> C. stopping</label>
+          <label class="mcq-option"><input type="radio" name="q3_4" value="D"> D. stop</label>
+        </div>
+      </div>
+
+      <div class="mcq-card" data-correct="B">
+        <p style="font-weight:700;">5. Which question is correct?</p>
+        <div class="mcq-options">
+          <label class="mcq-option"><input type="radio" name="q3_5" value="A"> A. What did farmers grew?</label>
+          <label class="mcq-option"><input type="radio" name="q3_5" value="B"> B. What did farmers grow?</label>
+          <label class="mcq-option"><input type="radio" name="q3_5" value="C"> C. What farmers did grow?</label>
+          <label class="mcq-option"><input type="radio" name="q3_5" value="D"> D. What grew farmers did?</label>
+        </div>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn-primary" onclick="checkLangMcq()">Check Multiple Choice</button>
+      <button id="langmcq-retry" class="btn-warm" style="display:none;" onclick="retryLangMcq()">Try Again</button>
+    </div>
+    <div id="langmcq-result" class="result-banner"></div>
+  </section>
+
+  <!-- 5. PRACTICE -->
+  <section id="practice" class="card card-practice">
+    <h2>
+      <span class="sec-icon icon-amber">✏️</span>
+      5. Practice
+    </h2>
+
+    <!-- 5A: STARTING A STONE AGE FARM -->
+    <h3><span class="part-pill">5A</span> Starting a Stone Age farm</h3>
+    <p>Complete the text. Write the past simple of the verb in brackets, then choose a farming word from the box.</p>
+    <div class="info-callout" style="margin:0.75rem 0;">
+      <strong>Word box:</strong> water • fertile • trees • plough • wheat • barley • water channels • dam • grains • wool • linen • reeds<br>
+      <span style="font-size:0.86rem;">(One word in the box is extra!)</span>
+    </div>
+
+    <div id="p5a-body" style="display:flex; flex-direction:column; gap:0.65rem; font-size:0.94rem;">
+      <div>1. First, the farmers <input type="text" style="width:130px; display:inline-block;" data-ans="chose" placeholder="(choose)"> a good place near fresh <input type="text" style="width:150px; display:inline-block;" data-ans="water" placeholder="word">.</div>
+      <div>2. The soil <input type="text" style="width:130px; display:inline-block;" data-ans="was" placeholder="(be)"> <input type="text" style="width:150px; display:inline-block;" data-ans="fertile" placeholder="word"> so the crops grew well.</div>
+      <div>3. They <input type="text" style="width:130px; display:inline-block;" data-ans="cut" placeholder="(cut)"> down the <input type="text" style="width:150px; display:inline-block;" data-ans="trees" placeholder="word">.</div>
+      <div>4. Later, they <input type="text" style="width:130px; display:inline-block;" data-ans="used" placeholder="(use)"> a <input type="text" style="width:150px; display:inline-block;" data-ans="plough" placeholder="word"> to prepare the land.</div>
+      <div>5. They <input type="text" style="width:130px; display:inline-block;" data-ans="planted" placeholder="(plant)"> crops such as <input type="text" style="width:130px; display:inline-block;" data-ans="wheat" placeholder="word 1"> and <input type="text" style="width:130px; display:inline-block;" data-ans="barley" placeholder="word 2">.</div>
+      <div>6. They <input type="text" style="width:130px; display:inline-block;" data-ans="dug" placeholder="(dig)"> <input type="text" style="width:170px; display:inline-block;" data-ans="water channels" placeholder="words"> to bring water to the crops.</div>
+      <div>7. They <input type="text" style="width:130px; display:inline-block;" data-ans="built" placeholder="(build)"> a <input type="text" style="width:150px; display:inline-block;" data-ans="dam" placeholder="word"> across the river to store water.</div>
+      <div>8. They <input type="text" style="width:130px; display:inline-block;" data-ans="ground" placeholder="(grind)"> <input type="text" style="width:150px; display:inline-block;" data-ans="grains" placeholder="word"> to make flour for bread.</div>
+      <div>9. They <input type="text" style="width:130px; display:inline-block;" data-ans="made" placeholder="(make)"> clothes from <input type="text" style="width:130px; display:inline-block;" data-ans="wool" placeholder="word 1"> and <input type="text" style="width:130px; display:inline-block;" data-ans="linen" placeholder="word 2">.</div>
+      <div>Extra word in the box: <input type="text" style="width:160px; display:inline-block;" data-ans="reeds" placeholder="extra word"></div>
     </div>
 
     <div class="btn-group">
-      <button class="btn-outline" onclick="toggleReveal('ans-3d')">Compare with Model Answers</button>
+      <button class="btn-primary" onclick="checkPractice5A()">Check 5A</button>
+      <button id="p5a-retry" class="btn-warm" style="display:none;" onclick="retryPractice5A()">Try Again</button>
     </div>
-    <div id="ans-3d" class="answer-reveal">
-      <strong>Model Answers (3D):</strong><br>
-      • <strong>After hunting:</strong> kept / domesticated animals on farms.<br>
-      • <strong>After gathering seeds:</strong> grew their own crops / grain.<br>
-      • <strong>Before making pots/cloth:</strong> used simple stone tools / wore animal skins.<br>
-      • <strong>Conclusion:</strong> ...stopped moving from place to place, lived in villages, and grew their own food.
-    </div>
+    <div id="p5a-result" class="result-banner"></div>
+
+    <!-- 5B: SPEAKING -->
+    <h3 style="margin-top:2rem;"><span class="part-pill">5B</span> Speaking: Interview a Neolithic farmer</h3>
+    <p>Work in pairs. Student A is a reporter; Student B is a farmer from 10,000 years ago. Make questions with <strong>did</strong> and answer together, then swap roles:</p>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:50%;">Student A: Questions</th>
+          <th style="width:50%;">Student B: Answers</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Where / you / live? → <em>Where did you live?</em></td>
+          <td>I lived in Mesopotamia, near the river.</td>
+        </tr>
+        <tr>
+          <td>What crops / you / grow?</td>
+          <td><input type="text" placeholder="max. 10 words"></td>
+        </tr>
+        <tr>
+          <td>What animals / you / keep?</td>
+          <td><input type="text" placeholder="max. 10 words"></td>
+        </tr>
+        <tr>
+          <td>What / you / eat?</td>
+          <td><input type="text" placeholder="max. 10 words"></td>
+        </tr>
+        <tr>
+          <td>How / you / make your clothes?</td>
+          <td><input type="text" placeholder="max. 10 words"></td>
+        </tr>
+        <tr>
+          <td>you / still / hunt?</td>
+          <td><input type="text" placeholder="max. 10 words"></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 6. PROJECT (CONTENT ONLY, NO EXTRA FUNCTIONS) -->
+  <section id="project" class="card card-project">
+    <h2>
+      <span class="sec-icon icon-emerald">🌍</span>
+      6. Project: Farming in the Past and Today (Groups)
+    </h2>
+    <p>Make a short video or an infographic to compare farming in the Neolithic period with farming in Vietnam today.</p>
+
+    <ul class="project-list">
+      <li><strong>1. Choose two farms in Vietnam:</strong> Choose one farm with modern technology and one farm with simple tools. Find out where they are (city or province), what they grow, what tools or machines they use, and what jobs people do there.</li>
+      <li><strong>2. Collect your information in a chart:</strong> Compare <em>Neolithic farmers (11,000 years ago)</em>, <em>Farm with simple tools today</em>, and <em>Farm with modern technology today</em> across <strong>Where?</strong>, <strong>Crops</strong>, <strong>Animals</strong>, <strong>Tools/technology</strong>, <strong>Water</strong>, and <strong>Jobs</strong>.</li>
+      <li><strong>3. Same or different?</strong> Sort your ideas into <em>Only in the past</em>, <em>In the past AND today</em>, and <em>Only today</em>.</li>
+      <li><strong>4. Useful language:</strong> <em>Neolithic farmers used stone tools. They did not have machines.</em> • <em>Farmers in An Giang use machines to cut rice.</em> • <em>In the past... but today...</em> • <em>Both... and...</em></li>
+      <li><strong>5. Checklist:</strong> Compared crops, animals, tools, water and jobs • Used the past simple for the past and present simple for today • Used at least 6 farming words • Added pictures with captions.</li>
+    </ul>
   </section>
 </main>
 
 <script>
-  // PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL INSIDE THE QUOTES BELOW:
+  // PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL INSIDE QUOTES FOR LIVE CLASS DISCUSSION:
   const GOOGLE_SCRIPT_URL = "";
 
-  // Image error & local fallback
-  function handleImageError(imgEl) {
+  // Image error & local preview helper
+  function showFallback(imgEl) {
     imgEl.style.display = 'none';
-    document.getElementById('img-fallback').style.display = 'block';
+    if (imgEl.nextElementSibling) {
+      imgEl.nextElementSibling.style.display = 'block';
+    }
   }
 
-  function loadLocalImage(event) {
+  function previewLocalImg(event, imgId) {
     const file = event.target.files && event.target.files[0];
     if (!file) return;
-    const imgEl = document.getElementById('village-img');
+    const imgEl = document.getElementById(imgId);
     const reader = new FileReader();
     reader.onload = function(e) {
       imgEl.src = e.target.result;
       imgEl.style.display = 'block';
-      document.getElementById('img-fallback').style.display = 'none';
+      if (imgEl.nextElementSibling) imgEl.nextElementSibling.style.display = 'none';
     };
     reader.readAsDataURL(file);
   }
 
-  // Warm-up Checklist with Instant Corrective Feedback (No Strikethrough)
+  // Warm-up Checklist (No Strikethrough + Live Feedback at Bottom)
   function handleWarmupClick(checkbox) {
     const label = checkbox.closest('.check-item');
     const isValid = label.dataset.valid === "true";
@@ -1231,29 +1627,23 @@
       banner.style.display = 'none';
     }
 
-    const validChecked = document.querySelectorAll('#warmup-list .check-item[data-valid="true"] input:checked').length;
-    document.getElementById('warmup-status').textContent = `Found: ${validChecked} / 12 Neolithic items`;
+    const count = document.querySelectorAll('#warmup-list .check-item[data-valid="true"] input:checked').length;
+    document.getElementById('warmup-status').textContent = `Found: ${count} / 12 Neolithic items`;
   }
 
-  // Live Class Discussion Board
+  // Live Class Discussion
   async function submitDiscussion() {
     const nameInput = document.getElementById('student-name');
     const answerInput = document.getElementById('student-answer');
     const statusEl = document.getElementById('post-status');
-    const btn = document.getElementById('submit-post-btn');
-
     const name = nameInput.value.trim();
     const answer = answerInput.value.trim();
 
     if (!name || !answer) {
       statusEl.style.color = 'var(--error)';
-      statusEl.textContent = 'Please enter both your name and your answer.';
+      statusEl.textContent = 'Please enter your name and your answer.';
       return;
     }
-
-    btn.disabled = true;
-    statusEl.style.color = 'var(--muted)';
-    statusEl.textContent = 'Posting...';
 
     if (GOOGLE_SCRIPT_URL) {
       try {
@@ -1268,9 +1658,9 @@
         statusEl.style.color = 'var(--success)';
         statusEl.textContent = 'Posted to class board!';
         setTimeout(loadDiscussionPosts, 1200);
-      } catch (err) {
+      } catch (e) {
         statusEl.style.color = 'var(--error)';
-        statusEl.textContent = 'Error posting. Check your connection.';
+        statusEl.textContent = 'Could not post right now.';
       }
     } else {
       const posts = JSON.parse(localStorage.getItem('local_class_posts') || '[]');
@@ -1279,10 +1669,9 @@
       nameInput.value = '';
       answerInput.value = '';
       statusEl.style.color = 'var(--success)';
-      statusEl.textContent = 'Saved on this device! (Connect Google Sheets so classmates see it too)';
+      statusEl.textContent = 'Saved on this device! (Add Google Script URL so all students see it)';
       renderPosts(posts);
     }
-    btn.disabled = false;
   }
 
   async function loadDiscussionPosts() {
@@ -1293,7 +1682,7 @@
         const posts = await res.json();
         renderPosts(posts);
       } catch (e) {
-        listEl.innerHTML = '<p class="hint-text">Could not load class posts right now.</p>';
+        listEl.innerHTML = '<p class="hint-text">Could not load class posts.</p>';
       }
     } else {
       const posts = JSON.parse(localStorage.getItem('local_class_posts') || '[]');
@@ -1310,73 +1699,315 @@
     listEl.innerHTML = posts.map(p => `
       <div class="student-post">
         <div class="student-post-meta">
-          <span>${escapeHtml(p.name)}</span>
-          <span style="font-weight:400; color:var(--muted);">${escapeHtml(p.time || '')}</span>
+          <span>${esc(p.name)}</span>
+          <span style="font-weight:400; color:var(--muted);">${esc(p.time || '')}</span>
         </div>
-        <div>${escapeHtml(p.answer)}</div>
+        <div>${esc(p.answer)}</div>
       </div>
     `).join('');
   }
 
-  function escapeHtml(str) {
-    return String(str).replace(/[&<>"']/g, m => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m]));
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, m => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m]));
   }
 
   loadDiscussionPosts();
 
-  // Vocab & Comprehension Checkers
-  function checkVocab() {
-    const selects = document.querySelectorAll('#vocab-container select');
-    let score = 0;
-    selects.forEach(sel => {
-      sel.classList.remove('correct-field', 'wrong-field');
-      if (sel.value === sel.dataset.answer) {
-        sel.classList.add('correct-field');
-        score++;
-      } else {
-        sel.classList.add('wrong-field');
-      }
-    });
-    const fb = document.getElementById('vocab-feedback');
-    fb.textContent = `Score: ${score} / ${selects.length}`;
-    fb.style.color = score === selects.length ? 'var(--success)' : 'var(--error)';
+  function showResult(elId, isSuccess, html) {
+    const el = document.getElementById(elId);
+    el.className = 'result-banner show ' + (isSuccess ? 'result-success' : 'result-error');
+    el.innerHTML = html;
   }
 
-  function resetVocab() {
-    document.querySelectorAll('#vocab-container select').forEach(sel => {
-      sel.value = '';
-      sel.classList.remove('correct-field', 'wrong-field');
+  // 1. Vocab Check
+  function checkVocab() {
+    const selects = document.querySelectorAll('#vocab-container select');
+    let ok = 0;
+    selects.forEach(s => {
+      s.classList.remove('correct-field', 'wrong-field');
+      if (s.value === s.dataset.answer) {
+        s.classList.add('correct-field');
+        ok++;
+      } else {
+        s.classList.add('wrong-field');
+      }
     });
-    document.getElementById('vocab-feedback').textContent = '';
+    if (ok === selects.length) {
+      document.getElementById('vocab-retry').style.display = 'none';
+      showResult('vocab-result', true, '<strong>Great job! All 6 words matched!</strong><br>Evidence in text: <em>farm</em> (Intro, line 1 & Part A3), <em>crop/crops</em> (Part A1–A2, Part B1), <em>grain</em> (Part A2, Part C1, Part D3), <em>domesticate</em> (Part A3), <em>fertile</em> (Part A1), <em>plough</em> (Part D1).');
+    } else {
+      document.getElementById('vocab-retry').style.display = 'inline-block';
+      showResult('vocab-result', false, `You got ${ok} / ${selects.length} right. Click <strong>Try Again</strong> to fix the red boxes.`);
+    }
+  }
+
+  function retryVocab() {
+    document.querySelectorAll('#vocab-container select').forEach(s => {
+      if (s.classList.contains('wrong-field')) {
+        s.value = '';
+        s.classList.remove('wrong-field');
+      }
+    });
+    document.getElementById('vocab-result').className = 'result-banner';
   }
 
   function toggleHighlights() {
     document.getElementById('reading-body').classList.toggle('highlight-active');
   }
 
-  function validateKeywordInputs(containerId, feedbackId) {
+  // Vietnam Map MCQ
+  function checkVietnamMcq() {
+    const chosen = document.querySelector('input[name="vn_mcq"]:checked');
+    if (!chosen) {
+      showResult('vn-result', false, 'Please choose one option first.');
+      return;
+    }
+    if (chosen.value === 'far') {
+      document.getElementById('vn-retry').style.display = 'none';
+      showResult('vn-result', true, '<strong>Correct!</strong><br>Evidence in text & map: Picture 3 shows Vietnam in Southeast Asia, far away from Mesopotamia (Iraq and Syria), where Part A1 says farming began.');
+    } else {
+      document.getElementById('vn-retry').style.display = 'inline-block';
+      showResult('vn-result', false, 'Not quite—look at Picture 3 and compare Iraq/Syria with Vietnam. Click <strong>Try Again</strong>.');
+    }
+  }
+
+  function retryVietnamMcq() {
+    document.querySelectorAll('input[name="vn_mcq"]').forEach(r => r.checked = false);
+    document.getElementById('vn-result').className = 'result-banner';
+  }
+
+  // Generic keyword validator for 3A, 3B, 3C
+  function runKeywordCheck(containerId, resultId, retryId, evidenceHtml) {
     const inputs = document.querySelectorAll(`#${containerId} input[data-keywords]`);
-    let correctCount = 0;
+    let ok = 0;
     inputs.forEach(inp => {
       inp.classList.remove('correct-field', 'wrong-field');
       const val = inp.value.toLowerCase().trim();
-      const keywords = inp.dataset.keywords.split(',');
-      const matched = keywords.some(kw => val.includes(kw.trim()));
-      if (val.length > 0 && matched) {
+      const kws = inp.dataset.keywords.split(',');
+      if (val && kws.some(k => val.includes(k.trim()))) {
         inp.classList.add('correct-field');
-        correctCount++;
+        ok++;
       } else {
         inp.classList.add('wrong-field');
       }
     });
-    const fb = document.getElementById(feedbackId);
-    fb.textContent = `Matched: ${correctCount} / ${inputs.length}`;
-    fb.style.color = correctCount === inputs.length ? 'var(--success)' : 'var(--error)';
+    if (ok === inputs.length) {
+      document.getElementById(retryId).style.display = 'none';
+      showResult(resultId, true, `<strong>Excellent! Everything is correct!</strong><br>${evidenceHtml}`);
+    } else {
+      document.getElementById(retryId).style.display = 'inline-block';
+      showResult(resultId, false, `You got ${ok} / ${inputs.length} correct. Click <strong>Try Again</strong> to revise the red fields.`);
+    }
   }
 
-  function checkTask3A() { validateKeywordInputs('task3a-body', 'fb-3a'); }
-  function checkTask3B() { validateKeywordInputs('task3b-body', 'fb-3b'); }
-  function toggleReveal(id) { document.getElementById(id).classList.toggle('show'); }
+  function retrySection(containerId, resultId, retryId) {
+    document.querySelectorAll(`#${containerId} input`).forEach(inp => {
+      if (inp.classList.contains('wrong-field')) {
+        inp.value = '';
+        inp.classList.remove('wrong-field');
+      }
+    });
+    document.getElementById(resultId).className = 'result-banner';
+  }
+
+  function checkTask3A() {
+    runKeywordCheck('task3a-body', 't3a-result', 't3a-retry',
+      '<strong>Evidence in Part A:</strong> Where = Part A1 (Iraq and Syria); When = Intro & Part A1 (about 11,000 years ago); Why good = Part A1 (flat, fertile, lots of water); Crops = Part A2 (wheat, barley, peas, lentils, flax); Animals = Part A3 (sheep, goats, cows, pigs); Still collected = Part A3 (hunted wild animals, caught fish, collected fruit and nuts).'
+    );
+  }
+
+  function checkTask3B() {
+    runKeywordCheck('task3b-body', 't3b-result', 't3b-retry',
+      '<strong>Evidence in text:</strong> 11,000 years ago = Part A1 (Mesopotamia); 2,000 years later = Part A4 (reached south of Europe); ~3200 BCE = Part D3 & Picture 7 (clay pot/pottery); Today = Part B2 & Part D1 (terraces and buffaloes).'
+    );
+  }
+
+  function checkTask3C() {
+    runKeywordCheck('task3c-body', 't3c-result', 't3c-retry',
+      '<strong>Evidence in Parts B–E:</strong> The land = Part B1–B2 (cleared fields, water channels, dam, terraces); Food = Part C1 (grain, flour, porridge, meat, milk); Tools & tech = Part D2–D4 (stone axes/blades, pottery, linen, wool); Jobs = Part E1 (looking after animals, working in fields, making pots, trading).'
+    );
+  }
+
+  function checkTask3D() {
+    const inputs = document.querySelectorAll('#task3d-body input[data-keywords], #t3d-conclusion');
+    let ok = 0;
+    inputs.forEach(inp => {
+      inp.classList.remove('correct-field', 'wrong-field');
+      const val = inp.value.toLowerCase().trim();
+      const kws = inp.dataset.keywords.split(',');
+      if (val && kws.some(k => val.includes(k.trim()))) {
+        inp.classList.add('correct-field');
+        ok++;
+      } else {
+        inp.classList.add('wrong-field');
+      }
+    });
+    if (ok === inputs.length) {
+      document.getElementById('t3d-retry').style.display = 'none';
+      showResult('t3d-result', true, '<strong>Great historian work!</strong><br><strong>Evidence in text:</strong> After hunting = Part A3 (kept/domesticated animals on farms); After gathering seeds = Part A2 & C1 (grew crops/grain); Before pots/cloth = Intro & Part D2 (hunted/gathered/stone tools); Turning point = Intro & Part C1 (stopped moving, lived in villages, grew own food).');
+    } else {
+      document.getElementById('t3d-retry').style.display = 'inline-block';
+      showResult('t3d-result', false, `You got ${ok} / ${inputs.length} correct. Click <strong>Try Again</strong> to revise the red boxes.`);
+    }
+  }
+
+  function retryTask3D() {
+    document.querySelectorAll('#task3d-body input, #t3d-conclusion').forEach(inp => {
+      if (inp.classList.contains('wrong-field')) {
+        inp.value = '';
+        inp.classList.remove('wrong-field');
+      }
+    });
+    document.getElementById('t3d-result').className = 'result-banner';
+  }
+
+  // 4.1 Verbs Check
+  const ALL_PAST_VERBS = ['hunted','gathered','moved','happened','began','lived','was','were','had','planted','grew','ate','used','did','caught','collected','spread','reached','changed','cleared','dug','built','made','ground','invented','pulled','polished','learned','shaped','baked','looked','worked','needed','traded','became'];
+  const REG_VERBS = ['hunted','gathered','moved','happened','lived','planted','used','collected','reached','changed','cleared','invented','pulled','polished','learned','shaped','baked','looked','worked','needed','traded'];
+  const IRREG_VERBS = ['began','was','were','had','grew','ate','did','caught','spread','dug','built','made','ground','became'];
+
+  function parseWordList(text) {
+    return text.toLowerCase().split(/[\s,.;:!?()]+/).map(w => w.trim()).filter(Boolean);
+  }
+
+  function checkVerbsTask() {
+    const box = document.getElementById('verbs-input');
+    const words = parseWordList(box.value);
+    const validEntered = words.filter(w => ALL_PAST_VERBS.includes(w));
+    const invalidEntered = words.filter(w => !ALL_PAST_VERBS.includes(w));
+    const uniqueValid = [...new Set(validEntered)];
+
+    box.classList.remove('correct-field', 'wrong-field');
+    if (uniqueValid.length >= 12 && invalidEntered.length === 0) {
+      box.classList.add('correct-field');
+      document.getElementById('verbs-retry').style.display = 'none';
+      showResult('verbs-result', true, `<strong>Awesome! Found ${uniqueValid.length} past simple verbs from the reading text!</strong><br><strong>Evidence across the text:</strong> Intro (<em>did, hunted, gathered, moved, happened, began</em>), Part A (<em>lived, was, planted, grew, ate, used, caught, collected, spread, reached</em>), Parts B–C (<em>changed, cleared, dug, built, ground, made</em>), Parts D–E (<em>invented, pulled, polished, learned, shaped, baked, looked, worked, needed, traded, became</em>).`);
+    } else {
+      box.classList.add('wrong-field');
+      document.getElementById('verbs-retry').style.display = 'inline-block';
+      const msg = invalidEntered.length
+        ? `Check these words: <strong>${invalidEntered.join(', ')}</strong> (not past simple verbs in the text). `
+        : `Include at least 12 past simple verbs from the reading text (you have ${uniqueValid.length}). `;
+      showResult('verbs-result', false, `${msg}Click <strong>Try Again</strong>.`);
+    }
+  }
+
+  function retryVerbsTask() {
+    const box = document.getElementById('verbs-input');
+    box.classList.remove('wrong-field');
+    document.getElementById('verbs-result').className = 'result-banner';
+  }
+
+  // 4.2 Regular or Irregular (Any Order)
+  function checkRegIrreg() {
+    const regBox = document.getElementById('reg-verbs-input');
+    const irrBox = document.getElementById('irreg-verbs-input');
+    const regWords = [...new Set(parseWordList(regBox.value))];
+    const irrWords = [...new Set(parseWordList(irrBox.value))];
+
+    const badReg = regWords.filter(w => !REG_VERBS.includes(w));
+    const badIrr = irrWords.filter(w => !IRREG_VERBS.includes(w));
+    const goodReg = regWords.filter(w => REG_VERBS.includes(w));
+    const goodIrr = irrWords.filter(w => IRREG_VERBS.includes(w));
+
+    regBox.classList.remove('correct-field', 'wrong-field');
+    irrBox.classList.remove('correct-field', 'wrong-field');
+
+    const regOk = goodReg.length >= 6 && badReg.length === 0;
+    const irrOk = goodIrr.length >= 6 && badIrr.length === 0;
+
+    regBox.classList.add(regOk ? 'correct-field' : 'wrong-field');
+    irrBox.classList.add(irrOk ? 'correct-field' : 'wrong-field');
+
+    if (regOk && irrOk) {
+      document.getElementById('regirreg-retry').style.display = 'none';
+      showResult('regirreg-result', true, `<strong>Great sorting!</strong> (${goodReg.length} regular & ${goodIrr.length} irregular verbs verified in the text—order doesn't matter.)<br><strong>Evidence in text:</strong> Regular verbs end in <em>-ed/-d</em> (e.g., <em>lived, planted, used, cleared, invented, polished, traded</em>); Irregular verbs change form (e.g., <em>began, grew, ate, dug, built, made, ground, became</em>).`);
+    } else {
+      document.getElementById('regirreg-retry').style.display = 'inline-block';
+      let hints = [];
+      if (!regOk) hints.push(badReg.length ? `Regular column has non-matching items: ${badReg.join(', ')}` : `Add at least 6 regular past verbs (currently ${goodReg.length})`);
+      if (!irrOk) hints.push(badIrr.length ? `Irregular column has non-matching items: ${badIrr.join(', ')}` : `Add at least 6 irregular past verbs (currently ${goodIrr.length})`);
+      showResult('regirreg-result', false, `${hints.join(' • ')}. Click <strong>Try Again</strong>.`);
+    }
+  }
+
+  function retryRegIrreg() {
+    ['reg-verbs-input', 'irreg-verbs-input'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el.classList.contains('wrong-field')) el.classList.remove('wrong-field');
+    });
+    document.getElementById('regirreg-result').className = 'result-banner';
+  }
+
+  // 4.3 Language MCQ
+  function checkLangMcq() {
+    const cards = document.querySelectorAll('#lang-mcq-list .mcq-card');
+    let ok = 0;
+    cards.forEach(card => {
+      const ans = card.dataset.correct;
+      const checked = card.querySelector('input[type="radio"]:checked');
+      card.style.borderColor = '#7dd3fc';
+      card.style.background = '#f0f9ff';
+      if (checked && checked.value === ans) {
+        ok++;
+        card.style.borderColor = '#16a34a';
+        card.style.background = '#f0fdf4';
+      } else {
+        card.style.borderColor = '#dc2626';
+        card.style.background = '#fef2f2';
+      }
+    });
+    if (ok === cards.length) {
+      document.getElementById('langmcq-retry').style.display = 'none';
+      showResult('langmcq-result', true, '<strong>5 / 5! Perfect grammar check!</strong><br><strong>Evidence in text & Remember box:</strong> (1) Completed past events in the reading; (2) Part A1 says <em>"Today, this area is..."</em> for a present fact; (3) Intro & Part A1 say <em>"about 11,000 years ago"</em>; (4) Negative uses <em>did not + base verb (stop)</em>; (5) Question uses <em>What did + subject + base verb (grow)</em>.');
+    } else {
+      document.getElementById('langmcq-retry').style.display = 'inline-block';
+      showResult('langmcq-result', false, `You got ${ok} / ${cards.length} right. Click <strong>Try Again</strong> to retry the grammar questions.`);
+    }
+  }
+
+  function retryLangMcq() {
+    document.querySelectorAll('#lang-mcq-list .mcq-card').forEach(card => {
+      if (card.style.borderColor === 'rgb(220, 38, 38)') {
+        card.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+        card.style.borderColor = '#7dd3fc';
+        card.style.background = '#f0f9ff';
+      }
+    });
+    document.getElementById('langmcq-result').className = 'result-banner';
+  }
+
+  // 5A Practice Check
+  function checkPractice5A() {
+    const inputs = document.querySelectorAll('#p5a-body input[data-ans]');
+    let ok = 0;
+    inputs.forEach(inp => {
+      inp.classList.remove('correct-field', 'wrong-field');
+      if (inp.value.toLowerCase().trim() === inp.dataset.ans.toLowerCase()) {
+        inp.classList.add('correct-field');
+        ok++;
+      } else {
+        inp.classList.add('wrong-field');
+      }
+    });
+    if (ok === inputs.length) {
+      document.getElementById('p5a-retry').style.display = 'none';
+      showResult('p5a-result', true, '<strong>All blanks and the extra word (reeds) are correct!</strong><br><strong>Evidence in text:</strong> Water & fertile = Part A1; Trees = Part B1; Plough = Part D1; Wheat & barley = Part A2; Water channels & dam = Part B1; Grains = Part C1 & D3; Wool & linen = Part D4; <em>reeds</em> is not mentioned in the text.');
+    } else {
+      document.getElementById('p5a-retry').style.display = 'inline-block';
+      showResult('p5a-result', false, `You got ${ok} / ${inputs.length} correct. Click <strong>Try Again</strong> to fix the red boxes.`);
+    }
+  }
+
+  function retryPractice5A() {
+    document.querySelectorAll('#p5a-body input[data-ans]').forEach(inp => {
+      if (inp.classList.contains('wrong-field')) {
+        inp.value = '';
+        inp.classList.remove('wrong-field');
+      }
+    });
+    document.getElementById('p5a-result').className = 'result-banner';
+  }
 </script>
 
 </body>
