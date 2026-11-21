@@ -38,8 +38,6 @@
     }
 
     body {
-      padding-top: 120px;
-      
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background:
         radial-gradient(circle at 8% 6%, rgba(245, 158, 11, 0.18), transparent 28%),
@@ -52,28 +50,26 @@
       padding-bottom: 5rem;
     }
 
-    /* Top Navigation Bar */
-header {
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(8px);
-  border-bottom: 3px solid #f5d08a;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  padding: 0.75rem 1.25rem;
-  box-shadow: 0 4px 14px rgba(24, 34, 48, 0.05);
-}
+    /* Top Navigation Bar + Slide Hide + Active Link Highlight */
+    header {
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(8px);
+      border-bottom: 3px solid #f5d08a;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0.75rem 1.25rem;
+      box-shadow: 0 4px 14px rgba(24, 34, 48, 0.06);
+      transform: translateY(0);
+      transition: transform 0.28s ease, box-shadow 0.2s ease;
+    }
 
-header.hide {
-  transform: translateY(-100%);
-}
-
-header {
-  transition: transform 0.3s ease;
-}
+    header.hide {
+      transform: translateY(-100%);
+      box-shadow: none;
+    }
 
     .nav-container {
-      background: white;
       max-width: 980px;
       margin: 0 auto;
       display: flex;
@@ -82,13 +78,10 @@ header {
       justify-content: space-between;
       gap: 0.75rem;
     }
-.pic-caption {
-    display: none;
-}
+
     .brand {
-      background: white;
       font-weight: 800;
-      font-size: 1.4rem;
+      font-size: 1.05rem;
       color: var(--emerald);
       display: flex;
       align-items: center;
@@ -111,19 +104,28 @@ header {
       flex-wrap: wrap;
     }
 
-    nav a {
+    nav a.nav-link {
       text-decoration: none;
       color: var(--muted);
-      font-size: 1rem;
+      font-size: 0.85rem;
       font-weight: 700;
-      padding: 0.65rem 1rem;
+      padding: 0.36rem 0.75rem;
       border-radius: 8px;
-      transition: all 0.15s ease;
+      transition: all 0.18s ease;
+      border: 1.5px solid transparent;
     }
 
-    nav a:hover {
+    nav a.nav-link:hover {
       background: var(--amber-soft);
       color: #92400e;
+    }
+
+    nav a.nav-link.active {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #ffffff;
+      border-color: #047857;
+      box-shadow: 0 3px 10px rgba(16, 185, 129, 0.28);
+      transform: translateY(-1px);
     }
 
     main {
@@ -135,7 +137,11 @@ header {
       gap: 2.1rem;
     }
 
-    /* Vibrant Hero */
+    section[id] {
+      scroll-margin-top: 84px;
+    }
+
+    /* Hero */
     .hero-card {
       background: linear-gradient(135deg, #fffbeb 0%, #dcfce7 52%, #e0f2fe 100%);
       border: 2.5px solid #f6c977;
@@ -619,7 +625,7 @@ header {
       color: #1e3a8a;
     }
 
-    /* Multiple Choice Box (Vietnam Near/Far & Language Focus 3) */
+    /* Multiple Choice Box */
     .mcq-card {
       background: #f0f9ff;
       border: 2px solid #7dd3fc;
@@ -773,6 +779,127 @@ header {
       gap: 0.45rem;
     }
 
+    /* Drag-and-Drop Sorting + Bare Form */
+    .word-bank {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      padding: 0.9rem;
+      background: #fffbeb;
+      border: 2px dashed #f59e0b;
+      border-radius: 12px;
+      min-height: 58px;
+      margin: 0.75rem 0 1rem;
+    }
+
+    .verb-chip {
+      background: #ffffff;
+      border: 2px solid #cbd5e1;
+      color: #0f172a;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.35rem 0.78rem;
+      border-radius: 999px;
+      cursor: grab;
+      user-select: none;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      transition: transform 0.12s ease, border-color 0.15s ease;
+    }
+
+    .verb-chip:active {
+      cursor: grabbing;
+      transform: scale(1.04);
+    }
+
+    .verb-chip.selected-chip {
+      border-color: #2563eb;
+      background: #eff6ff;
+    }
+
+    .verb-chip.chip-correct {
+      border-color: var(--success);
+      background: var(--success-bg);
+      color: #14532d;
+    }
+
+    .verb-chip.chip-wrong {
+      border-color: var(--error);
+      background: var(--error-bg);
+      color: #7f1d1d;
+    }
+
+    .drop-columns {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .drop-zone {
+      min-height: 150px;
+      border: 2px dashed #94a3b8;
+      border-radius: 14px;
+      padding: 0.85rem;
+      background: #f8fafc;
+      display: flex;
+      flex-wrap: wrap;
+      align-content: flex-start;
+      gap: 0.5rem;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+
+    .drop-zone.drag-over {
+      background: #ecfdf5;
+      border-color: var(--emerald);
+    }
+
+    .drop-zone-reg {
+      background: #f0fdf4;
+      border-color: #6ee7b7;
+    }
+
+    .drop-zone-irreg {
+      background: #f5f3ff;
+      border-color: #c4b5fd;
+    }
+
+    #bare-form-section {
+      display: none;
+      margin-top: 1.8rem;
+      padding: 1.25rem;
+      border-radius: 14px;
+      background: #f0fdf4;
+      border: 2px solid #86efac;
+      animation: fadeInUp 0.3s ease;
+    }
+
+    #bare-form-section.unlocked {
+      display: block;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .bare-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 0.65rem;
+      margin-top: 0.75rem;
+    }
+
+    .bare-item {
+      background: #ffffff;
+      border: 1.5px solid #bbf7d0;
+      border-radius: 10px;
+      padding: 0.6rem 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      font-size: 0.92rem;
+    }
+
     /* Language Box ("Remember") */
     .remember-box {
       background: linear-gradient(135deg, #ecfeff, #f0fdf4);
@@ -780,7 +907,7 @@ header {
       border-left: 6px solid #0891b2;
       border-radius: 14px;
       padding: 1.15rem 1.35rem;
-      margin: 1.25rem 0;
+      margin: 1.4rem 0;
     }
 
     .remember-box h4 {
@@ -848,20 +975,20 @@ header {
 </head>
 <body>
 
-<header>
+<header id="main-header">
   <div class="nav-container">
     <div class="brand">
       <span>🌾 History A1–A2</span>
       <span class="badge">Grade 7 • Neolithic Period</span>
     </div>
-    <nav>
-      <a href="#warmup">Warm-up</a>
-      <a href="#vocab">1. Words</a>
-      <a href="#reading">2. Reading</a>
-      <a href="#check">3. Check</a>
-      <a href="#language">4. Past Simple</a>
-      <a href="#practice">5. Practice</a>
-      <a href="#project">6. Project</a>
+    <nav id="top-nav">
+      <a href="#warmup" class="nav-link active" data-section="warmup">Warm-up</a>
+      <a href="#vocab" class="nav-link" data-section="vocab">1. Words</a>
+      <a href="#reading" class="nav-link" data-section="reading">2. Reading</a>
+      <a href="#check" class="nav-link" data-section="check">3. Check</a>
+      <a href="#language" class="nav-link" data-section="language">4. Past Simple</a>
+      <a href="#practice" class="nav-link" data-section="practice">5. Practice</a>
+      <a href="#project" class="nav-link" data-section="project">6. Project</a>
     </nav>
   </div>
 </header>
@@ -1080,7 +1207,7 @@ header {
     <div id="vocab-result" class="result-banner"></div>
   </section>
 
-  <!-- 2. READING (WITH PICTURES 2, 3, 4, 5, 6, 7 IN THEIR PDF PLACES) -->
+  <!-- 2. READING -->
   <section id="reading" class="card card-reading">
     <h2>
       <span class="sec-icon icon-coral">📖</span>
@@ -1095,7 +1222,6 @@ header {
     <div class="reading-text" id="reading-body">
       <p><strong>Intro (Paragraph 1):</strong> For a very long time, people did not have <span class="vocab-highlight">farms</span>. They hunted wild animals and gathered fruit, nuts and seeds from wild plants. They moved from place to place to find food. Then, about 11,000 years ago, something very important happened: people began to grow their own food. This was the start of the Neolithic period. How did farming change the way people lived? What did they eat, and what work did they do?</p>
 
-      <!-- PART A + PICTURE 2 SIDE BY SIDE -->
       <h3><span class="part-pill">Part A</span> Where and when were the first farmers?</h3>
       <div class="split-row">
         <div>
@@ -1114,7 +1240,6 @@ header {
         </figure>
       </div>
 
-      <!-- PICTURE 3 + MULTIPLE CHOICE QUESTION FOR VIETNAM NEAR/FAR -->
       <div class="split-row">
         <figure class="pic-box" style="margin-top:0;">
           <img id="pic3" src="picture3.png" alt="Picture 3: From Mesopotamia to Europe and Vietnam" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
@@ -1146,7 +1271,6 @@ header {
         </div>
       </div>
 
-      <!-- PART B + PICTURE 4 SIDE BY SIDE -->
       <h3><span class="part-pill">Part B</span> Changing the land</h3>
       <div class="split-row">
         <div>
@@ -1163,11 +1287,9 @@ header {
         </figure>
       </div>
 
-      <!-- PART C -->
       <h3><span class="part-pill">Part C</span> Changing food</h3>
       <p><strong>C1:</strong> Because people grew their own <span class="vocab-highlight">grain</span>, they had more food. Farmers ground wheat and barley between two stones to make flour, and then they made bread and porridge. Their animals gave them meat and milk. Food was now easier to find, so families did not need to move any more. They built houses and lived together in villages (like the village in Picture 1).</p>
 
-      <!-- PART D + PICTURES 5, 6, 7 -->
       <h3><span class="part-pill">Part D</span> New tools and technology</h3>
       <p><strong>D1:</strong> Farming led to new inventions. Later, farmers invented the <span class="vocab-highlight">plough</span>, a tool that breaks up the soil so seeds can grow. Strong animals, such as cows, pulled the <span class="vocab-highlight">plough</span>, so farmers could prepare a big field quickly. Some farmers in Vietnam still use buffaloes to <span class="vocab-highlight">plough</span> their rice fields (Picture 5).</p>
       <p><strong>D2:</strong> Stone tools also got better. People polished their stone axes and blades, so they were smooth and sharp and cut better (Picture 6).</p>
@@ -1201,7 +1323,6 @@ header {
         </figure>
       </div>
 
-      <!-- PART E -->
       <h3><span class="part-pill">Part E</span> New jobs</h3>
       <p><strong>E1:</strong> In a farming village, there were many different jobs. Some people looked after the animals, and others worked in the fields. Some people became very good at making pots, so pottery became their special job. Sometimes a village grew more food than it needed. People traded the extra food with other villages for things they did not have, such as tools, special stones or animals. In this way, trading became another new job.</p>
     </div>
@@ -1214,7 +1335,6 @@ header {
       3. Check Your Understanding
     </h2>
 
-    <!-- TASK 3A -->
     <h3><span class="part-pill">Task A</span> Complete the fact file (Use information from Part A)</h3>
     <table>
       <thead>
@@ -1256,7 +1376,6 @@ header {
     </div>
     <div id="t3a-result" class="result-banner"></div>
 
-    <!-- TASK 3B: TRUE CONNECTED TIMELINE -->
     <h3 style="margin-top:2rem;"><span class="part-pill">Task B</span> Complete the timeline</h3>
     <div class="timeline-track-wrapper">
       <div class="timeline-track" id="task3b-body">
@@ -1301,7 +1420,6 @@ header {
     </div>
     <div id="t3b-result" class="result-banner"></div>
 
-    <!-- TASK 3C -->
     <h3 style="margin-top:2rem;"><span class="part-pill">Task C</span> Complete the mind map (How did farming change people's lives?)</h3>
     <p class="hint-text">Use information from Parts B–E. Write 2 more ideas in each box (max. 5 words each).</p>
     <div class="mindmap-grid" id="task3c-body">
@@ -1344,7 +1462,6 @@ header {
     </div>
     <div id="t3c-result" class="result-banner"></div>
 
-    <!-- TASK 3D -->
     <h3 style="margin-top:2rem;"><span class="part-pill">Task D</span> Be a good historian</h3>
     <table>
       <thead>
@@ -1392,7 +1509,6 @@ header {
       4. Language Focus: The Past Simple
     </h2>
 
-    <!-- TASK 4.1: FIND THE VERBS -->
     <h3><span class="part-pill">1</span> Find the verbs</h3>
     <p>Read Part 2 again and type all the past simple verbs from the reading text into the box below (separated by commas or spaces). Example: <code>lived</code>.</p>
     <textarea id="verbs-input" class="form-box" rows="3" placeholder="Type the past simple verbs from the reading text (e.g., lived, hunted, gathered, moved, began...)"></textarea>
@@ -1402,24 +1518,83 @@ header {
     </div>
     <div id="verbs-result" class="result-banner"></div>
 
-    <!-- TASK 4.2: REGULAR OR IRREGULAR (ANY ORDER) -->
-    <h3 style="margin-top:1.8rem;"><span class="part-pill">2</span> Regular or irregular?</h3>
-    <p>Type the past simple verbs from the text in either column below (any order is fine—if you include the right past simple verbs in the matching column, it counts as correct!).</p>
-    <div class="split-row">
+    <!-- TASK 4.2: DRAG & DROP SORTING -->
+    <h3 style="margin-top:1.8rem;"><span class="part-pill">2</span> Regular or irregular? (Drag & Drop)</h3>
+    <p>Drag each past simple verb into the correct column (or click a word, then click a column). Any order inside a column is fine!</p>
+
+    <div id="verb-bank" class="word-bank" ondragover="allowDrop(event)" ondrop="dropVerb(event, 'bank')" onclick="quickPlaceInto(event, 'bank')"></div>
+
+    <div class="drop-columns">
       <div>
         <label style="font-weight:800; color:#047857; display:block; margin-bottom:0.35rem;">✔ Regular verbs (-ed / -d)</label>
-        <textarea id="reg-verbs-input" class="form-box" rows="4" placeholder="e.g., lived, planted, used, cleared, invented, pulled, polished..."></textarea>
+        <div id="reg-drop" class="drop-zone drop-zone-reg" ondragover="allowDrop(event)" ondrop="dropVerb(event, 'reg')" onclick="quickPlaceInto(event, 'reg')"></div>
       </div>
       <div>
         <label style="font-weight:800; color:#6d28d9; display:block; margin-bottom:0.35rem;">⚡ Irregular verbs</label>
-        <textarea id="irreg-verbs-input" class="form-box" rows="4" placeholder="e.g., began, grew, ate, kept, caught, spread, cut, dug, built, made..."></textarea>
+        <div id="irreg-drop" class="drop-zone drop-zone-irreg" ondragover="allowDrop(event)" ondrop="dropVerb(event, 'irreg')" onclick="quickPlaceInto(event, 'irreg')"></div>
       </div>
     </div>
+
     <div class="btn-group">
-      <button class="btn-primary" onclick="checkRegIrreg()">Check Regular & Irregular</button>
-      <button id="regirreg-retry" class="btn-warm" style="display:none;" onclick="retryRegIrreg()">Try Again</button>
+      <button class="btn-primary" onclick="checkDragVerbs()">Check Sorting</button>
+      <button id="drag-retry" class="btn-warm" style="display:none;" onclick="retryDragVerbs()">Try Again</button>
     </div>
-    <div id="regirreg-result" class="result-banner"></div>
+    <div id="drag-result" class="result-banner"></div>
+
+    <!-- UNLOCKED AFTER SORTING IS FINISHED -->
+    <div id="bare-form-section">
+      <h3 style="margin-top:0;"><span class="part-pill">2B</span> Unlocked! Write the bare form (base verb)</h3>
+      <p>Great sorting! Now type the bare form (base verb) for each past-tense verb below.</p>
+
+      <div id="bare-form-grid" class="bare-grid">
+        <div class="bare-item">
+          <span>1. <strong>lived</strong> →</span>
+          <input type="text" data-bare="live" placeholder="type bare form">
+        </div>
+        <div class="bare-item">
+          <span>2. <strong>planted</strong> →</span>
+          <input type="text" data-bare="plant" placeholder="type bare form">
+        </div>
+        <div class="bare-item">
+          <span>3. <strong>began</strong> →</span>
+          <input type="text" data-bare="begin" placeholder="type bare form">
+        </div>
+        <div class="bare-item">
+          <span>4. <strong>grew</strong> →</span>
+          <input type="text" data-bare="grow" placeholder="type bare form">
+        </div>
+        <div class="bare-item">
+          <span>5. <strong>made</strong> →</span>
+          <input type="text" data-bare="make" placeholder="type bare form">
+        </div>
+        <div class="bare-item">
+          <span>6. <strong>kept</strong> →</span>
+          <input type="text" data-bare="keep" placeholder="type bare form">
+        </div>
+        <div class="bare-item">
+          <span>7. <strong>dug</strong> →</span>
+          <input type="text" data-bare="dig" placeholder="type bare form">
+        </div>
+        <div class="bare-item">
+          <span>8. <strong>built</strong> →</span>
+          <input type="text" data-bare="build" placeholder="type bare form">
+        </div>
+        <div class="bare-item">
+          <span>9. <strong>ground</strong> →</span>
+          <input type="text" data-bare="grind" placeholder="type bare form">
+        </div>
+        <div class="bare-item">
+          <span>10. <strong>traded</strong> →</span>
+          <input type="text" data-bare="trade" placeholder="type bare form">
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn-primary" onclick="checkBareForms()">Check Bare Forms</button>
+        <button id="bare-retry" class="btn-warm" style="display:none;" onclick="retryBareForms()">Try Again</button>
+      </div>
+      <div id="bare-result" class="result-banner"></div>
+    </div>
 
     <!-- REMEMBER / LANGUAGE BOX -->
     <div class="remember-box">
@@ -1441,8 +1616,7 @@ header {
       </div>
     </div>
 
-    <!-- TASK 4.3: MULTIPLE CHOICE -->
-    <h3 style="margin-top:1.8rem;"><span class="part-pill">3</span> Choose the correct answer</h3>
+    <h3><span class="part-pill">3</span> Choose the correct answer</h3>
     <div id="lang-mcq-list" style="display:flex; flex-direction:column; gap:1rem;">
       <div class="mcq-card" data-correct="A">
         <p style="font-weight:700;">1. The text is mainly in the past simple because...</p>
@@ -1508,7 +1682,6 @@ header {
       5. Practice
     </h2>
 
-    <!-- 5A: STARTING A STONE AGE FARM -->
     <h3><span class="part-pill">5A</span> Starting a Stone Age farm</h3>
     <p>Complete the text. Write the past simple of the verb in brackets, then choose a farming word from the box.</p>
     <div class="info-callout" style="margin:0.75rem 0;">
@@ -1535,7 +1708,6 @@ header {
     </div>
     <div id="p5a-result" class="result-banner"></div>
 
-    <!-- 5B: SPEAKING -->
     <h3 style="margin-top:2rem;"><span class="part-pill">5B</span> Speaking: Interview a Neolithic farmer</h3>
     <p>Work in pairs. Student A is a reporter; Student B is a farmer from 10,000 years ago. Make questions with <strong>did</strong> and answer together, then swap roles:</p>
     <table>
@@ -1574,7 +1746,7 @@ header {
     </table>
   </section>
 
-  <!-- 6. PROJECT (CONTENT ONLY, NO EXTRA FUNCTIONS) -->
+  <!-- 6. PROJECT -->
   <section id="project" class="card card-project">
     <h2>
       <span class="sec-icon icon-emerald">🌍</span>
@@ -1596,11 +1768,51 @@ header {
   // PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL INSIDE QUOTES FOR LIVE CLASS DISCUSSION:
   const GOOGLE_SCRIPT_URL = "";
 
+  // Header slide-on-scroll + active section highlight
+  let lastScrollY = window.scrollY;
+  const headerEl = document.getElementById("main-header");
+  const navLinks = document.querySelectorAll("#top-nav .nav-link");
+  const trackedSections = Array.from(document.querySelectorAll("section[id]"));
+
+  function updateHeaderScrollAndActive() {
+    const currentY = window.scrollY;
+
+    if (currentY <= 40) {
+      headerEl.classList.remove("hide");
+    } else if (currentY > lastScrollY + 4) {
+      headerEl.classList.add("hide");
+    } else if (currentY < lastScrollY - 4) {
+      headerEl.classList.remove("hide");
+    }
+    lastScrollY = currentY;
+
+    // Highlight active section in header
+    let activeId = "warmup";
+    const scrollMarker = currentY + 140;
+
+    for (const sec of trackedSections) {
+      if (sec.offsetTop <= scrollMarker) {
+        activeId = sec.id;
+      }
+    }
+
+    navLinks.forEach(link => {
+      if (link.dataset.section === activeId) {
+        link.classList.add("active");
+      } else {
+        link.classList.remove("active");
+      }
+    });
+  }
+
+  window.addEventListener("scroll", updateHeaderScrollAndActive, { passive: true });
+  updateHeaderScrollAndActive();
+
   // Image error & local preview helper
   function showFallback(imgEl) {
-    imgEl.style.display = 'none';
+    imgEl.style.display = "none";
     if (imgEl.nextElementSibling) {
-      imgEl.nextElementSibling.style.display = 'block';
+      imgEl.nextElementSibling.style.display = "block";
     }
   }
 
@@ -1611,85 +1823,85 @@ header {
     const reader = new FileReader();
     reader.onload = function(e) {
       imgEl.src = e.target.result;
-      imgEl.style.display = 'block';
-      if (imgEl.nextElementSibling) imgEl.nextElementSibling.style.display = 'none';
+      imgEl.style.display = "block";
+      if (imgEl.nextElementSibling) imgEl.nextElementSibling.style.display = "none";
     };
     reader.readAsDataURL(file);
   }
 
   // Warm-up Checklist (No Strikethrough + Live Feedback at Bottom)
   function handleWarmupClick(checkbox) {
-    const label = checkbox.closest('.check-item');
+    const label = checkbox.closest(".check-item");
     const isValid = label.dataset.valid === "true";
     const feedbackText = label.dataset.feedback;
-    const banner = document.getElementById('warmup-feedback-banner');
+    const banner = document.getElementById("warmup-feedback-banner");
 
-    label.classList.remove('is-correct', 'is-wrong');
-    banner.className = 'live-feedback-box';
+    label.classList.remove("is-correct", "is-wrong");
+    banner.className = "live-feedback-box";
 
     if (checkbox.checked) {
       if (isValid) {
-        label.classList.add('is-correct');
-        banner.classList.add('fb-correct');
+        label.classList.add("is-correct");
+        banner.classList.add("fb-correct");
         banner.textContent = "✓ " + feedbackText;
       } else {
-        label.classList.add('is-wrong');
-        banner.classList.add('fb-wrong');
+        label.classList.add("is-wrong");
+        banner.classList.add("fb-wrong");
         banner.textContent = "✗ " + feedbackText;
       }
     } else {
-      banner.style.display = 'none';
+      banner.style.display = "none";
     }
 
     const count = document.querySelectorAll('#warmup-list .check-item[data-valid="true"] input:checked').length;
-    document.getElementById('warmup-status').textContent = `Found: ${count} / 12 Neolithic items`;
+    document.getElementById("warmup-status").textContent = `Found: ${count} / 12 Neolithic items`;
   }
 
   // Live Class Discussion
   async function submitDiscussion() {
-    const nameInput = document.getElementById('student-name');
-    const answerInput = document.getElementById('student-answer');
-    const statusEl = document.getElementById('post-status');
+    const nameInput = document.getElementById("student-name");
+    const answerInput = document.getElementById("student-answer");
+    const statusEl = document.getElementById("post-status");
     const name = nameInput.value.trim();
     const answer = answerInput.value.trim();
 
     if (!name || !answer) {
-      statusEl.style.color = 'var(--error)';
-      statusEl.textContent = 'Please enter your name and your answer.';
+      statusEl.style.color = "var(--error)";
+      statusEl.textContent = "Please enter your name and your answer.";
       return;
     }
 
     if (GOOGLE_SCRIPT_URL) {
       try {
         await fetch(GOOGLE_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ name, answer })
         });
-        nameInput.value = '';
-        answerInput.value = '';
-        statusEl.style.color = 'var(--success)';
-        statusEl.textContent = 'Posted to class board!';
+        nameInput.value = "";
+        answerInput.value = "";
+        statusEl.style.color = "var(--success)";
+        statusEl.textContent = "Posted to class board!";
         setTimeout(loadDiscussionPosts, 1200);
       } catch (e) {
-        statusEl.style.color = 'var(--error)';
-        statusEl.textContent = 'Could not post right now.';
+        statusEl.style.color = "var(--error)";
+        statusEl.textContent = "Could not post right now.";
       }
     } else {
-      const posts = JSON.parse(localStorage.getItem('local_class_posts') || '[]');
-      posts.unshift({ name, answer, time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) });
-      localStorage.setItem('local_class_posts', JSON.stringify(posts));
-      nameInput.value = '';
-      answerInput.value = '';
-      statusEl.style.color = 'var(--success)';
-      statusEl.textContent = 'Saved on this device! (Add Google Script URL so all students see it)';
+      const posts = JSON.parse(localStorage.getItem("local_class_posts") || "[]");
+      posts.unshift({ name, answer, time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) });
+      localStorage.setItem("local_class_posts", JSON.stringify(posts));
+      nameInput.value = "";
+      answerInput.value = "";
+      statusEl.style.color = "var(--success)";
+      statusEl.textContent = "Saved on this device! (Add Google Script URL so all students see it)";
       renderPosts(posts);
     }
   }
 
   async function loadDiscussionPosts() {
-    const listEl = document.getElementById('class-board-list');
+    const listEl = document.getElementById("class-board-list");
     if (GOOGLE_SCRIPT_URL) {
       try {
         const res = await fetch(GOOGLE_SCRIPT_URL);
@@ -1699,13 +1911,13 @@ header {
         listEl.innerHTML = '<p class="hint-text">Could not load class posts.</p>';
       }
     } else {
-      const posts = JSON.parse(localStorage.getItem('local_class_posts') || '[]');
+      const posts = JSON.parse(localStorage.getItem("local_class_posts") || "[]");
       renderPosts(posts);
     }
   }
 
   function renderPosts(posts) {
-    const listEl = document.getElementById('class-board-list');
+    const listEl = document.getElementById("class-board-list");
     if (!posts || posts.length === 0) {
       listEl.innerHTML = '<p class="hint-text">No posts yet—be the first pair to share your answer!</p>';
       return;
@@ -1714,332 +1926,459 @@ header {
       <div class="student-post">
         <div class="student-post-meta">
           <span>${esc(p.name)}</span>
-          <span style="font-weight:400; color:var(--muted);">${esc(p.time || '')}</span>
+          <span style="font-weight:400; color:var(--muted);">${esc(p.time || "")}</span>
         </div>
         <div>${esc(p.answer)}</div>
       </div>
-    `).join('');
+    `).join("");
   }
 
   function esc(s) {
-    return String(s).replace(/[&<>"']/g, m => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m]));
+    return String(s).replace(/[&<>"']/g, m => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[m]));
   }
 
   loadDiscussionPosts();
 
   function showResult(elId, isSuccess, html) {
     const el = document.getElementById(elId);
-    el.className = 'result-banner show ' + (isSuccess ? 'result-success' : 'result-error');
+    el.className = "result-banner show " + (isSuccess ? "result-success" : "result-error");
     el.innerHTML = html;
   }
 
   // 1. Vocab Check
   function checkVocab() {
-    const selects = document.querySelectorAll('#vocab-container select');
+    const selects = document.querySelectorAll("#vocab-container select");
     let ok = 0;
     selects.forEach(s => {
-      s.classList.remove('correct-field', 'wrong-field');
+      s.classList.remove("correct-field", "wrong-field");
       if (s.value === s.dataset.answer) {
-        s.classList.add('correct-field');
+        s.classList.add("correct-field");
         ok++;
       } else {
-        s.classList.add('wrong-field');
+        s.classList.add("wrong-field");
       }
     });
     if (ok === selects.length) {
-      document.getElementById('vocab-retry').style.display = 'none';
-      showResult('vocab-result', true, '<strong>Great job! All 6 words matched!</strong><br>Evidence in text: <em>farm</em> (Intro, line 1 & Part A3), <em>crop/crops</em> (Part A1–A2, Part B1), <em>grain</em> (Part A2, Part C1, Part D3), <em>domesticate</em> (Part A3), <em>fertile</em> (Part A1), <em>plough</em> (Part D1).');
+      document.getElementById("vocab-retry").style.display = "none";
+      showResult("vocab-result", true, "<strong>Great job! All 6 words matched!</strong><br>Evidence in text: <em>farm</em> (Intro, line 1 & Part A3), <em>crop/crops</em> (Part A1–A2, Part B1), <em>grain</em> (Part A2, Part C1, Part D3), <em>domesticate</em> (Part A3), <em>fertile</em> (Part A1), <em>plough</em> (Part D1).");
     } else {
-      document.getElementById('vocab-retry').style.display = 'inline-block';
-      showResult('vocab-result', false, `You got ${ok} / ${selects.length} right. Click <strong>Try Again</strong> to fix the red boxes.`);
+      document.getElementById("vocab-retry").style.display = "inline-block";
+      showResult("vocab-result", false, `You got ${ok} / ${selects.length} right. Click <strong>Try Again</strong> to fix the red boxes.`);
     }
   }
 
   function retryVocab() {
-    document.querySelectorAll('#vocab-container select').forEach(s => {
-      if (s.classList.contains('wrong-field')) {
-        s.value = '';
-        s.classList.remove('wrong-field');
+    document.querySelectorAll("#vocab-container select").forEach(s => {
+      if (s.classList.contains("wrong-field")) {
+        s.value = "";
+        s.classList.remove("wrong-field");
       }
     });
-    document.getElementById('vocab-result').className = 'result-banner';
+    document.getElementById("vocab-result").className = "result-banner";
   }
 
   function toggleHighlights() {
-    document.getElementById('reading-body').classList.toggle('highlight-active');
+    document.getElementById("reading-body").classList.toggle("highlight-active");
   }
 
   // Vietnam Map MCQ
   function checkVietnamMcq() {
     const chosen = document.querySelector('input[name="vn_mcq"]:checked');
     if (!chosen) {
-      showResult('vn-result', false, 'Please choose one option first.');
+      showResult("vn-result", false, "Please choose one option first.");
       return;
     }
-    if (chosen.value === 'far') {
-      document.getElementById('vn-retry').style.display = 'none';
-      showResult('vn-result', true, '<strong>Correct!</strong><br>Evidence in text & map: Picture 3 shows Vietnam in Southeast Asia, far away from Mesopotamia (Iraq and Syria), where Part A1 says farming began.');
+    if (chosen.value === "far") {
+      document.getElementById("vn-retry").style.display = "none";
+      showResult("vn-result", true, "<strong>Correct!</strong><br>Evidence in text & map: Picture 3 shows Vietnam in Southeast Asia, far away from Mesopotamia (Iraq and Syria), where Part A1 says farming began.");
     } else {
-      document.getElementById('vn-retry').style.display = 'inline-block';
-      showResult('vn-result', false, 'Not quite—look at Picture 3 and compare Iraq/Syria with Vietnam. Click <strong>Try Again</strong>.');
+      document.getElementById("vn-retry").style.display = "inline-block";
+      showResult("vn-result", false, "Not quite—look at Picture 3 and compare Iraq/Syria with Vietnam. Click <strong>Try Again</strong>.");
     }
   }
 
   function retryVietnamMcq() {
     document.querySelectorAll('input[name="vn_mcq"]').forEach(r => r.checked = false);
-    document.getElementById('vn-result').className = 'result-banner';
+    document.getElementById("vn-result").className = "result-banner";
   }
 
-  // Generic keyword validator for 3A, 3B, 3C
   function runKeywordCheck(containerId, resultId, retryId, evidenceHtml) {
     const inputs = document.querySelectorAll(`#${containerId} input[data-keywords]`);
     let ok = 0;
     inputs.forEach(inp => {
-      inp.classList.remove('correct-field', 'wrong-field');
+      inp.classList.remove("correct-field", "wrong-field");
       const val = inp.value.toLowerCase().trim();
-      const kws = inp.dataset.keywords.split(',');
+      const kws = inp.dataset.keywords.split(",");
       if (val && kws.some(k => val.includes(k.trim()))) {
-        inp.classList.add('correct-field');
+        inp.classList.add("correct-field");
         ok++;
       } else {
-        inp.classList.add('wrong-field');
+        inp.classList.add("wrong-field");
       }
     });
     if (ok === inputs.length) {
-      document.getElementById(retryId).style.display = 'none';
+      document.getElementById(retryId).style.display = "none";
       showResult(resultId, true, `<strong>Excellent! Everything is correct!</strong><br>${evidenceHtml}`);
     } else {
-      document.getElementById(retryId).style.display = 'inline-block';
+      document.getElementById(retryId).style.display = "inline-block";
       showResult(resultId, false, `You got ${ok} / ${inputs.length} correct. Click <strong>Try Again</strong> to revise the red fields.`);
     }
   }
 
   function retrySection(containerId, resultId, retryId) {
     document.querySelectorAll(`#${containerId} input`).forEach(inp => {
-      if (inp.classList.contains('wrong-field')) {
-        inp.value = '';
-        inp.classList.remove('wrong-field');
+      if (inp.classList.contains("wrong-field")) {
+        inp.value = "";
+        inp.classList.remove("wrong-field");
       }
     });
-    document.getElementById(resultId).className = 'result-banner';
+    document.getElementById(resultId).className = "result-banner";
   }
 
   function checkTask3A() {
-    runKeywordCheck('task3a-body', 't3a-result', 't3a-retry',
-      '<strong>Evidence in Part A:</strong> Where = Part A1 (Iraq and Syria); When = Intro & Part A1 (about 11,000 years ago); Why good = Part A1 (flat, fertile, lots of water); Crops = Part A2 (wheat, barley, peas, lentils, flax); Animals = Part A3 (sheep, goats, cows, pigs); Still collected = Part A3 (hunted wild animals, caught fish, collected fruit and nuts).'
+    runKeywordCheck("task3a-body", "t3a-result", "t3a-retry",
+      "<strong>Evidence in Part A:</strong> Where = Part A1 (Iraq and Syria); When = Intro & Part A1 (about 11,000 years ago); Why good = Part A1 (flat, fertile, lots of water); Crops = Part A2 (wheat, barley, peas, lentils, flax); Animals = Part A3 (sheep, goats, cows, pigs); Still collected = Part A3 (hunted wild animals, caught fish, collected fruit and nuts)."
     );
   }
 
   function checkTask3B() {
-    runKeywordCheck('task3b-body', 't3b-result', 't3b-retry',
-      '<strong>Evidence in text:</strong> 11,000 years ago = Part A1 (Mesopotamia); 2,000 years later = Part A4 (reached south of Europe); ~3200 BCE = Part D3 & Picture 7 (clay pot/pottery); Today = Part B2 & Part D1 (terraces and buffaloes).'
+    runKeywordCheck("task3b-body", "t3b-result", "t3b-retry",
+      "<strong>Evidence in text:</strong> 11,000 years ago = Part A1 (Mesopotamia); 2,000 years later = Part A4 (reached south of Europe); ~3200 BCE = Part D3 & Picture 7 (clay pot/pottery); Today = Part B2 & Part D1 (terraces and buffaloes)."
     );
   }
 
   function checkTask3C() {
-    runKeywordCheck('task3c-body', 't3c-result', 't3c-retry',
-      '<strong>Evidence in Parts B–E:</strong> The land = Part B1–B2 (cleared fields, water channels, dam, terraces); Food = Part C1 (grain, flour, porridge, meat, milk); Tools & tech = Part D2–D4 (stone axes/blades, pottery, linen, wool); Jobs = Part E1 (looking after animals, working in fields, making pots, trading).'
+    runKeywordCheck("task3c-body", "t3c-result", "t3c-retry",
+      "<strong>Evidence in Parts B–E:</strong> The land = Part B1–B2 (cleared fields, water channels, dam, terraces); Food = Part C1 (grain, flour, porridge, meat, milk); Tools & tech = Part D2–D4 (stone axes/blades, pottery, linen, wool); Jobs = Part E1 (looking after animals, working in fields, making pots, trading)."
     );
   }
 
   function checkTask3D() {
-    const inputs = document.querySelectorAll('#task3d-body input[data-keywords], #t3d-conclusion');
+    const inputs = document.querySelectorAll("#task3d-body input[data-keywords], #t3d-conclusion");
     let ok = 0;
     inputs.forEach(inp => {
-      inp.classList.remove('correct-field', 'wrong-field');
+      inp.classList.remove("correct-field", "wrong-field");
       const val = inp.value.toLowerCase().trim();
-      const kws = inp.dataset.keywords.split(',');
+      const kws = inp.dataset.keywords.split(",");
       if (val && kws.some(k => val.includes(k.trim()))) {
-        inp.classList.add('correct-field');
+        inp.classList.add("correct-field");
         ok++;
       } else {
-        inp.classList.add('wrong-field');
+        inp.classList.add("wrong-field");
       }
     });
     if (ok === inputs.length) {
-      document.getElementById('t3d-retry').style.display = 'none';
-      showResult('t3d-result', true, '<strong>Great historian work!</strong><br><strong>Evidence in text:</strong> After hunting = Part A3 (kept/domesticated animals on farms); After gathering seeds = Part A2 & C1 (grew crops/grain); Before pots/cloth = Intro & Part D2 (hunted/gathered/stone tools); Turning point = Intro & Part C1 (stopped moving, lived in villages, grew own food).');
+      document.getElementById("t3d-retry").style.display = "none";
+      showResult("t3d-result", true, "<strong>Great historian work!</strong><br><strong>Evidence in text:</strong> After hunting = Part A3 (kept/domesticated animals on farms); After gathering seeds = Part A2 & C1 (grew crops/grain); Before pots/cloth = Intro & Part D2 (hunted/gathered/stone tools); Turning point = Intro & Part C1 (stopped moving, lived in villages, grew own food).");
     } else {
-      document.getElementById('t3d-retry').style.display = 'inline-block';
-      showResult('t3d-result', false, `You got ${ok} / ${inputs.length} correct. Click <strong>Try Again</strong> to revise the red boxes.`);
+      document.getElementById("t3d-retry").style.display = "inline-block";
+      showResult("t3d-result", false, `You got ${ok} / ${inputs.length} correct. Click <strong>Try Again</strong> to revise the red boxes.`);
     }
   }
 
   function retryTask3D() {
-    document.querySelectorAll('#task3d-body input, #t3d-conclusion').forEach(inp => {
-      if (inp.classList.contains('wrong-field')) {
-        inp.value = '';
-        inp.classList.remove('wrong-field');
+    document.querySelectorAll("#task3d-body input, #t3d-conclusion").forEach(inp => {
+      if (inp.classList.contains("wrong-field")) {
+        inp.value = "";
+        inp.classList.remove("wrong-field");
       }
     });
-    document.getElementById('t3d-result').className = 'result-banner';
+    document.getElementById("t3d-result").className = "result-banner";
   }
 
   // 4.1 Verbs Check
-  const ALL_PAST_VERBS = ['hunted','gathered','moved','happened','began','lived','was','were','had','planted','grew','ate','used','did','caught','collected','spread','reached','changed','cleared','dug','built','made','ground','invented','pulled','polished','learned','shaped','baked','looked','worked','needed','traded','became'];
-  const REG_VERBS = ['hunted','gathered','moved','happened','lived','planted','used','collected','reached','changed','cleared','invented','pulled','polished','learned','shaped','baked','looked','worked','needed','traded'];
-  const IRREG_VERBS = ['began','was','were','had','grew','ate','did','caught','spread','dug','built','made','ground','became'];
+  const ALL_PAST_VERBS = ["hunted","gathered","moved","happened","began","lived","was","were","had","planted","grew","ate","used","did","caught","collected","spread","reached","changed","cleared","dug","built","made","ground","invented","pulled","polished","learned","shaped","baked","looked","worked","needed","traded","became"];
 
   function parseWordList(text) {
     return text.toLowerCase().split(/[\s,.;:!?()]+/).map(w => w.trim()).filter(Boolean);
   }
 
   function checkVerbsTask() {
-    const box = document.getElementById('verbs-input');
+    const box = document.getElementById("verbs-input");
     const words = parseWordList(box.value);
     const validEntered = words.filter(w => ALL_PAST_VERBS.includes(w));
     const invalidEntered = words.filter(w => !ALL_PAST_VERBS.includes(w));
     const uniqueValid = [...new Set(validEntered)];
 
-    box.classList.remove('correct-field', 'wrong-field');
+    box.classList.remove("correct-field", "wrong-field");
     if (uniqueValid.length >= 12 && invalidEntered.length === 0) {
-      box.classList.add('correct-field');
-      document.getElementById('verbs-retry').style.display = 'none';
-      showResult('verbs-result', true, `<strong>Awesome! Found ${uniqueValid.length} past simple verbs from the reading text!</strong><br><strong>Evidence across the text:</strong> Intro (<em>did, hunted, gathered, moved, happened, began</em>), Part A (<em>lived, was, planted, grew, ate, used, caught, collected, spread, reached</em>), Parts B–C (<em>changed, cleared, dug, built, ground, made</em>), Parts D–E (<em>invented, pulled, polished, learned, shaped, baked, looked, worked, needed, traded, became</em>).`);
+      box.classList.add("correct-field");
+      document.getElementById("verbs-retry").style.display = "none";
+      showResult("verbs-result", true, `<strong>Awesome! Found ${uniqueValid.length} past simple verbs from the reading text!</strong><br><strong>Evidence across the text:</strong> Intro (<em>did, hunted, gathered, moved, happened, began</em>), Part A (<em>lived, was, planted, grew, ate, used, caught, collected, spread, reached</em>), Parts B–C (<em>changed, cleared, dug, built, ground, made</em>), Parts D–E (<em>invented, pulled, polished, learned, shaped, baked, looked, worked, needed, traded, became</em>).`);
     } else {
-      box.classList.add('wrong-field');
-      document.getElementById('verbs-retry').style.display = 'inline-block';
+      box.classList.add("wrong-field");
+      document.getElementById("verbs-retry").style.display = "inline-block";
       const msg = invalidEntered.length
-        ? `Check these words: <strong>${invalidEntered.join(', ')}</strong> (not past simple verbs in the text). `
+        ? `Check these words: <strong>${invalidEntered.join(", ")}</strong> (not past simple verbs in the text). `
         : `Include at least 12 past simple verbs from the reading text (you have ${uniqueValid.length}). `;
-      showResult('verbs-result', false, `${msg}Click <strong>Try Again</strong>.`);
+      showResult("verbs-result", false, `${msg}Click <strong>Try Again</strong>.`);
     }
   }
 
   function retryVerbsTask() {
-    const box = document.getElementById('verbs-input');
-    box.classList.remove('wrong-field');
-    document.getElementById('verbs-result').className = 'result-banner';
+    const box = document.getElementById("verbs-input");
+    box.classList.remove("wrong-field");
+    document.getElementById("verbs-result").className = "result-banner";
   }
 
-  // 4.2 Regular or Irregular (Any Order)
-  function checkRegIrreg() {
-    const regBox = document.getElementById('reg-verbs-input');
-    const irrBox = document.getElementById('irreg-verbs-input');
-    const regWords = [...new Set(parseWordList(regBox.value))];
-    const irrWords = [...new Set(parseWordList(irrBox.value))];
+  // 4.2 Drag & Drop Regular/Irregular + Unlock Bare Form Task
+  const DRAG_VERB_DATA = [
+    { word: "lived", type: "reg" },
+    { word: "planted", type: "reg" },
+    { word: "used", type: "reg" },
+    { word: "cleared", type: "reg" },
+    { word: "invented", type: "reg" },
+    { word: "pulled", type: "reg" },
+    { word: "polished", type: "reg" },
+    { word: "traded", type: "reg" },
+    { word: "began", type: "irreg" },
+    { word: "grew", type: "irreg" },
+    { word: "ate", type: "irreg" },
+    { word: "kept", type: "irreg" },
+    { word: "dug", type: "irreg" },
+    { word: "built", type: "irreg" },
+    { word: "made", type: "irreg" },
+    { word: "ground", type: "irreg" }
+  ];
 
-    const badReg = regWords.filter(w => !REG_VERBS.includes(w));
-    const badIrr = irrWords.filter(w => !IRREG_VERBS.includes(w));
-    const goodReg = regWords.filter(w => REG_VERBS.includes(w));
-    const goodIrr = irrWords.filter(w => IRREG_VERBS.includes(w));
+  let selectedChipEl = null;
 
-    regBox.classList.remove('correct-field', 'wrong-field');
-    irrBox.classList.remove('correct-field', 'wrong-field');
+  function initVerbBank() {
+    const bank = document.getElementById("verb-bank");
+    if (!bank) return;
+    bank.innerHTML = "";
+    DRAG_VERB_DATA.forEach(item => {
+      const chip = document.createElement("div");
+      chip.className = "verb-chip";
+      chip.textContent = item.word;
+      chip.dataset.word = item.word;
+      chip.dataset.type = item.type;
+      chip.draggable = true;
 
-    const regOk = goodReg.length >= 6 && badReg.length === 0;
-    const irrOk = goodIrr.length >= 6 && badIrr.length === 0;
+      chip.addEventListener("dragstart", e => {
+        e.dataTransfer.setData("text/plain", item.word);
+      });
 
-    regBox.classList.add(regOk ? 'correct-field' : 'wrong-field');
-    irrBox.classList.add(irrOk ? 'correct-field' : 'wrong-field');
+      chip.addEventListener("click", e => {
+        e.stopPropagation();
+        if (selectedChipEl === chip) {
+          chip.classList.remove("selected-chip");
+          selectedChipEl = null;
+        } else {
+          document.querySelectorAll(".verb-chip").forEach(c => c.classList.remove("selected-chip"));
+          chip.classList.add("selected-chip");
+          selectedChipEl = chip;
+        }
+      });
 
-    if (regOk && irrOk) {
-      document.getElementById('regirreg-retry').style.display = 'none';
-      showResult('regirreg-result', true, `<strong>Great sorting!</strong> (${goodReg.length} regular & ${goodIrr.length} irregular verbs verified in the text—order doesn't matter.)<br><strong>Evidence in text:</strong> Regular verbs end in <em>-ed/-d</em> (e.g., <em>lived, planted, used, cleared, invented, polished, traded</em>); Irregular verbs change form (e.g., <em>began, grew, ate, dug, built, made, ground, became</em>).`);
-    } else {
-      document.getElementById('regirreg-retry').style.display = 'inline-block';
-      let hints = [];
-      if (!regOk) hints.push(badReg.length ? `Regular column has non-matching items: ${badReg.join(', ')}` : `Add at least 6 regular past verbs (currently ${goodReg.length})`);
-      if (!irrOk) hints.push(badIrr.length ? `Irregular column has non-matching items: ${badIrr.join(', ')}` : `Add at least 6 irregular past verbs (currently ${goodIrr.length})`);
-      showResult('regirreg-result', false, `${hints.join(' • ')}. Click <strong>Try Again</strong>.`);
+      bank.appendChild(chip);
+    });
+  }
+
+  function allowDrop(e) {
+    e.preventDefault();
+  }
+
+  function getZoneElement(target) {
+    if (target === "bank") return document.getElementById("verb-bank");
+    if (target === "reg") return document.getElementById("reg-drop");
+    if (target === "irreg") return document.getElementById("irreg-drop");
+    return null;
+  }
+
+  function dropVerb(e, target) {
+    e.preventDefault();
+    const word = e.dataTransfer.getData("text/plain");
+    const chip = document.querySelector(`.verb-chip[data-word="${word}"]`);
+    const zone = getZoneElement(target);
+    if (chip && zone) {
+      chip.classList.remove("chip-correct", "chip-wrong", "selected-chip");
+      zone.appendChild(chip);
     }
   }
 
-  function retryRegIrreg() {
-    ['reg-verbs-input', 'irreg-verbs-input'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el.classList.contains('wrong-field')) el.classList.remove('wrong-field');
-    });
-    document.getElementById('regirreg-result').className = 'result-banner';
+  function quickPlaceInto(e, target) {
+    if (!selectedChipEl) return;
+    const zone = getZoneElement(target);
+    if (zone) {
+      selectedChipEl.classList.remove("chip-correct", "chip-wrong", "selected-chip");
+      zone.appendChild(selectedChipEl);
+      selectedChipEl = null;
+    }
   }
+
+  function checkDragVerbs() {
+    const regChips = [...document.querySelectorAll("#reg-drop .verb-chip")];
+    const irrChips = [...document.querySelectorAll("#irreg-drop .verb-chip")];
+    const placed = [...regChips, ...irrChips];
+
+    if (placed.length === 0) {
+      showResult("drag-result", false, "Drag the verbs into the Regular or Irregular columns first!");
+      return;
+    }
+
+    let correctCount = 0;
+    let wrongCount = 0;
+
+    regChips.forEach(c => {
+      c.classList.remove("chip-correct", "chip-wrong");
+      if (c.dataset.type === "reg") {
+        c.classList.add("chip-correct");
+        correctCount++;
+      } else {
+        c.classList.add("chip-wrong");
+        wrongCount++;
+      }
+    });
+
+    irrChips.forEach(c => {
+      c.classList.remove("chip-correct", "chip-wrong");
+      if (c.dataset.type === "irreg") {
+        c.classList.add("chip-correct");
+        correctCount++;
+      } else {
+        c.classList.add("chip-wrong");
+        wrongCount++;
+      }
+    });
+
+    if (wrongCount === 0 && placed.length === DRAG_VERB_DATA.length) {
+      document.getElementById("drag-retry").style.display = "none";
+      document.getElementById("bare-form-section").classList.add("unlocked");
+      showResult(
+        "drag-result",
+        true,
+        `<strong>All ${correctCount} verbs sorted accurately! Task 2B (Bare Forms) is now unlocked below!</strong><br><strong>Evidence in text:</strong> Regular verbs add <em>-ed/-d</em> (<em>lived</em> in Part A1, <em>planted</em> in Part A2, <em>cleared</em> in Part B1, <em>invented & polished</em> in Part D1–D2, <em>traded</em> in Part E1); Irregular verbs change form (<em>began</em> in Intro, <em>grew & ate</em> in Part A2, <em>kept</em> in Part A3, <em>dug & built</em> in Part B1, <em>made & ground</em> in Part C1–D3).`
+      );
+    } else {
+      document.getElementById("drag-retry").style.display = "inline-block";
+      showResult(
+        "drag-result",
+        false,
+        `Checked ${placed.length} placed verbs: <strong>${correctCount} correct</strong>, <strong>${wrongCount} wrong</strong> (${DRAG_VERB_DATA.length - placed.length} still in bank). Sort all ${DRAG_VERB_DATA.length} verbs correctly to unlock Task 2B! Click <strong>Try Again</strong>.`
+      );
+    }
+  }
+
+  function retryDragVerbs() {
+    const bank = document.getElementById("verb-bank");
+    document.querySelectorAll(".verb-chip.chip-wrong").forEach(c => {
+      c.classList.remove("chip-wrong");
+      bank.appendChild(c);
+    });
+    document.getElementById("drag-result").className = "result-banner";
+  }
+
+  function checkBareForms() {
+    const inputs = document.querySelectorAll("#bare-form-grid input[data-bare]");
+    let ok = 0;
+    inputs.forEach(inp => {
+      inp.classList.remove("correct-field", "wrong-field");
+      const val = inp.value.toLowerCase().trim();
+      const ans = inp.dataset.bare.toLowerCase();
+      if (val === ans) {
+        inp.classList.add("correct-field");
+        ok++;
+      } else {
+        inp.classList.add("wrong-field");
+      }
+    });
+
+    if (ok === inputs.length) {
+      document.getElementById("bare-retry").style.display = "none";
+      showResult(
+        "bare-result",
+        true,
+        "<strong>All 10 bare forms are correct!</strong><br><strong>Evidence & Grammar rule:</strong> Regular bare forms drop <em>-d/-ed</em> (<em>lived → live, planted → plant, traded → trade</em>). Irregular bare forms return to the base verb after <em>did/did not</em> (<em>began → begin, grew → grow, made → make, kept → keep, dug → dig, built → build, ground → grind</em>)."
+      );
+    } else {
+      document.getElementById("bare-retry").style.display = "inline-block";
+      showResult("bare-result", false, `You got ${ok} / ${inputs.length} bare forms right. Click <strong>Try Again</strong> to fix the red boxes.`);
+    }
+  }
+
+  function retryBareForms() {
+    document.querySelectorAll("#bare-form-grid input[data-bare]").forEach(inp => {
+      if (inp.classList.contains("wrong-field")) {
+        inp.value = "";
+        inp.classList.remove("wrong-field");
+      }
+    });
+    document.getElementById("bare-result").className = "result-banner";
+  }
+
+  initVerbBank();
 
   // 4.3 Language MCQ
   function checkLangMcq() {
-    const cards = document.querySelectorAll('#lang-mcq-list .mcq-card');
+    const cards = document.querySelectorAll("#lang-mcq-list .mcq-card");
     let ok = 0;
     cards.forEach(card => {
       const ans = card.dataset.correct;
       const checked = card.querySelector('input[type="radio"]:checked');
-      card.style.borderColor = '#7dd3fc';
-      card.style.background = '#f0f9ff';
+      card.style.borderColor = "#7dd3fc";
+      card.style.background = "#f0f9ff";
       if (checked && checked.value === ans) {
         ok++;
-        card.style.borderColor = '#16a34a';
-        card.style.background = '#f0fdf4';
+        card.style.borderColor = "#16a34a";
+        card.style.background = "#f0fdf4";
       } else {
-        card.style.borderColor = '#dc2626';
-        card.style.background = '#fef2f2';
+        card.style.borderColor = "#dc2626";
+        card.style.background = "#fef2f2";
       }
     });
     if (ok === cards.length) {
-      document.getElementById('langmcq-retry').style.display = 'none';
-      showResult('langmcq-result', true, '<strong>5 / 5! Perfect grammar check!</strong><br><strong>Evidence in text & Remember box:</strong> (1) Completed past events in the reading; (2) Part A1 says <em>"Today, this area is..."</em> for a present fact; (3) Intro & Part A1 say <em>"about 11,000 years ago"</em>; (4) Negative uses <em>did not + base verb (stop)</em>; (5) Question uses <em>What did + subject + base verb (grow)</em>.');
+      document.getElementById("langmcq-retry").style.display = "none";
+      showResult("langmcq-result", true, "<strong>5 / 5! Perfect grammar check!</strong><br><strong>Evidence in text & Remember box:</strong> (1) Completed past events in the reading; (2) Part A1 says <em>\"Today, this area is...\"</em> for a present fact; (3) Intro & Part A1 say <em>\"about 11,000 years ago\"</em>; (4) Negative uses <em>did not + base verb (stop)</em>; (5) Question uses <em>What did + subject + base verb (grow)</em>.");
     } else {
-      document.getElementById('langmcq-retry').style.display = 'inline-block';
-      showResult('langmcq-result', false, `You got ${ok} / ${cards.length} right. Click <strong>Try Again</strong> to retry the grammar questions.`);
+      document.getElementById("langmcq-retry").style.display = "inline-block";
+      showResult("langmcq-result", false, `You got ${ok} / ${cards.length} right. Click <strong>Try Again</strong> to retry the grammar questions.`);
     }
   }
 
   function retryLangMcq() {
-    document.querySelectorAll('#lang-mcq-list .mcq-card').forEach(card => {
-      if (card.style.borderColor === 'rgb(220, 38, 38)') {
+    document.querySelectorAll("#lang-mcq-list .mcq-card").forEach(card => {
+      if (card.style.borderColor === "rgb(220, 38, 38)") {
         card.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
-        card.style.borderColor = '#7dd3fc';
-        card.style.background = '#f0f9ff';
+        card.style.borderColor = "#7dd3fc";
+        card.style.background = "#f0f9ff";
       }
     });
-    document.getElementById('langmcq-result').className = 'result-banner';
+    document.getElementById("langmcq-result").className = "result-banner";
   }
 
   // 5A Practice Check
   function checkPractice5A() {
-    const inputs = document.querySelectorAll('#p5a-body input[data-ans]');
+    const inputs = document.querySelectorAll("#p5a-body input[data-ans]");
     let ok = 0;
     inputs.forEach(inp => {
-      inp.classList.remove('correct-field', 'wrong-field');
+      inp.classList.remove("correct-field", "wrong-field");
       if (inp.value.toLowerCase().trim() === inp.dataset.ans.toLowerCase()) {
-        inp.classList.add('correct-field');
+        inp.classList.add("correct-field");
         ok++;
       } else {
-        inp.classList.add('wrong-field');
+        inp.classList.add("wrong-field");
       }
     });
     if (ok === inputs.length) {
-      document.getElementById('p5a-retry').style.display = 'none';
-      showResult('p5a-result', true, '<strong>All blanks and the extra word (reeds) are correct!</strong><br><strong>Evidence in text:</strong> Water & fertile = Part A1; Trees = Part B1; Plough = Part D1; Wheat & barley = Part A2; Water channels & dam = Part B1; Grains = Part C1 & D3; Wool & linen = Part D4; <em>reeds</em> is not mentioned in the text.');
+      document.getElementById("p5a-retry").style.display = "none";
+      showResult("p5a-result", true, "<strong>All blanks and the extra word (reeds) are correct!</strong><br><strong>Evidence in text:</strong> Water & fertile = Part A1; Trees = Part B1; Plough = Part D1; Wheat & barley = Part A2; Water channels & dam = Part B1; Grains = Part C1 & D3; Wool & linen = Part D4; <em>reeds</em> is not mentioned in the text.");
     } else {
-      document.getElementById('p5a-retry').style.display = 'inline-block';
-      showResult('p5a-result', false, `You got ${ok} / ${inputs.length} correct. Click <strong>Try Again</strong> to fix the red boxes.`);
+      document.getElementById("p5a-retry").style.display = "inline-block";
+      showResult("p5a-result", false, `You got ${ok} / ${inputs.length} correct. Click <strong>Try Again</strong> to fix the red boxes.`);
     }
   }
 
   function retryPractice5A() {
-    document.querySelectorAll('#p5a-body input[data-ans]').forEach(inp => {
-      if (inp.classList.contains('wrong-field')) {
-        inp.value = '';
-        inp.classList.remove('wrong-field');
+    document.querySelectorAll("#p5a-body input[data-ans]").forEach(inp => {
+      if (inp.classList.contains("wrong-field")) {
+        inp.value = "";
+        inp.classList.remove("wrong-field");
       }
     });
-    document.getElementById('p5a-result').className = 'result-banner';
+    document.getElementById("p5a-result").className = "result-banner";
   }
- 
-</script>
-<script>
-let lastScrollY = window.scrollY;
-
-window.addEventListener("scroll", () => {
-  const header = document.querySelector("header");
-
-  if (window.scrollY > lastScrollY) {
-    header.classList.add("hide");
-  } else {
-    header.classList.remove("hide");
-  }
-
-  lastScrollY = window.scrollY;
-});
 </script>
 
-</body>
 </body>
 </html>
