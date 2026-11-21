@@ -961,63 +961,73 @@ body {
       text-align: left;
     }
 
-    /* REAL MIND MAP WITH LINES, ARROWS & CENTRAL HUB */
+/* RADIAL 2x2 MIND MAP WITH CENTER HUB & NO ARROWS */
     .mindmap-diagram {
+      position: relative;
       margin-top: 1rem;
-      padding: 1.25rem;
+      padding: 1.5rem;
       background: #fffdf8;
       border: 2px solid #e7dcc7;
-      border-radius: 16px;
+      border-radius: 18px;
     }
 
-    .mm-center-wrap {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 0.25rem;
+    .mindmap-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3.6rem 2.4rem;
+    }
+
+    /* Cross connector lines behind the center hub (no arrows) */
+    .mindmap-grid::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 24%;
+      right: 24%;
+      height: 3px;
+      background: #cbd5e1;
+      transform: translateY(-50%);
+      z-index: 1;
+    }
+
+    .mindmap-grid::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 22%;
+      bottom: 22%;
+      width: 3px;
+      background: #cbd5e1;
+      transform: translateX(-50%);
+      z-index: 1;
     }
 
     .mm-center-node {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
       background: linear-gradient(135deg, #fef08a, #fde68a);
       border: 3px solid #d97706;
       color: #78350f;
       font-weight: 900;
-      font-size: 1.05rem;
-      padding: 0.75rem 1.45rem;
-      border-radius: 16px;
-      box-shadow: 0 6px 16px rgba(217, 119, 6, 0.16);
+      font-size: 0.98rem;
+      padding: 0.7rem 1.25rem;
+      border-radius: 999px;
+      box-shadow: 0 6px 18px rgba(217, 119, 6, 0.22), 0 0 0 6px #fffdf8;
       text-align: center;
-    }
-
-    .mm-connectors-svg {
-      width: 100%;
-      height: 58px;
-      display: block;
-    }
-
-    .mindmap-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.15rem;
-      margin-top: 0.15rem;
+      white-space: nowrap;
     }
 
     .mm-box {
       position: relative;
+      z-index: 2;
       border: 2.5px solid var(--border);
-      border-radius: 14px;
-      padding: 1.05rem;
+      border-radius: 16px;
+      padding: 1.15rem;
       box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
-    }
-
-    .mm-box::before {
-      content: "↑";
-      position: absolute;
-      top: -22px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-weight: 900;
-      font-size: 1rem;
-      color: #64748b;
     }
 
     .mm-land { background: #e6faef; border-color: #34d399; }
@@ -1040,10 +1050,28 @@ body {
     }
 
     .mm-seed {
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.88);
       border-radius: 8px;
       padding: 0.4rem 0.65rem;
       font-size: 0.9rem;
+    }
+
+    /* Stack cleanly on small phone screens */
+    @media (max-width: 720px) {
+      .mindmap-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .mindmap-grid::before,
+      .mindmap-grid::after {
+        display: none;
+      }
+      .mm-center-node {
+        position: static;
+        transform: none;
+        margin-bottom: 1rem;
+        white-space: normal;
+      }
     }
 
     /* Hidden / Unlocked Sections for Past Simple */
@@ -1733,26 +1761,11 @@ body {
     <h3 style="margin-top:2rem;"><span class="part-pill">Task C</span> Complete the mind map (How did farming change people's lives?)</h3>
     <p class="hint-text">Use information from Parts B–E. Write 2 more ideas in each branch box (max. 5 words each).</p>
 
-    <div class="mindmap-diagram" id="task3c-body">
-      <div class="mm-center-wrap">
-        <div class="mm-center-node">🌾 How Farming Changed Lives</div>
-      </div>
-
-      <svg class="mm-connectors-svg" viewBox="0 0 800 58" preserveAspectRatio="none" aria-hidden="true">
-        <defs>
-          <marker id="mmArrow" markerWidth="7" markerHeight="7" refX="3.5" refY="6" orient="auto">
-            <path d="M0,0 L7,0 L3.5,6 Z" fill="#64748b" />
-          </marker>
-        </defs>
-        <line x1="400" y1="0" x2="400" y2="22" stroke="#64748b" stroke-width="2.5" />
-        <line x1="100" y1="22" x2="700" y2="22" stroke="#64748b" stroke-width="2.5" />
-        <line x1="100" y1="22" x2="100" y2="52" stroke="#64748b" stroke-width="2.5" marker-end="url(#mmArrow)" />
-        <line x1="300" y1="22" x2="300" y2="52" stroke="#64748b" stroke-width="2.5" marker-end="url(#mmArrow)" />
-        <line x1="500" y1="22" x2="500" y2="52" stroke="#64748b" stroke-width="2.5" marker-end="url(#mmArrow)" />
-        <line x1="700" y1="22" x2="700" y2="52" stroke="#64748b" stroke-width="2.5" marker-end="url(#mmArrow)" />
-      </svg>
-
+<div class="mindmap-diagram" id="task3c-body">
       <div class="mindmap-grid">
+        <div class="mm-center-node">🌾 How Farming Changed Lives</div>
+
+        <!-- TOP LEFT -->
         <div class="mm-box mm-land">
           <h4>🌲 The land</h4>
           <ul>
@@ -1761,6 +1774,8 @@ body {
             <li><input type="text" data-keywords="fields,channels,dam,terraces,clear,water" placeholder="Idea 3 (max. 5 words)"></li>
           </ul>
         </div>
+
+        <!-- TOP RIGHT -->
         <div class="mm-box mm-food">
           <h4>🍞 Food</h4>
           <ul>
@@ -1769,6 +1784,8 @@ body {
             <li><input type="text" data-keywords="grain,flour,porridge,meat,milk,wheat,barley" placeholder="Idea 3 (max. 5 words)"></li>
           </ul>
         </div>
+
+        <!-- BOTTOM LEFT -->
         <div class="mm-box mm-tools">
           <h4>🛠️ Tools and technology</h4>
           <ul>
@@ -1777,6 +1794,8 @@ body {
             <li><input type="text" data-keywords="stone,axes,blades,pottery,pots,linen,wool,textiles" placeholder="Idea 3 (max. 5 words)"></li>
           </ul>
         </div>
+
+        <!-- BOTTOM RIGHT -->
         <div class="mm-box mm-jobs">
           <h4>🧑‍🌾 Jobs</h4>
           <ul>
