@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>History A1–A2: Farming Changes the World</title>
+  <title>Grade 7 - Lesson 1 - Farming changes the world</title>
   <style>
     :root {
       --bg: #fffaf0;
@@ -70,7 +70,7 @@
     }
 
     .nav-container {
-      max-width: 980px;
+      max-width: 1020px;
       margin: 0 auto;
       display: flex;
       flex-wrap: wrap;
@@ -81,21 +81,11 @@
 
     .brand {
       font-weight: 800;
-      font-size: 1.05rem;
+      font-size: 1.02rem;
       color: var(--emerald);
       display: flex;
       align-items: center;
       gap: 0.5rem;
-    }
-
-    .badge {
-      background: linear-gradient(135deg, #fde68a, #fed7aa);
-      color: #9a3412;
-      border: 1px solid #fdba74;
-      font-size: 0.75rem;
-      padding: 0.18rem 0.65rem;
-      border-radius: 999px;
-      font-weight: 800;
     }
 
     nav {
@@ -109,7 +99,7 @@
       color: var(--muted);
       font-size: 0.85rem;
       font-weight: 700;
-      padding: 0.36rem 0.75rem;
+      padding: 0.36rem 0.72rem;
       border-radius: 8px;
       transition: all 0.18s ease;
       border: 1.5px solid transparent;
@@ -129,7 +119,7 @@
     }
 
     main {
-      max-width: 980px;
+      max-width: 1020px;
       margin: 1.75rem auto;
       padding: 0 1.25rem;
       display: flex;
@@ -141,66 +131,85 @@
       scroll-margin-top: 84px;
     }
 
-    /* Hero */
+    /* Enhanced Opening Hero with Seamless Shifting Gradient */
+    @keyframes seamlessGradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
     .hero-card {
-      background: linear-gradient(135deg, #fffbeb 0%, #dcfce7 52%, #e0f2fe 100%);
-      border: 2.5px solid #f6c977;
-      border-radius: 20px;
-      padding: 2rem;
-      box-shadow: 0 10px 28px rgba(245, 158, 11, 0.14);
+      background: linear-gradient(-45deg, #fef08a, #bbf7d0, #bae6fd, #fed7aa, #ddd6fe);
+      background-size: 320% 320%;
+      animation: seamlessGradientShift 14s ease infinite;
+      border: 3px solid #f59e0b;
+      border-radius: 24px;
+      padding: 2.5rem 2.25rem;
+      box-shadow: 0 14px 34px rgba(24, 34, 48, 0.1);
     }
 
     .hero-tag {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      background: linear-gradient(135deg, var(--coral), var(--amber));
-      color: #fff;
-      font-size: 0.78rem;
+      gap: 0.45rem;
+      background: rgba(15, 23, 42, 0.85);
+      color: #fef08a;
+      font-size: 0.9rem;
       font-weight: 800;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      padding: 0.3rem 0.8rem;
+      padding: 0.38rem 0.95rem;
       border-radius: 999px;
-      margin-bottom: 0.75rem;
+      margin-bottom: 1rem;
     }
 
-    h1 {
-      font-size: 2rem;
+    .hero-card h1 {
+      font-size: 2.55rem;
       color: #0f172a;
-      line-height: 1.22;
-      margin-bottom: 0.35rem;
+      line-height: 1.18;
+      margin-bottom: 0.6rem;
+      font-weight: 900;
     }
 
-    .subtitle {
-      color: #c2410c;
+    .hero-card .subtitle {
+      color: #7c2d12;
       font-weight: 700;
-      font-size: 1.06rem;
-      margin-bottom: 1.35rem;
+      font-size: 1.24rem;
+      line-height: 1.5;
+      margin-bottom: 1.65rem;
     }
 
     .objectives {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.15rem;
     }
 
     .obj-box {
-      background: rgba(255, 255, 255, 0.94);
-      padding: 1.1rem 1.25rem;
-      border-radius: 14px;
-      border: 2px solid #fde68a;
-      font-size: 0.92rem;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(4px);
+      padding: 1.3rem 1.4rem;
+      border-radius: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+      font-size: 1.03rem;
     }
 
     .obj-box strong {
       color: var(--emerald);
-      font-size: 0.98rem;
+      font-size: 1.1rem;
     }
 
     .obj-box ul {
-      margin-left: 1.25rem;
-      margin-top: 0.45rem;
+      margin-left: 1.35rem;
+      margin-top: 0.55rem;
+      line-height: 1.7;
     }
 
     /* Cards */
@@ -214,6 +223,7 @@
 
     .card-warmup { border-top: 7px solid var(--amber); }
     .card-vocab { border-top: 7px solid var(--emerald); }
+    .card-glossary { border-top: 7px solid #0d9488; background: linear-gradient(180deg, #ffffff 0%, #f4fdfa 100%); }
     .card-reading { border-top: 7px solid var(--coral); }
     .card-check { border-top: 7px solid var(--indigo); }
     .card-lang { border-top: 7px solid var(--teal); }
@@ -244,6 +254,7 @@
 
     .icon-amber { background: var(--amber-soft); }
     .icon-emerald { background: var(--emerald-soft); }
+    .icon-teal-soft { background: #ccfbf1; }
     .icon-coral { background: var(--coral-soft); }
     .icon-indigo { background: var(--indigo-soft); }
     .icon-teal { background: var(--teal-soft); }
@@ -269,6 +280,84 @@
       text-transform: uppercase;
     }
 
+    /* Glossary Cards */
+    .glossary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 1.15rem;
+      margin-top: 1rem;
+    }
+
+    .glossary-card {
+      background: #ffffff;
+      border: 2px solid #99f6e4;
+      border-radius: 16px;
+      padding: 1.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      box-shadow: 0 4px 12px rgba(13, 148, 136, 0.06);
+    }
+
+    .glossary-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.5rem;
+      border-bottom: 1.5px dashed #ccfbf1;
+      padding-bottom: 0.45rem;
+    }
+
+    .glossary-word {
+      font-size: 1.18rem;
+      font-weight: 800;
+      color: #0f766e;
+    }
+
+    .glossary-vi {
+      background: #fef3c7;
+      color: #92400e;
+      font-weight: 700;
+      font-size: 0.88rem;
+      padding: 0.18rem 0.6rem;
+      border-radius: 999px;
+    }
+
+    .glossary-def {
+      font-size: 0.93rem;
+      color: #1e293b;
+    }
+
+    .glossary-ex {
+      font-size: 0.9rem;
+      color: #334155;
+      background: #f8fafc;
+      border-left: 3px solid #14b8a6;
+      padding: 0.45rem 0.65rem;
+      border-radius: 6px;
+    }
+
+    .glossary-img-wrap {
+      border: 1.5px solid #cbd5e1;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #f8fafc;
+      text-align: center;
+    }
+
+    .glossary-img-wrap img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .glossary-audio audio {
+      width: 100%;
+      height: 36px;
+      margin-top: 0.15rem;
+    }
+
     /* Pictures & Side-by-Side Layouts */
     .split-row {
       display: grid;
@@ -281,6 +370,12 @@
     @media (max-width: 760px) {
       .split-row {
         grid-template-columns: 1fr;
+      }
+      .hero-card h1 {
+        font-size: 1.95rem;
+      }
+      .hero-card .subtitle {
+        font-size: 1.05rem;
       }
     }
 
@@ -304,10 +399,10 @@
 
     .pic-fallback {
       display: none;
-      padding: 1.15rem;
+      padding: 0.85rem;
       background: #fff5e0;
       color: #7c2d12;
-      font-size: 0.86rem;
+      font-size: 0.82rem;
     }
 
     .pic-caption {
@@ -378,7 +473,7 @@
       align-items: center;
     }
 
-    /* Warmup Checklist (No Strikethrough) */
+    /* Warmup Checklist */
     .checklist-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
@@ -625,37 +720,64 @@
       color: #1e3a8a;
     }
 
-    /* Multiple Choice Box */
+    /* Multiple Choice Box — Options Stacked One After Another */
     .mcq-card {
       background: #f0f9ff;
       border: 2px solid #7dd3fc;
       border-radius: 14px;
-      padding: 1.1rem 1.25rem;
-      margin: 1rem 0;
+      padding: 1.15rem 1.3rem;
+      margin: 0.5rem 0;
     }
 
     .mcq-options {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 0.6rem;
-      margin-top: 0.7rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      margin-top: 0.75rem;
     }
 
     .mcq-option {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.65rem;
       background: #fff;
       border: 1.5px solid #bae6fd;
-      border-radius: 9px;
-      padding: 0.55rem 0.75rem;
+      border-radius: 10px;
+      padding: 0.65rem 0.9rem;
       cursor: pointer;
-      font-size: 0.92rem;
+      font-size: 0.95rem;
       font-weight: 600;
+      width: 100%;
     }
 
     .mcq-option input {
       accent-color: #0284c7;
+      flex-shrink: 0;
+    }
+
+    .item-feedback {
+      display: none;
+      margin-top: 0.8rem;
+      padding: 0.7rem 0.95rem;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .item-feedback.show {
+      display: block;
+    }
+
+    .item-feedback.fb-ok {
+      background: var(--success-bg);
+      border: 1.5px solid #86efac;
+      color: #14532d;
+    }
+
+    .item-feedback.fb-no {
+      background: var(--error-bg);
+      border: 1.5px solid #fca5a5;
+      color: #7f1d1d;
     }
 
     /* Tables & Mind Map */
@@ -978,12 +1100,12 @@
 <header id="main-header">
   <div class="nav-container">
     <div class="brand">
-      <span>🌾 History A1–A2</span>
-      <span class="badge">Grade 7 • Neolithic Period</span>
+      <span>🌾 Grade 7 - Lesson 1 - Farming changes the world</span>
     </div>
     <nav id="top-nav">
       <a href="#warmup" class="nav-link active" data-section="warmup">Warm-up</a>
       <a href="#vocab" class="nav-link" data-section="vocab">1. Words</a>
+      <a href="#glossary" class="nav-link" data-section="glossary">Glossary</a>
       <a href="#reading" class="nav-link" data-section="reading">2. Reading</a>
       <a href="#check" class="nav-link" data-section="check">3. Check</a>
       <a href="#language" class="nav-link" data-section="language">4. Past Simple</a>
@@ -996,7 +1118,7 @@
 <main>
   <!-- HERO -->
   <section class="hero-card">
-    <div class="hero-tag">✨ World History • New Stone Age</div>
+    <div class="hero-tag">✨ Grade 7 • Lesson 1 • Neolithic Period</div>
     <h1>Farming Changes the World</h1>
     <p class="subtitle">The first farmers of the Neolithic period and how they shaped human history</p>
     <div class="objectives">
@@ -1036,7 +1158,7 @@
         onerror="showFallback(this);"
       />
       <div class="pic-fallback">
-        <strong>Picture 1 (<code>neolithic_farming_village.png</code>)</strong> isn't showing from GitHub yet. Pick it from your device to show in class:
+        <strong>Picture 1 (<code>neolithic_farming_village.png</code>)</strong> isn't showing yet. Pick it from your device to preview:
         <br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'pic1')" style="margin-top:0.5rem;">
       </div>
       <figcaption class="pic-caption">Picture 1: Life in a Neolithic farming village (~11,000 years ago)</figcaption>
@@ -1123,7 +1245,7 @@
       <span class="sec-icon icon-emerald">🌱</span>
       1. Farming Words
     </h2>
-    <p>Match the words (1–6) to their meanings (a–f). Then find them in the reading text.</p>
+    <p>Match the words (1–6) to their meanings (a–f). Then explore the Glossary below and find them in the reading text.</p>
 
     <div id="vocab-container" style="margin-top: 0.8rem;">
       <div class="vocab-row">
@@ -1205,6 +1327,143 @@
       <button id="vocab-retry" class="btn-warm" style="display:none;" onclick="retryVocab()">Try Again</button>
     </div>
     <div id="vocab-result" class="result-banner"></div>
+  </section>
+
+  <!-- 1B. GLOSSARY -->
+  <section id="glossary" class="card card-glossary">
+    <h2>
+      <span class="sec-icon icon-teal-soft">📚</span>
+      Glossary: Key Words, Meanings, Pictures & Audio
+    </h2>
+    <p>Study each word's definition, Vietnamese meaning, example sentence, picture, and pronunciation audio.</p>
+
+    <div class="glossary-grid">
+      <!-- 1. farm -->
+      <div class="glossary-card">
+        <div class="glossary-top">
+          <span class="glossary-word">farm (v / n)</span>
+          <span class="glossary-vi">làm nông / trang trại</span>
+        </div>
+        <p class="glossary-def"><strong>Definition:</strong> To grow plants and raise animals for food; an area of land used for this.</p>
+        <p class="glossary-ex"><strong>Example:</strong> People began to <em>farm</em> the land about 11,000 years ago.</p>
+        <div class="glossary-img-wrap">
+          <img id="gl-img-farm" src="glossary/farm.png" alt="Picture of farm" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback">
+            Image <code>glossary/farm.png</code> not uploaded yet.
+            <br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-farm')" style="margin-top:0.35rem; font-size:0.78rem;">
+          </div>
+        </div>
+        <div class="glossary-audio">
+          <audio id="gl-aud-farm" controls preload="none" src="audio/farm.mp3"></audio>
+          <span class="hint-text">Audio file: <code>audio/farm.mp3</code></span>
+        </div>
+      </div>
+
+      <!-- 2. crop -->
+      <div class="glossary-card">
+        <div class="glossary-top">
+          <span class="glossary-word">crop (n)</span>
+          <span class="glossary-vi">cây trồng, mùa màng</span>
+        </div>
+        <p class="glossary-def"><strong>Definition:</strong> A plant that farmers grow in large amounts for food or other uses.</p>
+        <p class="glossary-ex"><strong>Example:</strong> Farmers grew <em>crops</em> such as wheat, barley, and rice.</p>
+        <div class="glossary-img-wrap">
+          <img id="gl-img-crop" src="glossary/crop.png" alt="Picture of crop" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback">
+            Image <code>glossary/crop.png</code> not uploaded yet.
+            <br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-crop')" style="margin-top:0.35rem; font-size:0.78rem;">
+          </div>
+        </div>
+        <div class="glossary-audio">
+          <audio id="gl-aud-crop" controls preload="none" src="audio/crop.mp3"></audio>
+          <span class="hint-text">Audio file: <code>audio/crop.mp3</code></span>
+        </div>
+      </div>
+
+      <!-- 3. grain -->
+      <div class="glossary-card">
+        <div class="glossary-top">
+          <span class="glossary-word">grain (n)</span>
+          <span class="glossary-vi">ngũ cốc, hạt</span>
+        </div>
+        <p class="glossary-def"><strong>Definition:</strong> Small, hard seeds from cereal plants like wheat, barley, or rice.</p>
+        <p class="glossary-ex"><strong>Example:</strong> Villagers ground <em>grain</em> between two stones to make flour.</p>
+        <div class="glossary-img-wrap">
+          <img id="gl-img-grain" src="glossary/grain.png" alt="Picture of grain" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback">
+            Image <code>glossary/grain.png</code> not uploaded yet.
+            <br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-grain')" style="margin-top:0.35rem; font-size:0.78rem;">
+          </div>
+        </div>
+        <div class="glossary-audio">
+          <audio id="gl-aud-grain" controls preload="none" src="audio/grain.mp3"></audio>
+          <span class="hint-text">Audio file: <code>audio/grain.mp3</code></span>
+        </div>
+      </div>
+
+      <!-- 4. domesticate -->
+      <div class="glossary-card">
+        <div class="glossary-top">
+          <span class="glossary-word">domesticate (v)</span>
+          <span class="glossary-vi">thuần hóa (động vật)</span>
+        </div>
+        <p class="glossary-def"><strong>Definition:</strong> To tame wild animals and breed them so they can live with people.</p>
+        <p class="glossary-ex"><strong>Example:</strong> Early farmers <em>domesticated</em> sheep, goats, cows, and pigs.</p>
+        <div class="glossary-img-wrap">
+          <img id="gl-img-domesticate" src="glossary/domesticate.png" alt="Picture of domesticate" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback">
+            Image <code>glossary/domesticate.png</code> not uploaded yet.
+            <br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-domesticate')" style="margin-top:0.35rem; font-size:0.78rem;">
+          </div>
+        </div>
+        <div class="glossary-audio">
+          <audio id="gl-aud-domesticate" controls preload="none" src="audio/domesticate.mp3"></audio>
+          <span class="hint-text">Audio file: <code>audio/domesticate.mp3</code></span>
+        </div>
+      </div>
+
+      <!-- 5. fertile -->
+      <div class="glossary-card">
+        <div class="glossary-top">
+          <span class="glossary-word">fertile (adj)</span>
+          <span class="glossary-vi">màu mỡ, phì nhiêu</span>
+        </div>
+        <p class="glossary-def"><strong>Definition:</strong> Rich in nutrients and good for growing healthy plants and crops.</p>
+        <p class="glossary-ex"><strong>Example:</strong> The soil near the two rivers was flat and <em>fertile</em>.</p>
+        <div class="glossary-img-wrap">
+          <img id="gl-img-fertile" src="glossary/fertile.png" alt="Picture of fertile soil" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback">
+            Image <code>glossary/fertile.png</code> not uploaded yet.
+            <br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-fertile')" style="margin-top:0.35rem; font-size:0.78rem;">
+          </div>
+        </div>
+        <div class="glossary-audio">
+          <audio id="gl-aud-fertile" controls preload="none" src="audio/fertile.mp3"></audio>
+          <span class="hint-text">Audio file: <code>audio/fertile.mp3</code></span>
+        </div>
+      </div>
+
+      <!-- 6. plough -->
+      <div class="glossary-card">
+        <div class="glossary-top">
+          <span class="glossary-word">plough (n / v)</span>
+          <span class="glossary-vi">cái cày / cày đất</span>
+        </div>
+        <p class="glossary-def"><strong>Definition:</strong> A tool pulled across soil to turn it over before planting seeds.</p>
+        <p class="glossary-ex"><strong>Example:</strong> Strong animals pulled the <em>plough</em> through the fields.</p>
+        <div class="glossary-img-wrap">
+          <img id="gl-img-plough" src="glossary/plough.png" alt="Picture of plough" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback">
+            Image <code>glossary/plough.png</code> not uploaded yet.
+            <br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-plough')" style="margin-top:0.35rem; font-size:0.78rem;">
+          </div>
+        </div>
+        <div class="glossary-audio">
+          <audio id="gl-aud-plough" controls preload="none" src="audio/plough.mp3"></audio>
+          <span class="hint-text">Audio file: <code>audio/plough.mp3</code></span>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- 2. READING -->
@@ -1520,7 +1779,7 @@
 
     <!-- TASK 4.2: DRAG & DROP SORTING -->
     <h3 style="margin-top:1.8rem;"><span class="part-pill">2</span> Regular or irregular? (Drag & Drop)</h3>
-    <p>Drag each past simple verb into the correct column (or click a word, then click a column). Any order inside a column is fine!</p>
+    <p>Drag all 37 past simple forms from the reading text into the matching column (or click a word, then click a column). Any order inside a column is fine!</p>
 
     <div id="verb-bank" class="word-bank" ondragover="allowDrop(event)" ondrop="dropVerb(event, 'bank')" onclick="quickPlaceInto(event, 'bank')"></div>
 
@@ -1544,49 +1803,46 @@
     <!-- UNLOCKED AFTER SORTING IS FINISHED -->
     <div id="bare-form-section">
       <h3 style="margin-top:0;"><span class="part-pill">2B</span> Unlocked! Write the bare form (base verb)</h3>
-      <p>Great sorting! Now type the bare form (base verb) for each past-tense verb below.</p>
+      <p>Great sorting! Now type the bare form (base verb) for all 37 past-tense forms from the reading text.</p>
 
       <div id="bare-form-grid" class="bare-grid">
-        <div class="bare-item">
-          <span>1. <strong>lived</strong> →</span>
-          <input type="text" data-bare="live" placeholder="type bare form">
-        </div>
-        <div class="bare-item">
-          <span>2. <strong>planted</strong> →</span>
-          <input type="text" data-bare="plant" placeholder="type bare form">
-        </div>
-        <div class="bare-item">
-          <span>3. <strong>began</strong> →</span>
-          <input type="text" data-bare="begin" placeholder="type bare form">
-        </div>
-        <div class="bare-item">
-          <span>4. <strong>grew</strong> →</span>
-          <input type="text" data-bare="grow" placeholder="type bare form">
-        </div>
-        <div class="bare-item">
-          <span>5. <strong>made</strong> →</span>
-          <input type="text" data-bare="make" placeholder="type bare form">
-        </div>
-        <div class="bare-item">
-          <span>6. <strong>kept</strong> →</span>
-          <input type="text" data-bare="keep" placeholder="type bare form">
-        </div>
-        <div class="bare-item">
-          <span>7. <strong>dug</strong> →</span>
-          <input type="text" data-bare="dig" placeholder="type bare form">
-        </div>
-        <div class="bare-item">
-          <span>8. <strong>built</strong> →</span>
-          <input type="text" data-bare="build" placeholder="type bare form">
-        </div>
-        <div class="bare-item">
-          <span>9. <strong>ground</strong> →</span>
-          <input type="text" data-bare="grind" placeholder="type bare form">
-        </div>
-        <div class="bare-item">
-          <span>10. <strong>traded</strong> →</span>
-          <input type="text" data-bare="trade" placeholder="type bare form">
-        </div>
+        <div class="bare-item"><span>1. <strong>hunted</strong> →</span><input type="text" data-bare="hunt" placeholder="type bare form"></div>
+        <div class="bare-item"><span>2. <strong>gathered</strong> →</span><input type="text" data-bare="gather" placeholder="type bare form"></div>
+        <div class="bare-item"><span>3. <strong>moved</strong> →</span><input type="text" data-bare="move" placeholder="type bare form"></div>
+        <div class="bare-item"><span>4. <strong>happened</strong> →</span><input type="text" data-bare="happen" placeholder="type bare form"></div>
+        <div class="bare-item"><span>5. <strong>lived</strong> →</span><input type="text" data-bare="live" placeholder="type bare form"></div>
+        <div class="bare-item"><span>6. <strong>planted</strong> →</span><input type="text" data-bare="plant" placeholder="type bare form"></div>
+        <div class="bare-item"><span>7. <strong>used</strong> →</span><input type="text" data-bare="use" placeholder="type bare form"></div>
+        <div class="bare-item"><span>8. <strong>collected</strong> →</span><input type="text" data-bare="collect" placeholder="type bare form"></div>
+        <div class="bare-item"><span>9. <strong>reached</strong> →</span><input type="text" data-bare="reach" placeholder="type bare form"></div>
+        <div class="bare-item"><span>10. <strong>changed</strong> →</span><input type="text" data-bare="change" placeholder="type bare form"></div>
+        <div class="bare-item"><span>11. <strong>cleared</strong> →</span><input type="text" data-bare="clear" placeholder="type bare form"></div>
+        <div class="bare-item"><span>12. <strong>invented</strong> →</span><input type="text" data-bare="invent" placeholder="type bare form"></div>
+        <div class="bare-item"><span>13. <strong>pulled</strong> →</span><input type="text" data-bare="pull" placeholder="type bare form"></div>
+        <div class="bare-item"><span>14. <strong>polished</strong> →</span><input type="text" data-bare="polish" placeholder="type bare form"></div>
+        <div class="bare-item"><span>15. <strong>learned</strong> →</span><input type="text" data-bare="learn" placeholder="type bare form"></div>
+        <div class="bare-item"><span>16. <strong>shaped</strong> →</span><input type="text" data-bare="shape" placeholder="type bare form"></div>
+        <div class="bare-item"><span>17. <strong>baked</strong> →</span><input type="text" data-bare="bake" placeholder="type bare form"></div>
+        <div class="bare-item"><span>18. <strong>looked</strong> →</span><input type="text" data-bare="look" placeholder="type bare form"></div>
+        <div class="bare-item"><span>19. <strong>worked</strong> →</span><input type="text" data-bare="work" placeholder="type bare form"></div>
+        <div class="bare-item"><span>20. <strong>needed</strong> →</span><input type="text" data-bare="need" placeholder="type bare form"></div>
+        <div class="bare-item"><span>21. <strong>traded</strong> →</span><input type="text" data-bare="trade" placeholder="type bare form"></div>
+        <div class="bare-item"><span>22. <strong>was</strong> →</span><input type="text" data-bare="be" placeholder="type bare form"></div>
+        <div class="bare-item"><span>23. <strong>were</strong> →</span><input type="text" data-bare="be" placeholder="type bare form"></div>
+        <div class="bare-item"><span>24. <strong>had</strong> →</span><input type="text" data-bare="have" placeholder="type bare form"></div>
+        <div class="bare-item"><span>25. <strong>did</strong> →</span><input type="text" data-bare="do" placeholder="type bare form"></div>
+        <div class="bare-item"><span>26. <strong>began</strong> →</span><input type="text" data-bare="begin" placeholder="type bare form"></div>
+        <div class="bare-item"><span>27. <strong>grew</strong> →</span><input type="text" data-bare="grow" placeholder="type bare form"></div>
+        <div class="bare-item"><span>28. <strong>ate</strong> →</span><input type="text" data-bare="eat" placeholder="type bare form"></div>
+        <div class="bare-item"><span>29. <strong>kept</strong> →</span><input type="text" data-bare="keep" placeholder="type bare form"></div>
+        <div class="bare-item"><span>30. <strong>caught</strong> →</span><input type="text" data-bare="catch" placeholder="type bare form"></div>
+        <div class="bare-item"><span>31. <strong>spread</strong> →</span><input type="text" data-bare="spread" placeholder="type bare form"></div>
+        <div class="bare-item"><span>32. <strong>cut</strong> →</span><input type="text" data-bare="cut" placeholder="type bare form"></div>
+        <div class="bare-item"><span>33. <strong>dug</strong> →</span><input type="text" data-bare="dig" placeholder="type bare form"></div>
+        <div class="bare-item"><span>34. <strong>built</strong> →</span><input type="text" data-bare="build" placeholder="type bare form"></div>
+        <div class="bare-item"><span>35. <strong>made</strong> →</span><input type="text" data-bare="make" placeholder="type bare form"></div>
+        <div class="bare-item"><span>36. <strong>ground</strong> →</span><input type="text" data-bare="grind" placeholder="type bare form"></div>
+        <div class="bare-item"><span>37. <strong>became</strong> →</span><input type="text" data-bare="become" placeholder="type bare form"></div>
       </div>
 
       <div class="btn-group">
@@ -1617,8 +1873,8 @@
     </div>
 
     <h3><span class="part-pill">3</span> Choose the correct answer</h3>
-    <div id="lang-mcq-list" style="display:flex; flex-direction:column; gap:1rem;">
-      <div class="mcq-card" data-correct="A">
+    <div id="lang-mcq-list" style="display:flex; flex-direction:column; gap:1.15rem;">
+      <div class="mcq-card" data-correct="A" data-explain="Correct: A. The reading describes completed actions in the past (Neolithic period).">
         <p style="font-weight:700;">1. The text is mainly in the past simple because...</p>
         <div class="mcq-options">
           <label class="mcq-option"><input type="radio" name="q3_1" value="A"> A. the actions happened and finished in the past.</label>
@@ -1626,9 +1882,10 @@
           <label class="mcq-option"><input type="radio" name="q3_1" value="C"> C. the actions happen again and again, like habits.</label>
           <label class="mcq-option"><input type="radio" name="q3_1" value="D"> D. the actions will happen in the future.</label>
         </div>
+        <div class="item-feedback"></div>
       </div>
 
-      <div class="mcq-card" data-correct="B">
+      <div class="mcq-card" data-correct="B" data-explain="Correct: B. Part A1 says 'Today, this area is part of Iraq and Syria' because it is true right now.">
         <p style="font-weight:700;">2. "Today, this area is part of Iraq and Syria." The writer uses <em>is</em>, not <em>was</em>, because...</p>
         <div class="mcq-options">
           <label class="mcq-option"><input type="radio" name="q3_2" value="A"> A. it happened a long time ago.</label>
@@ -1636,9 +1893,10 @@
           <label class="mcq-option"><input type="radio" name="q3_2" value="C"> C. it finished in the past.</label>
           <label class="mcq-option"><input type="radio" name="q3_2" value="D"> D. we do not know when it happened.</label>
         </div>
+        <div class="item-feedback"></div>
       </div>
 
-      <div class="mcq-card" data-correct="C">
+      <div class="mcq-card" data-correct="C" data-explain="Correct: C. 'About 11,000 years ago' is a past time expression used in the Intro and Part A1.">
         <p style="font-weight:700;">3. Which words tell us when in the past?</p>
         <div class="mcq-options">
           <label class="mcq-option"><input type="radio" name="q3_3" value="A"> A. every day</label>
@@ -1646,9 +1904,10 @@
           <label class="mcq-option"><input type="radio" name="q3_3" value="C"> C. about 11,000 years ago</label>
           <label class="mcq-option"><input type="radio" name="q3_3" value="D"> D. next year</label>
         </div>
+        <div class="item-feedback"></div>
       </div>
 
-      <div class="mcq-card" data-correct="D">
+      <div class="mcq-card" data-correct="D" data-explain="Correct: D. After 'did not', we use the base verb 'stop' (not 'stopped').">
         <p style="font-weight:700;">4. "Farmers did not ______ hunting."</p>
         <div class="mcq-options">
           <label class="mcq-option"><input type="radio" name="q3_4" value="A"> A. stopped</label>
@@ -1656,9 +1915,10 @@
           <label class="mcq-option"><input type="radio" name="q3_4" value="C"> C. stopping</label>
           <label class="mcq-option"><input type="radio" name="q3_4" value="D"> D. stop</label>
         </div>
+        <div class="item-feedback"></div>
       </div>
 
-      <div class="mcq-card" data-correct="B">
+      <div class="mcq-card" data-correct="B" data-explain="Correct: B. Past simple questions use 'What + did + subject + base verb' → 'What did farmers grow?'">
         <p style="font-weight:700;">5. Which question is correct?</p>
         <div class="mcq-options">
           <label class="mcq-option"><input type="radio" name="q3_5" value="A"> A. What did farmers grew?</label>
@@ -1666,13 +1926,13 @@
           <label class="mcq-option"><input type="radio" name="q3_5" value="C"> C. What farmers did grow?</label>
           <label class="mcq-option"><input type="radio" name="q3_5" value="D"> D. What grew farmers did?</label>
         </div>
+        <div class="item-feedback"></div>
       </div>
     </div>
     <div class="btn-group">
       <button class="btn-primary" onclick="checkLangMcq()">Check Multiple Choice</button>
       <button id="langmcq-retry" class="btn-warm" style="display:none;" onclick="retryLangMcq()">Try Again</button>
     </div>
-    <div id="langmcq-result" class="result-banner"></div>
   </section>
 
   <!-- 5. PRACTICE -->
@@ -1786,7 +2046,6 @@
     }
     lastScrollY = currentY;
 
-    // Highlight active section in header
     let activeId = "warmup";
     const scrollMarker = currentY + 140;
 
@@ -1829,7 +2088,7 @@
     reader.readAsDataURL(file);
   }
 
-  // Warm-up Checklist (No Strikethrough + Live Feedback at Bottom)
+  // Warm-up Checklist
   function handleWarmupClick(checkbox) {
     const label = checkbox.closest(".check-item");
     const isValid = label.dataset.valid === "true";
@@ -2087,7 +2346,7 @@
   }
 
   // 4.1 Verbs Check
-  const ALL_PAST_VERBS = ["hunted","gathered","moved","happened","began","lived","was","were","had","planted","grew","ate","used","did","caught","collected","spread","reached","changed","cleared","dug","built","made","ground","invented","pulled","polished","learned","shaped","baked","looked","worked","needed","traded","became"];
+  const ALL_PAST_VERBS = ["hunted","gathered","moved","happened","lived","planted","used","collected","reached","changed","cleared","invented","pulled","polished","learned","shaped","baked","looked","worked","needed","traded","was","were","had","did","began","grew","ate","kept","caught","spread","cut","dug","built","made","ground","became"];
 
   function parseWordList(text) {
     return text.toLowerCase().split(/[\s,.;:!?()]+/).map(w => w.trim()).filter(Boolean);
@@ -2121,24 +2380,47 @@
     document.getElementById("verbs-result").className = "result-banner";
   }
 
-  // 4.2 Drag & Drop Regular/Irregular + Unlock Bare Form Task
+  // 4.2 Drag & Drop Regular/Irregular (All 37) + Unlock Bare Form Task
   const DRAG_VERB_DATA = [
+    // 21 Regular verbs from the text
+    { word: "hunted", type: "reg" },
+    { word: "gathered", type: "reg" },
+    { word: "moved", type: "reg" },
+    { word: "happened", type: "reg" },
     { word: "lived", type: "reg" },
     { word: "planted", type: "reg" },
     { word: "used", type: "reg" },
+    { word: "collected", type: "reg" },
+    { word: "reached", type: "reg" },
+    { word: "changed", type: "reg" },
     { word: "cleared", type: "reg" },
     { word: "invented", type: "reg" },
     { word: "pulled", type: "reg" },
     { word: "polished", type: "reg" },
+    { word: "learned", type: "reg" },
+    { word: "shaped", type: "reg" },
+    { word: "baked", type: "reg" },
+    { word: "looked", type: "reg" },
+    { word: "worked", type: "reg" },
+    { word: "needed", type: "reg" },
     { word: "traded", type: "reg" },
+    // 16 Irregular past forms from the text
+    { word: "was", type: "irreg" },
+    { word: "were", type: "irreg" },
+    { word: "had", type: "irreg" },
+    { word: "did", type: "irreg" },
     { word: "began", type: "irreg" },
     { word: "grew", type: "irreg" },
     { word: "ate", type: "irreg" },
     { word: "kept", type: "irreg" },
+    { word: "caught", type: "irreg" },
+    { word: "spread", type: "irreg" },
+    { word: "cut", type: "irreg" },
     { word: "dug", type: "irreg" },
     { word: "built", type: "irreg" },
     { word: "made", type: "irreg" },
-    { word: "ground", type: "irreg" }
+    { word: "ground", type: "irreg" },
+    { word: "became", type: "irreg" }
   ];
 
   let selectedChipEl = null;
@@ -2248,7 +2530,7 @@
       showResult(
         "drag-result",
         true,
-        `<strong>All ${correctCount} verbs sorted accurately! Task 2B (Bare Forms) is now unlocked below!</strong><br><strong>Evidence in text:</strong> Regular verbs add <em>-ed/-d</em> (<em>lived</em> in Part A1, <em>planted</em> in Part A2, <em>cleared</em> in Part B1, <em>invented & polished</em> in Part D1–D2, <em>traded</em> in Part E1); Irregular verbs change form (<em>began</em> in Intro, <em>grew & ate</em> in Part A2, <em>kept</em> in Part A3, <em>dug & built</em> in Part B1, <em>made & ground</em> in Part C1–D3).`
+        `<strong>All ${correctCount} verbs sorted accurately! Task 2B (Bare Forms) is now unlocked below!</strong><br><strong>Evidence in text:</strong> Regular verbs add <em>-ed/-d</em> (21 verbs in text); Irregular past forms change form (16 forms in text).`
       );
     } else {
       document.getElementById("drag-retry").style.display = "inline-block";
@@ -2289,7 +2571,7 @@
       showResult(
         "bare-result",
         true,
-        "<strong>All 10 bare forms are correct!</strong><br><strong>Evidence & Grammar rule:</strong> Regular bare forms drop <em>-d/-ed</em> (<em>lived → live, planted → plant, traded → trade</em>). Irregular bare forms return to the base verb after <em>did/did not</em> (<em>began → begin, grew → grow, made → make, kept → keep, dug → dig, built → build, ground → grind</em>)."
+        `<strong>All ${inputs.length} bare forms are correct!</strong><br><strong>Grammar rule:</strong> Regular verbs return to base form by dropping <em>-d/-ed</em> (e.g., <em>lived → live, planted → plant, traded → trade</em>). Irregular verbs return to their base form (e.g., <em>was/were → be, had → have, did → do, began → begin, grew → grow, ate → eat, kept → keep, caught → catch, spread → spread, cut → cut, dug → dig, built → build, made → make, ground → grind, became → become</em>).`
       );
     } else {
       document.getElementById("bare-retry").style.display = "inline-block";
@@ -2309,42 +2591,52 @@
 
   initVerbBank();
 
-  // 4.3 Language MCQ
+  // 4.3 Language MCQ — Per-Question Feedback Below Each Card
   function checkLangMcq() {
     const cards = document.querySelectorAll("#lang-mcq-list .mcq-card");
-    let ok = 0;
+    let anyWrong = false;
+
     cards.forEach(card => {
       const ans = card.dataset.correct;
+      const explain = card.dataset.explain;
       const checked = card.querySelector('input[type="radio"]:checked');
+      const fb = card.querySelector(".item-feedback");
+
       card.style.borderColor = "#7dd3fc";
       card.style.background = "#f0f9ff";
+      fb.className = "item-feedback";
+
       if (checked && checked.value === ans) {
-        ok++;
         card.style.borderColor = "#16a34a";
         card.style.background = "#f0fdf4";
+        fb.classList.add("show", "fb-ok");
+        fb.innerHTML = `<strong>✓ Correct!</strong> ${explain}`;
       } else {
+        anyWrong = true;
         card.style.borderColor = "#dc2626";
         card.style.background = "#fef2f2";
+        fb.classList.add("show", "fb-no");
+        fb.innerHTML = checked
+          ? `<strong>✗ Not quite.</strong> You picked <strong>${checked.value}</strong>. Try again or check the rule in the <em>Remember</em> box above.`
+          : `<strong>✗ Please select an option</strong> (A, B, C, or D) for this question.`;
       }
     });
-    if (ok === cards.length) {
-      document.getElementById("langmcq-retry").style.display = "none";
-      showResult("langmcq-result", true, "<strong>5 / 5! Perfect grammar check!</strong><br><strong>Evidence in text & Remember box:</strong> (1) Completed past events in the reading; (2) Part A1 says <em>\"Today, this area is...\"</em> for a present fact; (3) Intro & Part A1 say <em>\"about 11,000 years ago\"</em>; (4) Negative uses <em>did not + base verb (stop)</em>; (5) Question uses <em>What did + subject + base verb (grow)</em>.");
-    } else {
-      document.getElementById("langmcq-retry").style.display = "inline-block";
-      showResult("langmcq-result", false, `You got ${ok} / ${cards.length} right. Click <strong>Try Again</strong> to retry the grammar questions.`);
-    }
+
+    document.getElementById("langmcq-retry").style.display = anyWrong ? "inline-block" : "none";
   }
 
   function retryLangMcq() {
     document.querySelectorAll("#lang-mcq-list .mcq-card").forEach(card => {
-      if (card.style.borderColor === "rgb(220, 38, 38)") {
+      const fb = card.querySelector(".item-feedback");
+      if (fb.classList.contains("fb-no")) {
         card.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
         card.style.borderColor = "#7dd3fc";
         card.style.background = "#f0f9ff";
+        fb.className = "item-feedback";
+        fb.innerHTML = "";
       }
     });
-    document.getElementById("langmcq-result").className = "result-banner";
+    document.getElementById("langmcq-retry").style.display = "none";
   }
 
   // 5A Practice Check
