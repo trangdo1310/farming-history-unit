@@ -53,19 +53,23 @@
     }
 
     /* Top Navigation Bar */
-    header {
-      position: fixed;
-      top: 12px;
-      left: 50%;
-      transform: translateX(-50%);
-      transition: transform 0.3s ease;
-    }
+header {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
 
-    header.hide {
-      transform:
-    translateX(-50%)
-    translateY(-200%);
-    }
+  width: 95%;
+  max-width: 1200px;
+
+  z-index: 1000;
+
+  transition: transform 0.3s ease;
+}
+
+header.hide {
+  transform: translateX(-50%) translateY(-150%);
+}
 
     .nav-container {
       max-width: 980px;
@@ -2013,21 +2017,24 @@
     });
     document.getElementById('p5a-result').className = 'result-banner';
   }
-  let lastScrollY = window.scrollY;
-const header = document.querySelector("header");
+ 
+</script>
+<script>
+let lastScrollY = 0;
 
-window.addEventListener("scroll", () => {
-  if (window.scrollY > lastScrollY) {
-    // scrolling down
-    header.classList.add("hide");
-  } else {
-    // scrolling up
-    header.classList.remove("hide");
-  }
+window.addEventListener("scroll", function() {
+    const header = document.querySelector("header");
 
-  lastScrollY = window.scrollY;
+    if (window.scrollY > lastScrollY) {
+        header.classList.add("hide");
+    } else {
+        header.classList.remove("hide");
+    }
+
+    lastScrollY = window.scrollY;
 });
 </script>
 
+</body>
 </body>
 </html>
