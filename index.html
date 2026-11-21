@@ -35,7 +35,6 @@
       padding-bottom: 4rem;
     }
 
-    /* Navigation Bar */
     header {
       background: var(--surface);
       border-bottom: 1px solid var(--border);
@@ -94,7 +93,6 @@
       color: var(--text);
     }
 
-    /* Layout */
     main {
       max-width: 920px;
       margin: 1.75rem auto;
@@ -156,6 +154,31 @@
       margin-top: 0.35rem;
     }
 
+    /* Coursebook Image Frame */
+    .coursebook-figure {
+      margin: 1rem 0 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--bg);
+      text-align: center;
+    }
+
+    .coursebook-figure img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .coursebook-caption {
+      font-size: 0.85rem;
+      color: var(--muted);
+      padding: 0.55rem 0.85rem;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+    }
+
     /* Buttons */
     button {
       cursor: pointer;
@@ -195,10 +218,10 @@
       align-items: center;
     }
 
-    /* Warmup Section */
+    /* Warmup Section - Clean Styling (No Strikethrough) */
     .checklist-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
       gap: 0.6rem;
       margin: 1rem 0;
     }
@@ -206,13 +229,14 @@
     .check-item {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem 0.75rem;
-      border: 1px solid var(--border);
+      gap: 0.55rem;
+      padding: 0.55rem 0.75rem;
+      border: 1.5px solid var(--border);
       border-radius: 8px;
       cursor: pointer;
       user-select: none;
       font-size: 0.95rem;
+      background: var(--surface);
       transition: 0.15s;
     }
 
@@ -220,29 +244,108 @@
       background: var(--bg);
     }
 
-    .check-item input:checked + span {
-      text-decoration: line-through;
-      color: var(--success);
+    .check-item.is-correct {
+      border-color: var(--success);
+      background-color: var(--success-bg);
+      color: #14532d;
       font-weight: 600;
     }
 
+    .check-item.is-wrong {
+      border-color: var(--error);
+      background-color: var(--error-bg);
+      color: #7f1d1d;
+      font-weight: 600;
+    }
+
+    /* Live Corrective Feedback Banner at Bottom of Checklist */
+    .live-feedback-box {
+      margin-top: 0.75rem;
+      padding: 0.85rem 1.1rem;
+      border-radius: 8px;
+      font-size: 0.94rem;
+      font-weight: 500;
+      display: none;
+      border-left: 4px solid transparent;
+    }
+
+    .live-feedback-box.fb-correct {
+      display: block;
+      background: var(--success-bg);
+      border-color: var(--success);
+      color: #14532d;
+    }
+
+    .live-feedback-box.fb-wrong {
+      display: block;
+      background: var(--error-bg);
+      border-color: var(--error);
+      color: #7f1d1d;
+    }
+
+    /* Pair Discussion & Live Board */
     .pair-box {
       background: var(--accent-bg);
       border-left: 4px solid var(--accent);
-      padding: 1rem 1.25rem;
+      padding: 1.1rem 1.25rem;
       border-radius: 0 8px 8px 0;
-      margin-top: 1rem;
+      margin-top: 1.35rem;
     }
 
-    .pair-box textarea {
+    .discussion-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      margin-top: 0.75rem;
+    }
+
+    .discussion-form input,
+    .discussion-form textarea {
       width: 100%;
-      margin-top: 0.5rem;
-      padding: 0.6rem;
+      padding: 0.6rem 0.75rem;
       border: 1px solid #fcd34d;
       border-radius: 6px;
       font-family: inherit;
+      font-size: 0.92rem;
+      background: #fff;
+    }
+
+    .board-container {
+      margin-top: 1.15rem;
+      padding-top: 1rem;
+      border-top: 1px dashed #f59e0b;
+    }
+
+    .board-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.65rem;
+    }
+
+    .post-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      max-height: 320px;
+      overflow-y: auto;
+    }
+
+    .student-post {
+      background: #ffffff;
+      border: 1px solid #fde68a;
+      border-radius: 8px;
+      padding: 0.7rem 0.9rem;
       font-size: 0.9rem;
-      resize: vertical;
+    }
+
+    .student-post-meta {
+      font-weight: 700;
+      color: #92400e;
+      font-size: 0.83rem;
+      margin-bottom: 0.2rem;
+      display: flex;
+      justify-content: space-between;
     }
 
     /* Vocab Matching */
@@ -477,30 +580,94 @@
 
   <!-- WARM UP -->
   <section id="warmup" class="card">
-    <h2>Warm-up: Life in a Neolithic Farming Village</h2>
-    <p>Imagine you are looking at a Neolithic farming village (around 11,000 years ago). Tick (✓) each item as you find it in your coursebook picture or imagine it in the village:</p>
+    <h2>Warm-up: Look at Picture 1</h2>
+    <p>Look carefully at the Neolithic farming village below. Click the items you can find in the picture (watch out—two items do NOT belong in the Stone Age!):</p>
+
+    <!-- PICTURE 1 INSERTED HERE -->
+    <figure class="coursebook-figure">
+      <img src="village.jpg" alt="Picture 1: Life in a Neolithic farming village" onerror="this.style.display='none'; document.getElementById('img-missing-note').style.display='block';">
+      <div id="img-missing-note" style="display:none; padding: 1.5rem; color: var(--muted); font-size: 0.9rem;">
+        🖼️ <strong>Image placeholder:</strong> Upload <code>village.jpg</code> to your GitHub repository to display Picture 1 here.
+      </div>
+      <figcaption class="coursebook-caption"><strong>Picture 1:</strong> Life in a Neolithic farming village</figcaption>
+    </figure>
     
     <div class="checklist-grid" id="warmup-list">
-      <label class="check-item"><input type="checkbox" onchange="updateWarmupCount()"> <span>a house</span></label>
-      <label class="check-item"><input type="checkbox" onchange="updateWarmupCount()"> <span>sheep</span></label>
-      <label class="check-item"><input type="checkbox" onchange="updateWarmupCount()"> <span>a goat</span></label>
-      <label class="check-item"><input type="checkbox" onchange="updateWarmupCount()"> <span>a cow</span></label>
-      <label class="check-item"><input type="checkbox" onchange="updateWarmupCount()"> <span>wheat</span></label>
-      <label class="check-item"><input type="checkbox" onchange="updateWarmupCount()"> <span>a fire</span></label>
-      <label class="check-item"><input type="checkbox" onchange="updateWarmupCount()"> <span>baskets</span></label>
-      <label class="check-item"><input type="checkbox" onchange="updateWarmupCount()"> <span>pots</span></label>
-      <label class="check-item"><input type="checkbox" onchange="updateWarmupCount()"> <span>a dog</span></label>
-      <label class="check-item"><input type="checkbox" onchange="updateWarmupCount()"> <span>wood</span></label>
-      <label class="check-item"><input type="checkbox" onchange="updateWarmupCount()"> <span>grain</span></label>
-      <label class="check-item"><input type="checkbox" onchange="updateWarmupCount()"> <span>children</span></label>
+      <label class="check-item" data-valid="true" data-feedback="Yes! There is a round mud-and-straw house right in the center of the village (and another house on the right).">
+        <input type="checkbox" onchange="handleWarmupClick(this)"> <span>a house</span>
+      </label>
+      <label class="check-item" data-valid="true" data-feedback="Yes! Look on the middle-left—two white sheep are walking near the dog and goat.">
+        <input type="checkbox" onchange="handleWarmupClick(this)"> <span>sheep</span>
+      </label>
+      <label class="check-item" data-valid="true" data-feedback="Yes! A brown goat is walking right next to the sheep on the left.">
+        <input type="checkbox" onchange="handleWarmupClick(this)"> <span>a goat</span>
+      </label>
+      <label class="check-item" data-valid="true" data-feedback="Yes! Look inside the fenced pen behind the big house—there is a cow (ox) resting.">
+        <input type="checkbox" onchange="handleWarmupClick(this)"> <span>a cow</span>
+      </label>
+      <label class="check-item" data-valid="true" data-feedback="Yes! In the top-left corner, two farmers are cutting tall golden wheat.">
+        <input type="checkbox" onchange="handleWarmupClick(this)"> <span>wheat</span>
+      </label>
+      <label class="check-item" data-valid="true" data-feedback="Yes! In front of the house on the left, a pot is hanging over a cooking fire.">
+        <input type="checkbox" onchange="handleWarmupClick(this)"> <span>a fire</span>
+      </label>
+      <label class="check-item" data-valid="false" data-feedback="Not quite! Tractors are modern machines. Neolithic farmers did not have engines or tractors.">
+        <input type="checkbox" onchange="handleWarmupClick(this)"> <span>a tractor</span>
+      </label>
+      <label class="check-item" data-valid="true" data-feedback="Yes! A woman in the bottom-left is weaving baskets, and another woman is carrying a basket on her shoulder.">
+        <input type="checkbox" onchange="handleWarmupClick(this)"> <span>baskets</span>
+      </label>
+      <label class="check-item" data-valid="true" data-feedback="Yes! You can see clay pots hanging over the fire, inside the house, and on the ground in the bottom-left.">
+        <input type="checkbox" onchange="handleWarmupClick(this)"> <span>pots</span>
+      </label>
+      <label class="check-item" data-valid="true" data-feedback="Yes! A dark brown dog is running next to the sheep on the left side of the picture.">
+        <input type="checkbox" onchange="handleWarmupClick(this)"> <span>a dog</span>
+      </label>
+      <label class="check-item" data-valid="true" data-feedback="Yes! On the middle-right, a woman is carrying a bundle of wood, and a man in the top-right is chopping a log.">
+        <input type="checkbox" onchange="handleWarmupClick(this)"> <span>wood</span>
+      </label>
+      <label class="check-item" data-valid="true" data-feedback="Yes! In the bottom-center, someone is pouring yellow grain from a basket into a storage pit in the ground.">
+        <input type="checkbox" onchange="handleWarmupClick(this)"> <span>grain</span>
+      </label>
+      <label class="check-item" data-valid="true" data-feedback="Yes! Two young children are playing on the right side near the woman carrying wood.">
+        <input type="checkbox" onchange="handleWarmupClick(this)"> <span>children</span>
+      </label>
+      <label class="check-item" data-valid="false" data-feedback="Incorrect! Plastic did not exist 11,000 years ago. People stored water and grain in clay pots and baskets.">
+        <input type="checkbox" onchange="handleWarmupClick(this)"> <span>plastic bottles</span>
+      </label>
     </div>
-    <p id="warmup-status" class="hint-text">Found: 0 / 12 items</p>
 
+    <p id="warmup-status" class="hint-text">Found: 0 / 12 Neolithic items</p>
+
+    <!-- LIVE CORRECTIVE FEEDBACK APPEARS HERE -->
+    <div id="warmup-feedback-banner" class="live-feedback-box"></div>
+
+    <!-- PAIR DISCUSSION WITH LIVE CLASS BOARD -->
     <div class="pair-box">
-      <strong>Pair Discussion Notes:</strong>
-      <p style="font-size: 0.9rem; margin-top: 0.25rem;">1. What jobs are the people doing? (e.g., <em>"I think this woman is cutting wheat."</em>)<br>
-      2. Is this village very old or modern? How do you know?</p>
-      <textarea rows="2" placeholder="Write your pair discussion ideas here..."></textarea>
+      <strong>Pair Discussion & Class Board:</strong>
+      <p style="font-size: 0.9rem; margin-top: 0.25rem;">
+        1. What jobs are the people doing? (e.g., <em>"I think this woman is cutting wheat."</em>)<br>
+        2. Is this village very old or modern? How do you know?
+      </p>
+
+      <div class="discussion-form">
+        <input type="text" id="student-name" placeholder="Your Name / Pair Names (e.g., Minh & Lan)">
+        <textarea id="student-answer" rows="2" placeholder="Write your answers to questions 1 & 2 here..."></textarea>
+        <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+          <button class="btn-primary" id="submit-post-btn" onclick="submitDiscussion()">Post to Class Board</button>
+          <span id="post-status" style="font-size: 0.85rem; font-weight: 600;"></span>
+        </div>
+      </div>
+
+      <div class="board-container">
+        <div class="board-header">
+          <strong style="font-size: 0.92rem; color: #92400e;">Classmates' Answers:</strong>
+          <button class="btn-outline" style="padding: 0.25rem 0.65rem; font-size: 0.8rem;" onclick="loadDiscussionPosts()">↻ Refresh</button>
+        </div>
+        <div class="post-list" id="class-board-list">
+          <p class="hint-text">No posts yet—be the first pair to share your answer!</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -826,12 +993,129 @@
 </main>
 
 <script>
-  function updateWarmupCount() {
-    const checkboxes = document.querySelectorAll('#warmup-list input[type="checkbox"]');
-    const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
-    document.getElementById('warmup-status').textContent = `Found: ${checked} / 12 items`;
+  // PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL INSIDE THE QUOTES BELOW:
+  const GOOGLE_SCRIPT_URL = "";
+
+  // 1. Warmup Checklist with Instant Corrective Feedback
+  function handleWarmupClick(checkbox) {
+    const label = checkbox.closest('.check-item');
+    const isValid = label.dataset.valid === "true";
+    const feedbackText = label.dataset.feedback;
+    const banner = document.getElementById('warmup-feedback-banner');
+
+    label.classList.remove('is-correct', 'is-wrong');
+    banner.className = 'live-feedback-box';
+
+    if (checkbox.checked) {
+      if (isValid) {
+        label.classList.add('is-correct');
+        banner.classList.add('fb-correct');
+        banner.textContent = "✓ " + feedbackText;
+      } else {
+        label.classList.add('is-wrong');
+        banner.classList.add('fb-wrong');
+        banner.textContent = "✗ " + feedbackText;
+      }
+    } else {
+      banner.style.display = 'none';
+    }
+
+    const validChecked = document.querySelectorAll('#warmup-list .check-item[data-valid="true"] input:checked').length;
+    document.getElementById('warmup-status').textContent = `Found: ${validChecked} / 12 Neolithic items`;
   }
 
+  // 2. Live Class Discussion Board (Google Sheets Backend + Local Fallback)
+  async function submitDiscussion() {
+    const nameInput = document.getElementById('student-name');
+    const answerInput = document.getElementById('student-answer');
+    const statusEl = document.getElementById('post-status');
+    const btn = document.getElementById('submit-post-btn');
+
+    const name = nameInput.value.trim();
+    const answer = answerInput.value.trim();
+
+    if (!name || !answer) {
+      statusEl.style.color = 'var(--error)';
+      statusEl.textContent = 'Please enter both your name and your answer.';
+      return;
+    }
+
+    btn.disabled = true;
+    statusEl.style.color = 'var(--muted)';
+    statusEl.textContent = 'Posting...';
+
+    if (GOOGLE_SCRIPT_URL) {
+      try {
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, answer })
+        });
+        nameInput.value = '';
+        answerInput.value = '';
+        statusEl.style.color = 'var(--success)';
+        statusEl.textContent = 'Posted to class board!';
+        setTimeout(loadDiscussionPosts, 1200);
+      } catch (err) {
+        statusEl.style.color = 'var(--error)';
+        statusEl.textContent = 'Error posting. Check your connection.';
+      }
+    } else {
+      // Fallback preview if teacher hasn't connected Google Sheet URL yet
+      const posts = JSON.parse(localStorage.getItem('local_class_posts') || '[]');
+      posts.unshift({ name, answer, time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) });
+      localStorage.setItem('local_class_posts', JSON.stringify(posts));
+      nameInput.value = '';
+      answerInput.value = '';
+      statusEl.style.color = 'var(--success)';
+      statusEl.textContent = 'Saved on this device! (Connect Google Sheets so classmates see it too)';
+      renderPosts(posts);
+    }
+    btn.disabled = false;
+  }
+
+  async function loadDiscussionPosts() {
+    const listEl = document.getElementById('class-board-list');
+    if (GOOGLE_SCRIPT_URL) {
+      try {
+        const res = await fetch(GOOGLE_SCRIPT_URL);
+        const posts = await res.json();
+        renderPosts(posts);
+      } catch (e) {
+        listEl.innerHTML = '<p class="hint-text">Could not load class posts right now.</p>';
+      }
+    } else {
+      const posts = JSON.parse(localStorage.getItem('local_class_posts') || '[]');
+      renderPosts(posts);
+    }
+  }
+
+  function renderPosts(posts) {
+    const listEl = document.getElementById('class-board-list');
+    if (!posts || posts.length === 0) {
+      listEl.innerHTML = '<p class="hint-text">No posts yet—be the first pair to share your answer!</p>';
+      return;
+    }
+    listEl.innerHTML = posts.map(p => `
+      <div class="student-post">
+        <div class="student-post-meta">
+          <span>${escapeHtml(p.name)}</span>
+          <span style="font-weight:400; color:var(--muted);">${escapeHtml(p.time || '')}</span>
+        </div>
+        <div>${escapeHtml(p.answer)}</div>
+      </div>
+    `).join('');
+  }
+
+  function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, m => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m]));
+  }
+
+  // Load posts on page open
+  loadDiscussionPosts();
+
+  // 3. Vocab & Comprehension Checkers
   function checkVocab() {
     const selects = document.querySelectorAll('#vocab-container select');
     let score = 0;
@@ -881,17 +1165,9 @@
     fb.style.color = correctCount === inputs.length ? 'var(--success)' : 'var(--error)';
   }
 
-  function checkTask3A() {
-    validateKeywordInputs('task3a-body', 'fb-3a');
-  }
-
-  function checkTask3B() {
-    validateKeywordInputs('task3b-body', 'fb-3b');
-  }
-
-  function toggleReveal(id) {
-    document.getElementById(id).classList.toggle('show');
-  }
+  function checkTask3A() { validateKeywordInputs('task3a-body', 'fb-3a'); }
+  function checkTask3B() { validateKeywordInputs('task3b-body', 'fb-3b'); }
+  function toggleReveal(id) { document.getElementById(id).classList.toggle('show'); }
 </script>
 
 </body>
