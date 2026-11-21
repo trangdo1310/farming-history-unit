@@ -54,25 +54,22 @@
 
     /* Top Navigation Bar */
 header {
-  position: fixed;
-  top: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-
-  width: 95%;
-  max-width: 1200px;
-
-  background: white;
-  border-radius: 18px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-
-  z-index: 9999;
-
-  transition: top 0.3s ease;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(8px);
+  border-bottom: 3px solid #f5d08a;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 0.75rem 1.25rem;
+  box-shadow: 0 4px 14px rgba(24, 34, 48, 0.05);
 }
 
 header.hide {
-  top: -200px;
+  transform: translateY(-100%);
+}
+
+header {
+  transition: transform 0.3s ease;
 }
 
     .nav-container {
@@ -2028,18 +2025,18 @@ header.hide {
  
 </script>
 <script>
-let lastScrollY = 0;
+let lastScrollY = window.scrollY;
 
-window.addEventListener("scroll", function () {
-    const header = document.querySelector("header");
+window.addEventListener("scroll", () => {
+  const header = document.querySelector("header");
 
-    if (window.scrollY > lastScrollY + 20) {
-        header.classList.add("hide");
-    } else if (window.scrollY < lastScrollY - 20) {
-        header.classList.remove("hide");
-    }
+  if (window.scrollY > lastScrollY) {
+    header.classList.add("hide");
+  } else {
+    header.classList.remove("hide");
+  }
 
-    lastScrollY = window.scrollY;
+  lastScrollY = window.scrollY;
 });
 </script>
 
