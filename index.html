@@ -3295,7 +3295,7 @@ body {
 
     saveProgressLocally(false);
 
-    if (!PROGRESS_REPORT_URL || PROGRESS_REPORT_URL === "https://script.google.com/macros/s/AKfycbzPOmOjMwYH5OpItUcGKyo4hA-_27Yk_yY9ExRzUSioLY2CV87nArTiKH7Zvbn77T0/exec") {
+if (!PROGRESS_REPORT_URL || PROGRESS_REPORT_URL.includes("PASTE_YOUR_WEB_APP_URL_HERE")) {
       msg.style.color = "var(--error)";
       msg.textContent = "Saved locally, but PROGRESS_REPORT_URL is not set yet.";
       return;
