@@ -37,23 +37,9 @@
       scroll-behavior: smooth;
     }
 
-    @keyframes seamlessGradientShift {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
-    }
-
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: linear-gradient(-45deg, #fef9c3, #dcfce7, #e0f2fe, #ffedd5, #ede9fe);
-      background-size: 360% 360%;
-      animation: seamlessGradientShift 18s ease infinite;
+      background-color: var(--bg);
       color: var(--text);
       line-height: 1.65;
       padding-bottom: 5rem;
@@ -61,7 +47,7 @@
 
     /* Top Navigation Bar + Progress Bar + Slide Hide + Active Link Highlight */
     header {
-      background: rgba(255, 255, 255, 0.96);
+      background: rgba(255, 255, 255, 0.97);
       backdrop-filter: blur(8px);
       border-bottom: 2px solid #f5d08a;
       position: sticky;
@@ -177,14 +163,33 @@
       scroll-margin-top: 84px;
     }
 
-    /* Enhanced Opening Hero */
+    /* Glowing Video-Like Shifting Gradient on Opening Page Only */
+    @keyframes videoGradientFlow {
+      0% {
+        background-position: 0% 50%;
+        filter: saturate(1.05) brightness(1);
+      }
+      50% {
+        background-position: 100% 50%;
+        filter: saturate(1.22) brightness(1.03);
+      }
+      100% {
+        background-position: 0% 50%;
+        filter: saturate(1.05) brightness(1);
+      }
+    }
+
     .hero-card {
-      background: rgba(255, 255, 255, 0.78);
-      backdrop-filter: blur(10px);
-      border: 3px solid rgba(255, 255, 255, 0.95);
-      border-radius: 24px;
-      padding: 2.5rem 2.25rem;
-      box-shadow: 0 14px 34px rgba(24, 34, 48, 0.09);
+      background: linear-gradient(125deg, #fde047, #6ee7b7, #67e8f9, #fdba74, #c4b5fd, #fde047);
+      background-size: 360% 360%;
+      animation: videoGradientFlow 12s ease-in-out infinite;
+      border: 3px solid #ffffff;
+      border-radius: 26px;
+      padding: 2.65rem 2.35rem;
+      box-shadow:
+        0 18px 42px rgba(15, 23, 42, 0.14),
+        0 0 36px rgba(103, 232, 249, 0.45),
+        inset 0 0 28px rgba(255, 255, 255, 0.45);
     }
 
     .hero-tag {
@@ -193,64 +198,67 @@
       gap: 0.45rem;
       background: rgba(15, 23, 42, 0.88);
       color: #fef08a;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       font-weight: 800;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      padding: 0.38rem 0.95rem;
+      padding: 0.4rem 1rem;
       border-radius: 999px;
-      margin-bottom: 1rem;
+      margin-bottom: 1.05rem;
     }
 
     .hero-card h1 {
-      font-size: 2.55rem;
+      font-size: 2.65rem;
       color: #0f172a;
-      line-height: 1.18;
-      margin-bottom: 0.6rem;
+      line-height: 1.15;
+      margin-bottom: 0.65rem;
       font-weight: 900;
+      text-shadow: 0 2px 12px rgba(255, 255, 255, 0.75);
     }
 
     .hero-card .subtitle {
-      color: #7c2d12;
+      color: #431407;
       font-weight: 700;
-      font-size: 1.24rem;
+      font-size: 1.26rem;
       line-height: 1.5;
-      margin-bottom: 1.65rem;
+      margin-bottom: 1.7rem;
+      text-shadow: 0 1px 8px rgba(255, 255, 255, 0.7);
     }
 
     .objectives {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.15rem;
+      gap: 1.2rem;
     }
 
     .obj-box {
-      background: rgba(255, 255, 255, 0.94);
-      padding: 1.3rem 1.4rem;
-      border-radius: 16px;
-      border: 2px solid #fde68a;
-      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
-      font-size: 1.03rem;
+      background: rgba(255, 255, 255, 0.93);
+      backdrop-filter: blur(6px);
+      padding: 1.35rem 1.45rem;
+      border-radius: 18px;
+      border: 2px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+      font-size: 1.04rem;
     }
 
     .obj-box strong {
       color: var(--emerald);
-      font-size: 1.1rem;
+      font-size: 1.12rem;
     }
 
     .obj-box ul {
       margin-left: 1.35rem;
       margin-top: 0.55rem;
-      line-height: 1.7;
+      line-height: 1.72;
     }
 
     /* Cards */
     .card {
-      background: rgba(255, 255, 255, 0.96);
+      background: var(--surface);
       border: 2px solid var(--border);
       border-radius: 18px;
       padding: 1.85rem;
-      box-shadow: 0 6px 20px rgba(24, 34, 48, 0.06);
+      box-shadow: 0 6px 20px rgba(24, 34, 48, 0.05);
     }
 
     .card-warmup { border-top: 7px solid var(--amber); }
@@ -259,8 +267,8 @@
     .card-check { border-top: 7px solid var(--indigo); }
     .card-lang { border-top: 7px solid var(--teal); }
     .card-practice { border-top: 7px solid #ea580c; }
-    .card-project { border-top: 7px solid #16a34a; background: rgba(248, 254, 250, 0.97); }
-    .card-glossary { border-top: 7px solid #0d9488; background: rgba(244, 253, 250, 0.97); }
+    .card-project { border-top: 7px solid #16a34a; background: linear-gradient(180deg, #ffffff 0%, #f4fdf7 100%); }
+    .card-glossary { border-top: 7px solid #0d9488; background: linear-gradient(180deg, #ffffff 0%, #f4fdfa 100%); }
 
     h2 {
       font-size: 1.4rem;
@@ -315,8 +323,8 @@
     /* Glossary Cards */
     .glossary-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-      gap: 1.15rem;
+      grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
+      gap: 1.1rem;
       margin-top: 1rem;
     }
 
@@ -324,10 +332,10 @@
       background: #ffffff;
       border: 2px solid #99f6e4;
       border-radius: 16px;
-      padding: 1.1rem;
+      padding: 1.05rem;
       display: flex;
       flex-direction: column;
-      gap: 0.65rem;
+      gap: 0.6rem;
       box-shadow: 0 4px 12px rgba(13, 148, 136, 0.06);
     }
 
@@ -338,10 +346,11 @@
       gap: 0.5rem;
       border-bottom: 1.5px dashed #ccfbf1;
       padding-bottom: 0.45rem;
+      flex-wrap: wrap;
     }
 
     .glossary-word {
-      font-size: 1.18rem;
+      font-size: 1.12rem;
       font-weight: 800;
       color: #0f766e;
     }
@@ -350,22 +359,22 @@
       background: #fef3c7;
       color: #92400e;
       font-weight: 700;
-      font-size: 0.88rem;
-      padding: 0.18rem 0.6rem;
+      font-size: 0.85rem;
+      padding: 0.16rem 0.55rem;
       border-radius: 999px;
     }
 
     .glossary-def {
-      font-size: 0.93rem;
+      font-size: 0.91rem;
       color: #1e293b;
     }
 
     .glossary-ex {
-      font-size: 0.9rem;
+      font-size: 0.89rem;
       color: #334155;
       background: #f8fafc;
       border-left: 3px solid #14b8a6;
-      padding: 0.45rem 0.65rem;
+      padding: 0.42rem 0.65rem;
       border-radius: 6px;
     }
 
@@ -379,7 +388,7 @@
 
     .glossary-img-wrap img {
       width: 100%;
-      height: 150px;
+      height: 140px;
       object-fit: cover;
       display: block;
     }
@@ -387,13 +396,13 @@
     .glossary-audio audio {
       width: 100%;
       height: 36px;
-      margin-top: 0.15rem;
+      margin-top: 0.1rem;
     }
 
-    /* Pictures & Side-by-Side Layouts */
+    /* Pictures & Side-by-Side Layouts (No Captions) */
     .split-row {
       display: grid;
-      grid-template-columns: 1.35fr 1fr;
+      grid-template-columns: 1.25fr 1fr;
       gap: 1.25rem;
       align-items: start;
       margin: 1rem 0;
@@ -417,12 +426,12 @@
       overflow: hidden;
       background: #fffdf8;
       text-align: center;
-      margin: 0.9rem 0;
+      margin: 0.85rem 0;
     }
 
     .pic-box img {
       max-width: 100%;
-      max-height: 430px;
+      max-height: 440px;
       width: auto;
       height: auto;
       display: block;
@@ -437,20 +446,61 @@
       font-size: 0.82rem;
     }
 
-    .pic-caption {
-      font-size: 0.85rem;
-      color: #475569;
-      padding: 0.55rem 0.85rem;
-      background: #fef9ec;
-      border-top: 1px solid #f2d29b;
-      font-weight: 600;
-    }
-
     .tools-gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 1rem;
       margin: 1rem 0;
+    }
+
+    /* Interactive Map Pinpoint Box */
+    .map-pinpoint-container {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      border: 2px solid #7dd3fc;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #f0f9ff;
+      cursor: crosshair;
+      user-select: none;
+    }
+
+    .map-pinpoint-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .map-pin {
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      margin-left: -14px;
+      margin-top: -14px;
+      border-radius: 50%;
+      background: rgba(249, 115, 22, 0.25);
+      border: 3px solid #ea580c;
+      box-shadow: 0 0 0 3px #ffffff, 0 4px 10px rgba(0, 0, 0, 0.25);
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 900;
+      color: #7c2d12;
+    }
+
+    .map-pin.pin-confirmed {
+      width: 44px;
+      height: 44px;
+      margin-left: -22px;
+      margin-top: -22px;
+      background: rgba(22, 163, 74, 0.22);
+      border: 3.5px solid #15803d;
+      box-shadow: 0 0 0 3px #ffffff, 0 0 14px rgba(21, 128, 61, 0.65);
+      color: #14532d;
+      font-size: 0.85rem;
     }
 
     /* Buttons */
@@ -500,7 +550,7 @@
     .btn-group {
       display: flex;
       gap: 0.65rem;
-      margin-top: 1.15rem;
+      margin-top: 1.05rem;
       flex-wrap: wrap;
       align-items: center;
     }
@@ -745,10 +795,11 @@
       background: linear-gradient(135deg, #e0f2fe, #eef2ff);
       border: 1.5px solid #93c5fd;
       border-left: 5px solid #2563eb;
-      padding: 0.9rem 1.15rem;
+      padding: 0.95rem 1.2rem;
       border-radius: 11px;
-      margin: 1.1rem 0;
-      font-size: 0.92rem;
+      margin: 1rem 0;
+      font-size: 0.93rem;
+      line-height: 1.7;
       color: #1e3a8a;
     }
 
@@ -812,7 +863,7 @@
       color: #7f1d1d;
     }
 
-    /* Tables & Mind Map */
+    /* Tables */
     table {
       width: 100%;
       border-collapse: collapse;
@@ -902,35 +953,89 @@
       text-align: left;
     }
 
-    /* Mind Map */
+    /* REAL MIND MAP WITH LINES, ARROWS & CENTRAL HUB */
+    .mindmap-diagram {
+      margin-top: 1rem;
+      padding: 1.25rem;
+      background: #fffdf8;
+      border: 2px solid #e7dcc7;
+      border-radius: 16px;
+    }
+
+    .mm-center-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 0.25rem;
+    }
+
+    .mm-center-node {
+      background: linear-gradient(135deg, #fef08a, #fde68a);
+      border: 3px solid #d97706;
+      color: #78350f;
+      font-weight: 900;
+      font-size: 1.05rem;
+      padding: 0.75rem 1.45rem;
+      border-radius: 16px;
+      box-shadow: 0 6px 16px rgba(217, 119, 6, 0.16);
+      text-align: center;
+    }
+
+    .mm-connectors-svg {
+      width: 100%;
+      height: 58px;
+      display: block;
+    }
+
     .mindmap-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-      gap: 1rem;
-      margin-top: 0.75rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.15rem;
+      margin-top: 0.15rem;
     }
 
     .mm-box {
-      border: 2px solid var(--border);
+      position: relative;
+      border: 2.5px solid var(--border);
       border-radius: 14px;
       padding: 1.05rem;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
     }
 
-    .mm-land { background: #e6faef; border-color: #6ee7b7; }
-    .mm-food { background: #fff3e6; border-color: #fdba74; }
-    .mm-tools { background: #e0f2fe; border-color: #7dd3fc; }
-    .mm-jobs { background: #f3e8ff; border-color: #d8b4fe; }
+    .mm-box::before {
+      content: "↑";
+      position: absolute;
+      top: -22px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-weight: 900;
+      font-size: 1rem;
+      color: #64748b;
+    }
+
+    .mm-land { background: #e6faef; border-color: #34d399; }
+    .mm-food { background: #fff3e6; border-color: #fb923c; }
+    .mm-tools { background: #e0f2fe; border-color: #38bdf8; }
+    .mm-jobs { background: #f3e8ff; border-color: #c084fc; }
 
     .mm-box h4 {
-      margin-bottom: 0.55rem;
+      margin-bottom: 0.6rem;
       font-size: 1rem;
+      border-bottom: 1.5px dashed rgba(15, 23, 42, 0.14);
+      padding-bottom: 0.35rem;
     }
 
     .mm-box ul {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 0.45rem;
+      gap: 0.5rem;
+    }
+
+    .mm-seed {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 8px;
+      padding: 0.4rem 0.65rem;
+      font-size: 0.9rem;
     }
 
     /* Hidden / Unlocked Sections for Past Simple */
@@ -1090,6 +1195,22 @@
       padding: 0.65rem 0.8rem;
     }
 
+    /* Practice 5A Rows */
+    .practice-5a-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      font-size: 0.95rem;
+    }
+
+    .practice-5a-line {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.45rem 0.6rem;
+      line-height: 1.85;
+    }
+
     /* Evidence & Result Boxes */
     .result-banner {
       margin-top: 0.85rem;
@@ -1159,7 +1280,7 @@
 </header>
 
 <main>
-  <!-- HERO -->
+  <!-- HERO WITH GLOWING VIDEO-LIKE GRADIENT -->
   <section class="hero-card">
     <div class="hero-tag">✨ Grade 7 • Lesson 1 • Neolithic Period</div>
     <h1>Farming Changes the World</h1>
@@ -1204,7 +1325,6 @@
         <strong>Picture 1 (<code>neolithic_farming_village.png</code>)</strong> isn't showing yet. Pick it from your device to preview:
         <br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'pic1')" style="margin-top:0.5rem;">
       </div>
-      <figcaption class="pic-caption">Picture 1: Life in a Neolithic farming village (~11,000 years ago)</figcaption>
     </figure>
 
     <div class="checklist-grid" id="warmup-list">
@@ -1380,7 +1500,7 @@
     </h2>
 
     <div class="reading-toolbar">
-      <span><strong>🔎 Word Hunt:</strong> Find the 6 farming words inside the text.</span>
+      <span><strong>🔎 Word Hunt:</strong> Find the farming words inside the text.</span>
       <button class="btn-outline" style="padding: 0.35rem 0.78rem; font-size: 0.83rem;" onclick="toggleHighlights()">✨ Highlight Farming Words</button>
     </div>
 
@@ -1401,27 +1521,48 @@
             <strong>Picture 2 (<code>picture2.png</code>)</strong> not loaded yet.
             <br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'pic2')" style="margin-top:0.4rem;">
           </div>
-          <figcaption class="pic-caption">Picture 2: Mesopotamia, between the Tigris and Euphrates rivers</figcaption>
         </figure>
       </div>
 
+      <!-- TWO-PART FOLLOW-UP MAP TASK -->
       <div class="split-row">
-        <figure class="pic-box" style="margin-top:0;">
-          <img id="pic3" src="picture3.png" alt="Picture 3: From Mesopotamia to Europe and Vietnam" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
-          <div class="pic-fallback">
-            <strong>Picture 3 (<code>picture3.png</code>)</strong> not loaded yet.
-            <br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'pic3')" style="margin-top:0.4rem;">
+        <div>
+          <div class="mcq-card" id="pinpoint-map-task">
+            <p style="font-weight:800; color:#0c4a6e;">📍 Task 1: Pinpoint Mesopotamia on the map</p>
+            <p style="font-size:0.9rem; color:#334155; margin-top:0.25rem;">
+              Click on the map in <strong>two places</strong> to mark Mesopotamia (around Iraq & Syria). Two borders will appear to confirm your two spots!
+            </p>
+            <div id="map-pinpoint-box" class="map-pinpoint-container" style="margin-top:0.65rem;" onclick="handleMapPinClick(event)">
+              <img
+                id="pic3"
+                src="picture3.png"
+                alt="Picture 3: Map of Mesopotamia, Europe, and Vietnam"
+                onload="if(this.nextElementSibling) this.nextElementSibling.style.display='none';"
+                onerror="showFallback(this);"
+              />
+              <div class="pic-fallback">
+                <strong>Picture 3 (<code>picture3.png</code>)</strong> not loaded yet.
+                <br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'pic3')" style="margin-top:0.4rem;">
+              </div>
+            </div>
+            <span id="map-pin-count" class="hint-text">Pins placed: 0 / 2</span>
+            <div class="btn-group">
+              <button class="btn-indigo" style="padding:0.45rem 0.95rem; font-size:0.85rem;" onclick="checkMapPinpoint()">Check Two Spots</button>
+              <button class="btn-outline" style="padding:0.45rem 0.95rem; font-size:0.85rem;" onclick="resetMapPinpoint()">Clear Pins</button>
+            </div>
+            <div id="map-pin-result" class="result-banner"></div>
           </div>
-          <figcaption class="pic-caption">Picture 3: From Mesopotamia to Europe and Vietnam</figcaption>
-        </figure>
+        </div>
+
         <div>
           <div class="mcq-card" id="vietnam-mcq">
-            <p style="font-weight:700; color:#0c4a6e;">🗺️ Map Task: Find Mesopotamia (Iraq and Syria), Europe, and Vietnam on Picture 3. Is Vietnam near or far from the first farms?</p>
+            <p style="font-weight:800; color:#0c4a6e;">🗺️ Task 2: Is Vietnam near or far from the first farms?</p>
+            <p style="font-size:0.9rem; color:#334155; margin-top:0.25rem;">
+              Look at the map on the left and compare Mesopotamia with Vietnam:
+            </p>
             <div class="mcq-options">
-              <label class="mcq-option"><input type="radio" name="vn_mcq" value="far"> A. Very far away across Asia</label>
-              <label class="mcq-option"><input type="radio" name="vn_mcq" value="right_next"> B. Right next to Iraq and Syria</label>
-              <label class="mcq-option"><input type="radio" name="vn_mcq" value="inside_eu"> C. Inside southern Europe</label>
-              <label class="mcq-option"><input type="radio" name="vn_mcq" value="between_rivers"> D. Between the Tigris and Euphrates</label>
+              <label class="mcq-option"><input type="radio" name="vn_mcq" value="far"> Far — Vietnam is far away in Southeast Asia.</label>
+              <label class="mcq-option"><input type="radio" name="vn_mcq" value="near"> Near — Vietnam is right next to Mesopotamia.</label>
             </div>
             <div class="btn-group">
               <button class="btn-indigo" style="padding:0.45rem 0.95rem; font-size:0.85rem;" onclick="checkVietnamMcq()">Check Answer</button>
@@ -1439,8 +1580,8 @@
       <h3><span class="part-pill">Part B</span> Changing the land</h3>
       <div class="split-row">
         <div>
-          <p><strong>B1:</strong> Farmers changed the land around them. They cut down trees and cleared the land to make fields for their <span class="vocab-highlight">crops</span>. Their animals ate the wild plants and grass. To bring water to the fields, farmers dug long water channels from the river. Some farmers built a dam across a river to keep and store water.</p>
-          <p><strong>B2:</strong> In places with hills, farmers made terraces. Terraces are flat steps of land on the side of a hill, so the rain does not wash the soil away. Farmers in Vietnam still grow rice on terraces today (Picture 4).</p>
+          <p><strong>B1:</strong> Farmers changed the land around them. They cut down trees and cleared the land to make <span class="vocab-highlight">fields</span> for their <span class="vocab-highlight">crops</span>. Their animals ate the wild plants and grass. To bring water to the <span class="vocab-highlight">fields</span>, farmers dug long <span class="vocab-highlight">water channels</span> from the river. Some farmers built a <span class="vocab-highlight">dam</span> across a river to keep and store water.</p>
+          <p><strong>B2:</strong> In places with hills, farmers made <span class="vocab-highlight">terraces</span>. <span class="vocab-highlight">Terraces</span> are flat steps of land on the side of a hill, so the rain does not wash the soil away. Farmers in Vietnam still grow rice on <span class="vocab-highlight">terraces</span> today (Picture 4).</p>
         </div>
         <figure class="pic-box" style="margin-top:0;">
           <img id="pic4" src="picture4.png" alt="Picture 4: Rice terraces in Sapa, Vietnam" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
@@ -1448,7 +1589,6 @@
             <strong>Picture 4 (<code>picture4.png</code>)</strong> not loaded yet.
             <br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'pic4')" style="margin-top:0.4rem;">
           </div>
-          <figcaption class="pic-caption">Picture 4: Rice terraces in Sapa, Vietnam</figcaption>
         </figure>
       </div>
 
@@ -1458,8 +1598,8 @@
       <h3><span class="part-pill">Part D</span> New tools and technology</h3>
       <p><strong>D1:</strong> Farming led to new inventions. Later, farmers invented the <span class="vocab-highlight">plough</span>, a tool that breaks up the soil so seeds can grow. Strong animals, such as cows, pulled the <span class="vocab-highlight">plough</span>, so farmers could prepare a big field quickly. Some farmers in Vietnam still use buffaloes to <span class="vocab-highlight">plough</span> their rice fields (Picture 5).</p>
       <p><strong>D2:</strong> Stone tools also got better. People polished their stone axes and blades, so they were smooth and sharp and cut better (Picture 6).</p>
-      <p><strong>D3:</strong> People also learned to make pottery. They shaped wet clay into pots and bowls, and then they baked them in a fire to make them hard. They used the pots to store <span class="vocab-highlight">grain</span>, water and milk (Picture 7).</p>
-      <p><strong>D4:</strong> Farmers also made textiles. They made linen from flax, and they used wool from sheep and goats to make warm clothes.</p>
+      <p><strong>D3:</strong> People also learned to make <span class="vocab-highlight">pottery</span>. They shaped wet clay into pots and bowls, and then they baked them in a fire to make them hard. They used the pots to store <span class="vocab-highlight">grain</span>, water and milk (Picture 7).</p>
+      <p><strong>D4:</strong> Farmers also made <span class="vocab-highlight">textiles</span>. They made linen from flax, and they used wool from sheep and goats to make warm clothes.</p>
 
       <div class="tools-gallery">
         <figure class="pic-box" style="margin:0;">
@@ -1468,7 +1608,6 @@
             <strong>Picture 5 (<code>picture5.png</code>)</strong> not loaded yet.
             <br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'pic5')" style="margin-top:0.4rem;">
           </div>
-          <figcaption class="pic-caption">Picture 5: Buffalo pulling a plough in Vietnam</figcaption>
         </figure>
         <figure class="pic-box" style="margin:0;">
           <img id="pic6" src="picture6.png" alt="Picture 6: Polished stone tools from the Neolithic period" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
@@ -1476,7 +1615,6 @@
             <strong>Picture 6 (<code>picture6.png</code>)</strong> not loaded yet.
             <br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'pic6')" style="margin-top:0.4rem;">
           </div>
-          <figcaption class="pic-caption">Picture 6: Polished Neolithic stone tools</figcaption>
         </figure>
         <figure class="pic-box" style="margin:0;">
           <img id="pic7" src="picture7.png" alt="Picture 7: A Neolithic clay pot, made in about 3200 BCE" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
@@ -1484,12 +1622,11 @@
             <strong>Picture 7 (<code>picture7.png</code>)</strong> not loaded yet.
             <br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'pic7')" style="margin-top:0.4rem;">
           </div>
-          <figcaption class="pic-caption">Picture 7: Neolithic clay pot (~3200 BCE)</figcaption>
         </figure>
       </div>
 
       <h3><span class="part-pill">Part E</span> New jobs</h3>
-      <p><strong>E1:</strong> In a farming village, there were many different jobs. Some people looked after the animals, and others worked in the fields. Some people became very good at making pots, so pottery became their special job. Sometimes a village grew more food than it needed. People traded the extra food with other villages for things they did not have, such as tools, special stones or animals. In this way, trading became another new job.</p>
+      <p><strong>E1:</strong> In a farming village, there were many different jobs. Some people looked after the animals, and others worked in the fields. Some people became very good at making pots, so <span class="vocab-highlight">pottery</span> became their special job. Sometimes a village grew more food than it needed. People <span class="vocab-highlight">traded</span> the extra food with other villages for things they did not have, such as tools, special stones or animals. In this way, trading became another new job.</p>
     </div>
   </section>
 
@@ -1586,41 +1723,63 @@
     <div id="t3b-result" class="result-banner"></div>
 
     <h3 style="margin-top:2rem;"><span class="part-pill">Task C</span> Complete the mind map (How did farming change people's lives?)</h3>
-    <p class="hint-text">Use information from Parts B–E. Write 2 more ideas in each box (max. 5 words each).</p>
-    <div class="mindmap-grid" id="task3c-body">
-      <div class="mm-box mm-land">
-        <h4>🌲 The land</h4>
-        <ul>
-          <li>• <em>They cut down trees.</em></li>
-          <li><input type="text" data-keywords="fields,channels,dam,terraces,clear,water" placeholder="Idea 2 (max. 5 words)"></li>
-          <li><input type="text" data-keywords="fields,channels,dam,terraces,clear,water" placeholder="Idea 3 (max. 5 words)"></li>
-        </ul>
+    <p class="hint-text">Use information from Parts B–E. Write 2 more ideas in each branch box (max. 5 words each).</p>
+
+    <div class="mindmap-diagram" id="task3c-body">
+      <div class="mm-center-wrap">
+        <div class="mm-center-node">🌾 How Farming Changed Lives</div>
       </div>
-      <div class="mm-box mm-food">
-        <h4>🍞 Food</h4>
-        <ul>
-          <li>• <em>They made bread.</em></li>
-          <li><input type="text" data-keywords="grain,flour,porridge,meat,milk,wheat,barley" placeholder="Idea 2 (max. 5 words)"></li>
-          <li><input type="text" data-keywords="grain,flour,porridge,meat,milk,wheat,barley" placeholder="Idea 3 (max. 5 words)"></li>
-        </ul>
-      </div>
-      <div class="mm-box mm-tools">
-        <h4>🛠️ Tools and technology</h4>
-        <ul>
-          <li>• <em>They invented the plough.</em></li>
-          <li><input type="text" data-keywords="stone,axes,blades,pottery,pots,linen,wool,textiles" placeholder="Idea 2 (max. 5 words)"></li>
-          <li><input type="text" data-keywords="stone,axes,blades,pottery,pots,linen,wool,textiles" placeholder="Idea 3 (max. 5 words)"></li>
-        </ul>
-      </div>
-      <div class="mm-box mm-jobs">
-        <h4>🧑‍🌾 Jobs</h4>
-        <ul>
-          <li>• <em>Some people made pots.</em></li>
-          <li><input type="text" data-keywords="animals,fields,pottery,pots,trade,trading,food" placeholder="Idea 2 (max. 5 words)"></li>
-          <li><input type="text" data-keywords="animals,fields,pottery,pots,trade,trading,food" placeholder="Idea 3 (max. 5 words)"></li>
-        </ul>
+
+      <svg class="mm-connectors-svg" viewBox="0 0 800 58" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <marker id="mmArrow" markerWidth="7" markerHeight="7" refX="3.5" refY="6" orient="auto">
+            <path d="M0,0 L7,0 L3.5,6 Z" fill="#64748b" />
+          </marker>
+        </defs>
+        <line x1="400" y1="0" x2="400" y2="22" stroke="#64748b" stroke-width="2.5" />
+        <line x1="100" y1="22" x2="700" y2="22" stroke="#64748b" stroke-width="2.5" />
+        <line x1="100" y1="22" x2="100" y2="52" stroke="#64748b" stroke-width="2.5" marker-end="url(#mmArrow)" />
+        <line x1="300" y1="22" x2="300" y2="52" stroke="#64748b" stroke-width="2.5" marker-end="url(#mmArrow)" />
+        <line x1="500" y1="22" x2="500" y2="52" stroke="#64748b" stroke-width="2.5" marker-end="url(#mmArrow)" />
+        <line x1="700" y1="22" x2="700" y2="52" stroke="#64748b" stroke-width="2.5" marker-end="url(#mmArrow)" />
+      </svg>
+
+      <div class="mindmap-grid">
+        <div class="mm-box mm-land">
+          <h4>🌲 The land</h4>
+          <ul>
+            <li class="mm-seed">• <em>They cut down trees.</em></li>
+            <li><input type="text" data-keywords="fields,channels,dam,terraces,clear,water" placeholder="Idea 2 (max. 5 words)"></li>
+            <li><input type="text" data-keywords="fields,channels,dam,terraces,clear,water" placeholder="Idea 3 (max. 5 words)"></li>
+          </ul>
+        </div>
+        <div class="mm-box mm-food">
+          <h4>🍞 Food</h4>
+          <ul>
+            <li class="mm-seed">• <em>They made bread.</em></li>
+            <li><input type="text" data-keywords="grain,flour,porridge,meat,milk,wheat,barley" placeholder="Idea 2 (max. 5 words)"></li>
+            <li><input type="text" data-keywords="grain,flour,porridge,meat,milk,wheat,barley" placeholder="Idea 3 (max. 5 words)"></li>
+          </ul>
+        </div>
+        <div class="mm-box mm-tools">
+          <h4>🛠️ Tools and technology</h4>
+          <ul>
+            <li class="mm-seed">• <em>They invented the plough.</em></li>
+            <li><input type="text" data-keywords="stone,axes,blades,pottery,pots,linen,wool,textiles" placeholder="Idea 2 (max. 5 words)"></li>
+            <li><input type="text" data-keywords="stone,axes,blades,pottery,pots,linen,wool,textiles" placeholder="Idea 3 (max. 5 words)"></li>
+          </ul>
+        </div>
+        <div class="mm-box mm-jobs">
+          <h4>🧑‍🌾 Jobs</h4>
+          <ul>
+            <li class="mm-seed">• <em>Some people made pots.</em></li>
+            <li><input type="text" data-keywords="animals,fields,pottery,pots,trade,trading,food" placeholder="Idea 2 (max. 5 words)"></li>
+            <li><input type="text" data-keywords="animals,fields,pottery,pots,trade,trading,food" placeholder="Idea 3 (max. 5 words)"></li>
+          </ul>
+        </div>
       </div>
     </div>
+
     <div class="btn-group">
       <button class="btn-primary" onclick="checkTask3C()">Check Task C</button>
       <button id="t3c-retry" class="btn-warm" style="display:none;" onclick="retrySection('task3c-body', 't3c-result', 't3c-retry')">Try Again</button>
@@ -1852,22 +2011,22 @@
 
     <h3><span class="part-pill">5A</span> Starting a Stone Age farm</h3>
     <p>Complete the text. Write the past simple of the verb in brackets, then choose a farming word from the box.</p>
-    <div class="info-callout" style="margin:0.75rem 0;">
-      <strong>Word box:</strong> water • fertile • trees • plough • wheat • barley • water channels • dam • grains • wool • linen • reeds<br>
+    <div class="info-callout">
+      <strong>Word box:</strong> water &nbsp;•&nbsp; fertile &nbsp;•&nbsp; trees &nbsp;•&nbsp; plough &nbsp;•&nbsp; wheat &nbsp;•&nbsp; barley &nbsp;•&nbsp; water channels &nbsp;•&nbsp; dam &nbsp;•&nbsp; grains &nbsp;•&nbsp; wool &nbsp;•&nbsp; linen &nbsp;•&nbsp; reeds<br>
       <span style="font-size:0.86rem;">(One word in the box is extra!)</span>
     </div>
 
-    <div id="p5a-body" style="display:flex; flex-direction:column; gap:0.65rem; font-size:0.94rem;">
-      <div>1. First, the farmers <input type="text" style="width:130px; display:inline-block;" data-ans="chose" placeholder="(choose)"> a good place near fresh <input type="text" style="width:150px; display:inline-block;" data-ans="water" placeholder="word">.</div>
-      <div>2. The soil <input type="text" style="width:130px; display:inline-block;" data-ans="was" placeholder="(be)"> <input type="text" style="width:150px; display:inline-block;" data-ans="fertile" placeholder="word"> so the crops grew well.</div>
-      <div>3. They <input type="text" style="width:130px; display:inline-block;" data-ans="cut" placeholder="(cut)"> down the <input type="text" style="width:150px; display:inline-block;" data-ans="trees" placeholder="word">.</div>
-      <div>4. Later, they <input type="text" style="width:130px; display:inline-block;" data-ans="used" placeholder="(use)"> a <input type="text" style="width:150px; display:inline-block;" data-ans="plough" placeholder="word"> to prepare the land.</div>
-      <div>5. They <input type="text" style="width:130px; display:inline-block;" data-ans="planted" placeholder="(plant)"> crops such as <input type="text" style="width:130px; display:inline-block;" data-ans="wheat" placeholder="word 1"> and <input type="text" style="width:130px; display:inline-block;" data-ans="barley" placeholder="word 2">.</div>
-      <div>6. They <input type="text" style="width:130px; display:inline-block;" data-ans="dug" placeholder="(dig)"> <input type="text" style="width:170px; display:inline-block;" data-ans="water channels" placeholder="words"> to bring water to the crops.</div>
-      <div>7. They <input type="text" style="width:130px; display:inline-block;" data-ans="built" placeholder="(build)"> a <input type="text" style="width:150px; display:inline-block;" data-ans="dam" placeholder="word"> across the river to store water.</div>
-      <div>8. They <input type="text" style="width:130px; display:inline-block;" data-ans="ground" placeholder="(grind)"> <input type="text" style="width:150px; display:inline-block;" data-ans="grains" placeholder="word"> to make flour for bread.</div>
-      <div>9. They <input type="text" style="width:130px; display:inline-block;" data-ans="made" placeholder="(make)"> clothes from <input type="text" style="width:130px; display:inline-block;" data-ans="wool" placeholder="word 1"> and <input type="text" style="width:130px; display:inline-block;" data-ans="linen" placeholder="word 2">.</div>
-      <div>Extra word in the box: <input type="text" style="width:160px; display:inline-block;" data-ans="reeds" placeholder="extra word"></div>
+    <div id="p5a-body" class="practice-5a-list">
+      <div class="practice-5a-line">1. First, the farmers <input type="text" style="width:130px;" data-ans="chose" placeholder="(choose)"> a good place near fresh <input type="text" style="width:150px;" data-ans="water" placeholder="word">.</div>
+      <div class="practice-5a-line">2. The soil <input type="text" style="width:130px;" data-ans="was" placeholder="(be)"> <input type="text" style="width:150px;" data-ans="fertile" placeholder="word"> so the crops grew well.</div>
+      <div class="practice-5a-line">3. They <input type="text" style="width:130px;" data-ans="cut" placeholder="(cut)"> down the <input type="text" style="width:150px;" data-ans="trees" placeholder="word">.</div>
+      <div class="practice-5a-line">4. Later, they <input type="text" style="width:130px;" data-ans="used" placeholder="(use)"> a <input type="text" style="width:150px;" data-ans="plough" placeholder="word"> to prepare the land.</div>
+      <div class="practice-5a-line">5. They <input type="text" style="width:130px;" data-ans="planted" placeholder="(plant)"> crops such as <input type="text" style="width:130px;" data-ans="wheat" placeholder="word 1"> and <input type="text" style="width:130px;" data-ans="barley" placeholder="word 2">.</div>
+      <div class="practice-5a-line">6. They <input type="text" style="width:130px;" data-ans="dug" placeholder="(dig)"> <input type="text" style="width:170px;" data-ans="water channels" placeholder="words"> to bring water to the crops.</div>
+      <div class="practice-5a-line">7. They <input type="text" style="width:130px;" data-ans="built" placeholder="(build)"> a <input type="text" style="width:150px;" data-ans="dam" placeholder="word"> across the river to store water.</div>
+      <div class="practice-5a-line">8. They <input type="text" style="width:130px;" data-ans="ground" placeholder="(grind)"> <input type="text" style="width:150px;" data-ans="grains" placeholder="word"> to make flour for bread.</div>
+      <div class="practice-5a-line">9. They <input type="text" style="width:130px;" data-ans="made" placeholder="(make)"> clothes from <input type="text" style="width:130px;" data-ans="wool" placeholder="word 1"> and <input type="text" style="width:130px;" data-ans="linen" placeholder="word 2">.</div>
+      <div class="practice-5a-line">Extra word in the box: <input type="text" style="width:160px;" data-ans="reeds" placeholder="extra word"></div>
     </div>
 
     <div class="btn-group">
@@ -1946,41 +2105,86 @@
     <div class="glossary-grid">
       <div class="glossary-card">
         <div class="glossary-top">
-          <span class="glossary-word">farm (v / n)</span>
-          <span class="glossary-vi">làm nông / trang trại</span>
+          <span class="glossary-word">crop (n)</span>
+          <span class="glossary-vi">cây trồng</span>
         </div>
-        <p class="glossary-def"><strong>Definition:</strong> To grow plants and raise animals for food; an area of land used for this.</p>
-        <p class="glossary-ex"><strong>Example:</strong> People began to <em>farm</em> the land about 11,000 years ago.</p>
+        <p class="glossary-def"><strong>Meaning:</strong> A plant that farmers grow for food.</p>
+        <p class="glossary-ex"><strong>Example:</strong> The first farmers planted <em>crops</em> such as wheat and barley.</p>
         <div class="glossary-img-wrap">
-          <img id="gl-img-farm" src="farm.png" alt="Picture of farm" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
-          <div class="pic-fallback">
-            Image <code>farm.png</code> not found yet.
-            <br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-farm')" style="margin-top:0.35rem; font-size:0.78rem;">
-          </div>
+          <img id="gl-img-crop" src="crop.png" alt="crop" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback"><code>crop.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-crop')"></div>
         </div>
         <div class="glossary-audio">
-          <audio id="gl-aud-farm" controls preload="none" src="audio/farm.mp3"></audio>
-          <span class="hint-text">Audio: <code>audio/farm.mp3</code></span>
+          <audio controls preload="none" src="audio/crop.mp3"></audio>
+          <span class="hint-text"><code>audio/crop.mp3</code></span>
         </div>
       </div>
 
       <div class="glossary-card">
         <div class="glossary-top">
-          <span class="glossary-word">crop (n)</span>
-          <span class="glossary-vi">cây trồng, mùa màng</span>
+          <span class="glossary-word">dam (n)</span>
+          <span class="glossary-vi">đập nước</span>
         </div>
-        <p class="glossary-def"><strong>Definition:</strong> A plant that farmers grow in large amounts for food or other uses.</p>
-        <p class="glossary-ex"><strong>Example:</strong> Farmers grew <em>crops</em> such as wheat, barley, and rice.</p>
+        <p class="glossary-def"><strong>Meaning:</strong> A wall across a river that stops and stores water.</p>
+        <p class="glossary-ex"><strong>Example:</strong> Some farmers built a <em>dam</em> across a river to store water.</p>
         <div class="glossary-img-wrap">
-          <img id="gl-img-crop" src="crop.png" alt="Picture of crop" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
-          <div class="pic-fallback">
-            Image <code>crop.png</code> not found yet.
-            <br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-crop')" style="margin-top:0.35rem; font-size:0.78rem;">
-          </div>
+          <img id="gl-img-dam" src="dam.png" alt="dam" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback"><code>dam.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-dam')"></div>
         </div>
         <div class="glossary-audio">
-          <audio id="gl-aud-crop" controls preload="none" src="audio/crop.mp3"></audio>
-          <span class="hint-text">Audio: <code>audio/crop.mp3</code></span>
+          <audio controls preload="none" src="audio/dam.mp3"></audio>
+          <span class="hint-text"><code>audio/dam.mp3</code></span>
+        </div>
+      </div>
+
+      <div class="glossary-card">
+        <div class="glossary-top">
+          <span class="glossary-word">domesticate (v)</span>
+          <span class="glossary-vi">thuần hoá</span>
+        </div>
+        <p class="glossary-def"><strong>Meaning:</strong> To make a wild animal tame so it can live with people.</p>
+        <p class="glossary-ex"><strong>Example:</strong> People began to <em>domesticate</em> sheep, goats, cows and pigs.</p>
+        <div class="glossary-img-wrap">
+          <img id="gl-img-domesticate" src="domesticate.png" alt="domesticate" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback"><code>domesticate.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-domesticate')"></div>
+        </div>
+        <div class="glossary-audio">
+          <audio controls preload="none" src="audio/domesticate.mp3"></audio>
+          <span class="hint-text"><code>audio/domesticate.mp3</code></span>
+        </div>
+      </div>
+
+      <div class="glossary-card">
+        <div class="glossary-top">
+          <span class="glossary-word">fertile (adj)</span>
+          <span class="glossary-vi">màu mỡ</span>
+        </div>
+        <p class="glossary-def"><strong>Meaning:</strong> Good for growing plants.</p>
+        <p class="glossary-ex"><strong>Example:</strong> The land near the rivers was flat and <em>fertile</em>.</p>
+        <div class="glossary-img-wrap">
+          <img id="gl-img-fertile" src="fertile.png" alt="fertile" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback"><code>fertile.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-fertile')"></div>
+        </div>
+        <div class="glossary-audio">
+          <audio controls preload="none" src="audio/fertile.mp3"></audio>
+          <span class="hint-text"><code>audio/fertile.mp3</code></span>
+        </div>
+      </div>
+
+      <div class="glossary-card">
+        <div class="glossary-top">
+          <span class="glossary-word">field (n)</span>
+          <span class="glossary-vi">cánh đồng</span>
+        </div>
+        <p class="glossary-def"><strong>Meaning:</strong> An area of land where farmers grow crops.</p>
+        <p class="glossary-ex"><strong>Example:</strong> Farmers cleared the land to make <em>fields</em> for their crops.</p>
+        <div class="glossary-img-wrap">
+          <img id="gl-img-field" src="field.png" alt="field" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback"><code>field.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-field')"></div>
+        </div>
+        <div class="glossary-audio">
+          <audio controls preload="none" src="audio/field.mp3"></audio>
+          <span class="hint-text"><code>audio/field.mp3</code></span>
         </div>
       </div>
 
@@ -1989,78 +2193,134 @@
           <span class="glossary-word">grain (n)</span>
           <span class="glossary-vi">ngũ cốc, hạt</span>
         </div>
-        <p class="glossary-def"><strong>Definition:</strong> Small, hard seeds from cereal plants like wheat, barley, or rice.</p>
-        <p class="glossary-ex"><strong>Example:</strong> Villagers ground <em>grain</em> between two stones to make flour.</p>
+        <p class="glossary-def"><strong>Meaning:</strong> The small, hard seeds of wheat, rice or barley.</p>
+        <p class="glossary-ex"><strong>Example:</strong> Because people grew their own <em>grain</em>, they had more food.</p>
         <div class="glossary-img-wrap">
-          <img id="gl-img-grain" src="grain.png" alt="Picture of grain" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
-          <div class="pic-fallback">
-            Image <code>grain.png</code> not found yet.
-            <br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-grain')" style="margin-top:0.35rem; font-size:0.78rem;">
-          </div>
+          <img id="gl-img-grain" src="grain.png" alt="grain" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback"><code>grain.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-grain')"></div>
         </div>
         <div class="glossary-audio">
-          <audio id="gl-aud-grain" controls preload="none" src="audio/grain.mp3"></audio>
-          <span class="hint-text">Audio: <code>audio/grain.mp3</code></span>
+          <audio controls preload="none" src="audio/grain.mp3"></audio>
+          <span class="hint-text"><code>audio/grain.mp3</code></span>
         </div>
       </div>
 
       <div class="glossary-card">
         <div class="glossary-top">
-          <span class="glossary-word">domesticate (v)</span>
-          <span class="glossary-vi">thuần hóa (động vật)</span>
+          <span class="glossary-word">plough (n, v)</span>
+          <span class="glossary-vi">cái cày; cày</span>
         </div>
-        <p class="glossary-def"><strong>Definition:</strong> To tame wild animals and breed them so they can live with people.</p>
-        <p class="glossary-ex"><strong>Example:</strong> Early farmers <em>domesticated</em> sheep, goats, cows, and pigs.</p>
+        <p class="glossary-def"><strong>Meaning:</strong> A farm tool that breaks up the soil before planting.</p>
+        <p class="glossary-ex"><strong>Example:</strong> Strong animals pulled the <em>plough</em> through the soil.</p>
         <div class="glossary-img-wrap">
-          <img id="gl-img-domesticate" src="domesticate.png" alt="Picture of domesticate" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
-          <div class="pic-fallback">
-            Image <code>domesticate.png</code> not found yet.
-            <br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-domesticate')" style="margin-top:0.35rem; font-size:0.78rem;">
-          </div>
+          <img id="gl-img-plough" src="plough.png" alt="plough" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback"><code>plough.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-plough')"></div>
         </div>
         <div class="glossary-audio">
-          <audio id="gl-aud-domesticate" controls preload="none" src="audio/domesticate.mp3"></audio>
-          <span class="hint-text">Audio: <code>audio/domesticate.mp3</code></span>
+          <audio controls preload="none" src="audio/plough.mp3"></audio>
+          <span class="hint-text"><code>audio/plough.mp3</code></span>
         </div>
       </div>
 
       <div class="glossary-card">
         <div class="glossary-top">
-          <span class="glossary-word">fertile (adj)</span>
-          <span class="glossary-vi">màu mỡ, phì nhiêu</span>
+          <span class="glossary-word">pottery (n)</span>
+          <span class="glossary-vi">đồ gốm</span>
         </div>
-        <p class="glossary-def"><strong>Definition:</strong> Rich in nutrients and good for growing healthy plants and crops.</p>
-        <p class="glossary-ex"><strong>Example:</strong> The soil near the two rivers was flat and <em>fertile</em>.</p>
+        <p class="glossary-def"><strong>Meaning:</strong> Pots and bowls made from clay.</p>
+        <p class="glossary-ex"><strong>Example:</strong> People learned to make <em>pottery</em> from wet clay.</p>
         <div class="glossary-img-wrap">
-          <img id="gl-img-fertile" src="fertile.png" alt="Picture of fertile soil" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
-          <div class="pic-fallback">
-            Image <code>fertile.png</code> not found yet.
-            <br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-fertile')" style="margin-top:0.35rem; font-size:0.78rem;">
-          </div>
+          <img id="gl-img-pottery" src="pottery.png" alt="pottery" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback"><code>pottery.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-pottery')"></div>
         </div>
         <div class="glossary-audio">
-          <audio id="gl-aud-fertile" controls preload="none" src="audio/fertile.mp3"></audio>
-          <span class="hint-text">Audio: <code>audio/fertile.mp3</code></span>
+          <audio controls preload="none" src="audio/pottery.mp3"></audio>
+          <span class="hint-text"><code>audio/pottery.mp3</code></span>
         </div>
       </div>
 
       <div class="glossary-card">
         <div class="glossary-top">
-          <span class="glossary-word">plough (n / v)</span>
-          <span class="glossary-vi">cái cày / cày đất</span>
+          <span class="glossary-word">terrace (n)</span>
+          <span class="glossary-vi">ruộng bậc thang</span>
         </div>
-        <p class="glossary-def"><strong>Definition:</strong> A tool pulled across soil to turn it over before planting seeds.</p>
-        <p class="glossary-ex"><strong>Example:</strong> Strong animals pulled the <em>plough</em> through the fields.</p>
+        <p class="glossary-def"><strong>Meaning:</strong> A flat step of land on a hill.</p>
+        <p class="glossary-ex"><strong>Example:</strong> Farmers in Vietnam still grow rice on <em>terraces</em> today.</p>
         <div class="glossary-img-wrap">
-          <img id="gl-img-plough" src="plough.png" alt="Picture of plough" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
-          <div class="pic-fallback">
-            Image <code>plough.png</code> not found yet.
-            <br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-plough')" style="margin-top:0.35rem; font-size:0.78rem;">
-          </div>
+          <img id="gl-img-terrace" src="terrace.png" alt="terrace" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback"><code>terrace.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-terrace')"></div>
         </div>
         <div class="glossary-audio">
-          <audio id="gl-aud-plough" controls preload="none" src="audio/plough.mp3"></audio>
-          <span class="hint-text">Audio: <code>audio/plough.mp3</code></span>
+          <audio controls preload="none" src="audio/terrace.mp3"></audio>
+          <span class="hint-text"><code>audio/terrace.mp3</code></span>
+        </div>
+      </div>
+
+      <div class="glossary-card">
+        <div class="glossary-top">
+          <span class="glossary-word">textiles (n)</span>
+          <span class="glossary-vi">hàng dệt, vải</span>
+        </div>
+        <p class="glossary-def"><strong>Meaning:</strong> Cloth, e.g. linen or wool.</p>
+        <p class="glossary-ex"><strong>Example:</strong> Farmers made <em>textiles</em> such as linen and wool for clothes.</p>
+        <div class="glossary-img-wrap">
+          <img id="gl-img-textiles" src="textiles.png" alt="textiles" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback"><code>textiles.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-textiles')"></div>
+        </div>
+        <div class="glossary-audio">
+          <audio controls preload="none" src="audio/textiles.mp3"></audio>
+          <span class="hint-text"><code>audio/textiles.mp3</code></span>
+        </div>
+      </div>
+
+      <div class="glossary-card">
+        <div class="glossary-top">
+          <span class="glossary-word">trade (v)</span>
+          <span class="glossary-vi">trao đổi, buôn bán</span>
+        </div>
+        <p class="glossary-def"><strong>Meaning:</strong> To give something and get something in return.</p>
+        <p class="glossary-ex"><strong>Example:</strong> People <em>traded</em> extra food with other villages.</p>
+        <div class="glossary-img-wrap">
+          <img id="gl-img-trade" src="trade.png" alt="trade" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback"><code>trade.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-trade')"></div>
+        </div>
+        <div class="glossary-audio">
+          <audio controls preload="none" src="audio/trade.mp3"></audio>
+          <span class="hint-text"><code>audio/trade.mp3</code></span>
+        </div>
+      </div>
+
+      <div class="glossary-card">
+        <div class="glossary-top">
+          <span class="glossary-word">water channel (n)</span>
+          <span class="glossary-vi">mương dẫn nước</span>
+        </div>
+        <p class="glossary-def"><strong>Meaning:</strong> A long, narrow way for water from a river to a field.</p>
+        <p class="glossary-ex"><strong>Example:</strong> Farmers dug long <em>water channels</em> from the river.</p>
+        <div class="glossary-img-wrap">
+          <img id="gl-img-water-channel" src="water_channel.png" alt="water channel" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback"><code>water_channel.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-water-channel')"></div>
+        </div>
+        <div class="glossary-audio">
+          <audio controls preload="none" src="audio/water_channel.mp3"></audio>
+          <span class="hint-text"><code>audio/water_channel.mp3</code></span>
+        </div>
+      </div>
+
+      <div class="glossary-card">
+        <div class="glossary-top">
+          <span class="glossary-word">BCE</span>
+          <span class="glossary-vi">trước Công nguyên</span>
+        </div>
+        <p class="glossary-def"><strong>Meaning:</strong> Before the Common Era.</p>
+        <p class="glossary-ex"><strong>Example:</strong> The Neolithic clay pot was made in about 3200 <em>BCE</em>.</p>
+        <div class="glossary-img-wrap">
+          <img id="gl-img-bce" src="bce.png" alt="BCE" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback"><code>bce.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-bce')"></div>
+        </div>
+        <div class="glossary-audio">
+          <audio controls preload="none" src="audio/bce.mp3"></audio>
+          <span class="hint-text"><code>audio/bce.mp3</code></span>
         </div>
       </div>
     </div>
@@ -2294,7 +2554,7 @@
       document.getElementById("vocab-retry").style.display = "none";
       completedState.vocab = true;
       updateProgressBar();
-      showResult("vocab-result", true, "<strong>Great job! All 6 words matched!</strong><br>Evidence in text: <em>farm</em> (Intro, line 1 & Part A3), <em>crop/crops</em> (Part A1–A2, Part B1), <em>grain</em> (Part A2, Part C1, Part D3), <em>domesticate</em> (Part A3), <em>fertile</em> (Part A1), <em>plough</em> (Part D1).");
+      showResult("vocab-result", true, "<strong>Great job! All 6 words matched!</strong>");
     } else {
       document.getElementById("vocab-retry").style.display = "inline-block";
       showResult("vocab-result", false, `You got ${ok} / ${selects.length} right. Click <strong>Try Again</strong> to fix the red boxes.`);
@@ -2315,21 +2575,89 @@
     document.getElementById("reading-body").classList.toggle("highlight-active");
   }
 
-  // Vietnam Map MCQ
+  // Map Pinpoint (2 Spots) + Near/Far
+  let mapPins = [];
+  let readingPinDone = false;
+  let readingVnDone = false;
+
+  function syncReadingProgress() {
+    if (readingPinDone && readingVnDone) {
+      completedState.reading = true;
+      updateProgressBar();
+    }
+  }
+
+  function handleMapPinClick(event) {
+    const box = document.getElementById("map-pinpoint-box");
+    const rect = box.getBoundingClientRect();
+    const xPct = ((event.clientX - rect.left) / rect.width) * 100;
+    const yPct = ((event.clientY - rect.top) / rect.height) * 100;
+
+    if (mapPins.length >= 2) {
+      mapPins = [];
+    }
+
+    mapPins.push({ xPct, yPct });
+    renderMapPins(false);
+  }
+
+  function renderMapPins(confirmed) {
+    const box = document.getElementById("map-pinpoint-box");
+    box.querySelectorAll(".map-pin").forEach(p => p.remove());
+
+    mapPins.forEach((pt, idx) => {
+      const pin = document.createElement("div");
+      pin.className = "map-pin" + (confirmed ? " pin-confirmed" : "");
+      pin.style.left = `${pt.xPct}%`;
+      pin.style.top = `${pt.yPct}%`;
+      pin.textContent = confirmed ? `✓${idx + 1}` : `${idx + 1}`;
+      box.appendChild(pin);
+    });
+
+    document.getElementById("map-pin-count").textContent = `Pins placed: ${mapPins.length} / 2`;
+  }
+
+  function resetMapPinpoint() {
+    mapPins = [];
+    renderMapPins(false);
+    document.getElementById("map-pin-result").className = "result-banner";
+  }
+
+  function checkMapPinpoint() {
+    if (mapPins.length < 2) {
+      showResult("map-pin-result", false, "Please click on the map in <strong>two places</strong> around Mesopotamia (Iraq & Syria) first.");
+      return;
+    }
+
+    // Broad regional box covering Mesopotamia / Iraq & Syria on standard regional map
+    const inMesopotamia = pt => pt.xPct >= 22 && pt.xPct <= 46 && pt.yPct >= 44 && pt.yPct <= 68;
+    const bothValid = mapPins.every(inMesopotamia);
+
+    if (bothValid) {
+      renderMapPins(true);
+      readingPinDone = true;
+      syncReadingProgress();
+      showResult("map-pin-result", true, "<strong>Confirmed!</strong> Both borders highlight Mesopotamia (Iraq & Syria) on the map.");
+    } else {
+      renderMapPins(false);
+      showResult("map-pin-result", false, "One or both spots are outside Mesopotamia (Iraq & Syria). Click <strong>Clear Pins</strong> and try two spots in that area.");
+    }
+  }
+
   function checkVietnamMcq() {
     const chosen = document.querySelector('input[name="vn_mcq"]:checked');
     if (!chosen) {
-      showResult("vn-result", false, "Please choose one option first.");
+      showResult("vn-result", false, "Please choose <strong>Far</strong> or <strong>Near</strong> first.");
       return;
     }
     if (chosen.value === "far") {
       document.getElementById("vn-retry").style.display = "none";
-      completedState.reading = true;
-      updateProgressBar();
-      showResult("vn-result", true, "<strong>Correct!</strong><br>Evidence in text & map: Picture 3 shows Vietnam in Southeast Asia, far away from Mesopotamia (Iraq and Syria), where Part A1 says farming began.");
+      readingVnDone = true;
+      syncReadingProgress();
+      showResult("vn-result", true, "<strong>Correct!</strong> Vietnam is far away from Mesopotamia in Southeast Asia.");
     } else {
       document.getElementById("vn-retry").style.display = "inline-block";
-      showResult("vn-result", false, "Not quite—look at Picture 3 and compare Iraq/Syria with Vietnam. Click <strong>Try Again</strong>.");
+      showResult("vn-result", false, "Not quite—check where Vietnam is on the map compared to Iraq and Syria. Click <strong>Try Again</strong>.");
     }
   }
 
@@ -2423,7 +2751,7 @@
       document.getElementById("t3d-retry").style.display = "none";
       checkSubDone.d = true;
       syncCheckSectionProgress();
-      showResult("t3d-result", true, "<strong>Great historian work!</strong><br><strong>Evidence in text:</strong> After hunting = Part A3 (kept/domesticated animals on farms); After gathering seeds = Part A2 & C1 (grew crops/grain); Before pots/cloth = Intro & Part D2 (hunted/gathered/stone tools); Turning point = Intro & Part C1 (stopped moving, lived in villages, grew own food).");
+      showResult("t3d-result", true, "<strong>Great historian work!</strong>");
     } else {
       document.getElementById("t3d-retry").style.display = "inline-block";
       showResult("t3d-result", false, `You got ${ok} / ${inputs.length} correct. Click <strong>Try Again</strong> to revise the red boxes.`);
@@ -2782,7 +3110,7 @@
       document.getElementById("p5a-retry").style.display = "none";
       completedState.practice = true;
       updateProgressBar();
-      showResult("p5a-result", true, "<strong>All blanks and the extra word (reeds) are correct!</strong><br><strong>Evidence in text:</strong> Water & fertile = Part A1; Trees = Part B1; Plough = Part D1; Wheat & barley = Part A2; Water channels & dam = Part B1; Grains = Part C1 & D3; Wool & linen = Part D4; <em>reeds</em> is not mentioned in the text.");
+      showResult("p5a-result", true, "<strong>All blanks and the extra word (reeds) are correct!</strong>");
     } else {
       document.getElementById("p5a-retry").style.display = "inline-block";
       showResult("p5a-result", false, `You got ${ok} / ${inputs.length} correct. Click <strong>Try Again</strong> to fix the red boxes.`);
