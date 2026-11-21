@@ -2101,6 +2101,37 @@ body {
   </section>
 
   <!-- 6. PROJECT -->
+  <div style="margin-top: 1.25rem; padding: 1.2rem; background: #ffffff; border: 2px solid #bbf7d0; border-radius: 14px;">
+      <strong style="color: #15803d; font-size: 1.02rem;">📤 Submit Your Project & Report Progress to Teacher</strong>
+      <p class="hint-text" style="margin-bottom: 0.8rem;">
+        Enter your name and class, upload an infographic image or paste a link to your video/infographic, and click <strong>Save & Report to Teacher</strong>.
+      </p>
+
+      <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 0.7rem;">
+          <input type="text" id="report-student-name" placeholder="Student / Group Name (e.g., Nguyễn Minh Anh)">
+          <input type="text" id="report-student-class" placeholder="Class (e.g., 7A1)">
+        </div>
+
+        <label style="font-size: 0.9rem; font-weight: 700;">
+          Infographic image (PNG / JPG / WEBP):
+          <input type="file" id="project-img-file" accept="image/*" onchange="handleProjectImageUpload(event)" style="margin-top: 0.3rem;">
+        </label>
+
+        <div id="project-img-preview-wrap" style="display: none; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 0.65rem; background: #f8fafc;">
+          <img id="project-img-preview" alt="Uploaded infographic preview" style="max-width: 100%; max-height: 280px; display: block; border-radius: 8px;">
+          <span id="project-img-name" class="hint-text"></span>
+        </div>
+
+        <input type="url" id="project-link-input" placeholder="Video or infographic link (Google Drive, YouTube, Canva, etc.)" style="width: 100%; padding: 0.55rem 0.7rem; border: 1.5px solid #cbd5e1; border-radius: 8px; font-family: inherit; font-size: 0.92rem;">
+
+        <div class="btn-group" style="margin-top: 0.2rem;">
+          <button type="button" class="btn-outline" onclick="saveProgressLocally()">💾 Save Locally</button>
+          <button type="button" class="btn-primary" onclick="saveAndReportProgress()">📨 Save & Report to Teacher</button>
+        </div>
+        <span id="report-status-msg" style="font-size: 0.88rem; font-weight: 700;"></span>
+      </div>
+    </div>
   <section id="project" class="card card-project">
     <h2>
       <span class="sec-icon icon-emerald">🌍</span>
@@ -3159,6 +3190,136 @@ body {
     updateProgressBar();
     document.getElementById("project-done-msg").textContent = "✓ Project marked complete!";
   }
+  // PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL INSIDE THE QUOTES BELOW:
+  const PROGRESS_REPORT_URL = "https://script.google.com/macros/s/AKfycbzPOmOjMwYH5OpItUcGKyo4hA-_27Yk_yY9ExRzUSioLY2CV87nArTiKH7Zvbn77T0/exec";
+
+  let uploadedInfographicName = "";
+  let uploadedInfographicDataUrl = "";
+
+  function handleProjectImageUpload(event) {
+    const file = event.target.files && event.target.files[0];
+    if (!file) return;
+
+    const msg = document.getElementById("report-status-msg");
+    if (file.size > 2.5 * 1024 * 1024) {
+      msg.style.color = "var(--error)";
+      msg.textContent = "Image is large (>2.5 MB). Please use a smaller image or paste a Drive/Canva link.";
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      uploadedInfographicName = file.name;
+      uploadedInfographicDataUrl = e.target.result;
+      document.getElementById("project-img-preview").src = uploadedInfographicDataUrl;
+      document.getElementById("project-img-name").textContent = `Uploaded: ${file.name}`;
+      document.getElementById("project-img-preview-wrap").style.display = "block";
+      saveProgressLocally(false);
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function getProgressPayload() {
+    const studentName = document.getElementById("report-student-name").value.trim();
+    const studentClass = document.getElementById("report-student-class").value.trim();
+    const projectLink = document.getElementById("project-link-input").value.trim();
+    const doneSections = Object.keys(completedState).filter(k => completedState[k]);
+    const pct = Math.round((doneSections.length / Object.keys(completedState).length) * 100);
+    const verbsInput = document.getElementById("verbs-input");
+    const verbsInputWords = verbsInput ? parseWordList(verbsInput.value) : [];
+    const validVerbs = [...new Set(verbsInputWords.filter(w => ALL_PAST_VERBS.includes(w)))];
+
+    return {
+      studentName,
+      studentClass,
+      progressPct: `${pct}%`,
+      completedSections: doneSections.join(", ") || "None yet",
+      verbsCount: `${validVerbs.length}/${ALL_PAST_VERBS.length}`,
+      projectLink,
+      infographicName: uploadedInfographicName,
+      completedState
+    };
+  }
+
+  function saveProgressLocally(showMsg = true) {
+    const payload = getProgressPayload();
+    const msg = document.getElementById("report-status-msg");
+    try {
+      localStorage.setItem("lesson1_saved_progress", JSON.stringify({
+        ...payload,
+        infographicDataUrl: uploadedInfographicDataUrl
+      }));
+      if (showMsg) {
+        msg.style.color = "var(--success)";
+        msg.textContent = "✓ Saved on this browser!";
+      }
+    } catch (err) {
+      msg.style.color = "var(--error)";
+      msg.textContent = "Could not save image locally (storage full). Paste a link instead.";
+    }
+  }
+
+  function restoreSavedProgress() {
+    const raw = localStorage.getItem("lesson1_saved_progress");
+    if (!raw) return;
+    try {
+      const saved = JSON.parse(raw);
+      if (saved.studentName) document.getElementById("report-student-name").value = saved.studentName;
+      if (saved.studentClass) document.getElementById("report-student-class").value = saved.studentClass;
+      if (saved.projectLink) document.getElementById("project-link-input").value = saved.projectLink;
+      if (saved.infographicDataUrl) {
+        uploadedInfographicName = saved.infographicName || "infographic.png";
+        uploadedInfographicDataUrl = saved.infographicDataUrl;
+        document.getElementById("project-img-preview").src = uploadedInfographicDataUrl;
+        document.getElementById("project-img-name").textContent = `Restored: ${uploadedInfographicName}`;
+        document.getElementById("project-img-preview-wrap").style.display = "block";
+      }
+      if (saved.completedState) {
+        Object.assign(completedState, saved.completedState);
+        updateProgressBar();
+      }
+    } catch (e) {
+      // Ignore malformed local data
+    }
+  }
+
+  async function saveAndReportProgress() {
+    const payload = getProgressPayload();
+    const msg = document.getElementById("report-status-msg");
+
+    if (!payload.studentName || !payload.studentClass) {
+      msg.style.color = "var(--error)";
+      msg.textContent = "Please enter both your name and your class before reporting.";
+      return;
+    }
+
+    saveProgressLocally(false);
+
+    if (!PROGRESS_REPORT_URL || PROGRESS_REPORT_URL === "https://script.google.com/macros/s/AKfycbzPOmOjMwYH5OpItUcGKyo4hA-_27Yk_yY9ExRzUSioLY2CV87nArTiKH7Zvbn77T0/exec") {
+      msg.style.color = "var(--error)";
+      msg.textContent = "Saved locally, but PROGRESS_REPORT_URL is not set yet.";
+      return;
+    }
+
+    msg.style.color = "var(--muted)";
+    msg.textContent = "Sending report...";
+
+    try {
+      await fetch(PROGRESS_REPORT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      msg.style.color = "var(--success)";
+      msg.textContent = `✓ Saved & reported for ${payload.studentName} (${payload.studentClass}) — ${payload.progressPct}!`;
+    } catch (err) {
+      msg.style.color = "var(--error)";
+      msg.textContent = "Saved locally, but sending to Google Sheets failed. Please try again.";
+    }
+  }
+
+  restoreSavedProgress();
 </script>
 
 </body>
