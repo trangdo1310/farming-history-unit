@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>History A1–A2: Farming Changes the World</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --primary: #2563eb;
+      --primary-soft: #eff6ff;
+      --border: #e2e8f0;
+      --success: #16a34a;
+      --success-bg: #f0fdf4;
+      --error: #dc2626;
+      --error-bg: #fef2f2;
+      --accent: #d97706;
+      --accent-bg: #fffbeb;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 4rem;
+    }
+
+    /* Navigation Bar */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0.75rem 1.25rem;
+    }
+
+    .nav-container {
+      max-width: 920px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .badge {
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-size: 0.75rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    nav {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 0.35rem 0.7rem;
+      border-radius: 6px;
+      transition: 0.15s;
+    }
+
+    nav a:hover {
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    /* Layout */
+    main {
+      max-width: 920px;
+      margin: 1.75rem auto;
+      padding: 0 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    }
+
+    h1 {
+      font-size: 1.75rem;
+      margin-bottom: 0.35rem;
+      color: #0f172a;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      margin: 1.25rem 0 0.5rem;
+      color: #0f172a;
+    }
+
+    .objectives {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      background: var(--bg);
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+
+    .objectives ul {
+      margin-left: 1.2rem;
+      margin-top: 0.35rem;
+    }
+
+    /* Buttons */
+    button {
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.55rem 1.1rem;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      transition: 0.15s;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+    }
+
+    .btn-outline {
+      background: var(--surface);
+      border-color: var(--border);
+      color: var(--text);
+    }
+
+    .btn-outline:hover {
+      background: var(--bg);
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 0.6rem;
+      margin-top: 1.25rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    /* Warmup Section */
+    .checklist-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 0.6rem;
+      margin: 1rem 0;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      user-select: none;
+      font-size: 0.95rem;
+      transition: 0.15s;
+    }
+
+    .check-item:hover {
+      background: var(--bg);
+    }
+
+    .check-item input:checked + span {
+      text-decoration: line-through;
+      color: var(--success);
+      font-weight: 600;
+    }
+
+    .pair-box {
+      background: var(--accent-bg);
+      border-left: 4px solid var(--accent);
+      padding: 1rem 1.25rem;
+      border-radius: 0 8px 8px 0;
+      margin-top: 1rem;
+    }
+
+    .pair-box textarea {
+      width: 100%;
+      margin-top: 0.5rem;
+      padding: 0.6rem;
+      border: 1px solid #fcd34d;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      resize: vertical;
+    }
+
+    /* Vocab Matching */
+    .vocab-row {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 1rem;
+      align-items: center;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    @media (max-width: 600px) {
+      .vocab-row {
+        grid-template-columns: 1fr;
+        gap: 0.35rem;
+      }
+    }
+
+    .vocab-word {
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    select, input[type="text"] {
+      width: 100%;
+      padding: 0.5rem 0.65rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 0.92rem;
+      background: #fff;
+      color: var(--text);
+    }
+
+    select:focus, input[type="text"]:focus, textarea:focus {
+      outline: 2px solid var(--primary);
+      border-color: transparent;
+    }
+
+    .correct-field {
+      border-color: var(--success) !important;
+      background-color: var(--success-bg) !important;
+    }
+
+    .wrong-field {
+      border-color: var(--error) !important;
+      background-color: var(--error-bg) !important;
+    }
+
+    /* Reading Section */
+    .reading-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      background: var(--bg);
+      padding: 0.65rem 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      font-size: 0.88rem;
+    }
+
+    .reading-text p {
+      margin-bottom: 0.9rem;
+    }
+
+    .vocab-highlight {
+      transition: 0.2s;
+      border-radius: 4px;
+      padding: 0 2px;
+    }
+
+    .highlight-active .vocab-highlight {
+      background-color: #fef08a;
+      font-weight: 600;
+      border-bottom: 2px solid #eab308;
+    }
+
+    .info-callout {
+      background: var(--primary-soft);
+      border-left: 4px solid var(--primary);
+      padding: 0.85rem 1.1rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1rem 0;
+      font-size: 0.92rem;
+    }
+
+    /* Tables & Mind Map */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.75rem 0;
+      font-size: 0.93rem;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.65rem 0.75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--bg);
+      font-weight: 600;
+    }
+
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
+      gap: 0.85rem;
+      margin-top: 0.75rem;
+    }
+
+    .timeline-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.85rem;
+      background: var(--bg);
+    }
+
+    .timeline-date {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.35rem;
+    }
+
+    .mindmap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-top: 0.75rem;
+    }
+
+    .mm-box {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+    }
+
+    .mm-land { background: #f0fdf4; border-color: #bbf7d0; }
+    .mm-food { background: #fff7ed; border-color: #fed7aa; }
+    .mm-tools { background: #eff6ff; border-color: #bfdbfe; }
+    .mm-jobs { background: #faf5ff; border-color: #e9d5ff; }
+
+    .mm-box h4 {
+      margin-bottom: 0.5rem;
+      font-size: 0.98rem;
+    }
+
+    .mm-box ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .hint-text {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+      display: block;
+    }
+
+    .feedback-msg {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-left: 0.5rem;
+    }
+
+    .answer-reveal {
+      margin-top: 0.85rem;
+      padding: 0.85rem 1rem;
+      background: var(--success-bg);
+      border: 1px solid #bbf7d0;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .answer-reveal.show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="nav-container">
+    <div class="brand">
+      <span>History A1–A2</span>
+      <span class="badge">Unit: Neolithic Period</span>
+    </div>
+    <nav>
+      <a href="#warmup">Warm-up</a>
+      <a href="#vocab">1. Farming Words</a>
+      <a href="#reading">2. Reading</a>
+      <a href="#check">3. Check Understanding</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- INTRO HEADER -->
+  <section class="card">
+    <h1>Farming Changes the World</h1>
+    <p class="subtitle">The first farmers of the Neolithic period (the New Stone Age)</p>
+    <div class="objectives">
+      <div>
+        <strong>In this unit you will learn:</strong>
+        <ul>
+          <li>Where and when the first farmers lived</li>
+          <li>How farming changed the land, food, tools and jobs</li>
+          <li>Why farming was a turning point in history</li>
+        </ul>
+      </div>
+      <div>
+        <strong>In this unit you will practise:</strong>
+        <ul>
+          <li>Using the past simple to talk about the past</li>
+          <li>Regular and irregular past verbs</li>
+          <li>Comparing farming in the past and today</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- WARM UP -->
+  <section id="warmup" class="card">
+    <h2>Warm-up: Life in a Neolithic Farming Village</h2>
+    <p>Imagine you are looking at a Neolithic farming village (around 11,000 years ago). Tick (✓) each item as you find it in your coursebook picture or imagine it in the village:</p>
+    
+    <div class="checklist-grid" id="warmup-list">
+      <label class="check-item"><input type="checkbox" onchange="updateWarmupCount()"> <span>a house</span></label>
+      <label class="check-item"><input type="checkbox" onchange="updateWarmupCount()"> <span>sheep</span></label>
+      <label class="check-item"><input type="checkbox" onchange="updateWarmupCount()"> <span>a goat</span></label>
+      <label class="check-item"><input type="checkbox" onchange="updateWarmupCount()"> <span>a cow</span></label>
+      <label class="check-item"><input type="checkbox" onchange="updateWarmupCount()"> <span>wheat</span></label>
+      <label class="check-item"><input type="checkbox" onchange="updateWarmupCount()"> <span>a fire</span></label>
+      <label class="check-item"><input type="checkbox" onchange="updateWarmupCount()"> <span>baskets</span></label>
+      <label class="check-item"><input type="checkbox" onchange="updateWarmupCount()"> <span>pots</span></label>
+      <label class="check-item"><input type="checkbox" onchange="updateWarmupCount()"> <span>a dog</span></label>
+      <label class="check-item"><input type="checkbox" onchange="updateWarmupCount()"> <span>wood</span></label>
+      <label class="check-item"><input type="checkbox" onchange="updateWarmupCount()"> <span>grain</span></label>
+      <label class="check-item"><input type="checkbox" onchange="updateWarmupCount()"> <span>children</span></label>
+    </div>
+    <p id="warmup-status" class="hint-text">Found: 0 / 12 items</p>
+
+    <div class="pair-box">
+      <strong>Pair Discussion Notes:</strong>
+      <p style="font-size: 0.9rem; margin-top: 0.25rem;">1. What jobs are the people doing? (e.g., <em>"I think this woman is cutting wheat."</em>)<br>
+      2. Is this village very old or modern? How do you know?</p>
+      <textarea rows="2" placeholder="Write your pair discussion ideas here..."></textarea>
+    </div>
+  </section>
+
+  <!-- SECTION 1: FARMING WORDS -->
+  <section id="vocab" class="card">
+    <h2>1. Farming Words</h2>
+    <p>Match the words (1–6) to their correct meanings (a–f).</p>
+
+    <div id="vocab-container" style="margin-top: 0.75rem;">
+      <div class="vocab-row">
+        <div class="vocab-word">1. farm (v)</div>
+        <select data-answer="b">
+          <option value="">-- Choose meaning --</option>
+          <option value="a">a. a plant that farmers grow for food, e.g. rice, wheat</option>
+          <option value="b">b. to grow plants and keep animals for food</option>
+          <option value="c">c. to make a wild animal tame so it can live with people</option>
+          <option value="d">d. good for growing plants</option>
+          <option value="e">e. a farm tool that breaks up the soil before planting</option>
+          <option value="f">f. the small, hard seeds of wheat, rice or barley</option>
+        </select>
+      </div>
+
+      <div class="vocab-row">
+        <div class="vocab-word">2. crop (n)</div>
+        <select data-answer="a">
+          <option value="">-- Choose meaning --</option>
+          <option value="a">a. a plant that farmers grow for food, e.g. rice, wheat</option>
+          <option value="b">b. to grow plants and keep animals for food</option>
+          <option value="c">c. to make a wild animal tame so it can live with people</option>
+          <option value="d">d. good for growing plants</option>
+          <option value="e">e. a farm tool that breaks up the soil before planting</option>
+          <option value="f">f. the small, hard seeds of wheat, rice or barley</option>
+        </select>
+      </div>
+
+      <div class="vocab-row">
+        <div class="vocab-word">3. grain (n)</div>
+        <select data-answer="f">
+          <option value="">-- Choose meaning --</option>
+          <option value="a">a. a plant that farmers grow for food, e.g. rice, wheat</option>
+          <option value="b">b. to grow plants and keep animals for food</option>
+          <option value="c">c. to make a wild animal tame so it can live with people</option>
+          <option value="d">d. good for growing plants</option>
+          <option value="e">e. a farm tool that breaks up the soil before planting</option>
+          <option value="f">f. the small, hard seeds of wheat, rice or barley</option>
+        </select>
+      </div>
+
+      <div class="vocab-row">
+        <div class="vocab-word">4. domesticate (v)</div>
+        <select data-answer="c">
+          <option value="">-- Choose meaning --</option>
+          <option value="a">a. a plant that farmers grow for food, e.g. rice, wheat</option>
+          <option value="b">b. to grow plants and keep animals for food</option>
+          <option value="c">c. to make a wild animal tame so it can live with people</option>
+          <option value="d">d. good for growing plants</option>
+          <option value="e">e. a farm tool that breaks up the soil before planting</option>
+          <option value="f">f. the small, hard seeds of wheat, rice or barley</option>
+        </select>
+      </div>
+
+      <div class="vocab-row">
+        <div class="vocab-word">5. fertile (adj)</div>
+        <select data-answer="d">
+          <option value="">-- Choose meaning --</option>
+          <option value="a">a. a plant that farmers grow for food, e.g. rice, wheat</option>
+          <option value="b">b. to grow plants and keep animals for food</option>
+          <option value="c">c. to make a wild animal tame so it can live with people</option>
+          <option value="d">d. good for growing plants</option>
+          <option value="e">e. a farm tool that breaks up the soil before planting</option>
+          <option value="f">f. the small, hard seeds of wheat, rice or barley</option>
+        </select>
+      </div>
+
+      <div class="vocab-row">
+        <div class="vocab-word">6. plough (n)</div>
+        <select data-answer="e">
+          <option value="">-- Choose meaning --</option>
+          <option value="a">a. a plant that farmers grow for food, e.g. rice, wheat</option>
+          <option value="b">b. to grow plants and keep animals for food</option>
+          <option value="c">c. to make a wild animal tame so it can live with people</option>
+          <option value="d">d. good for growing plants</option>
+          <option value="e">e. a farm tool that breaks up the soil before planting</option>
+          <option value="f">f. the small, hard seeds of wheat, rice or barley</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn-primary" onclick="checkVocab()">Check Answers</button>
+      <button class="btn-outline" onclick="resetVocab()">Reset</button>
+      <span id="vocab-feedback" class="feedback-msg"></span>
+    </div>
+  </section>
+
+  <!-- SECTION 2: READING -->
+  <section id="reading" class="card">
+    <h2>2. Reading: Farming Changes the World</h2>
+    
+    <div class="reading-toolbar">
+      <span><strong>Tip:</strong> Find the 6 farming words in the text below.</span>
+      <button class="btn-outline" style="padding: 0.35rem 0.75rem; font-size: 0.82rem;" onclick="toggleHighlights()">Highlight Farming Words</button>
+    </div>
+
+    <div class="reading-text" id="reading-body">
+      <p>For a very long time, people did not have <span class="vocab-highlight">farms</span>. They hunted wild animals and gathered fruit, nuts and seeds from wild plants. They moved from place to place to find food. Then, about 11,000 years ago, something very important happened: people began to grow their own food. This was the start of the Neolithic period. How did farming change the way people lived? What did they eat, and what work did they do?</p>
+
+      <h3>A. Where and when were the first farmers?</h3>
+      <p>The first farmers lived in <strong>Mesopotamia</strong>, a land between two big rivers, the Tigris and the Euphrates. Today, this area is part of Iraq and Syria. The land near the rivers was flat and <span class="vocab-highlight">fertile</span>, and there was a lot of water, so it was a good place to grow <span class="vocab-highlight">crops</span>.</p>
+      <p>The first farmers planted <span class="vocab-highlight">grain</span> <span class="vocab-highlight">crops</span> such as wheat and barley. They also grew peas, lentils and flax. They ate the peas and lentils, and they used flax to make cloth for their clothes.</p>
+      <p>At the same time, people began to <span class="vocab-highlight">domesticate</span> animals. Before, they hunted wild sheep, goats, cows and pigs. Now they kept these animals on their <span class="vocab-highlight">farms</span>, so they had meat and milk all year. However, farmers did not stop hunting completely. They still hunted wild animals, caught fish and collected fruit and nuts.</p>
+      <p>Farming spread very slowly from Mesopotamia to other places. It reached the south of Europe about 2,000 years later.</p>
+
+      <div class="info-callout">
+        <strong>Did you know?</strong> <strong>BCE</strong> = Before the Common Era. We count BCE years backwards, so 9000 BCE is older than 3000 BCE.
+      </div>
+
+      <h3>B. Changing the land</h3>
+      <p>Farmers changed the land around them. They cut down trees and cleared the land to make fields for their <span class="vocab-highlight">crops</span>. Their animals ate the wild plants and grass. To bring water to the fields, farmers dug long water channels from the river. Some farmers built a dam across a river to keep and store water.</p>
+      <p>In places with hills, farmers made terraces. Terraces are flat steps of land on the side of a hill, so the rain does not wash the soil away. Farmers in Vietnam still grow rice on terraces today.</p>
+
+      <h3>C. Changing food</h3>
+      <p>Because people grew their own <span class="vocab-highlight">grain</span>, they had more food. Farmers ground wheat and barley between two stones to make flour, and then they made bread and porridge. Their animals gave them meat and milk. Food was now easier to find, so families did not need to move any more. They built houses and lived together in villages.</p>
+
+      <h3>D. New tools and technology</h3>
+      <p>Farming led to new inventions. Later, farmers invented the <span class="vocab-highlight">plough</span>, a tool that breaks up the soil so seeds can grow. Strong animals, such as cows, pulled the <span class="vocab-highlight">plough</span>, so farmers could prepare a big field quickly. Some farmers in Vietnam still use buffaloes to <span class="vocab-highlight">plough</span> their rice fields.</p>
+      <p>Stone tools also got better. People polished their stone axes and blades, so they were smooth and sharp and cut better. People also learned to make pottery. They shaped wet clay into pots and bowls, and then they baked them in a fire to make them hard. They used the pots to store <span class="vocab-highlight">grain</span>, water and milk. Farmers also made textiles. They made linen from flax, and they used wool from sheep and goats to make warm clothes.</p>
+
+      <h3>E. New jobs</h3>
+      <p>In a farming village, there were many different jobs. Some people looked after the animals, and others worked in the fields. Some people became very good at making pots, so pottery became their special job. Sometimes a village grew more food than it needed. People traded the extra food with other villages for things they did not have, such as tools, special stones or animals. In this way, trading became another new job.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 3: CHECK YOUR UNDERSTANDING -->
+  <section id="check" class="card">
+    <h2>3. Check Your Understanding</h2>
+
+    <!-- TASK 3A -->
+    <h3>A. Complete the fact file (Use information from Part A)</h3>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 32%;">Fact file: the first farmers</th>
+          <th>Your answers</th>
+        </tr>
+      </thead>
+      <tbody id="task3a-body">
+        <tr>
+          <td><strong>Where?</strong></td>
+          <td>Mesopotamia (today: <input type="text" style="width: 220px; display: inline-block;" data-keywords="iraq,syria" placeholder="max. 3 words">)</td>
+        </tr>
+        <tr>
+          <td><strong>When?</strong></td>
+          <td><input type="text" style="width: 180px; display: inline-block;" data-keywords="11000,11,000" placeholder="max. 3 words"> years ago</td>
+        </tr>
+        <tr>
+          <td><strong>Why was it a good place?</strong></td>
+          <td><input type="text" data-keywords="flat,fertile,water" placeholder="max. 12 words"></td>
+        </tr>
+        <tr>
+          <td><strong>Crops</strong></td>
+          <td>wheat, <input type="text" style="width: 75%; display: inline-block;" data-keywords="barley,peas,lentils,flax" placeholder="max. 6 words"></td>
+        </tr>
+        <tr>
+          <td><strong>Animals</strong></td>
+          <td><input type="text" data-keywords="sheep,goats,cows,pigs" placeholder="max. 5 words"></td>
+        </tr>
+        <tr>
+          <td><strong>Food they still collected</strong></td>
+          <td><input type="text" data-keywords="wild animals,fish,fruit,nuts" placeholder="max. 6 words"></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="btn-group">
+      <button class="btn-primary" onclick="checkTask3A()">Check Task A</button>
+      <button class="btn-outline" onclick="toggleReveal('ans-3a')">Show Sample Answers</button>
+      <span id="fb-3a" class="feedback-msg"></span>
+    </div>
+    <div id="ans-3a" class="answer-reveal">
+      <strong>Answer Key (3A):</strong><br>
+      • <strong>Where:</strong> Iraq and Syria<br>
+      • <strong>When:</strong> about 11,000<br>
+      • <strong>Why good:</strong> The land near the rivers was flat and fertile, with lots of water.<br>
+      • <strong>Crops:</strong> barley, peas, lentils, flax<br>
+      • <strong>Animals:</strong> sheep, goats, cows, pigs<br>
+      • <strong>Food still collected:</strong> wild animals, fish, fruit and nuts
+    </div>
+
+    <!-- TASK 3B -->
+    <h3 style="margin-top: 2rem;">B. Complete the timeline</h3>
+    <div class="timeline-grid" id="task3b-body">
+      <div class="timeline-card">
+        <div class="timeline-date">about 11,000 years ago</div>
+        <p style="font-size: 0.9rem; margin-bottom: 0.4rem;">Farming started in:</p>
+        <input type="text" data-keywords="mesopotamia" placeholder="max. 8 words">
+      </div>
+      <div class="timeline-card">
+        <div class="timeline-date">about 2,000 years later</div>
+        <p style="font-size: 0.9rem; margin-bottom: 0.4rem;">What happened?</p>
+        <input type="text" data-keywords="europe" placeholder="max. 8 words">
+      </div>
+      <div class="timeline-card">
+        <div class="timeline-date">about 3200 BCE</div>
+        <p style="font-size: 0.9rem; margin-bottom: 0.4rem;">What did people make?</p>
+        <input type="text" data-keywords="pot,pottery,clay" placeholder="max. 8 words">
+      </div>
+      <div class="timeline-card">
+        <div class="timeline-date">today ★</div>
+        <p style="font-size: 0.9rem; margin-bottom: 0.4rem;">Some farmers in Vietnam still use:</p>
+        <input type="text" data-keywords="terraces" placeholder="word 1" style="margin-bottom: 0.35rem;">
+        <input type="text" data-keywords="buffaloes,buffalo" placeholder="word 2">
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn-primary" onclick="checkTask3B()">Check Task B</button>
+      <button class="btn-outline" onclick="toggleReveal('ans-3b')">Show Sample Answers</button>
+      <span id="fb-3b" class="feedback-msg"></span>
+    </div>
+    <div id="ans-3b" class="answer-reveal">
+      <strong>Answer Key (3B):</strong><br>
+      • <strong>11,000 years ago:</strong> Mesopotamia<br>
+      • <strong>2,000 years later:</strong> Farming reached the south of Europe.<br>
+      • <strong>3200 BCE:</strong> People made clay pots / pottery.<br>
+      • <strong>Today:</strong> terraces and buffaloes (to plough).
+    </div>
+
+    <!-- TASK 3C -->
+    <h3 style="margin-top: 2rem;">C. Complete the mind map (How did farming change people's lives?)</h3>
+    <p class="hint-text">Use information from Parts B–E. Write 2 more ideas in each box (max. 5 words each).</p>
+    <div class="mindmap-grid">
+      <div class="mm-box mm-land">
+        <h4>🌲 The land</h4>
+        <ul>
+          <li>• <em>They cut down trees.</em></li>
+          <li><input type="text" placeholder="Idea 2 (max. 5 words)"></li>
+          <li><input type="text" placeholder="Idea 3 (max. 5 words)"></li>
+        </ul>
+      </div>
+      <div class="mm-box mm-food">
+        <h4>🍞 Food</h4>
+        <ul>
+          <li>• <em>They made bread.</em></li>
+          <li><input type="text" placeholder="Idea 2 (max. 5 words)"></li>
+          <li><input type="text" placeholder="Idea 3 (max. 5 words)"></li>
+        </ul>
+      </div>
+      <div class="mm-box mm-tools">
+        <h4>🛠️ Tools and technology</h4>
+        <ul>
+          <li>• <em>They invented the plough.</em></li>
+          <li><input type="text" placeholder="Idea 2 (max. 5 words)"></li>
+          <li><input type="text" placeholder="Idea 3 (max. 5 words)"></li>
+        </ul>
+      </div>
+      <div class="mm-box mm-jobs">
+        <h4>🧑‍🌾 Jobs</h4>
+        <ul>
+          <li>• <em>Some people made pots.</em></li>
+          <li><input type="text" placeholder="Idea 2 (max. 5 words)"></li>
+          <li><input type="text" placeholder="Idea 3 (max. 5 words)"></li>
+        </ul>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn-outline" onclick="toggleReveal('ans-3c')">Compare with Model Answers</button>
+    </div>
+    <div id="ans-3c" class="answer-reveal">
+      <strong>Model Answers (3C):</strong><br>
+      • <strong>The land:</strong> cleared land for fields; dug water channels; built dams; made terraces.<br>
+      • <strong>Food:</strong> grew grain; made flour and porridge; got meat and milk.<br>
+      • <strong>Tools & technology:</strong> polished stone tools; made pottery; made textiles (linen, wool).<br>
+      • <strong>Jobs:</strong> looked after animals; worked in the fields; traded extra food.
+    </div>
+
+    <!-- TASK 3D -->
+    <h3 style="margin-top: 2rem;">D. Be a good historian</h3>
+    <p style="font-size: 0.93rem;">Good historians look for <strong>turning points</strong>: times when life changed completely. Complete the table and conclusion.</p>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 50%; background: #fef2f2;">⏪ Before farming, people...</th>
+          <th style="width: 50%; background: #f0fdf4;">⏩ After farming, people...</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>moved from place to place.</td>
+          <td>lived together in villages.</td>
+        </tr>
+        <tr>
+          <td>hunted wild animals.</td>
+          <td><input type="text" placeholder="max. 5 words"></td>
+        </tr>
+        <tr>
+          <td>gathered wild seeds.</td>
+          <td><input type="text" placeholder="max. 5 words"></td>
+        </tr>
+        <tr>
+          <td><input type="text" placeholder="max. 5 words"></td>
+          <td>made pots and cloth.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="margin-top: 0.85rem;">
+      <label style="font-weight: 600; font-size: 0.93rem; display: block; margin-bottom: 0.35rem;">
+        Farming was a turning point because people... <span class="hint-text" style="display: inline;">(max. 15 words)</span>
+      </label>
+      <input type="text" placeholder="Write your conclusion sentence here...">
+    </div>
+
+    <div class="btn-group">
+      <button class="btn-outline" onclick="toggleReveal('ans-3d')">Compare with Model Answers</button>
+    </div>
+    <div id="ans-3d" class="answer-reveal">
+      <strong>Model Answers (3D):</strong><br>
+      • <strong>After hunting:</strong> kept / domesticated animals on farms.<br>
+      • <strong>After gathering seeds:</strong> grew their own crops / grain.<br>
+      • <strong>Before making pots/cloth:</strong> used simple stone tools / wore animal skins.<br>
+      • <strong>Conclusion:</strong> ...stopped moving from place to place, lived in villages, and grew their own food.
+    </div>
+  </section>
+</main>
+
+<script>
+  function updateWarmupCount() {
+    const checkboxes = document.querySelectorAll('#warmup-list input[type="checkbox"]');
+    const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+    document.getElementById('warmup-status').textContent = `Found: ${checked} / 12 items`;
+  }
+
+  function checkVocab() {
+    const selects = document.querySelectorAll('#vocab-container select');
+    let score = 0;
+    selects.forEach(sel => {
+      sel.classList.remove('correct-field', 'wrong-field');
+      if (sel.value === sel.dataset.answer) {
+        sel.classList.add('correct-field');
+        score++;
+      } else {
+        sel.classList.add('wrong-field');
+      }
+    });
+    const fb = document.getElementById('vocab-feedback');
+    fb.textContent = `Score: ${score} / ${selects.length}`;
+    fb.style.color = score === selects.length ? 'var(--success)' : 'var(--error)';
+  }
+
+  function resetVocab() {
+    document.querySelectorAll('#vocab-container select').forEach(sel => {
+      sel.value = '';
+      sel.classList.remove('correct-field', 'wrong-field');
+    });
+    document.getElementById('vocab-feedback').textContent = '';
+  }
+
+  function toggleHighlights() {
+    document.getElementById('reading-body').classList.toggle('highlight-active');
+  }
+
+  function validateKeywordInputs(containerId, feedbackId) {
+    const inputs = document.querySelectorAll(`#${containerId} input[data-keywords]`);
+    let correctCount = 0;
+    inputs.forEach(inp => {
+      inp.classList.remove('correct-field', 'wrong-field');
+      const val = inp.value.toLowerCase().trim();
+      const keywords = inp.dataset.keywords.split(',');
+      const matched = keywords.some(kw => val.includes(kw.trim()));
+      if (val.length > 0 && matched) {
+        inp.classList.add('correct-field');
+        correctCount++;
+      } else {
+        inp.classList.add('wrong-field');
+      }
+    });
+    const fb = document.getElementById(feedbackId);
+    fb.textContent = `Matched: ${correctCount} / ${inputs.length}`;
+    fb.style.color = correctCount === inputs.length ? 'var(--success)' : 'var(--error)';
+  }
+
+  function checkTask3A() {
+    validateKeywordInputs('task3a-body', 'fb-3a');
+  }
+
+  function checkTask3B() {
+    validateKeywordInputs('task3b-body', 'fb-3b');
+  }
+
+  function toggleReveal(id) {
+    document.getElementById(id).classList.toggle('show');
+  }
+</script>
+
+</body>
+</html>
