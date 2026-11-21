@@ -6,19 +6,26 @@
   <title>History A1–A2: Farming Changes the World</title>
   <style>
     :root {
-      --bg: #f8fafc;
+      --bg: #fdf8ee;
+      --bg-warm: #f6ede0;
       --surface: #ffffff;
       --text: #1e293b;
-      --muted: #64748b;
-      --primary: #2563eb;
-      --primary-soft: #eff6ff;
-      --border: #e2e8f0;
-      --success: #16a34a;
-      --success-bg: #f0fdf4;
-      --error: #dc2626;
-      --error-bg: #fef2f2;
-      --accent: #d97706;
-      --accent-bg: #fffbeb;
+      --muted: #57657a;
+      --forest: #1f6f50;
+      --forest-soft: #e6f4ee;
+      --terracotta: #c85a32;
+      --terracotta-soft: #fdf0ea;
+      --gold: #d98218;
+      --gold-soft: #fef6e6;
+      --plum: #5b4b8a;
+      --plum-soft: #f2effb;
+      --sky: #1d6fa5;
+      --sky-soft: #eaf4fb;
+      --border: #e6dccb;
+      --success: #15803d;
+      --success-bg: #dcfce7;
+      --error: #b91c1c;
+      --error-bg: #fee2e2;
     }
 
     * {
@@ -27,25 +34,36 @@
       padding: 0;
     }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      padding-bottom: 4rem;
+    html {
+      scroll-behavior: smooth;
     }
 
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background:
+        radial-gradient(circle at 10% 8%, rgba(217, 130, 24, 0.12), transparent 28%),
+        radial-gradient(circle at 90% 15%, rgba(31, 111, 80, 0.11), transparent 30%),
+        radial-gradient(circle at 85% 80%, rgba(200, 90, 50, 0.1), transparent 32%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      padding-bottom: 4.5rem;
+    }
+
+    /* Top Navigation Bar (Kept Clean & Familiar) */
     header {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 2px solid var(--border);
       position: sticky;
       top: 0;
       z-index: 100;
       padding: 0.75rem 1.25rem;
+      box-shadow: 0 2px 10px rgba(30, 41, 59, 0.04);
     }
 
     .nav-container {
-      max-width: 920px;
+      max-width: 940px;
       margin: 0 auto;
       display: flex;
       flex-wrap: wrap;
@@ -55,21 +73,22 @@
     }
 
     .brand {
-      font-weight: 700;
+      font-weight: 800;
       font-size: 1.05rem;
-      color: var(--primary);
+      color: var(--forest);
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
 
     .badge {
-      background: var(--primary-soft);
-      color: var(--primary);
+      background: linear-gradient(135deg, var(--gold-soft), var(--terracotta-soft));
+      color: var(--terracotta);
+      border: 1px solid #f3c69f;
       font-size: 0.75rem;
-      padding: 0.15rem 0.5rem;
+      padding: 0.18rem 0.6rem;
       border-radius: 999px;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     nav {
@@ -82,19 +101,20 @@
       text-decoration: none;
       color: var(--muted);
       font-size: 0.875rem;
-      font-weight: 500;
-      padding: 0.35rem 0.7rem;
-      border-radius: 6px;
-      transition: 0.15s;
+      font-weight: 600;
+      padding: 0.38rem 0.75rem;
+      border-radius: 8px;
+      transition: all 0.15s ease;
     }
 
     nav a:hover {
-      background: var(--bg);
-      color: var(--text);
+      background: var(--forest-soft);
+      color: var(--forest);
     }
 
+    /* Main Container */
     main {
-      max-width: 920px;
+      max-width: 940px;
       margin: 1.75rem auto;
       padding: 0 1.25rem;
       display: flex;
@@ -102,81 +122,164 @@
       gap: 2rem;
     }
 
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.75rem;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    /* Hero Banner */
+    .hero-card {
+      background: linear-gradient(135deg, #fffdf9 0%, #fff4e0 55%, #eaf5ef 100%);
+      border: 2px solid #e5d4b7;
+      border-radius: 18px;
+      padding: 2rem;
+      box-shadow: 0 8px 24px rgba(120, 82, 26, 0.07);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--forest);
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      padding: 0.28rem 0.75rem;
+      border-radius: 999px;
+      margin-bottom: 0.75rem;
     }
 
     h1 {
-      font-size: 1.75rem;
+      font-size: 1.95rem;
+      color: #162232;
+      line-height: 1.25;
       margin-bottom: 0.35rem;
-      color: #0f172a;
     }
 
     .subtitle {
-      color: var(--muted);
-      font-size: 1rem;
-      margin-bottom: 1.25rem;
+      color: var(--terracotta);
+      font-weight: 600;
+      font-size: 1.05rem;
+      margin-bottom: 1.35rem;
     }
 
+    .objectives {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 1rem;
+    }
+
+    .obj-box {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 1.1rem 1.25rem;
+      border-radius: 12px;
+      border: 1px solid #e6dccb;
+      font-size: 0.92rem;
+    }
+
+    .obj-box strong {
+      color: var(--forest);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.98rem;
+    }
+
+    .obj-box ul {
+      margin-left: 1.25rem;
+      margin-top: 0.45rem;
+    }
+
+    .obj-box li {
+      margin-bottom: 0.25rem;
+    }
+
+    /* Section Cards */
+    .card {
+      background: var(--surface);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 1.8rem;
+      box-shadow: 0 4px 16px rgba(30, 41, 59, 0.04);
+    }
+
+    .card-warmup { border-top: 6px solid var(--gold); }
+    .card-vocab { border-top: 6px solid var(--forest); }
+    .card-reading { border-top: 6px solid var(--terracotta); }
+    .card-check { border-top: 6px solid var(--plum); }
+
     h2 {
-      font-size: 1.3rem;
-      margin-bottom: 0.75rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 2px solid var(--border);
+      font-size: 1.38rem;
+      margin-bottom: 0.85rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 2px dashed var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #162232;
+    }
+
+    .sec-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      font-size: 1.05rem;
+    }
+
+    .icon-gold { background: var(--gold-soft); }
+    .icon-forest { background: var(--forest-soft); }
+    .icon-terra { background: var(--terracotta-soft); }
+    .icon-plum { background: var(--plum-soft); }
+
+    h3 {
+      font-size: 1.1rem;
+      margin: 1.4rem 0 0.6rem;
+      color: #162232;
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
 
-    h3 {
-      font-size: 1.05rem;
-      margin: 1.25rem 0 0.5rem;
-      color: #0f172a;
-    }
-
-    .objectives {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1rem;
-      background: var(--bg);
-      padding: 1rem 1.25rem;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      font-size: 0.9rem;
-    }
-
-    .objectives ul {
-      margin-left: 1.2rem;
-      margin-top: 0.35rem;
-    }
-
-    /* Coursebook Image Frame */
+    /* Image Display */
     .coursebook-figure {
-      margin: 1rem 0 1.25rem;
-      border: 1px solid var(--border);
-      border-radius: 10px;
+      margin: 1rem 0 1.35rem;
+      border: 2px solid #e6dccb;
+      border-radius: 14px;
       overflow: hidden;
-      background: var(--bg);
+      background: #faf6ee;
       text-align: center;
     }
 
     .coursebook-figure img {
       max-width: 100%;
+      max-height: 460px;
+      width: auto;
       height: auto;
       display: block;
       margin: 0 auto;
     }
 
+    .img-fallback {
+      display: none;
+      padding: 1.5rem;
+      background: #fff8eb;
+      color: #5c3c10;
+      font-size: 0.9rem;
+    }
+
     .coursebook-caption {
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       color: var(--muted);
-      padding: 0.55rem 0.85rem;
-      border-top: 1px solid var(--border);
-      background: var(--surface);
+      padding: 0.65rem 1rem;
+      border-top: 1px solid #e6dccb;
+      background: #fffdf9;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
     }
 
     /* Buttons */
@@ -184,45 +287,57 @@
       cursor: pointer;
       font-family: inherit;
       font-size: 0.9rem;
-      font-weight: 600;
-      padding: 0.55rem 1.1rem;
-      border-radius: 8px;
-      border: 1px solid transparent;
-      transition: 0.15s;
+      font-weight: 700;
+      padding: 0.58rem 1.15rem;
+      border-radius: 10px;
+      border: 1.5px solid transparent;
+      transition: transform 0.1s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    button:active {
+      transform: scale(0.98);
     }
 
     .btn-primary {
-      background: var(--primary);
+      background: linear-gradient(135deg, var(--forest), #17573e);
       color: #fff;
+      box-shadow: 0 3px 8px rgba(31, 111, 80, 0.22);
     }
 
     .btn-primary:hover {
-      background: #1d4ed8;
+      background: linear-gradient(135deg, #185b41, #124531);
+    }
+
+    .btn-warm {
+      background: linear-gradient(135deg, var(--terracotta), #ab4722);
+      color: #fff;
+      box-shadow: 0 3px 8px rgba(200, 90, 50, 0.22);
     }
 
     .btn-outline {
       background: var(--surface);
-      border-color: var(--border);
+      border-color: #d6c9b2;
       color: var(--text);
     }
 
     .btn-outline:hover {
-      background: var(--bg);
+      background: var(--gold-soft);
+      border-color: var(--gold);
     }
 
     .btn-group {
       display: flex;
-      gap: 0.6rem;
+      gap: 0.65rem;
       margin-top: 1.25rem;
       flex-wrap: wrap;
       align-items: center;
     }
 
-    /* Warmup Section - Clean Styling (No Strikethrough) */
+    /* Warm-up Checklist (No Strikethrough) */
     .checklist-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
-      gap: 0.6rem;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 0.65rem;
       margin: 1rem 0;
     }
 
@@ -230,120 +345,143 @@
       display: flex;
       align-items: center;
       gap: 0.55rem;
-      padding: 0.55rem 0.75rem;
-      border: 1.5px solid var(--border);
-      border-radius: 8px;
+      padding: 0.6rem 0.8rem;
+      border: 2px solid #e6dccb;
+      border-radius: 10px;
       cursor: pointer;
       user-select: none;
       font-size: 0.95rem;
-      background: var(--surface);
-      transition: 0.15s;
+      background: #fffdf9;
+      transition: all 0.15s ease;
     }
 
     .check-item:hover {
-      background: var(--bg);
+      border-color: var(--gold);
+      background: var(--gold-soft);
+      transform: translateY(-1px);
+    }
+
+    .check-item input[type="checkbox"] {
+      accent-color: var(--forest);
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
     }
 
     .check-item.is-correct {
       border-color: var(--success);
       background-color: var(--success-bg);
       color: #14532d;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .check-item.is-wrong {
       border-color: var(--error);
       background-color: var(--error-bg);
       color: #7f1d1d;
-      font-weight: 600;
+      font-weight: 700;
     }
 
-    /* Live Corrective Feedback Banner at Bottom of Checklist */
+    .progress-pill {
+      display: inline-block;
+      background: var(--gold-soft);
+      border: 1px solid #f2cc8f;
+      color: #7c4706;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      margin-top: 0.25rem;
+    }
+
+    /* Corrective Feedback Banner */
     .live-feedback-box {
-      margin-top: 0.75rem;
-      padding: 0.85rem 1.1rem;
-      border-radius: 8px;
-      font-size: 0.94rem;
-      font-weight: 500;
+      margin-top: 0.85rem;
+      padding: 0.9rem 1.15rem;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
       display: none;
-      border-left: 4px solid transparent;
     }
 
     .live-feedback-box.fb-correct {
       display: block;
       background: var(--success-bg);
-      border-color: var(--success);
+      border: 1.5px solid #86efac;
+      border-left: 5px solid var(--success);
       color: #14532d;
     }
 
     .live-feedback-box.fb-wrong {
       display: block;
       background: var(--error-bg);
-      border-color: var(--error);
+      border: 1.5px solid #fca5a5;
+      border-left: 5px solid var(--error);
       color: #7f1d1d;
     }
 
-    /* Pair Discussion & Live Board */
+    /* Pair Discussion & Live Class Board */
     .pair-box {
-      background: var(--accent-bg);
-      border-left: 4px solid var(--accent);
-      padding: 1.1rem 1.25rem;
-      border-radius: 0 8px 8px 0;
-      margin-top: 1.35rem;
+      background: linear-gradient(135deg, #fff9eb, #fff3dc);
+      border: 1.5px solid #f3cf8d;
+      border-left: 5px solid var(--gold);
+      padding: 1.2rem 1.35rem;
+      border-radius: 12px;
+      margin-top: 1.4rem;
     }
 
     .discussion-form {
       display: flex;
       flex-direction: column;
-      gap: 0.65rem;
-      margin-top: 0.75rem;
+      gap: 0.7rem;
+      margin-top: 0.8rem;
     }
 
     .discussion-form input,
     .discussion-form textarea {
       width: 100%;
-      padding: 0.6rem 0.75rem;
-      border: 1px solid #fcd34d;
-      border-radius: 6px;
+      padding: 0.65rem 0.8rem;
+      border: 1.5px solid #e8be76;
+      border-radius: 8px;
       font-family: inherit;
       font-size: 0.92rem;
-      background: #fff;
+      background: #ffffff;
     }
 
     .board-container {
-      margin-top: 1.15rem;
+      margin-top: 1.2rem;
       padding-top: 1rem;
-      border-top: 1px dashed #f59e0b;
+      border-top: 2px dashed #e8be76;
     }
 
     .board-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 0.65rem;
+      margin-bottom: 0.7rem;
     }
 
     .post-list {
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
+      gap: 0.65rem;
       max-height: 320px;
       overflow-y: auto;
     }
 
     .student-post {
       background: #ffffff;
-      border: 1px solid #fde68a;
-      border-radius: 8px;
-      padding: 0.7rem 0.9rem;
-      font-size: 0.9rem;
+      border: 1.5px solid #f3d79f;
+      border-radius: 10px;
+      padding: 0.75rem 0.95rem;
+      font-size: 0.92rem;
     }
 
     .student-post-meta {
       font-weight: 700;
-      color: #92400e;
-      font-size: 0.83rem;
-      margin-bottom: 0.2rem;
+      color: var(--terracotta);
+      font-size: 0.84rem;
+      margin-bottom: 0.25rem;
       display: flex;
       justify-content: space-between;
     }
@@ -351,11 +489,16 @@
     /* Vocab Matching */
     .vocab-row {
       display: grid;
-      grid-template-columns: 160px 1fr;
+      grid-template-columns: 170px 1fr;
       gap: 1rem;
       align-items: center;
-      padding: 0.65rem 0;
-      border-bottom: 1px solid var(--border);
+      padding: 0.7rem 0.5rem;
+      border-bottom: 1px solid #efe7d8;
+      border-radius: 8px;
+    }
+
+    .vocab-row:nth-child(odd) {
+      background: #fcfaf5;
     }
 
     @media (max-width: 600px) {
@@ -366,15 +509,16 @@
     }
 
     .vocab-word {
-      font-weight: 700;
-      color: #0f172a;
+      font-weight: 800;
+      color: var(--forest);
+      font-size: 0.98rem;
     }
 
     select, input[type="text"] {
       width: 100%;
-      padding: 0.5rem 0.65rem;
-      border: 1px solid var(--border);
-      border-radius: 6px;
+      padding: 0.55rem 0.7rem;
+      border: 1.5px solid #d6c9b2;
+      border-radius: 8px;
       font-family: inherit;
       font-size: 0.92rem;
       background: #fff;
@@ -382,8 +526,9 @@
     }
 
     select:focus, input[type="text"]:focus, textarea:focus {
-      outline: 2px solid var(--primary);
-      border-color: transparent;
+      outline: none;
+      border-color: var(--forest);
+      box-shadow: 0 0 0 3px rgba(31, 111, 80, 0.14);
     }
 
     .correct-field {
@@ -403,36 +548,52 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 0.5rem;
-      background: var(--bg);
-      padding: 0.65rem 1rem;
-      border-radius: 8px;
-      margin-bottom: 1rem;
-      font-size: 0.88rem;
+      background: var(--terracotta-soft);
+      border: 1px solid #f4c9b8;
+      padding: 0.7rem 1rem;
+      border-radius: 10px;
+      margin-bottom: 1.1rem;
+      font-size: 0.9rem;
     }
 
     .reading-text p {
-      margin-bottom: 0.9rem;
+      margin-bottom: 0.95rem;
+    }
+
+    .part-pill {
+      display: inline-block;
+      background: var(--forest-soft);
+      color: var(--forest);
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 0.15rem 0.55rem;
+      border-radius: 6px;
+      text-transform: uppercase;
     }
 
     .vocab-highlight {
-      transition: 0.2s;
+      transition: all 0.2s ease;
       border-radius: 4px;
       padding: 0 2px;
     }
 
     .highlight-active .vocab-highlight {
-      background-color: #fef08a;
-      font-weight: 600;
-      border-bottom: 2px solid #eab308;
+      background-color: #fde047;
+      color: #1e293b;
+      font-weight: 700;
+      border-bottom: 2px solid #ca8a04;
+      padding: 1px 4px;
     }
 
     .info-callout {
-      background: var(--primary-soft);
-      border-left: 4px solid var(--primary);
-      padding: 0.85rem 1.1rem;
-      border-radius: 0 8px 8px 0;
-      margin: 1rem 0;
+      background: var(--sky-soft);
+      border: 1.5px solid #bae0f7;
+      border-left: 5px solid var(--sky);
+      padding: 0.9rem 1.15rem;
+      border-radius: 10px;
+      margin: 1.1rem 0;
       font-size: 0.92rem;
+      color: #133b5c;
     }
 
     /* Tables & Mind Map */
@@ -441,41 +602,46 @@
       border-collapse: collapse;
       margin: 0.75rem 0;
       font-size: 0.93rem;
+      border-radius: 10px;
+      overflow: hidden;
     }
 
     th, td {
-      border: 1px solid var(--border);
-      padding: 0.65rem 0.75rem;
+      border: 1px solid #e2d6c1;
+      padding: 0.7rem 0.8rem;
       text-align: left;
       vertical-align: top;
     }
 
     th {
-      background: var(--bg);
-      font-weight: 600;
+      background: #f5ede0;
+      color: #162232;
+      font-weight: 700;
     }
 
     .timeline-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
-      gap: 0.85rem;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.9rem;
       margin-top: 0.75rem;
     }
 
     .timeline-card {
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 0.85rem;
-      background: var(--bg);
+      border: 2px solid #e2d6c1;
+      border-radius: 12px;
+      padding: 0.95rem;
+      background: #fffdf9;
     }
 
     .timeline-date {
-      font-weight: 700;
-      color: var(--primary);
-      font-size: 0.9rem;
-      margin-bottom: 0.5rem;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 0.35rem;
+      font-weight: 800;
+      color: var(--terracotta);
+      background: var(--terracotta-soft);
+      font-size: 0.88rem;
+      margin-bottom: 0.55rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 6px;
+      display: inline-block;
     }
 
     .mindmap-grid {
@@ -486,48 +652,50 @@
     }
 
     .mm-box {
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1rem;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 1.05rem;
     }
 
-    .mm-land { background: #f0fdf4; border-color: #bbf7d0; }
-    .mm-food { background: #fff7ed; border-color: #fed7aa; }
-    .mm-tools { background: #eff6ff; border-color: #bfdbfe; }
-    .mm-jobs { background: #faf5ff; border-color: #e9d5ff; }
+    .mm-land { background: #eefaf3; border-color: #9ae0b8; }
+    .mm-food { background: #fff5ec; border-color: #f9c79b; }
+    .mm-tools { background: #eef6fc; border-color: #a9d4f5; }
+    .mm-jobs { background: #f5f2fc; border-color: #cbbef5; }
 
     .mm-box h4 {
-      margin-bottom: 0.5rem;
-      font-size: 0.98rem;
+      margin-bottom: 0.6rem;
+      font-size: 1rem;
+      color: #162232;
     }
 
     .mm-box ul {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 0.45rem;
+      gap: 0.5rem;
     }
 
     .hint-text {
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       color: var(--muted);
       margin-top: 0.25rem;
       display: block;
     }
 
     .feedback-msg {
-      font-size: 0.9rem;
-      font-weight: 600;
+      font-size: 0.92rem;
+      font-weight: 700;
       margin-left: 0.5rem;
     }
 
     .answer-reveal {
-      margin-top: 0.85rem;
-      padding: 0.85rem 1rem;
-      background: var(--success-bg);
-      border: 1px solid #bbf7d0;
-      border-radius: 8px;
-      font-size: 0.9rem;
+      margin-top: 0.9rem;
+      padding: 0.9rem 1.1rem;
+      background: var(--forest-soft);
+      border: 1.5px solid #96d6b6;
+      border-radius: 10px;
+      font-size: 0.92rem;
+      color: #123f2d;
       display: none;
     }
 
@@ -541,8 +709,8 @@
 <header>
   <div class="nav-container">
     <div class="brand">
-      <span>History A1–A2</span>
-      <span class="badge">Unit: Neolithic Period</span>
+      <span>🌾 History A1–A2</span>
+      <span class="badge">Grade 7 • Neolithic Period</span>
     </div>
     <nav>
       <a href="#warmup">Warm-up</a>
@@ -554,21 +722,22 @@
 </header>
 
 <main>
-  <!-- INTRO HEADER -->
-  <section class="card">
+  <!-- HERO INTRO -->
+  <section class="hero-card">
+    <div class="hero-tag">🏛️ World History • New Stone Age</div>
     <h1>Farming Changes the World</h1>
-    <p class="subtitle">The first farmers of the Neolithic period (the New Stone Age)</p>
+    <p class="subtitle">Discover how the first farmers of the Neolithic period changed food, land, tools, and jobs</p>
     <div class="objectives">
-      <div>
-        <strong>In this unit you will learn:</strong>
+      <div class="obj-box">
+        <strong>🎯 In this unit you will learn:</strong>
         <ul>
           <li>Where and when the first farmers lived</li>
           <li>How farming changed the land, food, tools and jobs</li>
           <li>Why farming was a turning point in history</li>
         </ul>
       </div>
-      <div>
-        <strong>In this unit you will practise:</strong>
+      <div class="obj-box">
+        <strong>✍️ In this unit you will practise:</strong>
         <ul>
           <li>Using the past simple to talk about the past</li>
           <li>Regular and irregular past verbs</li>
@@ -579,73 +748,87 @@
   </section>
 
   <!-- WARM UP -->
-  <section id="warmup" class="card">
-    <h2>Warm-up: Look at Picture 1</h2>
-    <p>Look carefully at the Neolithic farming village below. Click the items you can find in the picture (watch out—two items do NOT belong in the Stone Age!):</p>
+  <section id="warmup" class="card card-warmup">
+    <h2>
+      <span class="sec-icon icon-gold">👀</span>
+      Warm-up: Look at Picture 1
+    </h2>
+    <p>Look carefully at the Neolithic farming village below. Click the items you can find in the picture (watch out—two items do <strong>NOT</strong> belong in the Stone Age!):</p>
 
-    <!-- PICTURE 1 INSERTED HERE -->
+    <!-- PICTURE 1 -->
     <figure class="coursebook-figure">
-      <img src="village.jpg" alt="Picture 1: Life in a Neolithic farming village" onerror="this.style.display='none'; document.getElementById('img-missing-note').style.display='block';">
-      <div id="img-missing-note" style="display:none; padding: 1.5rem; color: var(--muted); font-size: 0.9rem;">
-        🖼️ <strong>Image placeholder:</strong> Upload <code>neolithic_farming_village.png</code> to your GitHub repository to display Picture 1 here.
+      <img
+        id="village-img"
+        src="neolithic_farming_village.png"
+        alt="Picture 1: Life in a Neolithic farming village"
+        onload="document.getElementById('img-fallback').style.display='none';"
+        onerror="handleImageError(this);"
+      />
+      <div id="img-fallback" class="img-fallback">
+        <p style="font-weight:700; margin-bottom:0.4rem;">⚠️ Could not load <code>neolithic_farming_village.png</code> from GitHub yet.</p>
+        <p style="margin-bottom:0.75rem;">Check that the file in your repository is named <code>neolithic_farming_village.png</code> and opens properly on GitHub, or load it directly from your computer for class right now:</p>
+        <input type="file" accept="image/*" onchange="loadLocalImage(event)" style="max-width:320px;" />
       </div>
-      <figcaption class="coursebook-caption"><strong>Picture 1:</strong> Life in a Neolithic farming village</figcaption>
+      <figcaption class="coursebook-caption">
+        <span><strong>Picture 1:</strong> Life in a Neolithic farming village</span>
+        <span style="color: var(--forest); font-weight: 600;">~11,000 years ago</span>
+      </figcaption>
     </figure>
-    
+
     <div class="checklist-grid" id="warmup-list">
-      <label class="check-item" data-valid="true" data-feedback="Yes! There is a round mud-and-straw house right in the center of the village (and another house on the right).">
+      <label class="check-item" data-valid="true" data-feedback="Yes! There is a round house with a thatched roof in the center of the village, plus another house on the right.">
         <input type="checkbox" onchange="handleWarmupClick(this)"> <span>a house</span>
       </label>
-      <label class="check-item" data-valid="true" data-feedback="Yes! Look on the middle-left—two white sheep are walking near the dog and goat.">
+      <label class="check-item" data-valid="true" data-feedback="Yes! Two white sheep are walking on the left side near the dog and goat.">
         <input type="checkbox" onchange="handleWarmupClick(this)"> <span>sheep</span>
       </label>
-      <label class="check-item" data-valid="true" data-feedback="Yes! A brown goat is walking right next to the sheep on the left.">
+      <label class="check-item" data-valid="true" data-feedback="Yes! A brown goat is walking on the left side right next to the sheep.">
         <input type="checkbox" onchange="handleWarmupClick(this)"> <span>a goat</span>
       </label>
-      <label class="check-item" data-valid="true" data-feedback="Yes! Look inside the fenced pen behind the big house—there is a cow (ox) resting.">
+      <label class="check-item" data-valid="true" data-feedback="Yes! Inside the round fenced pen behind the main house, there is a large cow/ox.">
         <input type="checkbox" onchange="handleWarmupClick(this)"> <span>a cow</span>
       </label>
-      <label class="check-item" data-valid="true" data-feedback="Yes! In the top-left corner, two farmers are cutting tall golden wheat.">
+      <label class="check-item" data-valid="true" data-feedback="Yes! In the top-left field, villagers are harvesting tall golden wheat.">
         <input type="checkbox" onchange="handleWarmupClick(this)"> <span>wheat</span>
       </label>
-      <label class="check-item" data-valid="true" data-feedback="Yes! In front of the house on the left, a pot is hanging over a cooking fire.">
+      <label class="check-item" data-valid="true" data-feedback="Yes! In front of the central house on the left, a cooking pot hangs over a campfire.">
         <input type="checkbox" onchange="handleWarmupClick(this)"> <span>a fire</span>
       </label>
-      <label class="check-item" data-valid="false" data-feedback="Not quite! Tractors are modern machines. Neolithic farmers did not have engines or tractors.">
+      <label class="check-item" data-valid="false" data-feedback="Not quite! Tractors are modern machines—Neolithic people did not have engines or tractors.">
         <input type="checkbox" onchange="handleWarmupClick(this)"> <span>a tractor</span>
       </label>
-      <label class="check-item" data-valid="true" data-feedback="Yes! A woman in the bottom-left is weaving baskets, and another woman is carrying a basket on her shoulder.">
+      <label class="check-item" data-valid="true" data-feedback="Yes! A person in the bottom-left is weaving baskets, and another carries a basket on her shoulder.">
         <input type="checkbox" onchange="handleWarmupClick(this)"> <span>baskets</span>
       </label>
-      <label class="check-item" data-valid="true" data-feedback="Yes! You can see clay pots hanging over the fire, inside the house, and on the ground in the bottom-left.">
+      <label class="check-item" data-valid="true" data-feedback="Yes! Clay pots are hanging over the fire, resting inside the house, and sitting on the ground below.">
         <input type="checkbox" onchange="handleWarmupClick(this)"> <span>pots</span>
       </label>
-      <label class="check-item" data-valid="true" data-feedback="Yes! A dark brown dog is running next to the sheep on the left side of the picture.">
+      <label class="check-item" data-valid="true" data-feedback="Yes! A dark dog is running on the lower-left path near the sheep.">
         <input type="checkbox" onchange="handleWarmupClick(this)"> <span>a dog</span>
       </label>
-      <label class="check-item" data-valid="true" data-feedback="Yes! On the middle-right, a woman is carrying a bundle of wood, and a man in the top-right is chopping a log.">
+      <label class="check-item" data-valid="true" data-feedback="Yes! On the right side, a woman carries a bundle of wood and a man chops wood near the trees.">
         <input type="checkbox" onchange="handleWarmupClick(this)"> <span>wood</span>
       </label>
-      <label class="check-item" data-valid="true" data-feedback="Yes! In the bottom-center, someone is pouring yellow grain from a basket into a storage pit in the ground.">
+      <label class="check-item" data-valid="true" data-feedback="Yes! At the bottom-center, someone pours yellow grain from a basket into a storage pit in the ground.">
         <input type="checkbox" onchange="handleWarmupClick(this)"> <span>grain</span>
       </label>
-      <label class="check-item" data-valid="true" data-feedback="Yes! Two young children are playing on the right side near the woman carrying wood.">
+      <label class="check-item" data-valid="true" data-feedback="Yes! Two children are playing on the right side near the woman carrying wood.">
         <input type="checkbox" onchange="handleWarmupClick(this)"> <span>children</span>
       </label>
-      <label class="check-item" data-valid="false" data-feedback="Incorrect! Plastic did not exist 11,000 years ago. People stored water and grain in clay pots and baskets.">
+      <label class="check-item" data-valid="false" data-feedback="Incorrect! Plastic did not exist in the Stone Age—villagers used clay pots, baskets, and animal skins.">
         <input type="checkbox" onchange="handleWarmupClick(this)"> <span>plastic bottles</span>
       </label>
     </div>
 
-    <p id="warmup-status" class="hint-text">Found: 0 / 12 Neolithic items</p>
+    <span id="warmup-status" class="progress-pill">Found: 0 / 12 Neolithic items</span>
 
-    <!-- LIVE CORRECTIVE FEEDBACK APPEARS HERE -->
+    <!-- CORRECTIVE FEEDBACK AT BOTTOM OF CHECKLIST -->
     <div id="warmup-feedback-banner" class="live-feedback-box"></div>
 
     <!-- PAIR DISCUSSION WITH LIVE CLASS BOARD -->
     <div class="pair-box">
-      <strong>Pair Discussion & Class Board:</strong>
-      <p style="font-size: 0.9rem; margin-top: 0.25rem;">
+      <strong style="color: #7c4706; font-size: 1rem;">💬 Pair Discussion & Class Board</strong>
+      <p style="font-size: 0.92rem; margin-top: 0.3rem;">
         1. What jobs are the people doing? (e.g., <em>"I think this woman is cutting wheat."</em>)<br>
         2. Is this village very old or modern? How do you know?
       </p>
@@ -653,16 +836,16 @@
       <div class="discussion-form">
         <input type="text" id="student-name" placeholder="Your Name / Pair Names (e.g., Minh & Lan)">
         <textarea id="student-answer" rows="2" placeholder="Write your answers to questions 1 & 2 here..."></textarea>
-        <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
-          <button class="btn-primary" id="submit-post-btn" onclick="submitDiscussion()">Post to Class Board</button>
-          <span id="post-status" style="font-size: 0.85rem; font-weight: 600;"></span>
+        <div style="display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap;">
+          <button class="btn-warm" id="submit-post-btn" onclick="submitDiscussion()">Post to Class Board</button>
+          <span id="post-status" style="font-size: 0.88rem; font-weight: 700;"></span>
         </div>
       </div>
 
       <div class="board-container">
         <div class="board-header">
-          <strong style="font-size: 0.92rem; color: #92400e;">Classmates' Answers:</strong>
-          <button class="btn-outline" style="padding: 0.25rem 0.65rem; font-size: 0.8rem;" onclick="loadDiscussionPosts()">↻ Refresh</button>
+          <strong style="font-size: 0.94rem; color: var(--terracotta);">🌟 Classmates' Answers</strong>
+          <button class="btn-outline" style="padding: 0.28rem 0.7rem; font-size: 0.8rem;" onclick="loadDiscussionPosts()">↻ Refresh</button>
         </div>
         <div class="post-list" id="class-board-list">
           <p class="hint-text">No posts yet—be the first pair to share your answer!</p>
@@ -672,11 +855,14 @@
   </section>
 
   <!-- SECTION 1: FARMING WORDS -->
-  <section id="vocab" class="card">
-    <h2>1. Farming Words</h2>
-    <p>Match the words (1–6) to their correct meanings (a–f).</p>
+  <section id="vocab" class="card card-vocab">
+    <h2>
+      <span class="sec-icon icon-forest">🌱</span>
+      1. Farming Words
+    </h2>
+    <p>Match each farming word (1–6) to its correct meaning (a–f).</p>
 
-    <div id="vocab-container" style="margin-top: 0.75rem;">
+    <div id="vocab-container" style="margin-top: 0.85rem;">
       <div class="vocab-row">
         <div class="vocab-word">1. farm (v)</div>
         <select data-answer="b">
@@ -764,49 +950,55 @@
   </section>
 
   <!-- SECTION 2: READING -->
-  <section id="reading" class="card">
-    <h2>2. Reading: Farming Changes the World</h2>
-    
+  <section id="reading" class="card card-reading">
+    <h2>
+      <span class="sec-icon icon-terra">📖</span>
+      2. Reading: Farming Changes the World
+    </h2>
+
     <div class="reading-toolbar">
-      <span><strong>Tip:</strong> Find the 6 farming words in the text below.</span>
-      <button class="btn-outline" style="padding: 0.35rem 0.75rem; font-size: 0.82rem;" onclick="toggleHighlights()">Highlight Farming Words</button>
+      <span><strong>🕵️ Spot the words:</strong> Find the 6 farming words as you read.</span>
+      <button class="btn-outline" style="padding: 0.38rem 0.8rem; font-size: 0.84rem;" onclick="toggleHighlights()">✨ Highlight Farming Words</button>
     </div>
 
     <div class="reading-text" id="reading-body">
       <p>For a very long time, people did not have <span class="vocab-highlight">farms</span>. They hunted wild animals and gathered fruit, nuts and seeds from wild plants. They moved from place to place to find food. Then, about 11,000 years ago, something very important happened: people began to grow their own food. This was the start of the Neolithic period. How did farming change the way people lived? What did they eat, and what work did they do?</p>
 
-      <h3>A. Where and when were the first farmers?</h3>
+      <h3><span class="part-pill">Part A</span> Where and when were the first farmers?</h3>
       <p>The first farmers lived in <strong>Mesopotamia</strong>, a land between two big rivers, the Tigris and the Euphrates. Today, this area is part of Iraq and Syria. The land near the rivers was flat and <span class="vocab-highlight">fertile</span>, and there was a lot of water, so it was a good place to grow <span class="vocab-highlight">crops</span>.</p>
       <p>The first farmers planted <span class="vocab-highlight">grain</span> <span class="vocab-highlight">crops</span> such as wheat and barley. They also grew peas, lentils and flax. They ate the peas and lentils, and they used flax to make cloth for their clothes.</p>
       <p>At the same time, people began to <span class="vocab-highlight">domesticate</span> animals. Before, they hunted wild sheep, goats, cows and pigs. Now they kept these animals on their <span class="vocab-highlight">farms</span>, so they had meat and milk all year. However, farmers did not stop hunting completely. They still hunted wild animals, caught fish and collected fruit and nuts.</p>
       <p>Farming spread very slowly from Mesopotamia to other places. It reached the south of Europe about 2,000 years later.</p>
 
       <div class="info-callout">
-        <strong>Did you know?</strong> <strong>BCE</strong> = Before the Common Era. We count BCE years backwards, so 9000 BCE is older than 3000 BCE.
+        <strong>💡 History Note:</strong> <strong>BCE</strong> = Before the Common Era. We count BCE years backwards, so 9000 BCE is older than 3000 BCE.
       </div>
 
-      <h3>B. Changing the land</h3>
+      <h3><span class="part-pill">Part B</span> Changing the land</h3>
       <p>Farmers changed the land around them. They cut down trees and cleared the land to make fields for their <span class="vocab-highlight">crops</span>. Their animals ate the wild plants and grass. To bring water to the fields, farmers dug long water channels from the river. Some farmers built a dam across a river to keep and store water.</p>
       <p>In places with hills, farmers made terraces. Terraces are flat steps of land on the side of a hill, so the rain does not wash the soil away. Farmers in Vietnam still grow rice on terraces today.</p>
 
-      <h3>C. Changing food</h3>
+      <h3><span class="part-pill">Part C</span> Changing food</h3>
       <p>Because people grew their own <span class="vocab-highlight">grain</span>, they had more food. Farmers ground wheat and barley between two stones to make flour, and then they made bread and porridge. Their animals gave them meat and milk. Food was now easier to find, so families did not need to move any more. They built houses and lived together in villages.</p>
 
-      <h3>D. New tools and technology</h3>
+      <h3><span class="part-pill">Part D</span> New tools and technology</h3>
       <p>Farming led to new inventions. Later, farmers invented the <span class="vocab-highlight">plough</span>, a tool that breaks up the soil so seeds can grow. Strong animals, such as cows, pulled the <span class="vocab-highlight">plough</span>, so farmers could prepare a big field quickly. Some farmers in Vietnam still use buffaloes to <span class="vocab-highlight">plough</span> their rice fields.</p>
       <p>Stone tools also got better. People polished their stone axes and blades, so they were smooth and sharp and cut better. People also learned to make pottery. They shaped wet clay into pots and bowls, and then they baked them in a fire to make them hard. They used the pots to store <span class="vocab-highlight">grain</span>, water and milk. Farmers also made textiles. They made linen from flax, and they used wool from sheep and goats to make warm clothes.</p>
 
-      <h3>E. New jobs</h3>
+      <h3><span class="part-pill">Part E</span> New jobs</h3>
       <p>In a farming village, there were many different jobs. Some people looked after the animals, and others worked in the fields. Some people became very good at making pots, so pottery became their special job. Sometimes a village grew more food than it needed. People traded the extra food with other villages for things they did not have, such as tools, special stones or animals. In this way, trading became another new job.</p>
     </div>
   </section>
 
   <!-- SECTION 3: CHECK YOUR UNDERSTANDING -->
-  <section id="check" class="card">
-    <h2>3. Check Your Understanding</h2>
+  <section id="check" class="card card-check">
+    <h2>
+      <span class="sec-icon icon-plum">✅</span>
+      3. Check Your Understanding
+    </h2>
 
     <!-- TASK 3A -->
-    <h3>A. Complete the fact file (Use information from Part A)</h3>
+    <h3><span class="part-pill">Task A</span> Complete the fact file (Use information from Part A)</h3>
     <table>
       <thead>
         <tr>
@@ -816,27 +1008,27 @@
       </thead>
       <tbody id="task3a-body">
         <tr>
-          <td><strong>Where?</strong></td>
+          <td><strong>📍 Where?</strong></td>
           <td>Mesopotamia (today: <input type="text" style="width: 220px; display: inline-block;" data-keywords="iraq,syria" placeholder="max. 3 words">)</td>
         </tr>
         <tr>
-          <td><strong>When?</strong></td>
+          <td><strong>⏳ When?</strong></td>
           <td><input type="text" style="width: 180px; display: inline-block;" data-keywords="11000,11,000" placeholder="max. 3 words"> years ago</td>
         </tr>
         <tr>
-          <td><strong>Why was it a good place?</strong></td>
+          <td><strong>🌿 Why was it a good place?</strong></td>
           <td><input type="text" data-keywords="flat,fertile,water" placeholder="max. 12 words"></td>
         </tr>
         <tr>
-          <td><strong>Crops</strong></td>
+          <td><strong>🌾 Crops</strong></td>
           <td>wheat, <input type="text" style="width: 75%; display: inline-block;" data-keywords="barley,peas,lentils,flax" placeholder="max. 6 words"></td>
         </tr>
         <tr>
-          <td><strong>Animals</strong></td>
+          <td><strong>🐑 Animals</strong></td>
           <td><input type="text" data-keywords="sheep,goats,cows,pigs" placeholder="max. 5 words"></td>
         </tr>
         <tr>
-          <td><strong>Food they still collected</strong></td>
+          <td><strong>🧺 Food they still collected</strong></td>
           <td><input type="text" data-keywords="wild animals,fish,fruit,nuts" placeholder="max. 6 words"></td>
         </tr>
       </tbody>
@@ -857,7 +1049,7 @@
     </div>
 
     <!-- TASK 3B -->
-    <h3 style="margin-top: 2rem;">B. Complete the timeline</h3>
+    <h3 style="margin-top: 2.1rem;"><span class="part-pill">Task B</span> Complete the timeline</h3>
     <div class="timeline-grid" id="task3b-body">
       <div class="timeline-card">
         <div class="timeline-date">about 11,000 years ago</div>
@@ -875,7 +1067,7 @@
         <input type="text" data-keywords="pot,pottery,clay" placeholder="max. 8 words">
       </div>
       <div class="timeline-card">
-        <div class="timeline-date">today ★</div>
+        <div class="timeline-date">★ today</div>
         <p style="font-size: 0.9rem; margin-bottom: 0.4rem;">Some farmers in Vietnam still use:</p>
         <input type="text" data-keywords="terraces" placeholder="word 1" style="margin-bottom: 0.35rem;">
         <input type="text" data-keywords="buffaloes,buffalo" placeholder="word 2">
@@ -895,7 +1087,7 @@
     </div>
 
     <!-- TASK 3C -->
-    <h3 style="margin-top: 2rem;">C. Complete the mind map (How did farming change people's lives?)</h3>
+    <h3 style="margin-top: 2.1rem;"><span class="part-pill">Task C</span> Complete the mind map (How did farming change people's lives?)</h3>
     <p class="hint-text">Use information from Parts B–E. Write 2 more ideas in each box (max. 5 words each).</p>
     <div class="mindmap-grid">
       <div class="mm-box mm-land">
@@ -943,13 +1135,13 @@
     </div>
 
     <!-- TASK 3D -->
-    <h3 style="margin-top: 2rem;">D. Be a good historian</h3>
+    <h3 style="margin-top: 2.1rem;"><span class="part-pill">Task D</span> Be a good historian</h3>
     <p style="font-size: 0.93rem;">Good historians look for <strong>turning points</strong>: times when life changed completely. Complete the table and conclusion.</p>
     <table>
       <thead>
         <tr>
-          <th style="width: 50%; background: #fef2f2;">⏪ Before farming, people...</th>
-          <th style="width: 50%; background: #f0fdf4;">⏩ After farming, people...</th>
+          <th style="width: 50%; background: #fdeaea; color: #7f1d1d;">⏪ Before farming, people...</th>
+          <th style="width: 50%; background: #e6f6ec; color: #14532d;">⏩ After farming, people...</th>
         </tr>
       </thead>
       <tbody>
@@ -973,7 +1165,7 @@
     </table>
 
     <div style="margin-top: 0.85rem;">
-      <label style="font-weight: 600; font-size: 0.93rem; display: block; margin-bottom: 0.35rem;">
+      <label style="font-weight: 700; font-size: 0.94rem; display: block; margin-bottom: 0.35rem;">
         Farming was a turning point because people... <span class="hint-text" style="display: inline;">(max. 15 words)</span>
       </label>
       <input type="text" placeholder="Write your conclusion sentence here...">
@@ -996,7 +1188,26 @@
   // PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL INSIDE THE QUOTES BELOW:
   const GOOGLE_SCRIPT_URL = "";
 
-  // 1. Warmup Checklist with Instant Corrective Feedback
+  // Image error & local fallback
+  function handleImageError(imgEl) {
+    imgEl.style.display = 'none';
+    document.getElementById('img-fallback').style.display = 'block';
+  }
+
+  function loadLocalImage(event) {
+    const file = event.target.files && event.target.files[0];
+    if (!file) return;
+    const imgEl = document.getElementById('village-img');
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      imgEl.src = e.target.result;
+      imgEl.style.display = 'block';
+      document.getElementById('img-fallback').style.display = 'none';
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // Warm-up Checklist with Instant Corrective Feedback (No Strikethrough)
   function handleWarmupClick(checkbox) {
     const label = checkbox.closest('.check-item');
     const isValid = label.dataset.valid === "true";
@@ -1024,7 +1235,7 @@
     document.getElementById('warmup-status').textContent = `Found: ${validChecked} / 12 Neolithic items`;
   }
 
-  // 2. Live Class Discussion Board (Google Sheets Backend + Local Fallback)
+  // Live Class Discussion Board
   async function submitDiscussion() {
     const nameInput = document.getElementById('student-name');
     const answerInput = document.getElementById('student-answer');
@@ -1062,7 +1273,6 @@
         statusEl.textContent = 'Error posting. Check your connection.';
       }
     } else {
-      // Fallback preview if teacher hasn't connected Google Sheet URL yet
       const posts = JSON.parse(localStorage.getItem('local_class_posts') || '[]');
       posts.unshift({ name, answer, time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) });
       localStorage.setItem('local_class_posts', JSON.stringify(posts));
@@ -1112,10 +1322,9 @@
     return String(str).replace(/[&<>"']/g, m => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m]));
   }
 
-  // Load posts on page open
   loadDiscussionPosts();
 
-  // 3. Vocab & Comprehension Checkers
+  // Vocab & Comprehension Checkers
   function checkVocab() {
     const selects = document.querySelectorAll('#vocab-container select');
     let score = 0;
