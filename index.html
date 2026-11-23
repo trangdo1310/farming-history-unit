@@ -40,12 +40,19 @@
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background-color: var(--bg);
+      background-image:
+        linear-gradient(rgba(255, 250, 240, 0.72), rgba(255, 250, 240, 0.25)),
+        url("background.jpg");
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
       color: var(--text);
       line-height: 1.65;
       padding-bottom: 5rem;
     }
 
-    /* Top Navigation Bar + Progress Bar + Slide Hide + Active Link Highlight */
+    /* Top Navigation Bar + Progress Bar */
     header {
       background: rgba(255, 255, 255, 0.97);
       backdrop-filter: blur(8px);
@@ -118,7 +125,7 @@
       border: 1.5px solid transparent;
     }
 
-    nav a.nav-link:hover {
+    nav a.nav-link:hover:not(.locked-nav) {
       background: var(--amber-soft);
       color: #92400e;
     }
@@ -134,6 +141,12 @@
     nav a.nav-link.completed-sec::after {
       content: " ✓";
       font-weight: 900;
+    }
+
+    nav a.nav-link.locked-nav {
+      opacity: 0.45;
+      cursor: not-allowed;
+      pointer-events: none;
     }
 
     .top-progress-track {
@@ -161,6 +174,16 @@
 
     section[id] {
       scroll-margin-top: 84px;
+    }
+
+    /* Step-by-Step Section Visibility */
+    .step-section {
+      display: none;
+      animation: fadeInUp 0.38s ease;
+    }
+
+    .step-section.step-unlocked {
+      display: block;
     }
 
     /* Glowing Video-Like Shifting Gradient on Opening Page Only */
@@ -254,11 +277,12 @@
 
     /* Cards */
     .card {
-      background: var(--surface);
+      background: rgba(255, 255, 255, 0.93);
+      backdrop-filter: blur(4px);
       border: 2px solid var(--border);
       border-radius: 18px;
       padding: 1.85rem;
-      box-shadow: 0 6px 20px rgba(24, 34, 48, 0.05);
+      box-shadow: 0 6px 20px rgba(24, 34, 48, 0.06);
     }
 
     .card-warmup { border-top: 7px solid var(--amber); }
@@ -268,7 +292,6 @@
     .card-lang { border-top: 7px solid var(--teal); }
     .card-practice { border-top: 7px solid #ea580c; }
     .card-project { border-top: 7px solid #16a34a; background: linear-gradient(180deg, #ffffff 0%, #f4fdf7 100%); }
-    .card-glossary { border-top: 7px solid #0d9488; background: linear-gradient(180deg, #ffffff 0%, #f4fdfa 100%); }
 
     h2 {
       font-size: 1.4rem;
@@ -320,10 +343,30 @@
       text-transform: uppercase;
     }
 
-    /* Glossary Cards */
+    /* Collapsible Glossary Drawer under Reading */
+    .glossary-drawer-wrap {
+      margin-top: 1.5rem;
+      border-top: 2px dashed #fed7aa;
+      padding-top: 1.15rem;
+    }
+
+    .glossary-drawer-panel {
+      display: none;
+      margin-top: 1rem;
+      padding: 1.25rem;
+      background: linear-gradient(180deg, #ffffff 0%, #f4fdfa 100%);
+      border: 2px solid #5eead4;
+      border-radius: 16px;
+      animation: fadeInUp 0.3s ease;
+    }
+
+    .glossary-drawer-panel.open {
+      display: block;
+    }
+
     .glossary-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
       gap: 1.1rem;
       margin-top: 1rem;
     }
@@ -399,7 +442,7 @@
       margin-top: 0.1rem;
     }
 
-    /* Pictures & Side-by-Side Layouts (No Captions) */
+    /* Pictures & Side-by-Side Layouts */
     .split-row {
       display: grid;
       grid-template-columns: 1.25fr 1fr;
@@ -519,8 +562,13 @@
       transform: scale(0.98);
     }
 
-    button:hover {
+    button:hover:not(:disabled) {
       filter: brightness(0.97);
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
     }
 
     .btn-primary {
@@ -541,10 +589,22 @@
       box-shadow: 0 4px 10px rgba(99, 102, 241, 0.25);
     }
 
+    .btn-teal {
+      background: linear-gradient(135deg, #0d9488, #0f766e);
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(13, 148, 136, 0.25);
+    }
+
     .btn-outline {
       background: #fff;
       border-color: #cbd5e1;
       color: #1e293b;
+    }
+
+    .btn-record {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(220, 38, 38, 0.25);
     }
 
     .btn-group {
@@ -553,6 +613,23 @@
       margin-top: 1.05rem;
       flex-wrap: wrap;
       align-items: center;
+    }
+
+    .next-step-bar {
+      margin-top: 1.25rem;
+      padding: 0.9rem 1.1rem;
+      background: #ecfdf5;
+      border: 2px solid #6ee7b7;
+      border-radius: 12px;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .next-step-bar.show {
+      display: flex;
     }
 
     /* Warmup Checklist */
@@ -638,7 +715,7 @@
       color: #7f1d1d;
     }
 
-    /* Pair Discussion & Board */
+    /* Voice Recorder & Suggested Answer Boxes */
     .pair-box {
       background: linear-gradient(135deg, #fff7ed, #fef3c7);
       border: 2px solid #fbbf24;
@@ -648,93 +725,136 @@
       margin-top: 1.4rem;
     }
 
-    .discussion-form {
+    .recorder-controls {
       display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-      margin-top: 0.75rem;
-    }
-
-    .discussion-form input,
-    .discussion-form textarea {
-      width: 100%;
-      padding: 0.65rem 0.8rem;
-      border: 1.5px solid #f59e0b;
-      border-radius: 9px;
-      font-family: inherit;
-      font-size: 0.92rem;
-      background: #fff;
-    }
-
-    .board-container {
-      margin-top: 1.15rem;
-      padding-top: 1rem;
-      border-top: 2px dashed #f59e0b;
-    }
-
-    .board-header {
-      display: flex;
-      justify-content: space-between;
+      flex-wrap: wrap;
       align-items: center;
-      margin-bottom: 0.65rem;
-    }
-
-    .post-list {
-      display: flex;
-      flex-direction: column;
       gap: 0.6rem;
-      max-height: 300px;
-      overflow-y: auto;
+      margin-top: 0.7rem;
     }
 
-    .student-post {
-      background: #fff;
-      border: 1.5px solid #fde68a;
-      border-radius: 10px;
-      padding: 0.7rem 0.9rem;
-      font-size: 0.9rem;
+    .rec-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #dc2626;
+      animation: pulseRec 1s infinite;
     }
 
-    .student-post-meta {
-      font-weight: 700;
-      color: #c2410c;
-      font-size: 0.83rem;
-      margin-bottom: 0.2rem;
+    @keyframes pulseRec {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.25; }
+    }
+
+    .suggested-box {
+      display: none;
+      margin-top: 0.9rem;
+      padding: 0.95rem 1.15rem;
+      background: #fffbeb;
+      border: 2px solid #f59e0b;
+      border-left: 5px solid #d97706;
+      border-radius: 11px;
+      font-size: 0.93rem;
+      color: #78350f;
+    }
+
+    .suggested-box.show {
+      display: block;
+      animation: fadeInUp 0.25s ease;
+    }
+
+    /* Drag & Drop Word Box (Section 1 & 5A) */
+    .drag-bank {
       display: flex;
-      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      padding: 0.85rem;
+      background: #f0fdf4;
+      border: 2px dashed #34d399;
+      border-radius: 12px;
+      min-height: 54px;
+      margin: 0.85rem 0 1rem;
     }
 
-    /* Vocab & Inputs */
-    .vocab-row {
+    .drag-chip {
+      background: #ffffff;
+      border: 2px solid #10b981;
+      color: #065f46;
+      font-weight: 800;
+      font-size: 0.9rem;
+      padding: 0.34rem 0.8rem;
+      border-radius: 999px;
+      cursor: grab;
+      user-select: none;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+      transition: transform 0.12s ease, background 0.15s ease;
+    }
+
+    .drag-chip:active {
+      cursor: grabbing;
+      transform: scale(1.04);
+    }
+
+    .drag-chip.selected-chip {
+      background: #dbeafe;
+      border-color: #2563eb;
+      color: #1e3a8a;
+    }
+
+    .vocab-match-row {
       display: grid;
-      grid-template-columns: 170px 1fr;
-      gap: 1rem;
+      grid-template-columns: 185px 1fr;
+      gap: 0.9rem;
       align-items: center;
-      padding: 0.7rem 0.6rem;
-      border-bottom: 1px solid #f1e6d2;
-      border-radius: 9px;
+      padding: 0.65rem 0.75rem;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 11px;
+      margin-bottom: 0.55rem;
+      background: #ffffff;
     }
 
-    .vocab-row:nth-child(odd) {
-      background: #f3fdf8;
-    }
-
-    @media (max-width: 600px) {
-      .vocab-row {
+    @media (max-width: 640px) {
+      .vocab-match-row {
         grid-template-columns: 1fr;
-        gap: 0.35rem;
       }
     }
 
-    .vocab-word {
-      font-weight: 800;
-      color: #047857;
-      font-size: 0.98rem;
+    .drop-slot {
+      min-height: 42px;
+      border: 2px dashed #94a3b8;
+      border-radius: 10px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.84rem;
+      color: #64748b;
+      transition: all 0.15s ease;
     }
 
-    select, input[type="text"], textarea.form-box {
+    .drop-slot.inline-slot {
+      display: inline-flex;
+      min-width: 135px;
+      min-height: 36px;
+      vertical-align: middle;
+      padding: 0.15rem 0.45rem;
+    }
+
+    .drop-slot.slot-correct {
+      border-color: var(--success) !important;
+      background: var(--success-bg) !important;
+    }
+
+    .drop-slot.slot-wrong {
+      border-color: var(--error) !important;
+      background: var(--error-bg) !important;
+    }
+
+    input[type="text"], textarea.form-box {
       width: 100%;
-      padding: 0.55rem 0.7rem;
+      padding: 0.5rem 0.68rem;
       border: 1.5px solid #cbd5e1;
       border-radius: 8px;
       font-family: inherit;
@@ -743,7 +863,13 @@
       color: var(--text);
     }
 
-    select:focus, input[type="text"]:focus, textarea.form-box:focus {
+    input[type="text"].inline-gap {
+      display: inline-block;
+      width: 135px;
+      margin: 0.15rem 0.2rem;
+    }
+
+    input[type="text"]:focus, textarea.form-box:focus {
       outline: none;
       border-color: var(--emerald);
       box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.16);
@@ -791,6 +917,53 @@
       padding: 1px 4px;
     }
 
+    /* Clickable Past Simple Words in Section 4 */
+    .clickable-reading-box {
+      background: #f0fdfa;
+      border: 2px solid #5eead4;
+      border-radius: 14px;
+      padding: 1.2rem 1.35rem;
+      margin: 0.85rem 0 1rem;
+      line-height: 1.9;
+      font-size: 0.98rem;
+    }
+
+    .clickable-reading-box p {
+      margin-bottom: 0.85rem;
+    }
+
+    .click-word {
+      display: inline-block;
+      padding: 0 3px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.12s ease, transform 0.1s ease;
+    }
+
+    .click-word:hover {
+      background: #fef08a;
+    }
+
+    .click-word.word-selected {
+      background: #bae6fd;
+      border-bottom: 2px solid #0284c7;
+      font-weight: 700;
+    }
+
+    .click-word.word-correct {
+      background: var(--success-bg) !important;
+      color: #14532d;
+      border-bottom: 2px solid var(--success);
+      font-weight: 800;
+    }
+
+    .click-word.word-wrong {
+      background: var(--error-bg) !important;
+      color: #7f1d1d;
+      border-bottom: 2px solid var(--error);
+      text-decoration: line-through;
+    }
+
     .info-callout {
       background: linear-gradient(135deg, #e0f2fe, #eef2ff);
       border: 1.5px solid #93c5fd;
@@ -803,7 +976,7 @@
       color: #1e3a8a;
     }
 
-    /* Multiple Choice Box — Options Stacked One After Another */
+    /* Multiple Choice Box Options */
     .mcq-card {
       background: #f0f9ff;
       border: 2px solid #7dd3fc;
@@ -877,7 +1050,7 @@
       border: 1px solid #e2d6c1;
       padding: 0.68rem 0.78rem;
       text-align: left;
-      vertical-align: top;
+      vertical-align: middle;
     }
 
     th {
@@ -897,9 +1070,9 @@
     .timeline-track {
       position: relative;
       display: grid;
-      grid-template-columns: repeat(4, minmax(190px, 1fr));
+      grid-template-columns: repeat(4, minmax(210px, 1fr));
       gap: 1rem;
-      min-width: 760px;
+      min-width: 840px;
     }
 
     .timeline-track::before {
@@ -951,65 +1124,76 @@
       border-radius: 12px;
       padding: 0.8rem;
       text-align: left;
+      font-size: 0.9rem;
+      line-height: 1.75;
     }
 
-    /* REAL MIND MAP WITH LINES, ARROWS & CENTRAL HUB */
+    /* RADIAL 2x2 MIND MAP WITH CENTER HUB & NO ARROWS */
     .mindmap-diagram {
+      position: relative;
       margin-top: 1rem;
-      padding: 1.25rem;
+      padding: 1.5rem;
       background: #fffdf8;
       border: 2px solid #e7dcc7;
-      border-radius: 16px;
+      border-radius: 18px;
     }
 
-    .mm-center-wrap {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 0.25rem;
+    .mindmap-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3.6rem 2.4rem;
+    }
+
+    .mindmap-grid::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 24%;
+      right: 24%;
+      height: 3px;
+      background: #cbd5e1;
+      transform: translateY(-50%);
+      z-index: 1;
+    }
+
+    .mindmap-grid::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 22%;
+      bottom: 22%;
+      width: 3px;
+      background: #cbd5e1;
+      transform: translateX(-50%);
+      z-index: 1;
     }
 
     .mm-center-node {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
       background: linear-gradient(135deg, #fef08a, #fde68a);
       border: 3px solid #d97706;
       color: #78350f;
       font-weight: 900;
-      font-size: 1.05rem;
-      padding: 0.75rem 1.45rem;
-      border-radius: 16px;
-      box-shadow: 0 6px 16px rgba(217, 119, 6, 0.16);
+      font-size: 0.98rem;
+      padding: 0.7rem 1.25rem;
+      border-radius: 999px;
+      box-shadow: 0 6px 18px rgba(217, 119, 6, 0.22), 0 0 0 6px #fffdf8;
       text-align: center;
-    }
-
-    .mm-connectors-svg {
-      width: 100%;
-      height: 58px;
-      display: block;
-    }
-
-    .mindmap-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.15rem;
-      margin-top: 0.15rem;
+      white-space: nowrap;
     }
 
     .mm-box {
       position: relative;
+      z-index: 2;
       border: 2.5px solid var(--border);
-      border-radius: 14px;
-      padding: 1.05rem;
+      border-radius: 16px;
+      padding: 1.15rem;
       box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
-    }
-
-    .mm-box::before {
-      content: "↑";
-      position: absolute;
-      top: -22px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-weight: 900;
-      font-size: 1rem;
-      color: #64748b;
     }
 
     .mm-land { background: #e6faef; border-color: #34d399; }
@@ -1032,13 +1216,30 @@
     }
 
     .mm-seed {
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.88);
       border-radius: 8px;
       padding: 0.4rem 0.65rem;
       font-size: 0.9rem;
     }
 
-    /* Hidden / Unlocked Sections for Past Simple */
+    @media (max-width: 720px) {
+      .mindmap-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .mindmap-grid::before,
+      .mindmap-grid::after {
+        display: none;
+      }
+      .mm-center-node {
+        position: static;
+        transform: none;
+        margin-bottom: 1rem;
+        white-space: normal;
+      }
+    }
+
+    /* Hidden / Unlocked Sub-sections for Past Simple */
     #drag-sort-section,
     #bare-form-section {
       display: none;
@@ -1146,22 +1347,33 @@
       border-color: #c4b5fd;
     }
 
-    .bare-grid {
+    .bare-two-cols {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-      gap: 0.65rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.1rem;
       margin-top: 0.75rem;
     }
 
-    .bare-item {
+    .bare-col-box {
       background: #ffffff;
-      border: 1.5px solid #bbf7d0;
-      border-radius: 10px;
-      padding: 0.6rem 0.75rem;
+      border: 2px solid #bbf7d0;
+      border-radius: 14px;
+      padding: 1rem;
       display: flex;
       flex-direction: column;
-      gap: 0.35rem;
-      font-size: 0.92rem;
+      gap: 0.55rem;
+    }
+
+    .bare-col-box.irreg-col {
+      border-color: #ddd6fe;
+    }
+
+    .bare-row-item {
+      display: grid;
+      grid-template-columns: 115px 1fr;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.93rem;
     }
 
     /* Language Box ("Remember") */
@@ -1207,7 +1419,7 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 0.45rem 0.6rem;
+      gap: 0.45rem 0.55rem;
       line-height: 1.85;
     }
 
@@ -1265,13 +1477,12 @@
     </div>
     <nav id="top-nav">
       <a href="#warmup" class="nav-link active" data-section="warmup">Warm-up</a>
-      <a href="#vocab" class="nav-link" data-section="vocab">1. Words</a>
-      <a href="#reading" class="nav-link" data-section="reading">2. Reading</a>
-      <a href="#check" class="nav-link" data-section="check">3. Check</a>
-      <a href="#language" class="nav-link" data-section="language">4. Past Simple</a>
-      <a href="#practice" class="nav-link" data-section="practice">5. Practice</a>
-      <a href="#project" class="nav-link" data-section="project">6. Project</a>
-      <a href="#glossary" class="nav-link" data-section="glossary">Glossary</a>
+      <a href="#vocab" class="nav-link locked-nav" data-section="vocab">1. Words</a>
+      <a href="#reading" class="nav-link locked-nav" data-section="reading">2. Reading</a>
+      <a href="#check" class="nav-link locked-nav" data-section="check">3. Check</a>
+      <a href="#language" class="nav-link locked-nav" data-section="language">4. Past Simple</a>
+      <a href="#practice" class="nav-link locked-nav" data-section="practice">5. Practice</a>
+      <a href="#project" class="nav-link locked-nav" data-section="project">6. Project</a>
     </nav>
   </div>
   <div class="top-progress-track">
@@ -1282,7 +1493,7 @@
 <main>
   <!-- HERO WITH GLOWING VIDEO-LIKE GRADIENT -->
   <section class="hero-card">
-    <div class="hero-tag">✨ Grade 7 • Lesson 1 • Neolithic Period</div>
+    <div class="hero-tag">📜 Grade 7 • Lesson 1 • Neolithic Period</div>
     <h1>Farming Changes the World</h1>
     <p class="subtitle">The first farmers of the Neolithic period and how they shaped human history</p>
     <div class="objectives">
@@ -1295,7 +1506,7 @@
         </ul>
       </div>
       <div class="obj-box">
-        <strong>⚡ In this unit you will practise:</strong>
+        <strong>✍️ In this unit you will practise:</strong>
         <ul>
           <li>Using the past simple to talk about the past</li>
           <li>Regular and irregular past verbs</li>
@@ -1305,13 +1516,13 @@
     </div>
   </section>
 
-  <!-- WARM UP (PICTURE 1) -->
-  <section id="warmup" class="card card-warmup">
+  <!-- STEP 1: WARM UP (VISIBLE FIRST) -->
+  <section id="warmup" class="card card-warmup step-section step-unlocked">
     <h2>
       <span class="sec-icon icon-amber">👀</span>
       Warm-up: Look at Picture 1
     </h2>
-    <p>Look carefully at the Neolithic farming village in <strong>Picture 1</strong>. Click the items you can find (watch out—two items do <strong>NOT</strong> belong in the Stone Age!):</p>
+    <p>Look carefully at the Neolithic farming village in <strong>Picture 1</strong>. Tick the 12 items you can find (watch out—two items do <strong>NOT</strong> belong in the Stone Age!), then click <strong>Submit Warm-up</strong> to unlock Section 1:</p>
 
     <figure class="pic-box">
       <img
@@ -1372,135 +1583,106 @@
       </label>
     </div>
 
-    <span id="warmup-status" class="progress-pill">Found: 0 / 12 Neolithic items</span>
+    <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
+      <span id="warmup-status" class="progress-pill">Found: 0 / 12 Neolithic items</span>
+      <button type="button" class="btn-primary" onclick="submitWarmup()">Submit Warm-up</button>
+    </div>
     <div id="warmup-feedback-banner" class="live-feedback-box"></div>
+    <div id="warmup-submit-result" class="result-banner"></div>
 
-    <!-- PAIR DISCUSSION WITH LIVE CLASS BOARD -->
+    <!-- PAIR DISCUSSION WITH VOICE RECORDING & SUGGESTED ANSWERS -->
     <div class="pair-box">
-      <strong style="color: #9a3412; font-size: 1rem;">💬 Pair Discussion & Class Board</strong>
+      <strong style="color: #9a3412; font-size: 1rem;">🎙️ Pair Discussion (Voice Recording)</strong>
       <p style="font-size: 0.92rem; margin-top: 0.3rem;">
+        Record your spoken answer to these two questions, then click <strong>Submit Recording</strong> to compare with suggested answers:<br>
         1. What jobs are the people doing? (e.g., <em>"I think this woman is cutting wheat."</em>)<br>
         2. Is this village very old or modern? How do you know?
       </p>
-      <div class="discussion-form">
-        <input type="text" id="student-name" placeholder="Your Name / Pair Names (e.g., Minh & Lan)">
-        <textarea id="student-answer" rows="2" placeholder="Write your answers to questions 1 & 2 here..."></textarea>
-        <div style="display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap;">
-          <button class="btn-warm" id="submit-post-btn" onclick="submitDiscussion()">Post to Class Board</button>
-          <span id="post-status" style="font-size: 0.88rem; font-weight: 700;"></span>
-        </div>
+
+      <div class="recorder-controls">
+        <button type="button" class="btn-record" id="warmup-rec-start" onclick="startSingleRecorder('warmup')">🔴 Start Recording</button>
+        <button type="button" class="btn-outline" id="warmup-rec-stop" onclick="stopSingleRecorder('warmup')" disabled>⏹ Stop</button>
+        <span id="warmup-rec-status" class="hint-text" style="margin-top:0; font-weight:700;">Ready to record</span>
       </div>
-      <div class="board-container">
-        <div class="board-header">
-          <strong style="font-size: 0.94rem; color: #c2410c;">🌟 Classmates' Answers</strong>
-          <button class="btn-outline" style="padding: 0.25rem 0.65rem; font-size: 0.8rem;" onclick="loadDiscussionPosts()">↻ Refresh</button>
-        </div>
-        <div class="post-list" id="class-board-list">
-          <p class="hint-text">No posts yet—be the first pair to share your answer!</p>
-        </div>
+      <audio id="warmup-rec-audio" controls style="display:none; width:100%; max-width:420px; margin-top:0.65rem;"></audio>
+
+      <div class="btn-group">
+        <button type="button" class="btn-warm" onclick="submitWarmupDiscussion()">Submit Recording</button>
       </div>
+
+      <div id="warmup-suggested" class="suggested-box">
+        <strong>💡 Suggested Answers:</strong>
+        <ul style="margin-left:1.25rem; margin-top:0.35rem;">
+          <li><strong>Question 1:</strong> People are cutting wheat, looking after sheep, goats and a cow, cooking over a fire, weaving baskets, chopping and carrying wood, and storing grain.</li>
+          <li><strong>Question 2:</strong> This village is very old (from the Neolithic period / Stone Age). We know because there are no modern machines or electricity—people live in simple mud-and-thatch houses and use clay pots, woven baskets, and stone tools.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="next-after-warmup" class="next-step-bar">
+      <span>🎉 <strong>Warm-up complete!</strong> Section 1 (Farming Words) is now unlocked.</span>
+      <button type="button" class="btn-primary" onclick="goToSection('vocab')">Continue to 1. Words →</button>
     </div>
   </section>
 
-  <!-- 1. FARMING WORDS -->
-  <section id="vocab" class="card card-vocab">
+  <!-- STEP 2: 1. FARMING WORDS (DRAG & DROP MATCHING) -->
+  <section id="vocab" class="card card-vocab step-section">
     <h2>
       <span class="sec-icon icon-emerald">🌱</span>
       1. Farming Words
     </h2>
-    <p>Match the words (1–6) to their meanings (a–f). Then find them in the reading text (and check the Glossary at the end of the lesson).</p>
+    <p>Drag each word from the Word Box into its matching definition (or click a word, then click a box). Complete all 6 to unlock <strong>2. Reading</strong>!</p>
 
-    <div id="vocab-container" style="margin-top: 0.8rem;">
-      <div class="vocab-row">
-        <div class="vocab-word">1. farm (v)</div>
-        <select data-answer="b">
-          <option value="">-- Choose meaning --</option>
-          <option value="a">a. a plant that farmers grow for food, e.g. rice, wheat</option>
-          <option value="b">b. to grow plants and keep animals for food</option>
-          <option value="c">c. to make a wild animal tame so it can live with people</option>
-          <option value="d">d. good for growing plants</option>
-          <option value="e">e. a farm tool that breaks up the soil before planting</option>
-          <option value="f">f. the small, hard seeds of wheat, rice or barley</option>
-        </select>
+    <div id="vocab-word-bank" class="drag-bank" ondragover="allowDrop(event)" ondrop="dropGenericChip(event, 'vocab-word-bank', 'vocab')" onclick="clickPlaceGenericChip('vocab-word-bank', 'vocab')"></div>
+
+    <div id="vocab-match-list">
+      <div class="vocab-match-row">
+        <div class="drop-slot" data-group="vocab" data-ans="farm" ondragover="allowDrop(event)" ondrop="dropGenericChip(event, this, 'vocab')" onclick="clickPlaceGenericChip(this, 'vocab')">Drop word here</div>
+        <div><strong>a.</strong> to grow plants and keep animals for food</div>
       </div>
-      <div class="vocab-row">
-        <div class="vocab-word">2. crop (n)</div>
-        <select data-answer="a">
-          <option value="">-- Choose meaning --</option>
-          <option value="a">a. a plant that farmers grow for food, e.g. rice, wheat</option>
-          <option value="b">b. to grow plants and keep animals for food</option>
-          <option value="c">c. to make a wild animal tame so it can live with people</option>
-          <option value="d">d. good for growing plants</option>
-          <option value="e">e. a farm tool that breaks up the soil before planting</option>
-          <option value="f">f. the small, hard seeds of wheat, rice or barley</option>
-        </select>
+      <div class="vocab-match-row">
+        <div class="drop-slot" data-group="vocab" data-ans="crop" ondragover="allowDrop(event)" ondrop="dropGenericChip(event, this, 'vocab')" onclick="clickPlaceGenericChip(this, 'vocab')">Drop word here</div>
+        <div><strong>b.</strong> a plant that farmers grow for food, e.g. rice, wheat</div>
       </div>
-      <div class="vocab-row">
-        <div class="vocab-word">3. grain (n)</div>
-        <select data-answer="f">
-          <option value="">-- Choose meaning --</option>
-          <option value="a">a. a plant that farmers grow for food, e.g. rice, wheat</option>
-          <option value="b">b. to grow plants and keep animals for food</option>
-          <option value="c">c. to make a wild animal tame so it can live with people</option>
-          <option value="d">d. good for growing plants</option>
-          <option value="e">e. a farm tool that breaks up the soil before planting</option>
-          <option value="f">f. the small, hard seeds of wheat, rice or barley</option>
-        </select>
+      <div class="vocab-match-row">
+        <div class="drop-slot" data-group="vocab" data-ans="grain" ondragover="allowDrop(event)" ondrop="dropGenericChip(event, this, 'vocab')" onclick="clickPlaceGenericChip(this, 'vocab')">Drop word here</div>
+        <div><strong>c.</strong> the small, hard seeds of wheat, rice or barley</div>
       </div>
-      <div class="vocab-row">
-        <div class="vocab-word">4. domesticate (v)</div>
-        <select data-answer="c">
-          <option value="">-- Choose meaning --</option>
-          <option value="a">a. a plant that farmers grow for food, e.g. rice, wheat</option>
-          <option value="b">b. to grow plants and keep animals for food</option>
-          <option value="c">c. to make a wild animal tame so it can live with people</option>
-          <option value="d">d. good for growing plants</option>
-          <option value="e">e. a farm tool that breaks up the soil before planting</option>
-          <option value="f">f. the small, hard seeds of wheat, rice or barley</option>
-        </select>
+      <div class="vocab-match-row">
+        <div class="drop-slot" data-group="vocab" data-ans="domesticate" ondragover="allowDrop(event)" ondrop="dropGenericChip(event, this, 'vocab')" onclick="clickPlaceGenericChip(this, 'vocab')">Drop word here</div>
+        <div><strong>d.</strong> to make a wild animal tame so it can live with people</div>
       </div>
-      <div class="vocab-row">
-        <div class="vocab-word">5. fertile (adj)</div>
-        <select data-answer="d">
-          <option value="">-- Choose meaning --</option>
-          <option value="a">a. a plant that farmers grow for food, e.g. rice, wheat</option>
-          <option value="b">b. to grow plants and keep animals for food</option>
-          <option value="c">c. to make a wild animal tame so it can live with people</option>
-          <option value="d">d. good for growing plants</option>
-          <option value="e">e. a farm tool that breaks up the soil before planting</option>
-          <option value="f">f. the small, hard seeds of wheat, rice or barley</option>
-        </select>
+      <div class="vocab-match-row">
+        <div class="drop-slot" data-group="vocab" data-ans="fertile" ondragover="allowDrop(event)" ondrop="dropGenericChip(event, this, 'vocab')" onclick="clickPlaceGenericChip(this, 'vocab')">Drop word here</div>
+        <div><strong>e.</strong> good for growing plants</div>
       </div>
-      <div class="vocab-row">
-        <div class="vocab-word">6. plough (n)</div>
-        <select data-answer="e">
-          <option value="">-- Choose meaning --</option>
-          <option value="a">a. a plant that farmers grow for food, e.g. rice, wheat</option>
-          <option value="b">b. to grow plants and keep animals for food</option>
-          <option value="c">c. to make a wild animal tame so it can live with people</option>
-          <option value="d">d. good for growing plants</option>
-          <option value="e">e. a farm tool that breaks up the soil before planting</option>
-          <option value="f">f. the small, hard seeds of wheat, rice or barley</option>
-        </select>
+      <div class="vocab-match-row">
+        <div class="drop-slot" data-group="vocab" data-ans="plough" ondragover="allowDrop(event)" ondrop="dropGenericChip(event, this, 'vocab')" onclick="clickPlaceGenericChip(this, 'vocab')">Drop word here</div>
+        <div><strong>f.</strong> a farm tool that breaks up the soil before planting</div>
       </div>
     </div>
 
     <div class="btn-group">
-      <button class="btn-primary" onclick="checkVocab()">Check Answers</button>
-      <button id="vocab-retry" class="btn-warm" style="display:none;" onclick="retryVocab()">Try Again</button>
+      <button class="btn-primary" onclick="checkVocabDrag()">Check Answers</button>
+      <button id="vocab-retry" class="btn-warm" style="display:none;" onclick="retryVocabDrag()">Try Again</button>
     </div>
     <div id="vocab-result" class="result-banner"></div>
+
+    <div id="next-after-vocab" class="next-step-bar">
+      <span>🎉 <strong>All 6 words matched!</strong> Section 2 (Reading) is now unlocked.</span>
+      <button type="button" class="btn-primary" onclick="goToSection('reading')">Continue to 2. Reading →</button>
+    </div>
   </section>
 
-  <!-- 2. READING -->
-  <section id="reading" class="card card-reading">
+  <!-- STEP 3: 2. READING + HIDDEN GLOSSARY DRAWER -->
+  <section id="reading" class="card card-reading step-section">
     <h2>
       <span class="sec-icon icon-coral">📖</span>
       2. Reading: Farming Changes the World
     </h2>
 
     <div class="reading-toolbar">
-      <span><strong>🔎 Word Hunt:</strong> Find the farming words inside the text.</span>
+      <span><strong>🔍 Word Hunt:</strong> Read the text carefully and complete Task 1 & Task 2 below to unlock Section 3.</span>
       <button class="btn-outline" style="padding: 0.35rem 0.78rem; font-size: 0.83rem;" onclick="toggleHighlights()">✨ Highlight Farming Words</button>
     </div>
 
@@ -1553,10 +1735,9 @@
             <div id="map-pin-result" class="result-banner"></div>
           </div>
         </div>
-
         <div>
           <div class="mcq-card" id="vietnam-mcq">
-            <p style="font-weight:800; color:#0c4a6e;">🗺️ Task 2: Is Vietnam near or far from the first farms?</p>
+            <p style="font-weight:800; color:#0c4a6e;">🌏 Task 2: Is Vietnam near or far from the first farms?</p>
             <p style="font-size:0.9rem; color:#334155; margin-top:0.25rem;">
               Look at the map on the left and compare Mesopotamia with Vietnam:
             </p>
@@ -1628,47 +1809,212 @@
       <h3><span class="part-pill">Part E</span> New jobs</h3>
       <p><strong>E1:</strong> In a farming village, there were many different jobs. Some people looked after the animals, and others worked in the fields. Some people became very good at making pots, so <span class="vocab-highlight">pottery</span> became their special job. Sometimes a village grew more food than it needed. People <span class="vocab-highlight">traded</span> the extra food with other villages for things they did not have, such as tools, special stones or animals. In this way, trading became another new job.</p>
     </div>
+
+    <!-- HIDDEN GLOSSARY BUTTON + PANEL RIGHT UNDER READING -->
+    <div class="glossary-drawer-wrap" id="glossary">
+      <button type="button" class="btn-teal" id="toggle-glossary-btn" onclick="toggleGlossaryDrawer()">
+        📚 Open Glossary (Meanings, Pictures & Audio)
+      </button>
+
+      <div id="glossary-drawer-panel" class="glossary-drawer-panel">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+          <strong style="font-size:1.12rem; color:#0f766e;">📚 Glossary: Key Words, Meanings, Pictures & Audio</strong>
+          <button type="button" class="btn-outline" style="padding:0.3rem 0.7rem; font-size:0.82rem;" onclick="toggleGlossaryDrawer()">✕ Hide Glossary</button>
+        </div>
+        <p class="hint-text">Click any audio bar to listen to the pronunciation.</p>
+
+        <div class="glossary-grid">
+          <div class="glossary-card">
+            <div class="glossary-top"><span class="glossary-word">crop (n)</span><span class="glossary-vi">cây trồng</span></div>
+            <p class="glossary-def"><strong>Meaning:</strong> A plant that farmers grow for food.</p>
+            <p class="glossary-ex"><strong>Example:</strong> The first farmers planted <em>crops</em> such as wheat and barley.</p>
+            <div class="glossary-img-wrap">
+              <img id="gl-img-crop" src="crop.jpg" alt="crop" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+              <div class="pic-fallback"><code>crop.jpg</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-crop')"></div>
+            </div>
+            <div class="glossary-audio"><audio controls preload="none" src="audio/crop.mp3"></audio><span class="hint-text"><code>audio/crop.mp3</code></span></div>
+          </div>
+
+          <div class="glossary-card">
+            <div class="glossary-top"><span class="glossary-word">dam (n)</span><span class="glossary-vi">đập nước</span></div>
+            <p class="glossary-def"><strong>Meaning:</strong> A wall across a river that stops and stores water.</p>
+            <p class="glossary-ex"><strong>Example:</strong> Some farmers built a <em>dam</em> across a river to store water.</p>
+            <div class="glossary-img-wrap">
+              <img id="gl-img-dam" src="dam.jpg" alt="dam" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+              <div class="pic-fallback"><code>dam.jpg</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-dam')"></div>
+            </div>
+            <div class="glossary-audio"><audio controls preload="none" src="audio/dam.mp3"></audio><span class="hint-text"><code>audio/dam.mp3</code></span></div>
+          </div>
+
+          <div class="glossary-card">
+            <div class="glossary-top"><span class="glossary-word">domesticate (v)</span><span class="glossary-vi">thuần hoá</span></div>
+            <p class="glossary-def"><strong>Meaning:</strong> To make a wild animal tame so it can live with people.</p>
+            <p class="glossary-ex"><strong>Example:</strong> People began to <em>domesticate</em> sheep, goats, cows and pigs.</p>
+            <div class="glossary-img-wrap">
+              <img id="gl-img-domesticate" src="domesticate.jpg" alt="domesticate" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+              <div class="pic-fallback"><code>domesticate.jpg</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-domesticate')"></div>
+            </div>
+            <div class="glossary-audio"><audio controls preload="none" src="audio/domesticate.mp3"></audio><span class="hint-text"><code>audio/domesticate.mp3</code></span></div>
+          </div>
+
+          <div class="glossary-card">
+            <div class="glossary-top"><span class="glossary-word">fertile (adj)</span><span class="glossary-vi">màu mỡ</span></div>
+            <p class="glossary-def"><strong>Meaning:</strong> Good for growing plants.</p>
+            <p class="glossary-ex"><strong>Example:</strong> The land near the rivers was flat and <em>fertile</em>.</p>
+            <div class="glossary-img-wrap">
+              <img id="gl-img-fertile" src="fertile.jpg" alt="fertile" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+              <div class="pic-fallback"><code>fertile.jpg</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-fertile')"></div>
+            </div>
+            <div class="glossary-audio"><audio controls preload="none" src="audio/fertile.mp3"></audio><span class="hint-text"><code>audio/fertile.mp3</code></span></div>
+          </div>
+
+          <div class="glossary-card">
+            <div class="glossary-top"><span class="glossary-word">field (n)</span><span class="glossary-vi">cánh đồng</span></div>
+            <p class="glossary-def"><strong>Meaning:</strong> An area of land where farmers grow crops.</p>
+            <p class="glossary-ex"><strong>Example:</strong> Farmers cleared the land to make <em>fields</em> for their crops.</p>
+            <div class="glossary-img-wrap">
+              <img id="gl-img-field" src="field.jpg" alt="field" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+              <div class="pic-fallback"><code>field.jpg</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-field')"></div>
+            </div>
+            <div class="glossary-audio"><audio controls preload="none" src="audio/field.mp3"></audio><span class="hint-text"><code>audio/field.mp3</code></span></div>
+          </div>
+
+          <div class="glossary-card">
+            <div class="glossary-top"><span class="glossary-word">grain (n)</span><span class="glossary-vi">ngũ cốc, hạt</span></div>
+            <p class="glossary-def"><strong>Meaning:</strong> The small, hard seeds of wheat, rice or barley.</p>
+            <p class="glossary-ex"><strong>Example:</strong> Because people grew their own <em>grain</em>, they had more food.</p>
+            <div class="glossary-img-wrap">
+              <img id="gl-img-grain" src="grain.jpg" alt="grain" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+              <div class="pic-fallback"><code>grain.jpg</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-grain')"></div>
+            </div>
+            <div class="glossary-audio"><audio controls preload="none" src="audio/grain.mp3"></audio><span class="hint-text"><code>audio/grain.mp3</code></span></div>
+          </div>
+
+          <div class="glossary-card">
+            <div class="glossary-top"><span class="glossary-word">plough (n, v)</span><span class="glossary-vi">cái cày; cày</span></div>
+            <p class="glossary-def"><strong>Meaning:</strong> A farm tool that breaks up the soil before planting.</p>
+            <p class="glossary-ex"><strong>Example:</strong> Strong animals pulled the <em>plough</em> through the soil.</p>
+            <div class="glossary-img-wrap">
+              <img id="gl-img-plough" src="plough.jpg" alt="plough" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+              <div class="pic-fallback"><code>plough.jpg</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-plough')"></div>
+            </div>
+            <div class="glossary-audio"><audio controls preload="none" src="audio/plough.mp3"></audio><span class="hint-text"><code>audio/plough.mp3</code></span></div>
+          </div>
+
+          <div class="glossary-card">
+            <div class="glossary-top"><span class="glossary-word">pottery (n)</span><span class="glossary-vi">đồ gốm</span></div>
+            <p class="glossary-def"><strong>Meaning:</strong> Pots and bowls made from clay.</p>
+            <p class="glossary-ex"><strong>Example:</strong> People learned to make <em>pottery</em> from wet clay.</p>
+            <div class="glossary-img-wrap">
+              <img id="gl-img-pottery" src="pottery.jpg" alt="pottery" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+              <div class="pic-fallback"><code>pottery.jpg</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-pottery')"></div>
+            </div>
+            <div class="glossary-audio"><audio controls preload="none" src="audio/pottery.mp3"></audio><span class="hint-text"><code>audio/pottery.mp3</code></span></div>
+          </div>
+
+          <div class="glossary-card">
+            <div class="glossary-top"><span class="glossary-word">terrace (n)</span><span class="glossary-vi">ruộng bậc thang</span></div>
+            <p class="glossary-def"><strong>Meaning:</strong> A flat step of land on a hill.</p>
+            <p class="glossary-ex"><strong>Example:</strong> Farmers in Vietnam still grow rice on <em>terraces</em> today.</p>
+            <div class="glossary-img-wrap">
+              <img id="gl-img-terrace" src="terrace.jpg" alt="terrace" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+              <div class="pic-fallback"><code>terrace.jpg</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-terrace')"></div>
+            </div>
+            <div class="glossary-audio"><audio controls preload="none" src="audio/terrace.mp3"></audio><span class="hint-text"><code>audio/terrace.mp3</code></span></div>
+          </div>
+
+          <div class="glossary-card">
+            <div class="glossary-top"><span class="glossary-word">textiles (n)</span><span class="glossary-vi">hàng dệt, vải</span></div>
+            <p class="glossary-def"><strong>Meaning:</strong> Cloth, e.g. linen or wool.</p>
+            <p class="glossary-ex"><strong>Example:</strong> Farmers made <em>textiles</em> such as linen and wool for clothes.</p>
+            <div class="glossary-img-wrap">
+              <img id="gl-img-textiles" src="textiles.jpg" alt="textiles" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+              <div class="pic-fallback"><code>textiles.jpg</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-textiles')"></div>
+            </div>
+            <div class="glossary-audio"><audio controls preload="none" src="audio/textiles.mp3"></audio><span class="hint-text"><code>audio/textiles.mp3</code></span></div>
+          </div>
+
+          <div class="glossary-card">
+            <div class="glossary-top"><span class="glossary-word">trade (v)</span><span class="glossary-vi">trao đổi, buôn bán</span></div>
+            <p class="glossary-def"><strong>Meaning:</strong> To give something and get something in return.</p>
+            <p class="glossary-ex"><strong>Example:</strong> People <em>traded</em> extra food with other villages.</p>
+            <div class="glossary-img-wrap">
+              <img id="gl-img-trade" src="trade.jpg" alt="trade" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+              <div class="pic-fallback"><code>trade.jpg</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-trade')"></div>
+            </div>
+            <div class="glossary-audio"><audio controls preload="none" src="audio/trade.mp3"></audio><span class="hint-text"><code>audio/trade.mp3</code></span></div>
+          </div>
+
+          <div class="glossary-card">
+            <div class="glossary-top"><span class="glossary-word">water channel (n)</span><span class="glossary-vi">mương dẫn nước</span></div>
+            <p class="glossary-def"><strong>Meaning:</strong> A long, narrow way for water from a river to a field.</p>
+            <p class="glossary-ex"><strong>Example:</strong> Farmers dug long <em>water channels</em> from the river.</p>
+            <div class="glossary-img-wrap">
+              <img id="gl-img-water-channel" src="water_channel.jpg" alt="water channel" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+              <div class="pic-fallback"><code>water_channel.jpg</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-water-channel')"></div>
+            </div>
+            <div class="glossary-audio"><audio controls preload="none" src="audio/water_channel.mp3"></audio><span class="hint-text"><code>audio/water_channel.mp3</code></span></div>
+          </div>
+
+          <div class="glossary-card">
+            <div class="glossary-top"><span class="glossary-word">BCE</span><span class="glossary-vi">trước Công nguyên</span></div>
+            <p class="glossary-def"><strong>Meaning:</strong> Before the Common Era.</p>
+            <p class="glossary-ex"><strong>Example:</strong> The Neolithic clay pot was made in about 3200 <em>BCE</em>.</p>
+            <div class="glossary-img-wrap">
+              <img id="gl-img-bce" src="bce.jpg" alt="BCE" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+              <div class="pic-fallback"><code>bce.jpg</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-bce')"></div>
+            </div>
+            <div class="glossary-audio"><audio controls preload="none" src="audio/bce.mp3"></audio><span class="hint-text"><code>audio/bce.mp3</code></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="next-after-reading" class="next-step-bar">
+      <span>🎉 <strong>Reading map tasks complete!</strong> Section 3 (Check Your Understanding) is now unlocked.</span>
+      <button type="button" class="btn-primary" onclick="goToSection('check')">Continue to 3. Check →</button>
+    </div>
   </section>
 
-  <!-- 3. CHECK YOUR UNDERSTANDING -->
-  <section id="check" class="card card-check">
+  <!-- STEP 4: 3. CHECK YOUR UNDERSTANDING -->
+  <section id="check" class="card card-check step-section">
     <h2>
       <span class="sec-icon icon-indigo">✅</span>
       3. Check Your Understanding
     </h2>
 
-    <h3><span class="part-pill">Task A</span> Complete the fact file (Use information from Part A)</h3>
+    <h3><span class="part-pill">Task A</span> Complete the fact file (Gap-fill from Part A)</h3>
     <table>
       <thead>
         <tr>
-          <th style="width:32%;">Fact file: the first farmers</th>
+          <th style="width:28%;">Fact file: the first farmers</th>
           <th>Your answers</th>
         </tr>
       </thead>
       <tbody id="task3a-body">
         <tr>
           <td><strong>Where?</strong></td>
-          <td>Mesopotamia (today: <input id="t3a-where" type="text" style="width:220px; display:inline-block;" data-keywords="iraq,syria" placeholder="max. 3 words">)</td>
+          <td>Mesopotamia (today: <input class="inline-gap" type="text" data-exact="iraq" placeholder="country 1"> and <input class="inline-gap" type="text" data-exact="syria" placeholder="country 2">)</td>
         </tr>
         <tr>
           <td><strong>When?</strong></td>
-          <td><input id="t3a-when" type="text" style="width:170px; display:inline-block;" data-keywords="11000,11,000" placeholder="max. 3 words"> years ago</td>
+          <td>about <input class="inline-gap" type="text" data-exact="11000,11,000" placeholder="number"> years ago</td>
         </tr>
         <tr>
           <td><strong>Why was it a good place?</strong></td>
-          <td><input id="t3a-why" type="text" data-keywords="flat,fertile,water" placeholder="max. 12 words"></td>
+          <td>The land near the rivers was <input class="inline-gap" type="text" data-exact="flat" placeholder="adj 1"> and <input class="inline-gap" type="text" data-exact="fertile" placeholder="adj 2">, and there was a lot of <input class="inline-gap" type="text" data-exact="water" placeholder="noun">.</td>
         </tr>
         <tr>
           <td><strong>Crops</strong></td>
-          <td>wheat, <input id="t3a-crops" type="text" style="width:76%; display:inline-block;" data-keywords="barley,peas,lentils,flax" placeholder="max. 6 words"></td>
+          <td>wheat, <input class="inline-gap" type="text" data-exact="barley" placeholder="crop 1">, <input class="inline-gap" type="text" data-exact="peas" placeholder="crop 2">, <input class="inline-gap" type="text" data-exact="lentils" placeholder="crop 3"> and <input class="inline-gap" type="text" data-exact="flax" placeholder="crop 4"></td>
         </tr>
         <tr>
           <td><strong>Animals</strong></td>
-          <td><input id="t3a-animals" type="text" data-keywords="sheep,goats,cows,pigs" placeholder="max. 5 words"></td>
+          <td><input class="inline-gap" type="text" data-exact="sheep" placeholder="animal 1">, <input class="inline-gap" type="text" data-exact="goats" placeholder="animal 2">, <input class="inline-gap" type="text" data-exact="cows" placeholder="animal 3"> and <input class="inline-gap" type="text" data-exact="pigs" placeholder="animal 4"></td>
         </tr>
         <tr>
           <td><strong>Food they still collected</strong></td>
-          <td><input id="t3a-food" type="text" data-keywords="wild animals,fish,fruit,nuts" placeholder="max. 6 words"></td>
+          <td>wild <input class="inline-gap" type="text" data-exact="animals" placeholder="word 1">, <input class="inline-gap" type="text" data-exact="fish" placeholder="word 2">, <input class="inline-gap" type="text" data-exact="fruit" placeholder="word 3"> and <input class="inline-gap" type="text" data-exact="nuts" placeholder="word 4"></td>
         </tr>
       </tbody>
     </table>
@@ -1678,40 +2024,35 @@
     </div>
     <div id="t3a-result" class="result-banner"></div>
 
-    <h3 style="margin-top:2rem;"><span class="part-pill">Task B</span> Complete the timeline</h3>
+    <h3 style="margin-top:2rem;"><span class="part-pill">Task B</span> Complete the timeline (Gap-fill)</h3>
     <div class="timeline-track-wrapper">
       <div class="timeline-track" id="task3b-body">
         <div class="timeline-node-col">
           <div class="timeline-date-pill">about 11,000 years ago</div>
           <div class="timeline-dot"></div>
           <div class="timeline-panel">
-            <p style="font-size:0.88rem; margin-bottom:0.4rem;">Farming started in:</p>
-            <input type="text" data-keywords="mesopotamia" placeholder="max. 8 words">
+            Farming started in <input class="inline-gap" style="width:145px;" type="text" data-exact="mesopotamia" placeholder="place">.
           </div>
         </div>
         <div class="timeline-node-col">
           <div class="timeline-date-pill">about 2,000 years later</div>
           <div class="timeline-dot"></div>
           <div class="timeline-panel">
-            <p style="font-size:0.88rem; margin-bottom:0.4rem;">What happened?</p>
-            <input type="text" data-keywords="europe" placeholder="max. 8 words">
+            Farming reached the south of <input class="inline-gap" style="width:130px;" type="text" data-exact="europe" placeholder="place">.
           </div>
         </div>
         <div class="timeline-node-col">
           <div class="timeline-date-pill">about 3200 BCE</div>
           <div class="timeline-dot"></div>
           <div class="timeline-panel">
-            <p style="font-size:0.88rem; margin-bottom:0.4rem;">What did people make?</p>
-            <input type="text" data-keywords="pot,pottery,clay" placeholder="max. 8 words">
+            People made a Neolithic clay <input class="inline-gap" style="width:120px;" type="text" data-exact="pot,pottery" placeholder="object">.
           </div>
         </div>
         <div class="timeline-node-col">
           <div class="timeline-date-pill">★ today</div>
           <div class="timeline-dot"></div>
           <div class="timeline-panel">
-            <p style="font-size:0.88rem; margin-bottom:0.4rem;">Some farmers in Vietnam still use:</p>
-            <input type="text" data-keywords="terraces" placeholder="word 1" style="margin-bottom:0.35rem;">
-            <input type="text" data-keywords="buffaloes,buffalo" placeholder="word 2">
+            Some farmers in Vietnam still use <input class="inline-gap" style="width:125px;" type="text" data-exact="terraces,terrace" placeholder="word 1"> and <input class="inline-gap" style="width:125px;" type="text" data-exact="buffaloes,buffalo" placeholder="word 2">.
           </div>
         </div>
       </div>
@@ -1726,25 +2067,9 @@
     <p class="hint-text">Use information from Parts B–E. Write 2 more ideas in each branch box (max. 5 words each).</p>
 
     <div class="mindmap-diagram" id="task3c-body">
-      <div class="mm-center-wrap">
-        <div class="mm-center-node">🌾 How Farming Changed Lives</div>
-      </div>
-
-      <svg class="mm-connectors-svg" viewBox="0 0 800 58" preserveAspectRatio="none" aria-hidden="true">
-        <defs>
-          <marker id="mmArrow" markerWidth="7" markerHeight="7" refX="3.5" refY="6" orient="auto">
-            <path d="M0,0 L7,0 L3.5,6 Z" fill="#64748b" />
-          </marker>
-        </defs>
-        <line x1="400" y1="0" x2="400" y2="22" stroke="#64748b" stroke-width="2.5" />
-        <line x1="100" y1="22" x2="700" y2="22" stroke="#64748b" stroke-width="2.5" />
-        <line x1="100" y1="22" x2="100" y2="52" stroke="#64748b" stroke-width="2.5" marker-end="url(#mmArrow)" />
-        <line x1="300" y1="22" x2="300" y2="52" stroke="#64748b" stroke-width="2.5" marker-end="url(#mmArrow)" />
-        <line x1="500" y1="22" x2="500" y2="52" stroke="#64748b" stroke-width="2.5" marker-end="url(#mmArrow)" />
-        <line x1="700" y1="22" x2="700" y2="52" stroke="#64748b" stroke-width="2.5" marker-end="url(#mmArrow)" />
-      </svg>
-
       <div class="mindmap-grid">
+        <div class="mm-center-node">🌾 How Farming Changed Lives</div>
+
         <div class="mm-box mm-land">
           <h4>🌲 The land</h4>
           <ul>
@@ -1753,6 +2078,7 @@
             <li><input type="text" data-keywords="fields,channels,dam,terraces,clear,water" placeholder="Idea 3 (max. 5 words)"></li>
           </ul>
         </div>
+
         <div class="mm-box mm-food">
           <h4>🍞 Food</h4>
           <ul>
@@ -1761,6 +2087,7 @@
             <li><input type="text" data-keywords="grain,flour,porridge,meat,milk,wheat,barley" placeholder="Idea 3 (max. 5 words)"></li>
           </ul>
         </div>
+
         <div class="mm-box mm-tools">
           <h4>🛠️ Tools and technology</h4>
           <ul>
@@ -1769,6 +2096,7 @@
             <li><input type="text" data-keywords="stone,axes,blades,pottery,pots,linen,wool,textiles" placeholder="Idea 3 (max. 5 words)"></li>
           </ul>
         </div>
+
         <div class="mm-box mm-jobs">
           <h4>🧑‍🌾 Jobs</h4>
           <ul>
@@ -1786,12 +2114,14 @@
     </div>
     <div id="t3c-result" class="result-banner"></div>
 
+    <!-- TASK D: BE A GOOD HISTORIAN (SUGGESTIVE ANSWERS ONLY) -->
     <h3 style="margin-top:2rem;"><span class="part-pill">Task D</span> Be a good historian</h3>
+    <p>Good historians look for <strong>turning points</strong>—big changes that altered how people lived. Complete the comparison chart and reflection, then submit to compare with suggestive answers:</p>
     <table>
       <thead>
         <tr>
-          <th style="width:50%;">⏪ Before farming, people...</th>
-          <th style="width:50%;">⏩ After farming, people...</th>
+          <th style="width:50%;">Before farming, people...</th>
+          <th style="width:50%;">After farming, people...</th>
         </tr>
       </thead>
       <tbody id="task3d-body">
@@ -1801,57 +2131,71 @@
         </tr>
         <tr>
           <td>hunted wild animals.</td>
-          <td><input type="text" data-keywords="kept,animals,sheep,goats,cows,pigs,domesticated" placeholder="max. 5 words"></td>
+          <td><input type="text" placeholder="Write what people did after farming..."></td>
         </tr>
         <tr>
           <td>gathered wild seeds.</td>
-          <td><input type="text" data-keywords="grew,crops,grain,wheat,barley,planted" placeholder="max. 5 words"></td>
+          <td><input type="text" placeholder="Write what people did after farming..."></td>
         </tr>
         <tr>
-          <td><input type="text" data-keywords="stone,hunted,gathered,moved,skins" placeholder="max. 5 words"></td>
+          <td><input type="text" placeholder="Write what people did before farming..."></td>
           <td>made pots and cloth.</td>
         </tr>
       </tbody>
     </table>
     <div style="margin-top:0.8rem;">
       <label style="font-weight:700; font-size:0.93rem; display:block; margin-bottom:0.35rem;">
-        Farming was a turning point because people... <span class="hint-text" style="display:inline;">(max. 15 words)</span>
+        Farming was a turning point because people...
       </label>
-      <input id="t3d-conclusion" type="text" data-keywords="village,villages,food,move,moving,settled,grow" placeholder="Write your conclusion sentence...">
+      <input id="t3d-conclusion" type="text" placeholder="Write your historian reflection sentence...">
     </div>
     <div class="btn-group">
-      <button class="btn-primary" onclick="checkTask3D()">Check Task D</button>
-      <button id="t3d-retry" class="btn-warm" style="display:none;" onclick="retryTask3D()">Try Again</button>
+      <button class="btn-indigo" onclick="submitTask3DHistorian()">Submit & See Suggestive Answers</button>
     </div>
-    <div id="t3d-result" class="result-banner"></div>
+    <div id="t3d-suggested" class="suggested-box">
+      <strong>🏛️ Suggestive Historian Answers:</strong>
+      <ul style="margin-left:1.25rem; margin-top:0.35rem;">
+        <li><strong>Hunted wild animals →</strong> domesticated and kept animals (sheep, goats, cows, pigs) on their farms.</li>
+        <li><strong>Gathered wild seeds →</strong> planted and grew their own grain crops (wheat, barley, peas, lentils, flax).</li>
+        <li><strong>Before making pots and cloth →</strong> used simple stone tools and wore animal skins / gathered wild plants.</li>
+        <li><strong>Turning point conclusion:</strong> <em>Farming was a turning point because people produced their own food, stopped moving from place to place, built permanent villages, and developed new tools and jobs.</em></li>
+      </ul>
+    </div>
+
+    <div id="next-after-check" class="next-step-bar">
+      <span>🎉 <strong>Section 3 complete!</strong> Section 4 (Language Focus: The Past Simple) is now unlocked.</span>
+      <button type="button" class="btn-primary" onclick="goToSection('language')">Continue to 4. Past Simple →</button>
+    </div>
   </section>
 
-  <!-- 4. LANGUAGE FOCUS: THE PAST SIMPLE -->
-  <section id="language" class="card card-lang">
+  <!-- STEP 5: 4. LANGUAGE FOCUS (CLICKABLE READING PART 2 -> 2-COLUMN SORT -> 2-COLUMN BASE FORM) -->
+  <section id="language" class="card card-lang step-section">
     <h2>
       <span class="sec-icon icon-teal">⏱️</span>
       4. Language Focus: The Past Simple
     </h2>
 
-    <h3><span class="part-pill">1</span> Find all 37 past-tense verb forms</h3>
-    <p>Read the reading text carefully and type <strong>all 37</strong> past simple verb forms from the text (separated by commas or spaces). Once you find and check all 37, Exercise 2 will unlock!</p>
-    <textarea id="verbs-input" class="form-box" rows="4" placeholder="Type all 37 past simple verbs from the reading text (e.g., hunted, gathered, moved, happened, lived, planted, used, collected...)"></textarea>
+    <h3><span class="part-pill">1</span> Click all past simple verb forms in Reading Part 2</h3>
+    <p>Read <strong>Part 2 of the reading text (Parts B–E)</strong> below and click on every <strong>past simple verb</strong> you find (23 verb occurrences across 17 unique verbs). Then click <strong>Check Clicked Verbs</strong> to unlock Step 2!</p>
+
+    <div id="clickable-reading-p2" class="clickable-reading-box"></div>
+    <span id="clicked-verb-counter" class="progress-pill">Selected words: 0</span>
+
     <div class="btn-group">
-      <button class="btn-primary" onclick="checkVerbsTask()">Check All 37 Verbs</button>
-      <button id="verbs-retry" class="btn-warm" style="display:none;" onclick="retryVerbsTask()">Try Again</button>
+      <button class="btn-primary" onclick="checkClickedVerbs()">Check Clicked Verbs</button>
+      <button id="verbs-retry" class="btn-warm" style="display:none;" onclick="retryClickedVerbs()">Try Again</button>
     </div>
     <div id="verbs-result" class="result-banner"></div>
 
-    <!-- EXERCISE 2: HIDDEN UNTIL EXERCISE 1 HAS ALL 37 VERBS CHECKED -->
+    <!-- STEP 2: UNLOCKED AFTER CLICKING ALL PAST SIMPLE VERBS -->
     <div id="drag-sort-section">
-      <h3 style="margin-top:0;"><span class="part-pill">2</span> Regular or irregular? (Drag & Drop)</h3>
-      <p>Drag all 37 past simple forms into the matching column (or click a word, then click a column). Any order inside a column is fine!</p>
-
+      <h3 style="margin-top:0;"><span class="part-pill">2</span> Categorise into 2 groups: Regular vs. Irregular</h3>
+      <p>Drag each past simple verb you found into the <strong>Regular</strong> or <strong>Irregular</strong> column (or click a word, then click a column):</p>
       <div id="verb-bank" class="word-bank" ondragover="allowDrop(event)" ondrop="dropVerb(event, 'bank')" onclick="quickPlaceInto(event, 'bank')"></div>
 
       <div class="drop-columns">
         <div>
-          <label style="font-weight:800; color:#047857; display:block; margin-bottom:0.35rem;">✔ Regular verbs (-ed / -d)</label>
+          <label style="font-weight:800; color:#047857; display:block; margin-bottom:0.35rem;">✅ Regular verbs (-ed / -d)</label>
           <div id="reg-drop" class="drop-zone drop-zone-reg" ondragover="allowDrop(event)" ondrop="dropVerb(event, 'reg')" onclick="quickPlaceInto(event, 'reg')"></div>
         </div>
         <div>
@@ -1867,53 +2211,50 @@
       <div id="drag-result" class="result-banner"></div>
     </div>
 
-    <!-- EXERCISE 2B: HIDDEN UNTIL EXERCISE 2 IS SORTED CORRECTLY -->
+    <!-- STEP 3: UNLOCKED AFTER SORTING -> 2 COLUMNS FOR BASE FORMS -->
     <div id="bare-form-section">
-      <h3 style="margin-top:0;"><span class="part-pill">2B</span> Unlocked! Write the bare form (base verb)</h3>
-      <p>Great sorting! Now type the bare form (base verb) for all 37 past-tense forms from the reading text.</p>
+      <h3 style="margin-top:0;"><span class="part-pill">3</span> Type the base form of each verb (2 columns)</h3>
+      <p>Great sorting! Now type the <strong>base form (bare infinitive)</strong> for each verb in the Regular column and the Irregular column:</p>
 
-      <div id="bare-form-grid" class="bare-grid">
-        <div class="bare-item"><span>1. <strong>hunted</strong> →</span><input type="text" data-bare="hunt" placeholder="type bare form"></div>
-        <div class="bare-item"><span>2. <strong>gathered</strong> →</span><input type="text" data-bare="gather" placeholder="type bare form"></div>
-        <div class="bare-item"><span>3. <strong>moved</strong> →</span><input type="text" data-bare="move" placeholder="type bare form"></div>
-        <div class="bare-item"><span>4. <strong>happened</strong> →</span><input type="text" data-bare="happen" placeholder="type bare form"></div>
-        <div class="bare-item"><span>5. <strong>lived</strong> →</span><input type="text" data-bare="live" placeholder="type bare form"></div>
-        <div class="bare-item"><span>6. <strong>planted</strong> →</span><input type="text" data-bare="plant" placeholder="type bare form"></div>
-        <div class="bare-item"><span>7. <strong>used</strong> →</span><input type="text" data-bare="use" placeholder="type bare form"></div>
-        <div class="bare-item"><span>8. <strong>collected</strong> →</span><input type="text" data-bare="collect" placeholder="type bare form"></div>
-        <div class="bare-item"><span>9. <strong>reached</strong> →</span><input type="text" data-bare="reach" placeholder="type bare form"></div>
-        <div class="bare-item"><span>10. <strong>changed</strong> →</span><input type="text" data-bare="change" placeholder="type bare form"></div>
-        <div class="bare-item"><span>11. <strong>cleared</strong> →</span><input type="text" data-bare="clear" placeholder="type bare form"></div>
-        <div class="bare-item"><span>12. <strong>invented</strong> →</span><input type="text" data-bare="invent" placeholder="type bare form"></div>
-        <div class="bare-item"><span>13. <strong>pulled</strong> →</span><input type="text" data-bare="pull" placeholder="type bare form"></div>
-        <div class="bare-item"><span>14. <strong>polished</strong> →</span><input type="text" data-bare="polish" placeholder="type bare form"></div>
-        <div class="bare-item"><span>15. <strong>learned</strong> →</span><input type="text" data-bare="learn" placeholder="type bare form"></div>
-        <div class="bare-item"><span>16. <strong>shaped</strong> →</span><input type="text" data-bare="shape" placeholder="type bare form"></div>
-        <div class="bare-item"><span>17. <strong>baked</strong> →</span><input type="text" data-bare="bake" placeholder="type bare form"></div>
-        <div class="bare-item"><span>18. <strong>looked</strong> →</span><input type="text" data-bare="look" placeholder="type bare form"></div>
-        <div class="bare-item"><span>19. <strong>worked</strong> →</span><input type="text" data-bare="work" placeholder="type bare form"></div>
-        <div class="bare-item"><span>20. <strong>needed</strong> →</span><input type="text" data-bare="need" placeholder="type bare form"></div>
-        <div class="bare-item"><span>21. <strong>traded</strong> →</span><input type="text" data-bare="trade" placeholder="type bare form"></div>
-        <div class="bare-item"><span>22. <strong>was</strong> →</span><input type="text" data-bare="be" placeholder="type bare form"></div>
-        <div class="bare-item"><span>23. <strong>were</strong> →</span><input type="text" data-bare="be" placeholder="type bare form"></div>
-        <div class="bare-item"><span>24. <strong>had</strong> →</span><input type="text" data-bare="have" placeholder="type bare form"></div>
-        <div class="bare-item"><span>25. <strong>did</strong> →</span><input type="text" data-bare="do" placeholder="type bare form"></div>
-        <div class="bare-item"><span>26. <strong>began</strong> →</span><input type="text" data-bare="begin" placeholder="type bare form"></div>
-        <div class="bare-item"><span>27. <strong>grew</strong> →</span><input type="text" data-bare="grow" placeholder="type bare form"></div>
-        <div class="bare-item"><span>28. <strong>ate</strong> →</span><input type="text" data-bare="eat" placeholder="type bare form"></div>
-        <div class="bare-item"><span>29. <strong>kept</strong> →</span><input type="text" data-bare="keep" placeholder="type bare form"></div>
-        <div class="bare-item"><span>30. <strong>caught</strong> →</span><input type="text" data-bare="catch" placeholder="type bare form"></div>
-        <div class="bare-item"><span>31. <strong>spread</strong> →</span><input type="text" data-bare="spread" placeholder="type bare form"></div>
-        <div class="bare-item"><span>32. <strong>cut</strong> →</span><input type="text" data-bare="cut" placeholder="type bare form"></div>
-        <div class="bare-item"><span>33. <strong>dug</strong> →</span><input type="text" data-bare="dig" placeholder="type bare form"></div>
-        <div class="bare-item"><span>34. <strong>built</strong> →</span><input type="text" data-bare="build" placeholder="type bare form"></div>
-        <div class="bare-item"><span>35. <strong>made</strong> →</span><input type="text" data-bare="make" placeholder="type bare form"></div>
-        <div class="bare-item"><span>36. <strong>ground</strong> →</span><input type="text" data-bare="grind" placeholder="type bare form"></div>
-        <div class="bare-item"><span>37. <strong>became</strong> →</span><input type="text" data-bare="become" placeholder="type bare form"></div>
+      <div class="bare-two-cols" id="bare-form-grid">
+        <div class="bare-col-box">
+          <strong style="color:#047857; border-bottom:1.5px dashed #86efac; padding-bottom:0.35rem;">✅ Regular Verbs → Base Form</strong>
+          <div class="bare-row-item"><span><strong>changed</strong> →</span><input type="text" data-bare="change" placeholder="base form"></div>
+          <div class="bare-row-item"><span><strong>cleared</strong> →</span><input type="text" data-bare="clear" placeholder="base form"></div>
+          <div class="bare-row-item"><span><strong>invented</strong> →</span><input type="text" data-bare="invent" placeholder="base form"></div>
+          <div class="bare-row-item"><span><strong>pulled</strong> →</span><input type="text" data-bare="pull" placeholder="base form"></div>
+          <div class="bare-row-item"><span><strong>polished</strong> →</span><input type="text" data-bare="polish" placeholder="base form"></div>
+          <div class="bare-row-item"><span><strong>learned</strong> →</span><input type="text" data-bare="learn" placeholder="base form"></div>
+          <div class="bare-row-item"><span><strong>shaped</strong> →</span><input type="text" data-bare="shape" placeholder="base form"></div>
+          <div class="bare-row-item"><span><strong>baked</strong> →</span><input type="text" data-bare="bake" placeholder="base form"></div>
+          <div class="bare-row-item"><span><strong>used</strong> →</span><input type="text" data-bare="use" placeholder="base form"></div>
+          <div class="bare-row-item"><span><strong>looked</strong> →</span><input type="text" data-bare="look" placeholder="base form"></div>
+          <div class="bare-row-item"><span><strong>worked</strong> →</span><input type="text" data-bare="work" placeholder="base form"></div>
+          <div class="bare-row-item"><span><strong>needed</strong> →</span><input type="text" data-bare="need" placeholder="base form"></div>
+          <div class="bare-row-item"><span><strong>traded</strong> →</span><input type="text" data-bare="trade" placeholder="base form"></div>
+        </div>
+
+        <div class="bare-col-box irreg-col">
+          <strong style="color:#6d28d9; border-bottom:1.5px dashed #c4b5fd; padding-bottom:0.35rem;">⚡ Irregular Verbs → Base Form</strong>
+          <div class="bare-row-item"><span><strong>cut</strong> →</span><input type="text" data-bare="cut" placeholder="base form"></div>
+          <div class="bare-row-item"><span><strong>ate</strong> →</span><input type="text" data-bare="eat" placeholder="base form"></div>
+          <div class="bare-row-item"><span><strong>dug</strong> →</span><input type="text" data-bare="dig" placeholder="base form"></div>
+          <div class="bare-row-item"><span><strong>built</strong> →</span><input type="text" data-bare="build" placeholder="base form"></div>
+          <div class="bare-row-item"><span><strong>made</strong> →</span><input type="text" data-bare="make" placeholder="base form"></div>
+          <div class="bare-row-item"><span><strong>grew</strong> →</span><input type="text" data-bare="grow" placeholder="base form"></div>
+          <div class="bare-row-item"><span><strong>had</strong> →</span><input type="text" data-bare="have" placeholder="base form"></div>
+          <div class="bare-row-item"><span><strong>ground</strong> →</span><input type="text" data-bare="grind" placeholder="base form"></div>
+          <div class="bare-row-item"><span><strong>gave</strong> →</span><input type="text" data-bare="give" placeholder="base form"></div>
+          <div class="bare-row-item"><span><strong>was</strong> →</span><input type="text" data-bare="be" placeholder="base form"></div>
+          <div class="bare-row-item"><span><strong>did</strong> →</span><input type="text" data-bare="do" placeholder="base form"></div>
+          <div class="bare-row-item"><span><strong>got</strong> →</span><input type="text" data-bare="get" placeholder="base form"></div>
+          <div class="bare-row-item"><span><strong>were</strong> →</span><input type="text" data-bare="be" placeholder="base form"></div>
+          <div class="bare-row-item"><span><strong>became</strong> →</span><input type="text" data-bare="become" placeholder="base form"></div>
+        </div>
       </div>
 
       <div class="btn-group">
-        <button class="btn-primary" onclick="checkBareForms()">Check Bare Forms</button>
+        <button class="btn-primary" onclick="checkBareForms()">Check Base Forms</button>
         <button id="bare-retry" class="btn-warm" style="display:none;" onclick="retryBareForms()">Try Again</button>
       </div>
       <div id="bare-result" class="result-banner"></div>
@@ -1939,8 +2280,8 @@
       </div>
     </div>
 
-    <h3><span class="part-pill">3</span> Choose the correct answer</h3>
-    <div id="lang-mcq-list" style="display:flex; flex-direction:column; gap:1.15rem;">
+    <h3><span class="part-pill">4</span> Choose the correct answer</h3>
+    <div id="lang-mcq-list" style="display: flex; flex-direction:column; gap: 1.15rem;">
       <div class="mcq-card" data-correct="A" data-explain="Correct: A. The reading describes completed actions in the past (Neolithic period).">
         <p style="font-weight:700;">1. The text is mainly in the past simple because...</p>
         <div class="mcq-options">
@@ -1996,37 +2337,41 @@
         <div class="item-feedback"></div>
       </div>
     </div>
+
     <div class="btn-group">
       <button class="btn-primary" onclick="checkLangMcq()">Check Multiple Choice</button>
       <button id="langmcq-retry" class="btn-warm" style="display:none;" onclick="retryLangMcq()">Try Again</button>
     </div>
+
+    <div id="next-after-language" class="next-step-bar">
+      <span>🎉 <strong>Language Focus complete!</strong> Section 5 (Practice) is now unlocked.</span>
+      <button type="button" class="btn-primary" onclick="goToSection('practice')">Continue to 5. Practice →</button>
+    </div>
   </section>
 
-  <!-- 5. PRACTICE -->
-  <section id="practice" class="card card-practice">
+  <!-- STEP 6: 5. PRACTICE (5A DRAG WORD BOX + TYPE VERB; 5B SPEAKING RECORDER) -->
+  <section id="practice" class="card card-practice step-section">
     <h2>
       <span class="sec-icon icon-amber">✏️</span>
       5. Practice
     </h2>
 
     <h3><span class="part-pill">5A</span> Starting a Stone Age farm</h3>
-    <p>Complete the text. Write the past simple of the verb in brackets, then choose a farming word from the box.</p>
-    <div class="info-callout">
-      <strong>Word box:</strong> water &nbsp;•&nbsp; fertile &nbsp;•&nbsp; trees &nbsp;•&nbsp; plough &nbsp;•&nbsp; wheat &nbsp;•&nbsp; barley &nbsp;•&nbsp; water channels &nbsp;•&nbsp; dam &nbsp;•&nbsp; grains &nbsp;•&nbsp; wool &nbsp;•&nbsp; linen &nbsp;•&nbsp; reeds<br>
-      <span style="font-size:0.86rem;">(One word in the box is extra!)</span>
-    </div>
+    <p>Type the <strong>past simple</strong> of the verb in brackets, and <strong>drag a word</strong> from the Word Box into each blank (one word in the box is extra!):</p>
+
+    <div id="p5a-word-bank" class="drag-bank" ondragover="allowDrop(event)" ondrop="dropGenericChip(event, 'p5a-word-bank', 'p5a')" onclick="clickPlaceGenericChip('p5a-word-bank', 'p5a')"></div>
 
     <div id="p5a-body" class="practice-5a-list">
-      <div class="practice-5a-line">1. First, the farmers <input type="text" style="width:130px;" data-ans="chose" placeholder="(choose)"> a good place near fresh <input type="text" style="width:150px;" data-ans="water" placeholder="word">.</div>
-      <div class="practice-5a-line">2. The soil <input type="text" style="width:130px;" data-ans="was" placeholder="(be)"> <input type="text" style="width:150px;" data-ans="fertile" placeholder="word"> so the crops grew well.</div>
-      <div class="practice-5a-line">3. They <input type="text" style="width:130px;" data-ans="cut" placeholder="(cut)"> down the <input type="text" style="width:150px;" data-ans="trees" placeholder="word">.</div>
-      <div class="practice-5a-line">4. Later, they <input type="text" style="width:130px;" data-ans="used" placeholder="(use)"> a <input type="text" style="width:150px;" data-ans="plough" placeholder="word"> to prepare the land.</div>
-      <div class="practice-5a-line">5. They <input type="text" style="width:130px;" data-ans="planted" placeholder="(plant)"> crops such as <input type="text" style="width:130px;" data-ans="wheat" placeholder="word 1"> and <input type="text" style="width:130px;" data-ans="barley" placeholder="word 2">.</div>
-      <div class="practice-5a-line">6. They <input type="text" style="width:130px;" data-ans="dug" placeholder="(dig)"> <input type="text" style="width:170px;" data-ans="water channels" placeholder="words"> to bring water to the crops.</div>
-      <div class="practice-5a-line">7. They <input type="text" style="width:130px;" data-ans="built" placeholder="(build)"> a <input type="text" style="width:150px;" data-ans="dam" placeholder="word"> across the river to store water.</div>
-      <div class="practice-5a-line">8. They <input type="text" style="width:130px;" data-ans="ground" placeholder="(grind)"> <input type="text" style="width:150px;" data-ans="grains" placeholder="word"> to make flour for bread.</div>
-      <div class="practice-5a-line">9. They <input type="text" style="width:130px;" data-ans="made" placeholder="(make)"> clothes from <input type="text" style="width:130px;" data-ans="wool" placeholder="word 1"> and <input type="text" style="width:130px;" data-ans="linen" placeholder="word 2">.</div>
-      <div class="practice-5a-line">Extra word in the box: <input type="text" style="width:160px;" data-ans="reeds" placeholder="extra word"></div>
+      <div class="practice-5a-line">1. First, the farmers <input type="text" style="width:125px;" data-ans="chose" placeholder="(choose)"> a good place near fresh <span class="drop-slot inline-slot" data-group="p5a" data-ans="water" ondragover="allowDrop(event)" ondrop="dropGenericChip(event, this, 'p5a')" onclick="clickPlaceGenericChip(this, 'p5a')">drop word</span>.</div>
+      <div class="practice-5a-line">2. The soil <input type="text" style="width:125px;" data-ans="was" placeholder="(be)"> <span class="drop-slot inline-slot" data-group="p5a" data-ans="fertile" ondragover="allowDrop(event)" ondrop="dropGenericChip(event, this, 'p5a')" onclick="clickPlaceGenericChip(this, 'p5a')">drop word</span> so the crops grew well.</div>
+      <div class="practice-5a-line">3. They <input type="text" style="width:125px;" data-ans="cut" placeholder="(cut)"> down the <span class="drop-slot inline-slot" data-group="p5a" data-ans="trees" ondragover="allowDrop(event)" ondrop="dropGenericChip(event, this, 'p5a')" onclick="clickPlaceGenericChip(this, 'p5a')">drop word</span>.</div>
+      <div class="practice-5a-line">4. Later, they <input type="text" style="width:125px;" data-ans="used" placeholder="(use)"> a <span class="drop-slot inline-slot" data-group="p5a" data-ans="plough" ondragover="allowDrop(event)" ondrop="dropGenericChip(event, this, 'p5a')" onclick="clickPlaceGenericChip(this, 'p5a')">drop word</span> to prepare the land.</div>
+      <div class="practice-5a-line">5. They <input type="text" style="width:125px;" data-ans="planted" placeholder="(plant)"> crops such as <span class="drop-slot inline-slot" data-group="p5a" data-ans="wheat" ondragover="allowDrop(event)" ondrop="dropGenericChip(event, this, 'p5a')" onclick="clickPlaceGenericChip(this, 'p5a')">drop word</span> and <span class="drop-slot inline-slot" data-group="p5a" data-ans="barley" ondragover="allowDrop(event)" ondrop="dropGenericChip(event, this, 'p5a')" onclick="clickPlaceGenericChip(this, 'p5a')">drop word</span>.</div>
+      <div class="practice-5a-line">6. They <input type="text" style="width:125px;" data-ans="dug" placeholder="(dig)"> <span class="drop-slot inline-slot" style="min-width:155px;" data-group="p5a" data-ans="water channels" ondragover="allowDrop(event)" ondrop="dropGenericChip(event, this, 'p5a')" onclick="clickPlaceGenericChip(this, 'p5a')">drop words</span> to bring water to the crops.</div>
+      <div class="practice-5a-line">7. They <input type="text" style="width:125px;" data-ans="built" placeholder="(build)"> a <span class="drop-slot inline-slot" data-group="p5a" data-ans="dam" ondragover="allowDrop(event)" ondrop="dropGenericChip(event, this, 'p5a')" onclick="clickPlaceGenericChip(this, 'p5a')">drop word</span> across the river to store water.</div>
+      <div class="practice-5a-line">8. They <input type="text" style="width:125px;" data-ans="ground" placeholder="(grind)"> <span class="drop-slot inline-slot" data-group="p5a" data-ans="grains" ondragover="allowDrop(event)" ondrop="dropGenericChip(event, this, 'p5a')" onclick="clickPlaceGenericChip(this, 'p5a')">drop word</span> to make flour for bread.</div>
+      <div class="practice-5a-line">9. They <input type="text" style="width:125px;" data-ans="made" placeholder="(make)"> clothes from <span class="drop-slot inline-slot" data-group="p5a" data-ans="wool" ondragover="allowDrop(event)" ondrop="dropGenericChip(event, this, 'p5a')" onclick="clickPlaceGenericChip(this, 'p5a')">drop word</span> and <span class="drop-slot inline-slot" data-group="p5a" data-ans="linen" ondragover="allowDrop(event)" ondrop="dropGenericChip(event, this, 'p5a')" onclick="clickPlaceGenericChip(this, 'p5a')">drop word</span>.</div>
+      <div class="practice-5a-line">Extra word in the box: <span class="drop-slot inline-slot" data-group="p5a" data-ans="reeds" ondragover="allowDrop(event)" ondrop="dropGenericChip(event, this, 'p5a')" onclick="clickPlaceGenericChip(this, 'p5a')">drop extra word</span></div>
     </div>
 
     <div class="btn-group">
@@ -2035,303 +2380,152 @@
     </div>
     <div id="p5a-result" class="result-banner"></div>
 
-    <h3 style="margin-top:2rem;"><span class="part-pill">5B</span> Speaking: Interview a Neolithic farmer</h3>
-    <p>Work in pairs. Student A is a reporter; Student B is a farmer from 10,000 years ago. Make questions with <strong>did</strong> and answer together, then swap roles:</p>
+    <!-- 5B SPEAKING WITH RECORDING FUNCTION (NO TYPING) -->
+    <h3 style="margin-top:2rem;"><span class="part-pill">5B</span> Speaking: Interview a Neolithic farmer (Voice Recording)</h3>
+    <p>Work in pairs. Student A asks the question using <strong>did</strong>, and Student B records the answer as a farmer from 10,000 years ago:</p>
     <table>
       <thead>
         <tr>
-          <th style="width:50%;">Student A: Questions</th>
-          <th style="width:50%;">Student B: Answers</th>
+          <th style="width:45%;">Student A: Questions</th>
+          <th style="width:55%;">Student B: Record Your Spoken Answer</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>Where / you / live? → <em>Where did you live?</em></td>
-          <td>I lived in Mesopotamia, near the river.</td>
+          <td><em>Example: "I lived in Mesopotamia, near the river."</em></td>
         </tr>
         <tr>
           <td>What crops / you / grow?</td>
-          <td><input type="text" placeholder="max. 10 words"></td>
+          <td>
+            <div class="recorder-controls" style="margin-top:0;">
+              <button type="button" class="btn-record" style="padding:0.35rem 0.75rem; font-size:0.82rem;" id="sp1-rec-start" onclick="startSingleRecorder('sp1')">🔴 Record</button>
+              <button type="button" class="btn-outline" style="padding:0.35rem 0.75rem; font-size:0.82rem;" id="sp1-rec-stop" onclick="stopSingleRecorder('sp1')" disabled>⏹ Stop</button>
+              <span id="sp1-rec-status" class="hint-text" style="margin-top:0;"></span>
+            </div>
+            <audio id="sp1-rec-audio" controls style="display:none; width:100%; height:34px; margin-top:0.4rem;"></audio>
+          </td>
         </tr>
         <tr>
           <td>What animals / you / keep?</td>
-          <td><input type="text" placeholder="max. 10 words"></td>
+          <td>
+            <div class="recorder-controls" style="margin-top:0;">
+              <button type="button" class="btn-record" style="padding:0.35rem 0.75rem; font-size:0.82rem;" id="sp2-rec-start" onclick="startSingleRecorder('sp2')">🔴 Record</button>
+              <button type="button" class="btn-outline" style="padding:0.35rem 0.75rem; font-size:0.82rem;" id="sp2-rec-stop" onclick="stopSingleRecorder('sp2')" disabled>⏹ Stop</button>
+              <span id="sp2-rec-status" class="hint-text" style="margin-top:0;"></span>
+            </div>
+            <audio id="sp2-rec-audio" controls style="display:none; width:100%; height:34px; margin-top:0.4rem;"></audio>
+          </td>
         </tr>
         <tr>
           <td>What / you / eat?</td>
-          <td><input type="text" placeholder="max. 10 words"></td>
+          <td>
+            <div class="recorder-controls" style="margin-top:0;">
+              <button type="button" class="btn-record" style="padding:0.35rem 0.75rem; font-size:0.82rem;" id="sp3-rec-start" onclick="startSingleRecorder('sp3')">🔴 Record</button>
+              <button type="button" class="btn-outline" style="padding:0.35rem 0.75rem; font-size:0.82rem;" id="sp3-rec-stop" onclick="stopSingleRecorder('sp3')" disabled>⏹ Stop</button>
+              <span id="sp3-rec-status" class="hint-text" style="margin-top:0;"></span>
+            </div>
+            <audio id="sp3-rec-audio" controls style="display:none; width:100%; height:34px; margin-top:0.4rem;"></audio>
+          </td>
         </tr>
         <tr>
           <td>How / you / make your clothes?</td>
-          <td><input type="text" placeholder="max. 10 words"></td>
+          <td>
+            <div class="recorder-controls" style="margin-top:0;">
+              <button type="button" class="btn-record" style="padding:0.35rem 0.75rem; font-size:0.82rem;" id="sp4-rec-start" onclick="startSingleRecorder('sp4')">🔴 Record</button>
+              <button type="button" class="btn-outline" style="padding:0.35rem 0.75rem; font-size:0.82rem;" id="sp4-rec-stop" onclick="stopSingleRecorder('sp4')" disabled>⏹ Stop</button>
+              <span id="sp4-rec-status" class="hint-text" style="margin-top:0;"></span>
+            </div>
+            <audio id="sp4-rec-audio" controls style="display:none; width:100%; height:34px; margin-top:0.4rem;"></audio>
+          </td>
         </tr>
         <tr>
           <td>you / still / hunt?</td>
-          <td><input type="text" placeholder="max. 10 words"></td>
+          <td>
+            <div class="recorder-controls" style="margin-top:0;">
+              <button type="button" class="btn-record" style="padding:0.35rem 0.75rem; font-size:0.82rem;" id="sp5-rec-start" onclick="startSingleRecorder('sp5')">🔴 Record</button>
+              <button type="button" class="btn-outline" style="padding:0.35rem 0.75rem; font-size:0.82rem;" id="sp5-rec-stop" onclick="stopSingleRecorder('sp5')" disabled>⏹ Stop</button>
+              <span id="sp5-rec-status" class="hint-text" style="margin-top:0;"></span>
+            </div>
+            <audio id="sp5-rec-audio" controls style="display:none; width:100%; height:34px; margin-top:0.4rem;"></audio>
+          </td>
         </tr>
       </tbody>
     </table>
+
+    <div class="btn-group">
+      <button type="button" class="btn-indigo" onclick="document.getElementById('speaking-suggested').classList.add('show')">Show Sample Interview Answers</button>
+    </div>
+    <div id="speaking-suggested" class="suggested-box">
+      <strong>🎙️ Sample Interview Answers:</strong>
+      <ul style="margin-left:1.25rem; margin-top:0.35rem;">
+        <li><strong>What did you grow?</strong> I grew wheat, barley, peas, lentils and flax.</li>
+        <li><strong>What animals did you keep?</strong> I kept sheep, goats, cows and pigs.</li>
+        <li><strong>What did you eat?</strong> I ate bread, porridge, peas, lentils, meat, fish, fruit and nuts.</li>
+        <li><strong>How did you make your clothes?</strong> We used linen from flax and wool from sheep and goats.</li>
+        <li><strong>Did you still hunt?</strong> Yes, we did. We still hunted wild animals and caught fish.</li>
+      </ul>
+    </div>
+
+    <div id="next-after-practice" class="next-step-bar">
+      <span>🎉 <strong>Practice 5A complete!</strong> Section 6 (Project & Teacher Report) is now unlocked.</span>
+      <button type="button" class="btn-primary" onclick="goToSection('project')">Continue to 6. Project →</button>
+    </div>
   </section>
 
-  <!-- 6. PROJECT -->
-  <section id="project" class="card card-project">
+  <!-- STEP 7: 6. PROJECT + SUBMIT BOX RIGHT UNDER PROJECT -->
+  <section id="project" class="card card-project step-section">
     <h2>
-      <span class="sec-icon icon-emerald">🌍</span>
+      <span class="sec-icon icon-emerald">🚀</span>
       6. Project: Farming in the Past and Today (Groups)
     </h2>
     <p>Make a short video or an infographic to compare farming in the Neolithic period with farming in Vietnam today.</p>
-
     <ul class="project-list">
       <li><strong>1. Choose two farms in Vietnam:</strong> Choose one farm with modern technology and one farm with simple tools. Find out where they are (city or province), what they grow, what tools or machines they use, and what jobs people do there.</li>
       <li><strong>2. Collect your information in a chart:</strong> Compare <em>Neolithic farmers (11,000 years ago)</em>, <em>Farm with simple tools today</em>, and <em>Farm with modern technology today</em> across <strong>Where?</strong>, <strong>Crops</strong>, <strong>Animals</strong>, <strong>Tools/technology</strong>, <strong>Water</strong>, and <strong>Jobs</strong>.</li>
       <li><strong>3. Same or different?</strong> Sort your ideas into <em>Only in the past</em>, <em>In the past AND today</em>, and <em>Only today</em>.</li>
-      <li><strong>4. Useful language:</strong> <em>Neolithic farmers used stone tools. They did not have machines.</em> • <em>Farmers in An Giang use machines to cut rice.</em> • <em>In the past... but today...</em> • <em>Both... and...</em></li>
+      <li><strong>4. Useful language:</strong> <em>Neolithic farmers used stone tools. They did not have machines.</em> <em>Farmers in An Giang use machines to cut rice.</em> <em>In the past... but today...</em> <em>Both... and...</em></li>
       <li><strong>5. Checklist:</strong> Compared crops, animals, tools, water and jobs • Used the past simple for the past and present simple for today • Used at least 6 farming words • Added pictures with captions.</li>
     </ul>
+
     <div class="btn-group">
       <button class="btn-primary" id="project-done-btn" onclick="markProjectDone()">✓ Mark Project Ready</button>
       <span id="project-done-msg" style="font-size:0.88rem; font-weight:700; color:var(--success);"></span>
     </div>
-  </section>
 
-  <!-- END OF LESSON: GLOSSARY -->
-  <section id="glossary" class="card card-glossary">
-    <h2>
-      <span class="sec-icon icon-teal-soft">📚</span>
-      Glossary: Key Words, Meanings, Pictures & Audio
-    </h2>
-    <p>Review each word's definition, Vietnamese meaning, example sentence, picture, and audio pronunciation at the end of the lesson.</p>
-
-    <div class="glossary-grid">
-      <div class="glossary-card">
-        <div class="glossary-top">
-          <span class="glossary-word">crop (n)</span>
-          <span class="glossary-vi">cây trồng</span>
+    <!-- SUBMIT SECTION RIGHT UNDER PROJECT -->
+    <div style="margin-top: 1.5rem; padding: 1.25rem; background: #ffffff; border: 2px solid #bbf7d0; border-radius: 14px;">
+      <strong style="color: #15803d; font-size: 1.05rem;">📤 Submit Your Project & Report Progress to Teacher</strong>
+      <p class="hint-text" style="margin-bottom: 0.8rem;">
+        Enter your name and class, upload an infographic image or paste a link to your video/infographic, and click <strong>Save & Report to Teacher</strong>.
+      </p>
+      <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 0.7rem;">
+          <input type="text" id="report-student-name" placeholder="Student / Group Name (e.g., Nguyễn Minh Anh)">
+          <input type="text" id="report-student-class" placeholder="Class (e.g., 7A1)">
         </div>
-        <p class="glossary-def"><strong>Meaning:</strong> A plant that farmers grow for food.</p>
-        <p class="glossary-ex"><strong>Example:</strong> The first farmers planted <em>crops</em> such as wheat and barley.</p>
-        <div class="glossary-img-wrap">
-          <img id="gl-img-crop" src="crop.png" alt="crop" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
-          <div class="pic-fallback"><code>crop.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-crop')"></div>
+        <label style="font-size: 0.9rem; font-weight: 700;">
+          Infographic image (PNG / JPG / WEBP):
+          <input type="file" id="project-img-file" accept="image/*" onchange="handleProjectImageUpload(event)" style="margin-top: 0.3rem;">
+        </label>
+        <div id="project-img-preview-wrap" style="display: none; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 0.65rem; background: #f8fafc;">
+          <img id="project-img-preview" alt="Uploaded infographic preview" style="max-width: 100%; max-height: 280px; display: block; border-radius: 8px;">
+          <span id="project-img-name" class="hint-text"></span>
         </div>
-        <div class="glossary-audio">
-          <audio controls preload="none" src="audio/crop.mp3"></audio>
-          <span class="hint-text"><code>audio/crop.mp3</code></span>
+        <input type="url" id="project-link-input" placeholder="Video or infographic link (Google Drive, YouTube, Canva, etc.)" style="width: 100%; padding: 0.55rem 0.7rem; border: 1.5px solid #cbd5e1; border-radius: 8px; font-family: inherit; font-size: 0.92rem;">
+        <div class="btn-group" style="margin-top: 0.2rem;">
+          <button type="button" class="btn-outline" onclick="saveProgressLocally()">💾 Save Locally</button>
+          <button type="button" class="btn-primary" onclick="saveAndReportProgress()">📨 Save & Report to Teacher</button>
         </div>
-      </div>
-
-      <div class="glossary-card">
-        <div class="glossary-top">
-          <span class="glossary-word">dam (n)</span>
-          <span class="glossary-vi">đập nước</span>
-        </div>
-        <p class="glossary-def"><strong>Meaning:</strong> A wall across a river that stops and stores water.</p>
-        <p class="glossary-ex"><strong>Example:</strong> Some farmers built a <em>dam</em> across a river to store water.</p>
-        <div class="glossary-img-wrap">
-          <img id="gl-img-dam" src="dam.png" alt="dam" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
-          <div class="pic-fallback"><code>dam.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-dam')"></div>
-        </div>
-        <div class="glossary-audio">
-          <audio controls preload="none" src="audio/dam.mp3"></audio>
-          <span class="hint-text"><code>audio/dam.mp3</code></span>
-        </div>
-      </div>
-
-      <div class="glossary-card">
-        <div class="glossary-top">
-          <span class="glossary-word">domesticate (v)</span>
-          <span class="glossary-vi">thuần hoá</span>
-        </div>
-        <p class="glossary-def"><strong>Meaning:</strong> To make a wild animal tame so it can live with people.</p>
-        <p class="glossary-ex"><strong>Example:</strong> People began to <em>domesticate</em> sheep, goats, cows and pigs.</p>
-        <div class="glossary-img-wrap">
-          <img id="gl-img-domesticate" src="domesticate.png" alt="domesticate" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
-          <div class="pic-fallback"><code>domesticate.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-domesticate')"></div>
-        </div>
-        <div class="glossary-audio">
-          <audio controls preload="none" src="audio/domesticate.mp3"></audio>
-          <span class="hint-text"><code>audio/domesticate.mp3</code></span>
-        </div>
-      </div>
-
-      <div class="glossary-card">
-        <div class="glossary-top">
-          <span class="glossary-word">fertile (adj)</span>
-          <span class="glossary-vi">màu mỡ</span>
-        </div>
-        <p class="glossary-def"><strong>Meaning:</strong> Good for growing plants.</p>
-        <p class="glossary-ex"><strong>Example:</strong> The land near the rivers was flat and <em>fertile</em>.</p>
-        <div class="glossary-img-wrap">
-          <img id="gl-img-fertile" src="fertile.png" alt="fertile" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
-          <div class="pic-fallback"><code>fertile.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-fertile')"></div>
-        </div>
-        <div class="glossary-audio">
-          <audio controls preload="none" src="audio/fertile.mp3"></audio>
-          <span class="hint-text"><code>audio/fertile.mp3</code></span>
-        </div>
-      </div>
-
-      <div class="glossary-card">
-        <div class="glossary-top">
-          <span class="glossary-word">field (n)</span>
-          <span class="glossary-vi">cánh đồng</span>
-        </div>
-        <p class="glossary-def"><strong>Meaning:</strong> An area of land where farmers grow crops.</p>
-        <p class="glossary-ex"><strong>Example:</strong> Farmers cleared the land to make <em>fields</em> for their crops.</p>
-        <div class="glossary-img-wrap">
-          <img id="gl-img-field" src="field.png" alt="field" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
-          <div class="pic-fallback"><code>field.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-field')"></div>
-        </div>
-        <div class="glossary-audio">
-          <audio controls preload="none" src="audio/field.mp3"></audio>
-          <span class="hint-text"><code>audio/field.mp3</code></span>
-        </div>
-      </div>
-
-      <div class="glossary-card">
-        <div class="glossary-top">
-          <span class="glossary-word">grain (n)</span>
-          <span class="glossary-vi">ngũ cốc, hạt</span>
-        </div>
-        <p class="glossary-def"><strong>Meaning:</strong> The small, hard seeds of wheat, rice or barley.</p>
-        <p class="glossary-ex"><strong>Example:</strong> Because people grew their own <em>grain</em>, they had more food.</p>
-        <div class="glossary-img-wrap">
-          <img id="gl-img-grain" src="grain.png" alt="grain" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
-          <div class="pic-fallback"><code>grain.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-grain')"></div>
-        </div>
-        <div class="glossary-audio">
-          <audio controls preload="none" src="audio/grain.mp3"></audio>
-          <span class="hint-text"><code>audio/grain.mp3</code></span>
-        </div>
-      </div>
-
-      <div class="glossary-card">
-        <div class="glossary-top">
-          <span class="glossary-word">plough (n, v)</span>
-          <span class="glossary-vi">cái cày; cày</span>
-        </div>
-        <p class="glossary-def"><strong>Meaning:</strong> A farm tool that breaks up the soil before planting.</p>
-        <p class="glossary-ex"><strong>Example:</strong> Strong animals pulled the <em>plough</em> through the soil.</p>
-        <div class="glossary-img-wrap">
-          <img id="gl-img-plough" src="plough.png" alt="plough" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
-          <div class="pic-fallback"><code>plough.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-plough')"></div>
-        </div>
-        <div class="glossary-audio">
-          <audio controls preload="none" src="audio/plough.mp3"></audio>
-          <span class="hint-text"><code>audio/plough.mp3</code></span>
-        </div>
-      </div>
-
-      <div class="glossary-card">
-        <div class="glossary-top">
-          <span class="glossary-word">pottery (n)</span>
-          <span class="glossary-vi">đồ gốm</span>
-        </div>
-        <p class="glossary-def"><strong>Meaning:</strong> Pots and bowls made from clay.</p>
-        <p class="glossary-ex"><strong>Example:</strong> People learned to make <em>pottery</em> from wet clay.</p>
-        <div class="glossary-img-wrap">
-          <img id="gl-img-pottery" src="pottery.png" alt="pottery" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
-          <div class="pic-fallback"><code>pottery.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-pottery')"></div>
-        </div>
-        <div class="glossary-audio">
-          <audio controls preload="none" src="audio/pottery.mp3"></audio>
-          <span class="hint-text"><code>audio/pottery.mp3</code></span>
-        </div>
-      </div>
-
-      <div class="glossary-card">
-        <div class="glossary-top">
-          <span class="glossary-word">terrace (n)</span>
-          <span class="glossary-vi">ruộng bậc thang</span>
-        </div>
-        <p class="glossary-def"><strong>Meaning:</strong> A flat step of land on a hill.</p>
-        <p class="glossary-ex"><strong>Example:</strong> Farmers in Vietnam still grow rice on <em>terraces</em> today.</p>
-        <div class="glossary-img-wrap">
-          <img id="gl-img-terrace" src="terrace.png" alt="terrace" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
-          <div class="pic-fallback"><code>terrace.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-terrace')"></div>
-        </div>
-        <div class="glossary-audio">
-          <audio controls preload="none" src="audio/terrace.mp3"></audio>
-          <span class="hint-text"><code>audio/terrace.mp3</code></span>
-        </div>
-      </div>
-
-      <div class="glossary-card">
-        <div class="glossary-top">
-          <span class="glossary-word">textiles (n)</span>
-          <span class="glossary-vi">hàng dệt, vải</span>
-        </div>
-        <p class="glossary-def"><strong>Meaning:</strong> Cloth, e.g. linen or wool.</p>
-        <p class="glossary-ex"><strong>Example:</strong> Farmers made <em>textiles</em> such as linen and wool for clothes.</p>
-        <div class="glossary-img-wrap">
-          <img id="gl-img-textiles" src="textiles.png" alt="textiles" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
-          <div class="pic-fallback"><code>textiles.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-textiles')"></div>
-        </div>
-        <div class="glossary-audio">
-          <audio controls preload="none" src="audio/textiles.mp3"></audio>
-          <span class="hint-text"><code>audio/textiles.mp3</code></span>
-        </div>
-      </div>
-
-      <div class="glossary-card">
-        <div class="glossary-top">
-          <span class="glossary-word">trade (v)</span>
-          <span class="glossary-vi">trao đổi, buôn bán</span>
-        </div>
-        <p class="glossary-def"><strong>Meaning:</strong> To give something and get something in return.</p>
-        <p class="glossary-ex"><strong>Example:</strong> People <em>traded</em> extra food with other villages.</p>
-        <div class="glossary-img-wrap">
-          <img id="gl-img-trade" src="trade.png" alt="trade" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
-          <div class="pic-fallback"><code>trade.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-trade')"></div>
-        </div>
-        <div class="glossary-audio">
-          <audio controls preload="none" src="audio/trade.mp3"></audio>
-          <span class="hint-text"><code>audio/trade.mp3</code></span>
-        </div>
-      </div>
-
-      <div class="glossary-card">
-        <div class="glossary-top">
-          <span class="glossary-word">water channel (n)</span>
-          <span class="glossary-vi">mương dẫn nước</span>
-        </div>
-        <p class="glossary-def"><strong>Meaning:</strong> A long, narrow way for water from a river to a field.</p>
-        <p class="glossary-ex"><strong>Example:</strong> Farmers dug long <em>water channels</em> from the river.</p>
-        <div class="glossary-img-wrap">
-          <img id="gl-img-water-channel" src="water_channel.png" alt="water channel" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
-          <div class="pic-fallback"><code>water_channel.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-water-channel')"></div>
-        </div>
-        <div class="glossary-audio">
-          <audio controls preload="none" src="audio/water_channel.mp3"></audio>
-          <span class="hint-text"><code>audio/water_channel.mp3</code></span>
-        </div>
-      </div>
-
-      <div class="glossary-card">
-        <div class="glossary-top">
-          <span class="glossary-word">BCE</span>
-          <span class="glossary-vi">trước Công nguyên</span>
-        </div>
-        <p class="glossary-def"><strong>Meaning:</strong> Before the Common Era.</p>
-        <p class="glossary-ex"><strong>Example:</strong> The Neolithic clay pot was made in about 3200 <em>BCE</em>.</p>
-        <div class="glossary-img-wrap">
-          <img id="gl-img-bce" src="bce.png" alt="BCE" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
-          <div class="pic-fallback"><code>bce.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-bce')"></div>
-        </div>
-        <div class="glossary-audio">
-          <audio controls preload="none" src="audio/bce.mp3"></audio>
-          <span class="hint-text"><code>audio/bce.mp3</code></span>
-        </div>
+        <span id="report-status-msg" style="font-size: 0.88rem; font-weight: 700;"></span>
       </div>
     </div>
   </section>
 </main>
 
 <script>
-  // PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL INSIDE QUOTES FOR LIVE CLASS DISCUSSION:
-  const GOOGLE_SCRIPT_URL = "";
+  const SECTION_ORDER = ["warmup", "vocab", "reading", "check", "language", "practice", "project"];
 
-  // Track completion of sections for Top Progress Bar
   const completedState = {
     warmup: false,
     vocab: false,
@@ -2342,18 +2536,46 @@
     project: false
   };
 
+  const unlockedState = {
+    warmup: true,
+    vocab: false,
+    reading: false,
+    check: false,
+    language: false,
+    practice: false,
+    project: false
+  };
+
+  function unlockSection(secId, showNextBarId) {
+    unlockedState[secId] = true;
+    const secEl = document.getElementById(secId);
+    if (secEl) secEl.classList.add("step-unlocked");
+    const navEl = document.querySelector(`#top-nav a[data-section="${secId}"]`);
+    if (navEl) navEl.classList.remove("locked-nav");
+    if (showNextBarId) {
+      const bar = document.getElementById(showNextBarId);
+      if (bar) bar.classList.add("show");
+    }
+  }
+
+  function goToSection(secId) {
+    const secEl = document.getElementById(secId);
+    if (secEl) {
+      secEl.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
   function updateProgressBar() {
     const keys = Object.keys(completedState);
     const doneCount = keys.filter(k => completedState[k]).length;
     const pct = Math.round((doneCount / keys.length) * 100);
-
     document.getElementById("top-progress-fill").style.width = `${pct}%`;
     document.getElementById("lesson-progress-badge").textContent = `Progress: ${pct}% (${doneCount}/${keys.length} done)`;
-
     keys.forEach(k => {
       const link = document.querySelector(`#top-nav a[data-section="${k}"]`);
       if (link) {
         link.classList.toggle("completed-sec", completedState[k]);
+        if (unlockedState[k]) link.classList.remove("locked-nav");
       }
     });
   }
@@ -2366,7 +2588,6 @@
 
   function updateHeaderScrollAndActive() {
     const currentY = window.scrollY;
-
     if (currentY <= 40) {
       headerEl.classList.remove("hide");
     } else if (currentY > lastScrollY + 4) {
@@ -2378,13 +2599,11 @@
 
     let activeId = "warmup";
     const scrollMarker = currentY + 140;
-
     for (const sec of trackedSections) {
-      if (sec.offsetTop <= scrollMarker) {
+      if (sec.classList.contains("step-unlocked") && sec.offsetTop <= scrollMarker) {
         activeId = sec.id;
       }
     }
-
     navLinks.forEach(link => {
       link.classList.toggle("active", link.dataset.section === activeId);
     });
@@ -2415,13 +2634,18 @@
     reader.readAsDataURL(file);
   }
 
-  // Warm-up Checklist
+  function showResult(elId, isSuccess, html) {
+    const el = document.getElementById(elId);
+    el.className = "result-banner show " + (isSuccess ? "result-success" : "result-error");
+    el.innerHTML = html;
+  }
+
+  // 1. WARM-UP CHECKLIST + STEP UNLOCK
   function handleWarmupClick(checkbox) {
     const label = checkbox.closest(".check-item");
     const isValid = label.dataset.valid === "true";
     const feedbackText = label.dataset.feedback;
     const banner = document.getElementById("warmup-feedback-banner");
-
     label.classList.remove("is-correct", "is-wrong");
     banner.className = "live-feedback-box";
 
@@ -2440,142 +2664,216 @@
     }
 
     const validCount = document.querySelectorAll('#warmup-list .check-item[data-valid="true"] input:checked').length;
-    const wrongCount = document.querySelectorAll('#warmup-list .check-item[data-valid="false"] input:checked').length;
     document.getElementById("warmup-status").textContent = `Found: ${validCount} / 12 Neolithic items`;
+  }
+
+  function submitWarmup() {
+    const validCount = document.querySelectorAll('#warmup-list .check-item[data-valid="true"] input:checked').length;
+    const wrongCount = document.querySelectorAll('#warmup-list .check-item[data-valid="false"] input:checked').length;
 
     if (validCount === 12 && wrongCount === 0) {
       completedState.warmup = true;
       updateProgressBar();
+      unlockSection("vocab", "next-after-warmup");
+      showResult("warmup-submit-result", true, "<strong>Excellent!</strong> You found all 12 Neolithic items and avoided the modern items. <strong>1. Farming Words</strong> is now unlocked below!");
+    } else {
+      showResult("warmup-submit-result", false, `You found <strong>${validCount} / 12</strong> Neolithic items${wrongCount > 0 ? ` and selected <strong>${wrongCount}</strong> modern item(s)` : ""}. Find all 12 Neolithic items (and uncheck any red items) to unlock Section 1.`);
     }
   }
 
-  // Live Class Discussion
-  async function submitDiscussion() {
-    const nameInput = document.getElementById("student-name");
-    const answerInput = document.getElementById("student-answer");
-    const statusEl = document.getElementById("post-status");
-    const name = nameInput.value.trim();
-    const answer = answerInput.value.trim();
+  // VOICE RECORDER (FOR WARM-UP DISCUSSION & 5B SPEAKING)
+  const activeRecorders = {};
 
-    if (!name || !answer) {
+  async function startSingleRecorder(key) {
+    const statusEl = document.getElementById(`${key}-rec-status`);
+    const startBtn = document.getElementById(`${key}-rec-start`);
+    const stopBtn = document.getElementById(`${key}-rec-stop`);
+    const audioEl = document.getElementById(`${key}-rec-audio`);
+
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
       statusEl.style.color = "var(--error)";
-      statusEl.textContent = "Please enter your name and your answer.";
+      statusEl.textContent = "Microphone recording is not supported in this browser.";
       return;
     }
 
-    if (GOOGLE_SCRIPT_URL) {
-      try {
-        await fetch(GOOGLE_SCRIPT_URL, {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name, answer })
-        });
-        nameInput.value = "";
-        answerInput.value = "";
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const mediaRecorder = new MediaRecorder(stream);
+      const chunks = [];
+
+      mediaRecorder.ondataavailable = e => {
+        if (e.data.size > 0) chunks.push(e.data);
+      };
+
+      mediaRecorder.onstop = () => {
+        const blob = new Blob(chunks, { type: "audio/webm" });
+        audioEl.src = URL.createObjectURL(blob);
+        audioEl.style.display = "block";
+        stream.getTracks().forEach(t => t.stop());
         statusEl.style.color = "var(--success)";
-        statusEl.textContent = "Posted to class board!";
-        setTimeout(loadDiscussionPosts, 1200);
-      } catch (e) {
-        statusEl.style.color = "var(--error)";
-        statusEl.textContent = "Could not post right now.";
-      }
-    } else {
-      const posts = JSON.parse(localStorage.getItem("local_class_posts") || "[]");
-      posts.unshift({ name, answer, time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) });
-      localStorage.setItem("local_class_posts", JSON.stringify(posts));
-      nameInput.value = "";
-      answerInput.value = "";
-      statusEl.style.color = "var(--success)";
-      statusEl.textContent = "Saved on this device! (Add Google Script URL so all students see it)";
-      renderPosts(posts);
+        statusEl.textContent = "✓ Recorded! Press play to listen.";
+        startBtn.disabled = false;
+        stopBtn.disabled = true;
+      };
+
+      activeRecorders[key] = mediaRecorder;
+      mediaRecorder.start();
+      startBtn.disabled = true;
+      stopBtn.disabled = false;
+      statusEl.style.color = "var(--error)";
+      statusEl.innerHTML = '<span class="rec-dot"></span> Recording...';
+    } catch (err) {
+      statusEl.style.color = "var(--error)";
+      statusEl.textContent = "Please allow microphone permission in your browser.";
     }
   }
 
-  async function loadDiscussionPosts() {
-    const listEl = document.getElementById("class-board-list");
-    if (GOOGLE_SCRIPT_URL) {
-      try {
-        const res = await fetch(GOOGLE_SCRIPT_URL);
-        const posts = await res.json();
-        renderPosts(posts);
-      } catch (e) {
-        listEl.innerHTML = '<p class="hint-text">Could not load class posts.</p>';
-      }
-    } else {
-      const posts = JSON.parse(localStorage.getItem("local_class_posts") || "[]");
-      renderPosts(posts);
+  function stopSingleRecorder(key) {
+    const rec = activeRecorders[key];
+    if (rec && rec.state !== "inactive") {
+      rec.stop();
     }
   }
 
-  function renderPosts(posts) {
-    const listEl = document.getElementById("class-board-list");
-    if (!posts || posts.length === 0) {
-      listEl.innerHTML = '<p class="hint-text">No posts yet—be the first pair to share your answer!</p>';
-      return;
-    }
-    listEl.innerHTML = posts.map(p => `
-      <div class="student-post">
-        <div class="student-post-meta">
-          <span>${esc(p.name)}</span>
-          <span style="font-weight:400; color:var(--muted);">${esc(p.time || "")}</span>
-        </div>
-        <div>${esc(p.answer)}</div>
-      </div>
-    `).join("");
+  function submitWarmupDiscussion() {
+    document.getElementById("warmup-suggested").classList.add("show");
   }
 
-  function esc(s) {
-    return String(s).replace(/[&<>"']/g, m => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[m]));
-  }
+  // GENERIC DRAG & CLICK-TO-PLACE ENGINE (FOR SECTION 1 VOCAB & SECTION 5A)
+  let selectedGenericChip = null;
 
-  loadDiscussionPosts();
+  function createGenericChip(label, value, group) {
+    const chip = document.createElement("div");
+    chip.className = "drag-chip";
+    chip.textContent = label;
+    chip.dataset.value = value;
+    chip.dataset.group = group;
+    chip.draggable = true;
 
-  function showResult(elId, isSuccess, html) {
-    const el = document.getElementById(elId);
-    el.className = "result-banner show " + (isSuccess ? "result-success" : "result-error");
-    el.innerHTML = html;
-  }
+    chip.addEventListener("dragstart", e => {
+      e.dataTransfer.setData("text/plain", JSON.stringify({ value, group }));
+    });
 
-  // 1. Vocab Check
-  function checkVocab() {
-    const selects = document.querySelectorAll("#vocab-container select");
-    let ok = 0;
-    selects.forEach(s => {
-      s.classList.remove("correct-field", "wrong-field");
-      if (s.value === s.dataset.answer) {
-        s.classList.add("correct-field");
-        ok++;
+    chip.addEventListener("click", e => {
+      e.stopPropagation();
+      if (selectedGenericChip === chip) {
+        chip.classList.remove("selected-chip");
+        selectedGenericChip = null;
       } else {
-        s.classList.add("wrong-field");
+        document.querySelectorAll(".drag-chip").forEach(c => c.classList.remove("selected-chip"));
+        chip.classList.add("selected-chip");
+        selectedGenericChip = chip;
       }
     });
-    if (ok === selects.length) {
+
+    return chip;
+  }
+
+  function dropGenericChip(e, targetEl, group) {
+    e.preventDefault();
+    let payload;
+    try {
+      payload = JSON.parse(e.dataTransfer.getData("text/plain"));
+    } catch {
+      return;
+    }
+    if (!payload || payload.group !== group) return;
+    const chip = document.querySelector(`.drag-chip[data-group="${group}"][data-value="${payload.value}"]`);
+    if (!chip) return;
+    placeGenericChipInto(chip, targetEl, group);
+  }
+
+  function clickPlaceGenericChip(targetEl, group) {
+    if (!selectedGenericChip || selectedGenericChip.dataset.group !== group) return;
+    placeGenericChipInto(selectedGenericChip, targetEl, group);
+    selectedGenericChip.classList.remove("selected-chip");
+    selectedGenericChip = null;
+  }
+
+  function placeGenericChipInto(chip, targetEl, group) {
+    const bank = document.getElementById(group === "vocab" ? "vocab-word-bank" : "p5a-word-bank");
+    if (targetEl === bank || targetEl.id === bank.id) {
+      bank.appendChild(chip);
+      return;
+    }
+    // If target slot already holds a chip, return existing chip to bank
+    const existing = targetEl.querySelector(".drag-chip");
+    if (existing && existing !== chip) {
+      bank.appendChild(existing);
+    }
+    targetEl.textContent = "";
+    targetEl.classList.remove("slot-correct", "slot-wrong");
+    targetEl.appendChild(chip);
+  }
+
+  // Initialize Section 1 Vocab Word Box
+  const VOCAB_WORDS = [
+    { label: "1. farm (v)", value: "farm" },
+    { label: "2. crop (n)", value: "crop" },
+    { label: "3. grain (n)", value: "grain" },
+    { label: "4. domesticate (v)", value: "domesticate" },
+    { label: "5. fertile (adj)", value: "fertile" },
+    { label: "6. plough (n)", value: "plough" }
+  ];
+
+  function initVocabBank() {
+    const bank = document.getElementById("vocab-word-bank");
+    bank.innerHTML = "";
+    VOCAB_WORDS.forEach(w => bank.appendChild(createGenericChip(w.label, w.value, "vocab")));
+  }
+  initVocabBank();
+
+  function checkVocabDrag() {
+    const slots = document.querySelectorAll('#vocab-match-list .drop-slot');
+    let ok = 0;
+    slots.forEach(slot => {
+      slot.classList.remove("slot-correct", "slot-wrong");
+      const chip = slot.querySelector(".drag-chip");
+      if (chip && chip.dataset.value === slot.dataset.ans) {
+        slot.classList.add("slot-correct");
+        ok++;
+      } else {
+        slot.classList.add("slot-wrong");
+      }
+    });
+
+    if (ok === slots.length) {
       document.getElementById("vocab-retry").style.display = "none";
       completedState.vocab = true;
       updateProgressBar();
-      showResult("vocab-result", true, "<strong>Great job! All 6 words matched!</strong>");
+      unlockSection("reading", "next-after-vocab");
+      showResult("vocab-result", true, "<strong>Great job! All 6 words matched!</strong> Section 2 (Reading) is now unlocked.");
     } else {
       document.getElementById("vocab-retry").style.display = "inline-block";
-      showResult("vocab-result", false, `You got ${ok} / ${selects.length} right. Click <strong>Try Again</strong> to fix the red boxes.`);
+      showResult("vocab-result", false, `You got <strong>${ok} / ${slots.length}</strong> right. Click <strong>Try Again</strong> to return wrong words to the Word Box.`);
     }
   }
 
-  function retryVocab() {
-    document.querySelectorAll("#vocab-container select").forEach(s => {
-      if (s.classList.contains("wrong-field")) {
-        s.value = "";
-        s.classList.remove("wrong-field");
-      }
+  function retryVocabDrag() {
+    const bank = document.getElementById("vocab-word-bank");
+    document.querySelectorAll('#vocab-match-list .drop-slot.slot-wrong').forEach(slot => {
+      const chip = slot.querySelector(".drag-chip");
+      if (chip) bank.appendChild(chip);
+      slot.textContent = "Drop word here";
+      slot.classList.remove("slot-wrong");
     });
     document.getElementById("vocab-result").className = "result-banner";
   }
 
+  // 2. READING: HIGHLIGHTS + COLLAPSIBLE GLOSSARY + MAP PINPOINT + VIETNAM MCQ
   function toggleHighlights() {
     document.getElementById("reading-body").classList.toggle("highlight-active");
   }
 
-  // Map Pinpoint (2 Spots) + Near/Far
+  function toggleGlossaryDrawer() {
+    const panel = document.getElementById("glossary-drawer-panel");
+    const btn = document.getElementById("toggle-glossary-btn");
+    const isOpen = panel.classList.toggle("open");
+    btn.textContent = isOpen
+      ? "📕 Close Glossary"
+      : "📚 Open Glossary (Meanings, Pictures & Audio)";
+  }
+
   let mapPins = [];
   let readingPinDone = false;
   let readingVnDone = false;
@@ -2584,6 +2882,7 @@
     if (readingPinDone && readingVnDone) {
       completedState.reading = true;
       updateProgressBar();
+      unlockSection("check", "next-after-reading");
     }
   }
 
@@ -2592,11 +2891,9 @@
     const rect = box.getBoundingClientRect();
     const xPct = ((event.clientX - rect.left) / rect.width) * 100;
     const yPct = ((event.clientY - rect.top) / rect.height) * 100;
-
     if (mapPins.length >= 2) {
       mapPins = [];
     }
-
     mapPins.push({ xPct, yPct });
     renderMapPins(false);
   }
@@ -2604,16 +2901,14 @@
   function renderMapPins(confirmed) {
     const box = document.getElementById("map-pinpoint-box");
     box.querySelectorAll(".map-pin").forEach(p => p.remove());
-
     mapPins.forEach((pt, idx) => {
       const pin = document.createElement("div");
       pin.className = "map-pin" + (confirmed ? " pin-confirmed" : "");
       pin.style.left = `${pt.xPct}%`;
       pin.style.top = `${pt.yPct}%`;
-      pin.textContent = confirmed ? `✓${idx + 1}` : `${idx + 1}`;
+      pin.textContent = `${idx + 1}`;
       box.appendChild(pin);
     });
-
     document.getElementById("map-pin-count").textContent = `Pins placed: ${mapPins.length} / 2`;
   }
 
@@ -2628,11 +2923,8 @@
       showResult("map-pin-result", false, "Please click on the map in <strong>two places</strong> around Mesopotamia (Iraq & Syria) first.");
       return;
     }
-
-    // Broad regional box covering Mesopotamia / Iraq & Syria on standard regional map
     const inMesopotamia = pt => pt.xPct >= 22 && pt.xPct <= 46 && pt.yPct >= 44 && pt.yPct <= 68;
     const bothValid = mapPins.every(inMesopotamia);
-
     if (bothValid) {
       renderMapPins(true);
       readingPinDone = true;
@@ -2666,12 +2958,40 @@
     document.getElementById("vn-result").className = "result-banner";
   }
 
+  // 3. CHECK YOUR UNDERSTANDING (GAP-FILL 3A & 3B, MIND MAP 3C, HISTORIAN 3D)
   let checkSubDone = { a: false, b: false, c: false, d: false };
 
   function syncCheckSectionProgress() {
     if (checkSubDone.a && checkSubDone.b && checkSubDone.c && checkSubDone.d) {
       completedState.check = true;
       updateProgressBar();
+      unlockSection("language", "next-after-check");
+    }
+  }
+
+  function runExactGapCheck(containerId, resultId, retryId, evidenceHtml, subKey) {
+    const inputs = document.querySelectorAll(`#${containerId} input[data-exact]`);
+    let ok = 0;
+    inputs.forEach(inp => {
+      inp.classList.remove("correct-field", "wrong-field");
+      const val = inp.value.toLowerCase().trim();
+      const accepted = inp.dataset.exact.split(",").map(s => s.trim().toLowerCase());
+      if (val && accepted.includes(val)) {
+        inp.classList.add("correct-field");
+        ok++;
+      } else {
+        inp.classList.add("wrong-field");
+      }
+    });
+
+    if (ok === inputs.length) {
+      document.getElementById(retryId).style.display = "none";
+      checkSubDone[subKey] = true;
+      syncCheckSectionProgress();
+      showResult(resultId, true, `<strong>Excellent! All ${inputs.length} gaps are correct!</strong><br>${evidenceHtml}`);
+    } else {
+      document.getElementById(retryId).style.display = "inline-block";
+      showResult(resultId, false, `You got <strong>${ok} / ${inputs.length}</strong> gaps correct. Click <strong>Try Again</strong> to fix the red boxes.`);
     }
   }
 
@@ -2713,131 +3033,59 @@
   }
 
   function checkTask3A() {
-    runKeywordCheck("task3a-body", "t3a-result", "t3a-retry",
-      "<strong>Evidence in Part A:</strong> Where = Part A1 (Iraq and Syria); When = Intro & Part A1 (about 11,000 years ago); Why good = Part A1 (flat, fertile, lots of water); Crops = Part A2 (wheat, barley, peas, lentils, flax); Animals = Part A3 (sheep, goats, cows, pigs); Still collected = Part A3 (hunted wild animals, caught fish, collected fruit and nuts).",
+    runExactGapCheck(
+      "task3a-body",
+      "t3a-result",
+      "t3a-retry",
+      "<strong>Evidence in Part A:</strong> Where = Iraq and Syria (A1); When = about 11,000 years ago (A1); Why good = flat, fertile, water (A1); Crops = wheat, barley, peas, lentils, flax (A2); Animals = sheep, goats, cows, pigs (A3); Still collected = wild animals, fish, fruit, nuts (A3).",
       "a"
     );
   }
 
   function checkTask3B() {
-    runKeywordCheck("task3b-body", "t3b-result", "t3b-retry",
-      "<strong>Evidence in text:</strong> 11,000 years ago = Part A1 (Mesopotamia); 2,000 years later = Part A4 (reached south of Europe); ~3200 BCE = Part D3 & Picture 7 (clay pot/pottery); Today = Part B2 & Part D1 (terraces and buffaloes).",
+    runExactGapCheck(
+      "task3b-body",
+      "t3b-result",
+      "t3b-retry",
+      "<strong>Evidence in text:</strong> 11,000 years ago = Mesopotamia (A1); 2,000 years later = south of Europe (A4); ~3200 BCE = clay pot (D3 / Picture 7); Today = terraces and buffaloes (B2 & D1).",
       "b"
     );
   }
 
   function checkTask3C() {
-    runKeywordCheck("task3c-body", "t3c-result", "t3c-retry",
-      "<strong>Evidence in Parts B–E:</strong> The land = Part B1–B2 (cleared fields, water channels, dam, terraces); Food = Part C1 (grain, flour, porridge, meat, milk); Tools & tech = Part D2–D4 (stone axes/blades, pottery, linen, wool); Jobs = Part E1 (looking after animals, working in fields, making pots, trading).",
+    runKeywordCheck(
+      "task3c-body",
+      "t3c-result",
+      "t3c-retry",
+      "<strong>Evidence in Parts B–E:</strong> The land = fields, water channels, dam, terraces; Food = grain, flour, porridge, meat, milk; Tools & tech = stone axes/blades, pottery, linen, wool; Jobs = animals, fields, pots, trading.",
       "c"
     );
   }
 
-  function checkTask3D() {
-    const inputs = document.querySelectorAll("#task3d-body input[data-keywords], #t3d-conclusion");
-    let ok = 0;
-    inputs.forEach(inp => {
-      inp.classList.remove("correct-field", "wrong-field");
-      const val = inp.value.toLowerCase().trim();
-      const kws = inp.dataset.keywords.split(",");
-      if (val && kws.some(k => val.includes(k.trim()))) {
-        inp.classList.add("correct-field");
-        ok++;
-      } else {
-        inp.classList.add("wrong-field");
-      }
-    });
-    if (ok === inputs.length) {
-      document.getElementById("t3d-retry").style.display = "none";
-      checkSubDone.d = true;
-      syncCheckSectionProgress();
-      showResult("t3d-result", true, "<strong>Great historian work!</strong>");
-    } else {
-      document.getElementById("t3d-retry").style.display = "inline-block";
-      showResult("t3d-result", false, `You got ${ok} / ${inputs.length} correct. Click <strong>Try Again</strong> to revise the red boxes.`);
-    }
+  function submitTask3DHistorian() {
+    document.getElementById("t3d-suggested").classList.add("show");
+    checkSubDone.d = true;
+    syncCheckSectionProgress();
   }
 
-  function retryTask3D() {
-    document.querySelectorAll("#task3d-body input, #t3d-conclusion").forEach(inp => {
-      if (inp.classList.contains("wrong-field")) {
-        inp.value = "";
-        inp.classList.remove("wrong-field");
-      }
-    });
-    document.getElementById("t3d-result").className = "result-banner";
-  }
-
-  // 4.1 All 37 Past-Tense Forms Check -> Unlocks Exercise 2
-  const ALL_PAST_VERBS = [
-    "hunted","gathered","moved","happened","lived","planted","used","collected","reached","changed","cleared","invented","pulled","polished","learned","shaped","baked","looked","worked","needed","traded",
-    "was","were","had","did","began","grew","ate","kept","caught","spread","cut","dug","built","made","ground","became"
+  // 4. LANGUAGE FOCUS: CLICKABLE READING PART 2 -> 2-COLUMN SORT -> 2-COLUMN BASE FORM
+  const READING_PART2_PARAGRAPHS = [
+    "Part B — Changing the land: Farmers changed the land around them. They cut down trees and cleared the land to make fields for their crops. Their animals ate the wild plants and grass. To bring water to the fields, farmers dug long water channels from the river. Some farmers built a dam across a river to keep and store water. In places with hills, farmers made terraces. Terraces are flat steps of land on the side of a hill, so the rain does not wash the soil away.",
+    "Part C — Changing food: Because people grew their own grain, they had more food. Farmers ground wheat and barley between two stones to make flour, and then they made bread and porridge. Their animals gave them meat and milk. Food was now easier to find, so families did not need to move any more. They built houses and lived together in villages.",
+    "Part D — New tools and technology: Farming led to new inventions. Later, farmers invented the plough, a tool that breaks up the soil so seeds can grow. Strong animals, such as cows, pulled the plough, so farmers could prepare a big field quickly. Stone tools also got better. People polished their stone axes and blades, so they were smooth and sharp and cut better. People also learned to make pottery. They shaped wet clay into pots and bowls, and then they baked them in a fire to make them hard. They used the pots to store grain, water and milk. Farmers also made textiles. They made linen from flax, and they used wool from sheep and goats to make warm clothes.",
+    "Part E — New jobs: In a farming village, there were many different jobs. Some people looked after the animals, and others worked in the fields. Some people became very good at making pots, so pottery became their special job. Sometimes a village grew more food than it needed. People traded the extra food with other villages for things they did not have, such as tools, special stones or animals. In this way, trading became another new job."
   ];
 
-  function parseWordList(text) {
-    return text.toLowerCase().split(/[\s,.;:!?()]+/).map(w => w.trim()).filter(Boolean);
-  }
+  // All 27 unique past simple verb forms appearing in Reading Part 2 (Parts B-E)
+  const PART2_PAST_VERBS = [
+    "changed", "cut", "cleared", "ate", "dug", "built", "made",
+    "grew", "had", "ground", "gave", "was", "did",
+    "led", "invented", "pulled", "got", "were", "polished", "learned", "shaped", "baked", "used",
+    "looked", "worked", "became", "needed", "traded"
+  ];
 
-  let langSubDone = { v1: false, v2: false, v2b: false, mcq: false };
-
-  function syncLanguageProgress() {
-    if (langSubDone.v1 && langSubDone.v2 && langSubDone.v2b && langSubDone.mcq) {
-      completedState.language = true;
-      updateProgressBar();
-    }
-  }
-
-  function checkVerbsTask() {
-    const box = document.getElementById("verbs-input");
-    const words = parseWordList(box.value);
-    const uniqueValid = [...new Set(words.filter(w => ALL_PAST_VERBS.includes(w)))];
-    const invalidEntered = [...new Set(words.filter(w => !ALL_PAST_VERBS.includes(w)))];
-    const missingVerbs = ALL_PAST_VERBS.filter(v => !uniqueValid.includes(v));
-
-    box.classList.remove("correct-field", "wrong-field");
-
-    if (uniqueValid.length === ALL_PAST_VERBS.length && invalidEntered.length === 0) {
-      box.classList.add("correct-field");
-      document.getElementById("verbs-retry").style.display = "none";
-      document.getElementById("drag-sort-section").classList.add("unlocked");
-      langSubDone.v1 = true;
-      syncLanguageProgress();
-      showResult(
-        "verbs-result",
-        true,
-        `<strong>Awesome! You found all ${ALL_PAST_VERBS.length} / ${ALL_PAST_VERBS.length} past-tense verb forms! Exercise 2 (Drag & Drop) is now unlocked below!</strong>`
-      );
-    } else {
-      box.classList.add("wrong-field");
-      document.getElementById("verbs-retry").style.display = "inline-block";
-      let feedback = `Found <strong>${uniqueValid.length} / ${ALL_PAST_VERBS.length}</strong> valid past-tense forms. `;
-      if (invalidEntered.length > 0) {
-        feedback += `<br>Not in the 37 past-tense list: <strong>${invalidEntered.join(", ")}</strong>. `;
-      }
-      if (missingVerbs.length > 0) {
-        feedback += `<br>Still missing <strong>${missingVerbs.length}</strong> verb(s): <em>${missingVerbs.join(", ")}</em>.`;
-      }
-      showResult("verbs-result", false, `${feedback} Click <strong>Try Again</strong>.`);
-    }
-  }
-
-  function retryVerbsTask() {
-    const box = document.getElementById("verbs-input");
-    box.classList.remove("wrong-field");
-    document.getElementById("verbs-result").className = "result-banner";
-  }
-
-  // 4.2 Drag & Drop Regular/Irregular (All 37) -> Unlocks Exercise 2B
+  // Wait: let's match the exact 27 verbs in the 2-column base form section too!
   const DRAG_VERB_DATA = [
-    { word: "hunted", type: "reg" },
-    { word: "gathered", type: "reg" },
-    { word: "moved", type: "reg" },
-    { word: "happened", type: "reg" },
-    { word: "lived", type: "reg" },
-    { word: "planted", type: "reg" },
-    { word: "used", type: "reg" },
-    { word: "collected", type: "reg" },
-    { word: "reached", type: "reg" },
     { word: "changed", type: "reg" },
     { word: "cleared", type: "reg" },
     { word: "invented", type: "reg" },
@@ -2846,28 +3094,117 @@
     { word: "learned", type: "reg" },
     { word: "shaped", type: "reg" },
     { word: "baked", type: "reg" },
+    { word: "used", type: "reg" },
     { word: "looked", type: "reg" },
     { word: "worked", type: "reg" },
     { word: "needed", type: "reg" },
     { word: "traded", type: "reg" },
-    { word: "was", type: "irreg" },
-    { word: "were", type: "irreg" },
-    { word: "had", type: "irreg" },
-    { word: "did", type: "irreg" },
-    { word: "began", type: "irreg" },
-    { word: "grew", type: "irreg" },
-    { word: "ate", type: "irreg" },
-    { word: "kept", type: "irreg" },
-    { word: "caught", type: "irreg" },
-    { word: "spread", type: "irreg" },
     { word: "cut", type: "irreg" },
+    { word: "ate", type: "irreg" },
     { word: "dug", type: "irreg" },
     { word: "built", type: "irreg" },
     { word: "made", type: "irreg" },
+    { word: "grew", type: "irreg" },
+    { word: "had", type: "irreg" },
     { word: "ground", type: "irreg" },
+    { word: "gave", type: "irreg" },
+    { word: "was", type: "irreg" },
+    { word: "did", type: "irreg" },
+    { word: "led", type: "irreg" },
+    { word: "got", type: "irreg" },
+    { word: "were", type: "irreg" },
     { word: "became", type: "irreg" }
   ];
 
+  function buildClickableReadingPart2() {
+    const container = document.getElementById("clickable-reading-p2");
+    container.innerHTML = "";
+    READING_PART2_PARAGRAPHS.forEach(paraText => {
+      const pEl = document.createElement("p");
+      const tokens = paraText.split(/(\s+)/);
+      tokens.forEach(tok => {
+        if (/^\s+$/.test(tok)) {
+          pEl.appendChild(document.createTextNode(tok));
+          return;
+        }
+        const clean = tok.toLowerCase().replace(/[^a-z]/g, "");
+        const span = document.createElement("span");
+        span.className = "click-word";
+        span.textContent = tok;
+        span.dataset.clean = clean;
+        span.addEventListener("click", () => {
+          span.classList.remove("word-correct", "word-wrong");
+          span.classList.toggle("word-selected");
+          const count = document.querySelectorAll("#clickable-reading-p2 .click-word.word-selected").length;
+          document.getElementById("clicked-verb-counter").textContent = `Selected words: ${count}`;
+        });
+        pEl.appendChild(span);
+      });
+      container.appendChild(pEl);
+    });
+  }
+  buildClickableReadingPart2();
+
+  let langSubDone = { v1: false, v2: false, v2b: false, mcq: false };
+
+  function syncLanguageProgress() {
+    if (langSubDone.v1 && langSubDone.v2 && langSubDone.v2b && langSubDone.mcq) {
+      completedState.language = true;
+      updateProgressBar();
+      unlockSection("practice", "next-after-language");
+    }
+  }
+
+  function checkClickedVerbs() {
+    const allSpans = [...document.querySelectorAll("#clickable-reading-p2 .click-word")];
+    const selectedSpans = allSpans.filter(s => s.classList.contains("word-selected") || s.classList.contains("word-correct"));
+
+    if (selectedSpans.length === 0) {
+      showResult("verbs-result", false, "Click on the past simple verbs in the text above first!");
+      return;
+    }
+
+    let wrongClicks = 0;
+    const foundSet = new Set();
+
+    selectedSpans.forEach(s => {
+      const w = s.dataset.clean;
+      s.classList.remove("word-selected", "word-correct", "word-wrong");
+      if (PART2_PAST_VERBS.includes(w)) {
+        s.classList.add("word-correct");
+        foundSet.add(w);
+      } else {
+        s.classList.add("word-wrong");
+        wrongClicks++;
+      }
+    });
+
+    const missing = PART2_PAST_VERBS.filter(v => !foundSet.has(v));
+
+    if (wrongClicks === 0 && missing.length === 0) {
+      document.getElementById("verbs-retry").style.display = "none";
+      document.getElementById("drag-sort-section").classList.add("unlocked");
+      langSubDone.v1 = true;
+      syncLanguageProgress();
+      showResult("verbs-result", true, `<strong>Awesome! You found all ${PART2_PAST_VERBS.length} unique past simple verbs in Reading Part 2!</strong> Step 2 (Regular vs. Irregular) is now unlocked below!`);
+    } else {
+      document.getElementById("verbs-retry").style.display = "inline-block";
+      showResult(
+        "verbs-result",
+        false,
+        `You found <strong>${foundSet.size} / ${PART2_PAST_VERBS.length}</strong> unique past simple verbs${wrongClicks > 0 ? ` and clicked <strong>${wrongClicks}</strong> non-verb word(s) in red` : ""}. Keep clicking all past simple verbs in Parts B–E and click <strong>Try Again</strong> to clear red marks.`
+      );
+    }
+  }
+
+  function retryClickedVerbs() {
+    document.querySelectorAll("#clickable-reading-p2 .click-word.word-wrong").forEach(s => {
+      s.classList.remove("word-wrong", "word-selected");
+    });
+    document.getElementById("verbs-result").className = "result-banner";
+  }
+
+  // Step 4.2: Drag & Drop Regular/Irregular
   let selectedChipEl = null;
 
   function initVerbBank() {
@@ -2974,18 +3311,10 @@
       document.getElementById("bare-form-section").classList.add("unlocked");
       langSubDone.v2 = true;
       syncLanguageProgress();
-      showResult(
-        "drag-result",
-        true,
-        `<strong>All ${correctCount} verbs sorted accurately! Exercise 2B (Bare Forms) is now unlocked below!</strong>`
-      );
+      showResult("drag-result", true, `<strong>All ${correctCount} verbs sorted into Regular and Irregular!</strong> Step 3 (Base Forms in 2 columns) is now unlocked below!`);
     } else {
       document.getElementById("drag-retry").style.display = "inline-block";
-      showResult(
-        "drag-result",
-        false,
-        `Checked ${placed.length} placed verbs: <strong>${correctCount} correct</strong>, <strong>${wrongCount} wrong</strong> (${DRAG_VERB_DATA.length - placed.length} still in bank). Sort all ${DRAG_VERB_DATA.length} verbs correctly to unlock Exercise 2B! Click <strong>Try Again</strong>.`
-      );
+      showResult("drag-result", false, `Checked ${placed.length} placed verbs: <strong>${correctCount} correct</strong>, <strong>${wrongCount} wrong</strong> (${DRAG_VERB_DATA.length - placed.length} still in bank). Click <strong>Try Again</strong> to revise.`);
     }
   }
 
@@ -2997,6 +3326,17 @@
     });
     document.getElementById("drag-result").className = "result-banner";
   }
+
+  // Ensure "led" is included in the Irregular column of Step 4.3
+  (function addLedToIrregColumn() {
+    const irregCol = document.querySelector("#bare-form-grid .irreg-col");
+    if (irregCol) {
+      const row = document.createElement("div");
+      row.className = "bare-row-item";
+      row.innerHTML = '<span><strong>led</strong> →</span><input type="text" data-bare="lead" placeholder="base form">';
+      irregCol.appendChild(row);
+    }
+  })();
 
   function checkBareForms() {
     const inputs = document.querySelectorAll("#bare-form-grid input[data-bare]");
@@ -3012,19 +3352,14 @@
         inp.classList.add("wrong-field");
       }
     });
-
     if (ok === inputs.length) {
       document.getElementById("bare-retry").style.display = "none";
       langSubDone.v2b = true;
       syncLanguageProgress();
-      showResult(
-        "bare-result",
-        true,
-        `<strong>All ${inputs.length} bare forms are correct!</strong>`
-      );
+      showResult("bare-result", true, `<strong>All ${inputs.length} base forms are correct!</strong>`);
     } else {
       document.getElementById("bare-retry").style.display = "inline-block";
-      showResult("bare-result", false, `You got ${ok} / ${inputs.length} bare forms right. Click <strong>Try Again</strong> to fix the red boxes.`);
+      showResult("bare-result", false, `You got ${ok} / ${inputs.length} base forms right. Click <strong>Try Again</strong> to fix the red boxes.`);
     }
   }
 
@@ -3040,21 +3375,18 @@
 
   initVerbBank();
 
-  // 4.3 Language MCQ — Per-Question Feedback Below Each Card
+  // 4.4 Language MCQ
   function checkLangMcq() {
     const cards = document.querySelectorAll("#lang-mcq-list .mcq-card");
     let anyWrong = false;
-
     cards.forEach(card => {
       const ans = card.dataset.correct;
       const explain = card.dataset.explain;
       const checked = card.querySelector('input[type="radio"]:checked');
       const fb = card.querySelector(".item-feedback");
-
       card.style.borderColor = "#7dd3fc";
       card.style.background = "#f0f9ff";
       fb.className = "item-feedback";
-
       if (checked && checked.value === ans) {
         card.style.borderColor = "#16a34a";
         card.style.background = "#f0fdf4";
@@ -3070,12 +3402,10 @@
           : `<strong>✗ Please select an option</strong> (A, B, C, or D) for this question.`;
       }
     });
-
     if (!anyWrong) {
       langSubDone.mcq = true;
       syncLanguageProgress();
     }
-
     document.getElementById("langmcq-retry").style.display = anyWrong ? "inline-block" : "none";
   }
 
@@ -3093,11 +3423,26 @@
     document.getElementById("langmcq-retry").style.display = "none";
   }
 
-  // 5A Practice Check
+  // 5A PRACTICE: DRAG WORD BOX + TYPE VERB FORM
+  const P5A_BOX_WORDS = [
+    "water", "fertile", "trees", "plough", "wheat", "barley",
+    "water channels", "dam", "grains", "wool", "linen", "reeds"
+  ];
+
+  function initP5ABank() {
+    const bank = document.getElementById("p5a-word-bank");
+    bank.innerHTML = "";
+    P5A_BOX_WORDS.forEach(w => bank.appendChild(createGenericChip(w, w, "p5a")));
+  }
+  initP5ABank();
+
   function checkPractice5A() {
-    const inputs = document.querySelectorAll("#p5a-body input[data-ans]");
+    const verbInputs = document.querySelectorAll("#p5a-body input[data-ans]");
+    const wordSlots = document.querySelectorAll("#p5a-body .drop-slot");
     let ok = 0;
-    inputs.forEach(inp => {
+    const total = verbInputs.length + wordSlots.length;
+
+    verbInputs.forEach(inp => {
       inp.classList.remove("correct-field", "wrong-field");
       if (inp.value.toLowerCase().trim() === inp.dataset.ans.toLowerCase()) {
         inp.classList.add("correct-field");
@@ -3106,32 +3451,185 @@
         inp.classList.add("wrong-field");
       }
     });
-    if (ok === inputs.length) {
+
+    wordSlots.forEach(slot => {
+      slot.classList.remove("slot-correct", "slot-wrong");
+      const chip = slot.querySelector(".drag-chip");
+      if (chip && chip.dataset.value === slot.dataset.ans) {
+        slot.classList.add("slot-correct");
+        ok++;
+      } else {
+        slot.classList.add("slot-wrong");
+      }
+    });
+
+    if (ok === total) {
       document.getElementById("p5a-retry").style.display = "none";
       completedState.practice = true;
       updateProgressBar();
-      showResult("p5a-result", true, "<strong>All blanks and the extra word (reeds) are correct!</strong>");
+      unlockSection("project", "next-after-practice");
+      showResult("p5a-result", true, "<strong>All verb forms, dragged words, and the extra word (reeds) are correct!</strong> Section 6 (Project) is now unlocked.");
     } else {
       document.getElementById("p5a-retry").style.display = "inline-block";
-      showResult("p5a-result", false, `You got ${ok} / ${inputs.length} correct. Click <strong>Try Again</strong> to fix the red boxes.`);
+      showResult("p5a-result", false, `You got <strong>${ok} / ${total}</strong> correct. Click <strong>Try Again</strong> to revise the red fields.`);
     }
   }
 
   function retryPractice5A() {
+    const bank = document.getElementById("p5a-word-bank");
     document.querySelectorAll("#p5a-body input[data-ans]").forEach(inp => {
       if (inp.classList.contains("wrong-field")) {
         inp.value = "";
         inp.classList.remove("wrong-field");
       }
     });
+    document.querySelectorAll("#p5a-body .drop-slot.slot-wrong").forEach(slot => {
+      const chip = slot.querySelector(".drag-chip");
+      if (chip) bank.appendChild(chip);
+      slot.textContent = "drop word";
+      slot.classList.remove("slot-wrong");
+    });
     document.getElementById("p5a-result").className = "result-banner";
   }
 
+  // 6. PROJECT & GOOGLE APPS SCRIPT REPORTING
   function markProjectDone() {
     completedState.project = true;
     updateProgressBar();
     document.getElementById("project-done-msg").textContent = "✓ Project marked complete!";
   }
+
+  const PROGRESS_REPORT_URL = "https://script.google.com/macros/s/AKfycbzPOmOjMwYH5OpItUcGKyo4hA-_27Yk_yY9ExRzUSioLY2CV87nArTiKH7Zvbn77T0/exec";
+
+  let uploadedInfographicName = "";
+  let uploadedInfographicDataUrl = "";
+
+  function handleProjectImageUpload(event) {
+    const file = event.target.files && event.target.files[0];
+    if (!file) return;
+    const msg = document.getElementById("report-status-msg");
+    if (file.size > 2.5 * 1024 * 1024) {
+      msg.style.color = "var(--error)";
+      msg.textContent = "Image is large (>2.5 MB). Please use a smaller image or paste a Drive/Canva link.";
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      uploadedInfographicName = file.name;
+      uploadedInfographicDataUrl = e.target.result;
+      document.getElementById("project-img-preview").src = uploadedInfographicDataUrl;
+      document.getElementById("project-img-name").textContent = `Uploaded: ${file.name}`;
+      document.getElementById("project-img-preview-wrap").style.display = "block";
+      saveProgressLocally(false);
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function getProgressPayload() {
+    const studentName = document.getElementById("report-student-name").value.trim();
+    const studentClass = document.getElementById("report-student-class").value.trim();
+    const projectLink = document.getElementById("project-link-input").value.trim();
+    const doneSections = Object.keys(completedState).filter(k => completedState[k]);
+    const pct = Math.round((doneSections.length / Object.keys(completedState).length) * 100);
+    const correctClicked = document.querySelectorAll("#clickable-reading-p2 .click-word.word-correct").length;
+
+    return {
+      studentName,
+      studentClass,
+      progressPct: `${pct}%`,
+      completedSections: doneSections.join(", ") || "None yet",
+      verbsCount: `${correctClicked} clicked`,
+      projectLink,
+      infographicName: uploadedInfographicName,
+      completedState,
+      unlockedState
+    };
+  }
+
+  function saveProgressLocally(showMsg = true) {
+    const payload = getProgressPayload();
+    const msg = document.getElementById("report-status-msg");
+    try {
+      localStorage.setItem("lesson1_saved_progress", JSON.stringify({
+        ...payload,
+        infographicDataUrl: uploadedInfographicDataUrl
+      }));
+      if (showMsg) {
+        msg.style.color = "var(--success)";
+        msg.textContent = "✓ Saved on this browser!";
+      }
+    } catch (err) {
+      msg.style.color = "var(--error)";
+      msg.textContent = "Could not save image locally (storage full). Paste a link instead.";
+    }
+  }
+
+  function restoreSavedProgress() {
+    const raw = localStorage.getItem("lesson1_saved_progress");
+    if (!raw) return;
+    try {
+      const saved = JSON.parse(raw);
+      if (saved.studentName) document.getElementById("report-student-name").value = saved.studentName;
+      if (saved.studentClass) document.getElementById("report-student-class").value = saved.studentClass;
+      if (saved.projectLink) document.getElementById("project-link-input").value = saved.projectLink;
+      if (saved.infographicDataUrl) {
+        uploadedInfographicName = saved.infographicName || "infographic.png";
+        uploadedInfographicDataUrl = saved.infographicDataUrl;
+        document.getElementById("project-img-preview").src = uploadedInfographicDataUrl;
+        document.getElementById("project-img-name").textContent = `Restored: ${uploadedInfographicName}`;
+        document.getElementById("project-img-preview-wrap").style.display = "block";
+      }
+      if (saved.unlockedState) {
+        Object.keys(saved.unlockedState).forEach(k => {
+          if (saved.unlockedState[k]) unlockSection(k);
+        });
+      }
+      if (saved.completedState) {
+        Object.assign(completedState, saved.completedState);
+        updateProgressBar();
+      }
+    } catch (e) {
+      // Ignore malformed local data
+    }
+  }
+
+  async function saveAndReportProgress() {
+    const payload = getProgressPayload();
+    const msg = document.getElementById("report-status-msg");
+
+    if (!payload.studentName || !payload.studentClass) {
+      msg.style.color = "var(--error)";
+      msg.textContent = "Please enter both your name and your class before reporting.";
+      return;
+    }
+
+    saveProgressLocally(false);
+
+    if (!PROGRESS_REPORT_URL || PROGRESS_REPORT_URL.includes("PASTE_YOUR_WEB_APP_URL_HERE")) {
+      msg.style.color = "var(--error)";
+      msg.textContent = "Saved locally, but PROGRESS_REPORT_URL is not set yet.";
+      return;
+    }
+
+    msg.style.color = "var(--muted)";
+    msg.textContent = "Sending report...";
+
+    try {
+      await fetch(PROGRESS_REPORT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      msg.style.color = "var(--success)";
+      msg.textContent = `✓ Saved & reported for ${payload.studentName} (${payload.studentClass}) — ${payload.progressPct}!`;
+    } catch (err) {
+      msg.style.color = "var(--error)";
+      msg.textContent = "Saved locally, but sending to Google Sheets failed. Please try again.";
+    }
+  }
+
+  restoreSavedProgress();
 </script>
 
 </body>
