@@ -37,20 +37,13 @@
       scroll-behavior: smooth;
     }
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background-color: var(--bg);
-  background-image:
-    linear-gradient(rgba(255, 250, 240, 0.72), rgba(255, 250, 240, 0.25)),
-    url("background.jpg");
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  color: var(--text);
-  line-height: 1.65;
-  padding-bottom: 5rem;
-}
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      padding-bottom: 5rem;
+    }
 
     /* Top Navigation Bar + Progress Bar + Slide Hide + Active Link Highlight */
     header {
@@ -260,14 +253,13 @@ body {
     }
 
     /* Cards */
-.card {
-  background: rgba(255, 255, 255, 0.93);
-  backdrop-filter: blur(4px);
-  border: 2px solid var(--border);
-  border-radius: 18px;
-  padding: 1.85rem;
-  box-shadow: 0 6px 20px rgba(24, 34, 48, 0.06);
-}
+    .card {
+      background: var(--surface);
+      border: 2px solid var(--border);
+      border-radius: 18px;
+      padding: 1.85rem;
+      box-shadow: 0 6px 20px rgba(24, 34, 48, 0.05);
+    }
 
     .card-warmup { border-top: 7px solid var(--amber); }
     .card-vocab { border-top: 7px solid var(--emerald); }
@@ -961,73 +953,63 @@ body {
       text-align: left;
     }
 
-/* RADIAL 2x2 MIND MAP WITH CENTER HUB & NO ARROWS */
+    /* REAL MIND MAP WITH LINES, ARROWS & CENTRAL HUB */
     .mindmap-diagram {
-      position: relative;
       margin-top: 1rem;
-      padding: 1.5rem;
+      padding: 1.25rem;
       background: #fffdf8;
       border: 2px solid #e7dcc7;
-      border-radius: 18px;
+      border-radius: 16px;
     }
 
-    .mindmap-grid {
-      position: relative;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 3.6rem 2.4rem;
-    }
-
-    /* Cross connector lines behind the center hub (no arrows) */
-    .mindmap-grid::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 24%;
-      right: 24%;
-      height: 3px;
-      background: #cbd5e1;
-      transform: translateY(-50%);
-      z-index: 1;
-    }
-
-    .mindmap-grid::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 22%;
-      bottom: 22%;
-      width: 3px;
-      background: #cbd5e1;
-      transform: translateX(-50%);
-      z-index: 1;
+    .mm-center-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 0.25rem;
     }
 
     .mm-center-node {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 3;
       background: linear-gradient(135deg, #fef08a, #fde68a);
       border: 3px solid #d97706;
       color: #78350f;
       font-weight: 900;
-      font-size: 0.98rem;
-      padding: 0.7rem 1.25rem;
-      border-radius: 999px;
-      box-shadow: 0 6px 18px rgba(217, 119, 6, 0.22), 0 0 0 6px #fffdf8;
+      font-size: 1.05rem;
+      padding: 0.75rem 1.45rem;
+      border-radius: 16px;
+      box-shadow: 0 6px 16px rgba(217, 119, 6, 0.16);
       text-align: center;
-      white-space: nowrap;
+    }
+
+    .mm-connectors-svg {
+      width: 100%;
+      height: 58px;
+      display: block;
+    }
+
+    .mindmap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.15rem;
+      margin-top: 0.15rem;
     }
 
     .mm-box {
       position: relative;
-      z-index: 2;
       border: 2.5px solid var(--border);
-      border-radius: 16px;
-      padding: 1.15rem;
+      border-radius: 14px;
+      padding: 1.05rem;
       box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+    }
+
+    .mm-box::before {
+      content: "↑";
+      position: absolute;
+      top: -22px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-weight: 900;
+      font-size: 1rem;
+      color: #64748b;
     }
 
     .mm-land { background: #e6faef; border-color: #34d399; }
@@ -1050,28 +1032,10 @@ body {
     }
 
     .mm-seed {
-      background: rgba(255, 255, 255, 0.88);
+      background: rgba(255, 255, 255, 0.85);
       border-radius: 8px;
       padding: 0.4rem 0.65rem;
       font-size: 0.9rem;
-    }
-
-    /* Stack cleanly on small phone screens */
-    @media (max-width: 720px) {
-      .mindmap-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-      }
-      .mindmap-grid::before,
-      .mindmap-grid::after {
-        display: none;
-      }
-      .mm-center-node {
-        position: static;
-        transform: none;
-        margin-bottom: 1rem;
-        white-space: normal;
-      }
     }
 
     /* Hidden / Unlocked Sections for Past Simple */
@@ -1761,11 +1725,26 @@ body {
     <h3 style="margin-top:2rem;"><span class="part-pill">Task C</span> Complete the mind map (How did farming change people's lives?)</h3>
     <p class="hint-text">Use information from Parts B–E. Write 2 more ideas in each branch box (max. 5 words each).</p>
 
-<div class="mindmap-diagram" id="task3c-body">
-      <div class="mindmap-grid">
+    <div class="mindmap-diagram" id="task3c-body">
+      <div class="mm-center-wrap">
         <div class="mm-center-node">🌾 How Farming Changed Lives</div>
+      </div>
 
-        <!-- TOP LEFT -->
+      <svg class="mm-connectors-svg" viewBox="0 0 800 58" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <marker id="mmArrow" markerWidth="7" markerHeight="7" refX="3.5" refY="6" orient="auto">
+            <path d="M0,0 L7,0 L3.5,6 Z" fill="#64748b" />
+          </marker>
+        </defs>
+        <line x1="400" y1="0" x2="400" y2="22" stroke="#64748b" stroke-width="2.5" />
+        <line x1="100" y1="22" x2="700" y2="22" stroke="#64748b" stroke-width="2.5" />
+        <line x1="100" y1="22" x2="100" y2="52" stroke="#64748b" stroke-width="2.5" marker-end="url(#mmArrow)" />
+        <line x1="300" y1="22" x2="300" y2="52" stroke="#64748b" stroke-width="2.5" marker-end="url(#mmArrow)" />
+        <line x1="500" y1="22" x2="500" y2="52" stroke="#64748b" stroke-width="2.5" marker-end="url(#mmArrow)" />
+        <line x1="700" y1="22" x2="700" y2="52" stroke="#64748b" stroke-width="2.5" marker-end="url(#mmArrow)" />
+      </svg>
+
+      <div class="mindmap-grid">
         <div class="mm-box mm-land">
           <h4>🌲 The land</h4>
           <ul>
@@ -1774,8 +1753,6 @@ body {
             <li><input type="text" data-keywords="fields,channels,dam,terraces,clear,water" placeholder="Idea 3 (max. 5 words)"></li>
           </ul>
         </div>
-
-        <!-- TOP RIGHT -->
         <div class="mm-box mm-food">
           <h4>🍞 Food</h4>
           <ul>
@@ -1784,8 +1761,6 @@ body {
             <li><input type="text" data-keywords="grain,flour,porridge,meat,milk,wheat,barley" placeholder="Idea 3 (max. 5 words)"></li>
           </ul>
         </div>
-
-        <!-- BOTTOM LEFT -->
         <div class="mm-box mm-tools">
           <h4>🛠️ Tools and technology</h4>
           <ul>
@@ -1794,8 +1769,6 @@ body {
             <li><input type="text" data-keywords="stone,axes,blades,pottery,pots,linen,wool,textiles" placeholder="Idea 3 (max. 5 words)"></li>
           </ul>
         </div>
-
-        <!-- BOTTOM RIGHT -->
         <div class="mm-box mm-jobs">
           <h4>🧑‍🌾 Jobs</h4>
           <ul>
@@ -2101,37 +2074,6 @@ body {
   </section>
 
   <!-- 6. PROJECT -->
-  <div style="margin-top: 1.25rem; padding: 1.2rem; background: #ffffff; border: 2px solid #bbf7d0; border-radius: 14px;">
-      <strong style="color: #15803d; font-size: 1.02rem;">📤 Submit Your Project & Report Progress to Teacher</strong>
-      <p class="hint-text" style="margin-bottom: 0.8rem;">
-        Enter your name and class, upload an infographic image or paste a link to your video/infographic, and click <strong>Save & Report to Teacher</strong>.
-      </p>
-
-      <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 0.7rem;">
-          <input type="text" id="report-student-name" placeholder="Student / Group Name (e.g., Nguyễn Minh Anh)">
-          <input type="text" id="report-student-class" placeholder="Class (e.g., 7A1)">
-        </div>
-
-        <label style="font-size: 0.9rem; font-weight: 700;">
-          Infographic image (PNG / JPG / WEBP):
-          <input type="file" id="project-img-file" accept="image/*" onchange="handleProjectImageUpload(event)" style="margin-top: 0.3rem;">
-        </label>
-
-        <div id="project-img-preview-wrap" style="display: none; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 0.65rem; background: #f8fafc;">
-          <img id="project-img-preview" alt="Uploaded infographic preview" style="max-width: 100%; max-height: 280px; display: block; border-radius: 8px;">
-          <span id="project-img-name" class="hint-text"></span>
-        </div>
-
-        <input type="url" id="project-link-input" placeholder="Video or infographic link (Google Drive, YouTube, Canva, etc.)" style="width: 100%; padding: 0.55rem 0.7rem; border: 1.5px solid #cbd5e1; border-radius: 8px; font-family: inherit; font-size: 0.92rem;">
-
-        <div class="btn-group" style="margin-top: 0.2rem;">
-          <button type="button" class="btn-outline" onclick="saveProgressLocally()">💾 Save Locally</button>
-          <button type="button" class="btn-primary" onclick="saveAndReportProgress()">📨 Save & Report to Teacher</button>
-        </div>
-        <span id="report-status-msg" style="font-size: 0.88rem; font-weight: 700;"></span>
-      </div>
-    </div>
   <section id="project" class="card card-project">
     <h2>
       <span class="sec-icon icon-emerald">🌍</span>
@@ -2169,8 +2111,8 @@ body {
         <p class="glossary-def"><strong>Meaning:</strong> A plant that farmers grow for food.</p>
         <p class="glossary-ex"><strong>Example:</strong> The first farmers planted <em>crops</em> such as wheat and barley.</p>
         <div class="glossary-img-wrap">
-          <img id="gl-img-crop" src="crop.jpg" alt="crop" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
-          <div class="pic-fallback"><code>crop.jpg</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-crop')"></div>
+          <img id="gl-img-crop" src="crop.png" alt="crop" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback"><code>crop.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-crop')"></div>
         </div>
         <div class="glossary-audio">
           <audio controls preload="none" src="audio/crop.mp3"></audio>
@@ -2186,8 +2128,8 @@ body {
         <p class="glossary-def"><strong>Meaning:</strong> A wall across a river that stops and stores water.</p>
         <p class="glossary-ex"><strong>Example:</strong> Some farmers built a <em>dam</em> across a river to store water.</p>
         <div class="glossary-img-wrap">
-          <img id="gl-img-dam" src="dam.jpg" alt="dam" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
-          <div class="pic-fallback"><code>dam.jpg</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-dam')"></div>
+          <img id="gl-img-dam" src="dam.png" alt="dam" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback"><code>dam.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-dam')"></div>
         </div>
         <div class="glossary-audio">
           <audio controls preload="none" src="audio/dam.mp3"></audio>
@@ -2203,8 +2145,8 @@ body {
         <p class="glossary-def"><strong>Meaning:</strong> To make a wild animal tame so it can live with people.</p>
         <p class="glossary-ex"><strong>Example:</strong> People began to <em>domesticate</em> sheep, goats, cows and pigs.</p>
         <div class="glossary-img-wrap">
-          <img id="gl-img-domesticate" src="domesticate.jpg" alt="domesticate" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
-          <div class="pic-fallback"><code>domesticate.jpg</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-domesticate')"></div>
+          <img id="gl-img-domesticate" src="domesticate.png" alt="domesticate" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback"><code>domesticate.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-domesticate')"></div>
         </div>
         <div class="glossary-audio">
           <audio controls preload="none" src="audio/domesticate.mp3"></audio>
@@ -2220,8 +2162,8 @@ body {
         <p class="glossary-def"><strong>Meaning:</strong> Good for growing plants.</p>
         <p class="glossary-ex"><strong>Example:</strong> The land near the rivers was flat and <em>fertile</em>.</p>
         <div class="glossary-img-wrap">
-          <img id="gl-img-fertile" src="fertile.jpg" alt="fertile" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
-          <div class="pic-fallback"><code>fertile.jpg</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-fertile')"></div>
+          <img id="gl-img-fertile" src="fertile.png" alt="fertile" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback"><code>fertile.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-fertile')"></div>
         </div>
         <div class="glossary-audio">
           <audio controls preload="none" src="audio/fertile.mp3"></audio>
@@ -2237,8 +2179,8 @@ body {
         <p class="glossary-def"><strong>Meaning:</strong> An area of land where farmers grow crops.</p>
         <p class="glossary-ex"><strong>Example:</strong> Farmers cleared the land to make <em>fields</em> for their crops.</p>
         <div class="glossary-img-wrap">
-          <img id="gl-img-field" src="field.jpg" alt="field" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
-          <div class="pic-fallback"><code>field.jpg</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-field')"></div>
+          <img id="gl-img-field" src="field.png" alt="field" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback"><code>field.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-field')"></div>
         </div>
         <div class="glossary-audio">
           <audio controls preload="none" src="audio/field.mp3"></audio>
@@ -2254,8 +2196,8 @@ body {
         <p class="glossary-def"><strong>Meaning:</strong> The small, hard seeds of wheat, rice or barley.</p>
         <p class="glossary-ex"><strong>Example:</strong> Because people grew their own <em>grain</em>, they had more food.</p>
         <div class="glossary-img-wrap">
-          <img id="gl-img-grain" src="grain.jpg" alt="grain" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
-          <div class="pic-fallback"><code>grain.jpg</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-grain')"></div>
+          <img id="gl-img-grain" src="grain.png" alt="grain" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback"><code>grain.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-grain')"></div>
         </div>
         <div class="glossary-audio">
           <audio controls preload="none" src="audio/grain.mp3"></audio>
@@ -2271,8 +2213,8 @@ body {
         <p class="glossary-def"><strong>Meaning:</strong> A farm tool that breaks up the soil before planting.</p>
         <p class="glossary-ex"><strong>Example:</strong> Strong animals pulled the <em>plough</em> through the soil.</p>
         <div class="glossary-img-wrap">
-          <img id="gl-img-plough" src="plough.jpg" alt="plough" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
-          <div class="pic-fallback"><code>plough.jpg</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-plough')"></div>
+          <img id="gl-img-plough" src="plough.png" alt="plough" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback"><code>plough.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-plough')"></div>
         </div>
         <div class="glossary-audio">
           <audio controls preload="none" src="audio/plough.mp3"></audio>
@@ -2288,8 +2230,8 @@ body {
         <p class="glossary-def"><strong>Meaning:</strong> Pots and bowls made from clay.</p>
         <p class="glossary-ex"><strong>Example:</strong> People learned to make <em>pottery</em> from wet clay.</p>
         <div class="glossary-img-wrap">
-          <img id="gl-img-pottery" src="pottery.jpg" alt="pottery" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
-          <div class="pic-fallback"><code>pottery.jpg</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-pottery')"></div>
+          <img id="gl-img-pottery" src="pottery.png" alt="pottery" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback"><code>pottery.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-pottery')"></div>
         </div>
         <div class="glossary-audio">
           <audio controls preload="none" src="audio/pottery.mp3"></audio>
@@ -2305,8 +2247,8 @@ body {
         <p class="glossary-def"><strong>Meaning:</strong> A flat step of land on a hill.</p>
         <p class="glossary-ex"><strong>Example:</strong> Farmers in Vietnam still grow rice on <em>terraces</em> today.</p>
         <div class="glossary-img-wrap">
-          <img id="gl-img-terrace" src="terrace.jpg" alt="terrace" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
-          <div class="pic-fallback"><code>terrace.jpg</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-terrace')"></div>
+          <img id="gl-img-terrace" src="terrace.png" alt="terrace" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback"><code>terrace.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-terrace')"></div>
         </div>
         <div class="glossary-audio">
           <audio controls preload="none" src="audio/terrace.mp3"></audio>
@@ -2322,8 +2264,8 @@ body {
         <p class="glossary-def"><strong>Meaning:</strong> Cloth, e.g. linen or wool.</p>
         <p class="glossary-ex"><strong>Example:</strong> Farmers made <em>textiles</em> such as linen and wool for clothes.</p>
         <div class="glossary-img-wrap">
-          <img id="gl-img-textiles" src="textiles.jpg" alt="textiles" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
-          <div class="pic-fallback"><code>textiles.jpg</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-textiles')"></div>
+          <img id="gl-img-textiles" src="textiles.png" alt="textiles" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback"><code>textiles.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-textiles')"></div>
         </div>
         <div class="glossary-audio">
           <audio controls preload="none" src="audio/textiles.mp3"></audio>
@@ -2339,8 +2281,8 @@ body {
         <p class="glossary-def"><strong>Meaning:</strong> To give something and get something in return.</p>
         <p class="glossary-ex"><strong>Example:</strong> People <em>traded</em> extra food with other villages.</p>
         <div class="glossary-img-wrap">
-          <img id="gl-img-trade" src="trade.jpg" alt="trade" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
-          <div class="pic-fallback"><code>trade.jpg</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-trade')"></div>
+          <img id="gl-img-trade" src="trade.png" alt="trade" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback"><code>trade.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-trade')"></div>
         </div>
         <div class="glossary-audio">
           <audio controls preload="none" src="audio/trade.mp3"></audio>
@@ -2356,8 +2298,8 @@ body {
         <p class="glossary-def"><strong>Meaning:</strong> A long, narrow way for water from a river to a field.</p>
         <p class="glossary-ex"><strong>Example:</strong> Farmers dug long <em>water channels</em> from the river.</p>
         <div class="glossary-img-wrap">
-          <img id="gl-img-water-channel" src="water_channel.jpg" alt="water channel" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
-          <div class="pic-fallback"><code>water_channel.jpg</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-water-channel')"></div>
+          <img id="gl-img-water-channel" src="water_channel.png" alt="water channel" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback"><code>water_channel.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-water-channel')"></div>
         </div>
         <div class="glossary-audio">
           <audio controls preload="none" src="audio/water_channel.mp3"></audio>
@@ -2373,8 +2315,8 @@ body {
         <p class="glossary-def"><strong>Meaning:</strong> Before the Common Era.</p>
         <p class="glossary-ex"><strong>Example:</strong> The Neolithic clay pot was made in about 3200 <em>BCE</em>.</p>
         <div class="glossary-img-wrap">
-          <img id="gl-img-bce" src="bce.jpg" alt="BCE" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
-          <div class="pic-fallback"><code>bce.jpg</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-bce')"></div>
+          <img id="gl-img-bce" src="bce.png" alt="BCE" onload="this.nextElementSibling.style.display='none';" onerror="showFallback(this);">
+          <div class="pic-fallback"><code>bce.png</code><br><input type="file" accept="image/*" onchange="previewLocalImg(event, 'gl-img-bce')"></div>
         </div>
         <div class="glossary-audio">
           <audio controls preload="none" src="audio/bce.mp3"></audio>
@@ -3190,136 +3132,6 @@ body {
     updateProgressBar();
     document.getElementById("project-done-msg").textContent = "✓ Project marked complete!";
   }
-  // PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL INSIDE THE QUOTES BELOW:
-  const PROGRESS_REPORT_URL = "https://script.google.com/macros/s/AKfycbzPOmOjMwYH5OpItUcGKyo4hA-_27Yk_yY9ExRzUSioLY2CV87nArTiKH7Zvbn77T0/exec";
-
-  let uploadedInfographicName = "";
-  let uploadedInfographicDataUrl = "";
-
-  function handleProjectImageUpload(event) {
-    const file = event.target.files && event.target.files[0];
-    if (!file) return;
-
-    const msg = document.getElementById("report-status-msg");
-    if (file.size > 2.5 * 1024 * 1024) {
-      msg.style.color = "var(--error)";
-      msg.textContent = "Image is large (>2.5 MB). Please use a smaller image or paste a Drive/Canva link.";
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      uploadedInfographicName = file.name;
-      uploadedInfographicDataUrl = e.target.result;
-      document.getElementById("project-img-preview").src = uploadedInfographicDataUrl;
-      document.getElementById("project-img-name").textContent = `Uploaded: ${file.name}`;
-      document.getElementById("project-img-preview-wrap").style.display = "block";
-      saveProgressLocally(false);
-    };
-    reader.readAsDataURL(file);
-  }
-
-  function getProgressPayload() {
-    const studentName = document.getElementById("report-student-name").value.trim();
-    const studentClass = document.getElementById("report-student-class").value.trim();
-    const projectLink = document.getElementById("project-link-input").value.trim();
-    const doneSections = Object.keys(completedState).filter(k => completedState[k]);
-    const pct = Math.round((doneSections.length / Object.keys(completedState).length) * 100);
-    const verbsInput = document.getElementById("verbs-input");
-    const verbsInputWords = verbsInput ? parseWordList(verbsInput.value) : [];
-    const validVerbs = [...new Set(verbsInputWords.filter(w => ALL_PAST_VERBS.includes(w)))];
-
-    return {
-      studentName,
-      studentClass,
-      progressPct: `${pct}%`,
-      completedSections: doneSections.join(", ") || "None yet",
-      verbsCount: `${validVerbs.length}/${ALL_PAST_VERBS.length}`,
-      projectLink,
-      infographicName: uploadedInfographicName,
-      completedState
-    };
-  }
-
-  function saveProgressLocally(showMsg = true) {
-    const payload = getProgressPayload();
-    const msg = document.getElementById("report-status-msg");
-    try {
-      localStorage.setItem("lesson1_saved_progress", JSON.stringify({
-        ...payload,
-        infographicDataUrl: uploadedInfographicDataUrl
-      }));
-      if (showMsg) {
-        msg.style.color = "var(--success)";
-        msg.textContent = "✓ Saved on this browser!";
-      }
-    } catch (err) {
-      msg.style.color = "var(--error)";
-      msg.textContent = "Could not save image locally (storage full). Paste a link instead.";
-    }
-  }
-
-  function restoreSavedProgress() {
-    const raw = localStorage.getItem("lesson1_saved_progress");
-    if (!raw) return;
-    try {
-      const saved = JSON.parse(raw);
-      if (saved.studentName) document.getElementById("report-student-name").value = saved.studentName;
-      if (saved.studentClass) document.getElementById("report-student-class").value = saved.studentClass;
-      if (saved.projectLink) document.getElementById("project-link-input").value = saved.projectLink;
-      if (saved.infographicDataUrl) {
-        uploadedInfographicName = saved.infographicName || "infographic.png";
-        uploadedInfographicDataUrl = saved.infographicDataUrl;
-        document.getElementById("project-img-preview").src = uploadedInfographicDataUrl;
-        document.getElementById("project-img-name").textContent = `Restored: ${uploadedInfographicName}`;
-        document.getElementById("project-img-preview-wrap").style.display = "block";
-      }
-      if (saved.completedState) {
-        Object.assign(completedState, saved.completedState);
-        updateProgressBar();
-      }
-    } catch (e) {
-      // Ignore malformed local data
-    }
-  }
-
-  async function saveAndReportProgress() {
-    const payload = getProgressPayload();
-    const msg = document.getElementById("report-status-msg");
-
-    if (!payload.studentName || !payload.studentClass) {
-      msg.style.color = "var(--error)";
-      msg.textContent = "Please enter both your name and your class before reporting.";
-      return;
-    }
-
-    saveProgressLocally(false);
-
-if (!PROGRESS_REPORT_URL || PROGRESS_REPORT_URL.includes("PASTE_YOUR_WEB_APP_URL_HERE")) {
-      msg.style.color = "var(--error)";
-      msg.textContent = "Saved locally, but PROGRESS_REPORT_URL is not set yet.";
-      return;
-    }
-
-    msg.style.color = "var(--muted)";
-    msg.textContent = "Sending report...";
-
-    try {
-      await fetch(PROGRESS_REPORT_URL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
-      msg.style.color = "var(--success)";
-      msg.textContent = `✓ Saved & reported for ${payload.studentName} (${payload.studentClass}) — ${payload.progressPct}!`;
-    } catch (err) {
-      msg.style.color = "var(--error)";
-      msg.textContent = "Saved locally, but sending to Google Sheets failed. Please try again.";
-    }
-  }
-
-  restoreSavedProgress();
 </script>
 
 </body>
