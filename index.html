@@ -3079,25 +3079,23 @@
   // All 27 unique past simple verb forms appearing in Reading Part 2 (Parts B-E)
   const PART2_PAST_VERBS = [
     "changed", "cut", "cleared", "ate", "dug", "built", "made",
-    "grew", "had", "ground", "gave", "was", "did",
+    "grew", "had", "ground", "gave", "was", "did", "lived"
     "led", "invented", "pulled", "got", "were", "polished", "learned", "shaped", "baked", "used",
     "looked", "worked", "became", "needed", "traded"
   ];
 
   // Wait: let's match the exact 27 verbs in the 2-column base form section too!
   const DRAG_VERB_DATA = [
-    { word: "changed", type: "reg" },
-    { word: "cleared", type: "reg" },
-    { word: "invented", type: "reg" },
-    { word: "pulled", type: "reg" },
-    { word: "polished", type: "reg" },
     { word: "learned", type: "reg" },
     { word: "shaped", type: "reg" },
+    { word: "got", type: "irreg" },
+    { word: "were", type: "irreg" },
+    { word: "became", type: "irreg" }
     { word: "baked", type: "reg" },
-    { word: "used", type: "reg" },
     { word: "looked", type: "reg" },
     { word: "worked", type: "reg" },
     { word: "needed", type: "reg" },
+    { word: "used", type: "reg" },
     { word: "traded", type: "reg" },
     { word: "cut", type: "irreg" },
     { word: "ate", type: "irreg" },
@@ -3111,9 +3109,13 @@
     { word: "was", type: "irreg" },
     { word: "did", type: "irreg" },
     { word: "led", type: "irreg" },
-    { word: "got", type: "irreg" },
-    { word: "were", type: "irreg" },
-    { word: "became", type: "irreg" }
+    { word: "changed", type: "reg" },
+    { word: "cleared", type: "reg" },
+    { word: "invented", type: "reg" },
+    { word: "pulled", type: "reg" },
+    { word: "polished", type: "reg" },
+    { word: "lived", type: "reg" },
+
   ];
 
   function buildClickableReadingPart2() {
